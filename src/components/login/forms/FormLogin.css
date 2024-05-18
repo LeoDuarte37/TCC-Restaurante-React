@@ -3,3 +3,9 @@
     background-color: rgb(73, 73, 73);
     border-radius: 0.5rem;
 }
+
+.logo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}

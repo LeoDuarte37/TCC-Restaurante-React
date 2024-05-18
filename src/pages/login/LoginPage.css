@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Glass+Antiqua&display=swap');
+
 .caixa {
     display: flex;
     flex-direction: column;
@@ -20,9 +22,10 @@
 
 .caixa h1 {
     color: white;
-    font-size: 4rem;
-    font-weight: bold;
-    margin: 0 0 3rem 0;
+    font-size: 3rem;
+    font-family: "Glass Antiqua", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .caixaContent h2 {
@@ -30,5 +33,11 @@
     font-size: 2rem;
     font-weight: lighter;
     text-align: center;
-    margin: 0 0 3rem 0;
+    margin: 3rem 0 3rem 0;
+}
+
+.caixaTitle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }

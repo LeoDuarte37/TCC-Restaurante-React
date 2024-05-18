@@ -1,15 +1,13 @@
+import { ChefHat } from "@phosphor-icons/react";
 import "./FormLogin.css"
 
 function FormLoginColaborador() {
     return (
         <>
             <div className="div flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-                <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                    <img
-                        className="mx-auto h-10 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=black&shade=600"
-                        alt="Your Company"
-                    />
+                <div className="logo sm:mx-auto sm:w-full sm:max-w-sm">
+                    <ChefHat size={40} />
+
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white-900">
                         Acesse sua conta
                     </h2>

@@ -38,8 +38,8 @@ function ModalLogin(props: { mostrar: boolean; }) {
                                 leaveFrom="opacity-100 transform-[scale(100%)]"
                                 leaveTo="opacity-0 transform-[scale(95%)]"
                             >
-                                <DialogPanel className="rounded-xl bg-white/5 p-6 backdrop-blur-2xl">
-                                    <div className="flex justify-end mb-2">
+                                <DialogPanel className="rounded-xl bg-white/5 px-6 pb-6 pt-0 backdrop-blur-2xl">
+                                    <div className="flex justify-end my-2">
                                         <ArrowArcRight size={32} color="white" onClick={() => setIsOpenColaborador(false)} />
                                     </div>
                                     <FormLoginColaborador />
@@ -62,8 +62,8 @@ function ModalLogin(props: { mostrar: boolean; }) {
                                 leaveFrom="opacity-100 transform-[scale(100%)]"
                                 leaveTo="opacity-0 transform-[scale(95%)]"
                             >
-                                <DialogPanel className="rounded-xl bg-white/5 p-6 backdrop-blur-2xl">
-                                    <div className="flex justify-end" >
+                                <DialogPanel className="rounded-xl bg-white/5 px-6 pb-6 pt-0 backdrop-blur-2xl">
+                                    <div className="flex justify-end my-2" >
                                         <ArrowArcRight size={32} color="white" onClick={() => setIsOpenMesa(false)} />
                                     </div>
                                     <FormLoginMesa />
