@@ -19,8 +19,8 @@ export const cardapio = async (url: string, setDados: Function) => {
 
 
 // FUNÇÕES PARA USO DO RESTAURANTE
-export const logar = async (url: string, dados: Logar, setDados: Function) => {
-    const resposta = await api.post(url, dados);
+export const logar = async (dados: Logar, setDados: Function) => {
+    const resposta = await api.post("/login", dados);
     setDados(resposta.data);
 }
 
