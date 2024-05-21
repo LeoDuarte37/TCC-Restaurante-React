@@ -12,11 +12,15 @@ const api = axios.create({
 });
 
 // FUNÇÕES PARA USO DA MESA
+export const buscarMesaPorId = async (id: number, setDados: Function) => {
+    const resposta = await api.get(`/mesa/${id}`);
+    setDados(resposta.data);
+}
+
 export const cardapio = async (url: string, setDados: Function) => {
     const resposta = await api.get(url);
     setDados(resposta.data);
 }
-
 
 // FUNÇÕES PARA USO DO RESTAURANTE
 export const logar = async (dados: Logar, setDados: Function) => {

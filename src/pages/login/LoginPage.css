@@ -1,20 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Glass+Antiqua&display=swap');
-
-.caixa {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
+.container {
+    min-width: 100%;
+    height: 100%;
     background-image: linear-gradient(-160deg, rgb(51, 48, 61), rgb(91, 120, 131));
 }
-
-.caixa h1 {
-    color: white;
-    font-size: 3rem;
-    font-family: "Glass Antiqua", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-

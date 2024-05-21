@@ -4,12 +4,11 @@ import Sessao from "../models/Sessao";
 import { logar } from "../services/Service";
 import toastAlert from "../utils/toastAlert";
 
-
 interface LoginContextProps {
     usuario: Sessao;
-    handleLogout(): void;
-    handleLogin(login: Logar): Promise<void>; 
     isLoading: boolean;
+    handleLogout(): void;
+    handleLogin(login: Logar, isMesa: boolean, mesaId?: number): Promise<void>; 
 }
 
 interface LoginProviderProps {
@@ -18,10 +17,14 @@ interface LoginProviderProps {
 
 export const LoginContext = createContext( {} as LoginContextProps );
 
-function LoginProvider( {children} : LoginProviderProps ) {
+export function LoginProvider( {children} : LoginProviderProps ) {
 
     const [usuario, setUsuario] = useState<Sessao>({
         username: "",
+        restaurante: {
+            id: 0,
+            nome: "",
+        },
         perfil: "",
         token: "",
     });
@@ -45,17 +48,18 @@ function LoginProvider( {children} : LoginProviderProps ) {
     function handleLogout() {
         setUsuario({
             username: "",
+            restaurante: {
+                id: "",
+                nome: "",
+            },
             perfil: "",
             token: "",
         });
     }
 
     return (
-        <LoginContext.Provider value ={{ usuario, handleLogin, handleLogout, isLoading }}>
+        <LoginContext.Provider value = {{ usuario, handleLogin, handleLogout, isLoading }}>
             { children }
         </LoginContext.Provider>
     );
 }
-
-
-export default LoginProvider;

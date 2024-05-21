@@ -3,13 +3,12 @@ import FormLogin from '../../components/login/forms/FormLogin';
 
 function LoginPage() {
     return (
-        <div className="caixa">
-            <div className="caixaContent">
-                <div>
-                    <FormLogin />
-                </div>
+        <>
+            <div className="container flex justify-center items-center">
+                <FormLogin />
             </div>
-        </div>
+        
+        </>
     );
 }
 
