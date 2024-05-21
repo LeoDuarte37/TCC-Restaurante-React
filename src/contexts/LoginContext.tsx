@@ -7,6 +7,8 @@ import toastAlert from "../utils/toastAlert";
 interface LoginContextProps {
     usuario: Sessao;
     isLoading: boolean;
+    isMesa: boolean;
+    changeContextIsMesa(): void;
     handleLogout(): void;
     handleLogin(login: Logar, isMesa: boolean, mesaId?: number): Promise<void>; 
 }
@@ -22,7 +24,7 @@ export function LoginProvider( {children} : LoginProviderProps ) {
     const [usuario, setUsuario] = useState<Sessao>({
         username: "",
         restaurante: {
-            id: 0,
+            id: "",
             nome: "",
         },
         perfil: "",
@@ -30,6 +32,12 @@ export function LoginProvider( {children} : LoginProviderProps ) {
     });
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const [isMesa, setIsMesa] = useState(false);
+
+    function changeContextIsMesa() {
+        setIsMesa(!isMesa);
+    }
 
     async function handleLogin(login: Logar) {
         setIsLoading(true);
@@ -58,7 +66,7 @@ export function LoginProvider( {children} : LoginProviderProps ) {
     }
 
     return (
-        <LoginContext.Provider value = {{ usuario, handleLogin, handleLogout, isLoading }}>
+        <LoginContext.Provider value = {{ usuario, isLoading , isMesa, changeContextIsMesa, handleLogin, handleLogout }}>
             { children }
         </LoginContext.Provider>
     );
