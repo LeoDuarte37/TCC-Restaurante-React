@@ -1,3 +1,9 @@
+import Cardapio from "../mesa/cardapio/Cardapio";
+import ChamarGarcom from "../mesa/chamarGarcom/ChamarGarcom";
+import Conta from "../mesa/conta/Conta";
+import Destaques from "../mesa/destaques/Destaques";
+import MeusPedidos from "../mesa/meusPedidos/MeusPedidos";
+import Search from "../mesa/search/Search";
 import "./Navbar.css";
 import { ChefHat } from "@phosphor-icons/react";
 
@@ -10,16 +16,25 @@ function Navbar() {
                     <ChefHat size={45} color='white' />
                 </div>
 
-                <div className="search">
-                    <div className="identification">
-                         <p>Mesa {/* {mesa.numero} */}</p> 
-                    </div>
+                <Search />
 
-                </div>
+                <ChamarGarcom />
+
+                <MeusPedidos />
+
+                <Conta />
             </div>
 
             <div className="sidebar">
+                <div className="produto">
+                    <Destaques />
+                    <hr />
+                    <Cardapio />
+                </div>
 
+                <div className="sobre">
+                    <p>Sobre</p>
+                </div>
             </div>
         </nav>
     );

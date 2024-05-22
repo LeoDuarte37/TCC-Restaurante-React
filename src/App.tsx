@@ -5,6 +5,7 @@ import { LoginProvider } from './contexts/LoginContext'
 import LoginPage from './pages/login/LoginPage'
 import { ToastContainer } from 'react-toastify';
 import { PedidoProvider } from './contexts/PedidoContext';
+import { MesaProvider } from './contexts/MesaContext';
 
 function App() {
 
@@ -13,11 +14,13 @@ function App() {
       <LoginProvider>
         <ToastContainer />
         {/* <BrowserRouter> */}
+        <MesaProvider>
           {/* <PedidoProvider> */}
             <Navbar />
             {/* <LoginPage /> */}
           {/* </PedidoProvider> */}
         {/* </BrowserRouter> */}
+        </MesaProvider>
       </LoginProvider>
     </>
   );
