@@ -33,13 +33,13 @@ nav .navbar {
 .search .identification {
     color: aliceblue;
     border: 1px white solid;
-    padding: 6px 10px;
+    padding: 5px 10px;
     border-radius: 8px;
     margin: 0 1rem 0 0;
 }
 
 .chamarGarcom, .meusPedidos, .search {
-    padding: 0 1rem 0 0;
+    padding: 0 1.5rem 0 0;
     border: 1px white solid;
     border-top: hidden;
     border-left: hidden;
@@ -82,13 +82,13 @@ nav .navbar {
 }
 
 .sidebar .produto hr {
-    width: 70%;
+    width: 75%;
 }
 
 .sidebar .sobre {
     text-align: center;
     border: 1px white solid;
-    padding: 6px 10px;
+    padding: 5px 10px;
     border-radius: 8px;
     margin: 0;
 }
