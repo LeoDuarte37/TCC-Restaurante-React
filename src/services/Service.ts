@@ -17,7 +17,7 @@ export const buscarMesaPorId = async (id: number, setDados: Function) => {
     setDados(resposta.data);
 }
 
-export const cardapio = async (url: string, setDados: Function) => {
+export const buscarCardapio = async (url: string, setDados: Function) => {
     const resposta = await api.get(url);
     setDados(resposta.data);
 }
