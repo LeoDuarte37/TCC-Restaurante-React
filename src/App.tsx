@@ -6,6 +6,8 @@ import LoginPage from './pages/login/LoginPage'
 import { ToastContainer } from 'react-toastify';
 import { PedidoProvider } from './contexts/PedidoContext';
 import { MesaProvider } from './contexts/MesaContext';
+import CardCategoria from './components/categoria/card/CardCategoria';
+import ListaCategoria from './components/categoria/lista/ListaCategoria';
 
 function App() {
 
@@ -16,7 +18,9 @@ function App() {
         {/* <BrowserRouter> */}
         <MesaProvider>
           {/* <PedidoProvider> */}
-            <Navbar />
+            {/* <Navbar /> */}
+            {/* <CardCategoria /> */}
+            <ListaCategoria />
             {/* <LoginPage /> */}
           {/* </PedidoProvider> */}
         {/* </BrowserRouter> */}
