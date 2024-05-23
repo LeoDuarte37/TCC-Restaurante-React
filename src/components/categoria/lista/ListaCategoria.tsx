@@ -4,6 +4,7 @@ import { buscarCardapio } from "../../../services/Service";
 import toastAlert from "../../../utils/toastAlert";
 import { TailSpin } from 'react-loader-spinner';
 import CardCategoria from "../card/CardCategoria";
+import ListaProduto from "../../produto/lista/ListaProduto";
 
 function ListaCategoria() {
     
@@ -62,12 +63,13 @@ function ListaCategoria() {
                     {categorias.map((categoria) => (
                         <>
                             <CardCategoria categoria={categoria}/>
+                            {/* <ListaProduto produtos={categoria.produto}/> */}
                         </>
                     ))}
                 </div>
             )}
         </div>
-    )
+    );
 }
 
 export default ListaCategoria;
