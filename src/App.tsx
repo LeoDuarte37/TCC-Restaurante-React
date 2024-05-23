@@ -16,7 +16,7 @@ function App() {
       <LoginProvider>
         <ToastContainer />
         {/* <BrowserRouter> */}
-        <MesaProvider>
+        {/* <MesaProvider> */}
           {/* <PedidoProvider> */}
             {/* <Navbar /> */}
             {/* <CardCategoria /> */}
@@ -24,7 +24,7 @@ function App() {
             {/* <LoginPage /> */}
           {/* </PedidoProvider> */}
         {/* </BrowserRouter> */}
-        </MesaProvider>
+        {/* </MesaProvider> */}
       </LoginProvider>
     </>
   );
