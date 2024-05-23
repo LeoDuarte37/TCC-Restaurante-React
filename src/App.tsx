@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import { PedidoProvider } from './contexts/PedidoContext';
 import { MesaProvider } from './contexts/MesaContext';
 import CardCategoria from './components/categoria/card/CardCategoria';
-import ListaCategoria from './components/categoria/lista/ListaCategoria';
+import CardapioPage from './pages/mesa/cardapio/CardapioPage';
 
 function App() {
 
@@ -16,15 +16,14 @@ function App() {
       <LoginProvider>
         <ToastContainer />
         {/* <BrowserRouter> */}
-        <MesaProvider>
-          {/* <PedidoProvider> */}
+        <MesaProvider> 
+          <PedidoProvider>
             <Navbar />
-            {/* <CardCategoria /> */}
-            {/* <ListaCategoria /> */}
+            <CardapioPage />
             {/* <LoginPage /> */}
-          {/* </PedidoProvider> */}
-        {/* </BrowserRouter> */}
+          </PedidoProvider>
         </MesaProvider>
+        {/* </BrowserRouter> */}
       </LoginProvider>
     </>
   );

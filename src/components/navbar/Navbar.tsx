@@ -10,30 +10,26 @@ import { ChefHat } from "@phosphor-icons/react";
 function Navbar() {
 
     return (
-        <nav>
+        <nav className="flex flex-wrap place-items-center">
             <div className="navbar">
                 <div className="logo">
-                    <ChefHat size={45} color='white' />
+                    <ChefHat size={50} color='white' />
                 </div>
 
-                <Search />
+                <div className="componentes">
+                    <Search />
 
-                <ChamarGarcom />
+                    <div className="borda"></div>
 
-                <MeusPedidos />
+                    <ChamarGarcom />
 
-                <Conta />
-            </div>
+                    <div className="borda"></div>
 
-            <div className="sidebar">
-                <div className="produto">
-                    <Destaques />
-                    <hr />
-                    <Cardapio />
-                </div>
+                    <MeusPedidos />
 
-                <div className="sobre">
-                    <p>Sobre</p>
+                    <div className="borda"></div>
+
+                    <Conta />
                 </div>
             </div>
         </nav>

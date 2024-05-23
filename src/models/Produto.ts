@@ -7,5 +7,5 @@ export default interface Produto {
     foto: string;
     valor: number;
     disponivel: boolean;
-    categoria: Categoria;
+    categoria?: Categoria;
 }
