@@ -6,8 +6,9 @@ import LoginPage from './pages/login/LoginPage'
 import { ToastContainer } from 'react-toastify';
 import { PedidoProvider } from './contexts/PedidoContext';
 import { MesaProvider } from './contexts/MesaContext';
-import CardCategoria from './components/categoria/card/CardCategoria';
-import CardapioPage from './pages/mesa/cardapio/CardapioPage';
+import CardapioMesaPage from './pages/mesa/cardapio/CardapioMesaPage';
+import DestaqueMesaPage from './pages/mesa/destaques/DestaquesMesaPage';
+import { DestaqueProvider } from './contexts/DestaqueContext';
 
 function App() {
   return (
@@ -17,9 +18,12 @@ function App() {
         {/* <BrowserRouter> */}
         <MesaProvider> 
           <PedidoProvider>
-            <Navbar />
-            <CardapioPage />
-            {/* <LoginPage /> */}
+            <DestaqueProvider >
+              <Navbar />
+              {/* <DestaqueMesaPage /> */}
+              <CardapioMesaPage />
+              {/* <LoginPage /> */}
+            </DestaqueProvider>
           </PedidoProvider>
         </MesaProvider>
         {/* </BrowserRouter> */}
@@ -27,5 +31,8 @@ function App() {
     </>
   );
 }
+
+// https://tw-elements.com/docs/standard/components/scroll-back-to-top-button/
+// https://tailwindui.com/components/application-ui/overlays/slide-overs
 
 export default App;

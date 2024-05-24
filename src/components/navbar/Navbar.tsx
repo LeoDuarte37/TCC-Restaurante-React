@@ -1,9 +1,7 @@
-import Cardapio from "../mesa/cardapio/Cardapio";
-import ChamarGarcom from "../mesa/chamarGarcom/ChamarGarcom";
-import Conta from "../mesa/conta/Conta";
-import Destaques from "../mesa/destaques/Destaques";
-import MeusPedidos from "../mesa/meusPedidos/MeusPedidos";
-import Search from "../mesa/search/Search";
+import ChamarGarcom from "../mesa/botoes/ChamarGarcom";
+import Conta from "../mesa/botoes/Conta";
+import MeusPedidos from "../mesa/botoes/MeusPedidos";
+import Search from "../mesa/botoes/Search";
 import "./Navbar.css";
 import { ChefHat } from "@phosphor-icons/react";
 

@@ -16,7 +16,23 @@ export const DestaqueContext = createContext({} as DestaqueContextProps);
 
 export function DestaqueProvider({children} : DestaqueProviderProps) {
 
-    const [destaques, setDetaques] = useState<Array<Destaque>>([]);
+    const [destaques, setDetaques] = useState<Array<Destaque>>([
+        {
+            "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+            "nome": "Prato Especial",
+            "descricao": "O clássico prato do restaurante"
+        },
+        {
+            "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+            "nome": "Prato Especial",
+            "descricao": "O clássico prato do restaurante"
+        },
+        {
+            "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+            "nome": "Prato Especial",
+            "descricao": "O clássico prato do restaurante"
+        },
+    ]);
 
     function adicionarDestaque(destaque: Destaque) {
 

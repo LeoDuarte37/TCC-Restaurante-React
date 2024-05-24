@@ -1,5 +1,5 @@
-import Cardapio from "../cardapio/Cardapio";
-import Destaques from "../destaques/Destaques";
+import BotaoCardapio from "../botoes/Cardapio";
+import Destaques from "../botoes/Destaques";
 import "./Sidebar.css";
 
 function Sidebar() {
@@ -8,7 +8,7 @@ function Sidebar() {
             <div className="produto">
                 <Destaques />
                 <hr />
-                <Cardapio />
+                <BotaoCardapio />
             </div>
 
             <div className="sobre">
