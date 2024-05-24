@@ -10,7 +10,6 @@ import CardCategoria from './components/categoria/card/CardCategoria';
 import CardapioPage from './pages/mesa/cardapio/CardapioPage';
 
 function App() {
-
   return (
     <>
       <LoginProvider>
