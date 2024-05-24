@@ -6,8 +6,6 @@ function Sidebar() {
     return (
         <div className="sidebar">
             <div className="produto">
-                <Destaques />
-                <hr />
                 <BotaoCardapio />
             </div>
 

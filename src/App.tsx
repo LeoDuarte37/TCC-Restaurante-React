@@ -8,7 +8,6 @@ import { PedidoProvider } from './contexts/PedidoContext';
 import { MesaProvider } from './contexts/MesaContext';
 import CardapioMesaPage from './pages/mesa/cardapio/CardapioMesaPage';
 import DestaqueMesaPage from './pages/mesa/destaques/DestaquesMesaPage';
-import { DestaqueProvider } from './contexts/DestaqueContext';
 
 function App() {
   return (
@@ -18,12 +17,10 @@ function App() {
         {/* <BrowserRouter> */}
         <MesaProvider> 
           <PedidoProvider>
-            <DestaqueProvider >
-              <Navbar />
-              {/* <DestaqueMesaPage /> */}
-              <CardapioMesaPage />
-              {/* <LoginPage /> */}
-            </DestaqueProvider>
+            <Navbar />
+            {/* <DestaqueMesaPage /> */}
+            <CardapioMesaPage />
+            {/* <LoginPage /> */}
           </PedidoProvider>
         </MesaProvider>
         {/* </BrowserRouter> */}
