@@ -1,6 +1,6 @@
 import { Wallet } from "@phosphor-icons/react";
 
-function Conta() {
+function ContaButton() {
     return (
         <div className="conta">
             <Wallet size={32} color="white"/>
@@ -9,4 +9,4 @@ function Conta() {
     )
 }
 
-export default Conta;
+export default ContaButton;

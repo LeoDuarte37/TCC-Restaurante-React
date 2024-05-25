@@ -1,6 +1,6 @@
 import { BookOpenText } from "@phosphor-icons/react";
 
-function BotaoCardapio() {
+function CardapioButton() {
     return (
         <div className="cardapio">
             <BookOpenText size={32} color="white" />
@@ -9,4 +9,4 @@ function BotaoCardapio() {
     )
 }
 
-export default BotaoCardapio;
+export default CardapioButton;

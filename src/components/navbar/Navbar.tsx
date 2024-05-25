@@ -1,7 +1,7 @@
-import ChamarGarcom from "../mesa/botoes/ChamarGarcom";
-import Conta from "../mesa/botoes/Conta";
-import MeusPedidos from "../mesa/botoes/MeusPedidos";
-import Search from "../mesa/botoes/Search";
+import ChamarGarcomButton from "../mesa/buttons/ChamarGarcomButton";
+import ContaButton from "../mesa/buttons/ContaButton";
+import MeusPedidosButton from "../mesa/buttons/MeusPedidosButton";
+import SearchButton from "../mesa/buttons/SearchButton";
 import "./Navbar.css";
 import { ChefHat } from "@phosphor-icons/react";
 
@@ -15,19 +15,19 @@ function Navbar() {
                 </div>
 
                 <div className="componentes">
-                    <Search />
+                    <SearchButton />
 
                     <div className="borda"></div>
 
-                    <ChamarGarcom />
+                    <ChamarGarcomButton />
 
                     <div className="borda"></div>
 
-                    <MeusPedidos />
+                    <MeusPedidosButton />
 
                     <div className="borda"></div>
 
-                    <Conta />
+                    <ContaButton />
                 </div>
             </div>
         </nav>

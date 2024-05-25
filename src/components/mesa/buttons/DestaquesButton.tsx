@@ -1,7 +1,7 @@
 import { Star } from "@phosphor-icons/react";
 
 
-function Destaques() {
+function DestaquesButton() {
     return (
         <div className="destaques">
             <Star size={32} color="white" />
@@ -10,4 +10,4 @@ function Destaques() {
     )
 }
 
-export default Destaques;
+export default DestaquesButton;

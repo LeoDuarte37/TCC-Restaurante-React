@@ -2,7 +2,7 @@ import Produto from "../../../models/Produto";
 
 function CardProduto(props : { produto: Produto; isMesa?: boolean }) {
     return (
-        <div className="relative flex flex-row bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-full h-[9rem] mt-6">
+        <div className="relative flex flex-row bg-clip-border rounded-xl bg-gray-100 text-gray-700 shadow-lg w-full h-[9rem] mt-6">
             <div
                 className="relative max-w-40 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
                 <img

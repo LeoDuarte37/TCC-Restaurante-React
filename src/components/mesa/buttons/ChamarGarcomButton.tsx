@@ -1,6 +1,6 @@
 import { CallBell } from "@phosphor-icons/react";
 
-function ChamarGarcom() {
+function ChamarGarcomButton() {
     return (
         <div className="chamarGarcom">
             <CallBell size={32} color="white" />
@@ -9,4 +9,4 @@ function ChamarGarcom() {
     );
 }
 
-export default ChamarGarcom;
+export default ChamarGarcomButton;

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { MesaContext } from "../../../contexts/MesaContext";
 
-function Search() {
+function SearchButton() {
 
     const { mesa, handleMesaLogout } = useContext(MesaContext);
 
@@ -26,4 +26,4 @@ function Search() {
     );
 }
 
-export default Search;
+export default SearchButton;
