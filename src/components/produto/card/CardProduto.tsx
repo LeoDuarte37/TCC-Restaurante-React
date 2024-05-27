@@ -17,7 +17,7 @@ function CardProduto(props : { produto: Produto; isMesa?: boolean }) {
                     
                     <p>{props.produto.valor}</p>
                 </div>
-                <p className="block font-sans text-base leading-4 antialiased font-normal leading-relaxed text-gray-700">
+                <p className="block font-sans text-base leading-5 antialiased font-normal leading-relaxed text-gray-700">
                     {props.produto.descricao}
                 </p>
 
