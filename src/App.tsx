@@ -29,6 +29,7 @@ function App() {
   );
 }
 
+// https://tailwindui.com/components/ecommerce/components/category-filters
 // https://tw-elements.com/docs/standard/components/scroll-back-to-top-button/
 // https://tailwindui.com/components/application-ui/overlays/slide-overs
 

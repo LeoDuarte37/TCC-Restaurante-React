@@ -1,11 +1,23 @@
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from "@headlessui/react";
 import { X } from "@phosphor-icons/react";
 import { Note } from "@phosphor-icons/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { PedidoContext } from "../../../contexts/PedidoContext";
+import CardPedido from "../../pedido/card/CardPedido";
+import Item from "../../../models/Item";
 
 function MeusPedidosButton() {
 
+    const { mesaId, itens, limparPedido } = useContext(PedidoContext);
+
     const [open, setOpen] = useState(true);
+
+    const [subTotal, setSubTotal] = useState<number>(0);
+
+    function calcularSubTotal(item: Item) : number {
+        setSubTotal(subTotal + (item.produto.valor * item.quantidade));
+        return subTotal;
+    }
 
     return (
         <>
@@ -61,9 +73,29 @@ function MeusPedidosButton() {
                                         </TransitionChild>
                                         <div className="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                                             <div className="px-4 sm:px-6">
-                                                <DialogTitle className="text-base font-semibold leading-6 text-gray-900">Panel title</DialogTitle>
+                                                <DialogTitle className="text-base font-semibold leading-6 text-gray-900">Meus pedidos</DialogTitle>
                                             </div>
-                                            <div className="relative mt-6 flex-1 px-4 sm:px-6">{/* Your content */}</div>
+                                            <div className="relative mt-6 flex-1 px-4 sm:px-6">
+                                                {itens.map((item) => (
+                                                    <CardPedido item={item} />
+                                                ))}
+                                            </div>
+
+                                            <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+                                                <div className="flex justify-between text-base font-medium text-gray-900">
+                                                    <p>Subtotal</p>
+                                                    <p>{itens.map((item) => calcularSubTotal(item))}</p>
+                                                </div>
+                                                <p className="mt-0.5 text-sm text-gray-500">Impostos calculados na finalização da compra.</p>
+                                                <div className="mt-6">
+                                                    <a
+                                                        href="#"
+                                                        className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                                                    >
+                                                        Checkout
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </DialogPanel>
                                 </TransitionChild>

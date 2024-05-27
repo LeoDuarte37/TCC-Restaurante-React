@@ -23,7 +23,19 @@ export function PedidoProvider( {children} : PedidoProviderProps ) {
 
     const [mesaId, setMesaId] = useState<number>(mesa.id);
 
-    const [itens, setItens] = useState<Array<Item>>([]);
+    const [itens, setItens] = useState<Array<Item>>([
+        {
+            produto: {
+                id: 1,
+                nome: "Prato especial",
+                descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                valor: 25.99,
+                disponivel: true
+            },
+            quantidade: 2            
+        }
+    ]);
 
     function adicionarItem(item: Item) {
         if (mesa == null || mesaId == 0) {
