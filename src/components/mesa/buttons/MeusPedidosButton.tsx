@@ -14,11 +14,6 @@ function MeusPedidosButton() {
 
     const [subTotal, setSubTotal] = useState<number>(0);
 
-    function calcularSubTotal(item: Item) : number {
-        setSubTotal(subTotal + (item.produto.valor * item.quantidade));
-        return subTotal;
-    }
-
     return (
         <>
             <div className="meusPedidos" onClick={() => setOpen(!open)}>
@@ -84,7 +79,7 @@ function MeusPedidosButton() {
                                             <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                                                 <div className="flex justify-between text-base font-medium text-gray-900">
                                                     <p>Subtotal</p>
-                                                    <p>{itens.map((item) => calcularSubTotal(item))}</p>
+                                                    <p>0</p>
                                                 </div>
                                                 <p className="mt-0.5 text-sm text-gray-500">Impostos calculados na finalização da compra.</p>
                                                 <div className="mt-6">
