@@ -131,25 +131,24 @@ function ListaCategoria(props: { isMesa: boolean; }) {
             ) : (
                 <>
                     {props.isMesa ? (
-                        <>
-                            <div className="flex flex-col gap-3 ml-4 mt-4 pb-4 pr-4 w-40 h-4/5 overflow-y-scroll">
-                                {categorias.map((categoria) => (
-                                    <ul>
-                                        <li key={categoria.id}>
-                                            <h2 className="text-zinc-700 text-center text-2xl font-bold">{categoria.nome}</h2>
-                                            <div className="bg-gray-800 w-full h-0.5"></div>
-                                        </li>
+                        <> 
+                            {categorias.map((categoria) => (
+                                <ul className="flex flex-col gap-3 ml-4 mt-4 pb-4 pr-4 w-40 h-4/5 overflow-y-scroll">
+                                    <li key={categoria.id}>
+                                        <h2 className="text-zinc-700 text-center text-2xl font-bold">{categoria.nome}</h2>
+                                        <div className="bg-gray-800 w-full h-0.5"></div>
+                                    </li>
 
-                                        <ul>
-                                            {categoria.subCategoria.map((subCategoria) => (
-                                                <li key={subCategoria.id} onClick={() => { setProdutos(subCategoria.produto); setSubCategoriaAtual(subCategoria) }}>
-                                                    <CardCategoria subCategoria={subCategoria} isMesa={props.isMesa} />
-                                                </li>
-                                            ))}
-                                        </ul>
+                                    <ul>
+                                        {categoria.subCategoria.map((subCategoria) => (
+                                            <li key={subCategoria.id} onClick={() => { setProdutos(subCategoria.produto); setSubCategoriaAtual(subCategoria) }}>
+                                                <CardCategoria subCategoria={subCategoria} isMesa={props.isMesa} />
+                                            </li>
+                                        ))}
                                     </ul>
-                                ))}
-                            </div>
+                                </ul>
+                            ))}
+                        
 
                             <div className="bg-gray-800 w-1 h-full"></div>
 

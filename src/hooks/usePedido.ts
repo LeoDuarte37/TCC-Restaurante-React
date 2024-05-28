@@ -1,26 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Item from "../models/Item";
 import toastAlert from "../utils/toastAlert";
 
 export default function usePedido() {
     
-    const [pedido, setPedido] = useState<Array<Item>>([
-        {
-            produto: {
-                id: 1,
-                nome: "Prato especial",
-                descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                valor: 25.99,
-                disponivel: true
-            },
-            quantidade: 2            
-        },
-    ]);
-
-    useEffect(() => {
-        localStorage.setItem("pedido", JSON.stringify(pedido));
-    }, [pedido]);
+    const [pedido, setPedido] = useState<Array<Item>>([]);
 
     async function addToPedido(item: Item) {
 
@@ -43,7 +27,7 @@ export default function usePedido() {
         } 
 
         setPedido([...newPedido, item]);
-        localStorage.setItem("cart", JSON.stringify([...newPedido, item]));
+        localStorage.setItem("pedido", JSON.stringify([...newPedido, item]));
     }
 
     async function removeToPedido(id: number) {

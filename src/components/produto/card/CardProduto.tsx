@@ -1,8 +1,26 @@
+import usePedido from "../../../hooks/usePedido";
+import Item from "../../../models/Item";
 import Produto from "../../../models/Produto";
 
 function CardProduto(props : { produto: Produto; isMesa?: boolean }) {
+
+    const { addToPedido } = usePedido();
+
+    function handleClickAddToPedido(produto: Produto) {
+        const item: Item = {
+            produto: produto,
+            quantidade: 1,
+        };
+
+        try {
+            addToPedido(item);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
-        <li key={props.produto.id} className="relative flex flex-row bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-full h-30">
+        <div className="relative flex flex-row bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-full h-30">
             <div
                 className="relative max-w-40 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
                 <img
@@ -22,10 +40,12 @@ function CardProduto(props : { produto: Produto; isMesa?: boolean }) {
                 </p>
 
                 <div className="flex justify-end items-end h-full">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-2 rounded h-8">Adicionar</button>
+                    <button onClick={() => handleClickAddToPedido(props.produto)} className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-2 rounded h-8">
+                        Adicionar
+                    </button>
                 </div>
             </div>
-        </li>
+        </div>
     )
 }
 
