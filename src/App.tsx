@@ -4,6 +4,7 @@ import Navbar from './components/navbar/Navbar'
 import { LoginProvider } from './contexts/LoginContext'
 import LoginPage from './pages/login/LoginPage'
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { MesaProvider } from './contexts/MesaContext';
 import CardapioMesaPage from './pages/mesa/cardapio/CardapioMesaPage';
 import DestaqueMesaPage from './pages/mesa/destaques/DestaquesMesaPage';
@@ -11,8 +12,9 @@ import DestaqueMesaPage from './pages/mesa/destaques/DestaquesMesaPage';
 function App() {
   return (
     <>
+
       <LoginProvider>
-        <ToastContainer />
+        <ToastContainer style={{ width: "290px" }}/>
         {/* <BrowserRouter> */}
         <MesaProvider> 
             <Navbar />
