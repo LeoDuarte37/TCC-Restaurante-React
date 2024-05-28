@@ -8,7 +8,7 @@ import Produto from "../../../models/Produto";
 import CardProduto from "../../produto/card/CardProduto";
 import SubCategoria from "../../../models/SubCategoria";
 
-function ListaCategoria(props : { isMesa: boolean; }) {
+function ListaCategoria(props: { isMesa: boolean; }) {
 
     const [categorias, setCategorias] = useState<Array<Categoria>>([
         {
@@ -16,11 +16,11 @@ function ListaCategoria(props : { isMesa: boolean; }) {
             nome: "Comidas",
             subCategoria: [
                 {
-                    id: 1,
+                    id: 2,
                     nome: "Pratos especiais",
                     produto: [
                         {
-                            id: 1,
+                            id: 3,
                             nome: "Prato especial",
                             descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
                             foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
@@ -28,7 +28,7 @@ function ListaCategoria(props : { isMesa: boolean; }) {
                             disponivel: true
                         },
                         {
-                            id: 1,
+                            id: 4,
                             nome: "Prato especial",
                             descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
                             foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
@@ -36,7 +36,7 @@ function ListaCategoria(props : { isMesa: boolean; }) {
                             disponivel: true
                         },
                         {
-                            id: 1,
+                            id: 5,
                             nome: "Prato especial",
                             descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
                             foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
@@ -44,22 +44,22 @@ function ListaCategoria(props : { isMesa: boolean; }) {
                             disponivel: true
                         },
                         {
-                            id: 1,
+                            id: 6,
                             nome: "Prato especial",
                             descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
                             foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
                             valor: 25.99,
                             disponivel: true
                         },
-                    ], 
+                    ],
                     disponivel: true,
                 },
                 {
-                    id: 1,
+                    id: 7,
                     nome: "Lanches",
                     produto: [
                         {
-                            id: 1,
+                            id: 8,
                             nome: "Prato especial",
                             descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
                             foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
@@ -67,114 +67,14 @@ function ListaCategoria(props : { isMesa: boolean; }) {
                             disponivel: true
                         },
                         {
-                            id: 1,
+                            id: 9,
                             nome: "Prato especial",
                             descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
                             foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
                             valor: 25.99,
                             disponivel: true
                         },
-                    ], 
-                    disponivel: true,
-                },
-            ],
-            disponivel: true,
-        },
-        {
-            id: 1,
-            nome: "Bebidas",
-            subCategoria: [
-                {
-                    id: 1,
-                    nome: "Cervejas",
-                    produto: [
-                        {
-                            id: 1,
-                            nome: "Prato especial",
-                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                            valor: 25.99,
-                            disponivel: true
-                        },
-                        {
-                            id: 1,
-                            nome: "Prato especial",
-                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                            valor: 25.99,
-                            disponivel: true
-                        },
-                        {
-                            id: 1,
-                            nome: "Prato especial",
-                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                            valor: 25.99,
-                            disponivel: true
-                        },
-                    ], 
-                    disponivel: true,
-                },
-                {
-                    id: 1,
-                    nome: "Refri",
-                    produto: [
-                        {
-                            id: 1,
-                            nome: "Prato especial",
-                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                            valor: 25.99,
-                            disponivel: true
-                        },
-                        {
-                            id: 1,
-                            nome: "Prato especial",
-                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                            valor: 25.99,
-                            disponivel: true
-                        },
-                        {
-                            id: 1,
-                            nome: "Prato especial",
-                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                            valor: 25.99,
-                            disponivel: true
-                        },
-                    ], 
-                    disponivel: true,
-                },
-                {
-                    id: 1,
-                    nome: "Pratos especiais",
-                    produto: [
-                        {
-                            id: 1,
-                            nome: "Prato especial",
-                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                            valor: 25.99,
-                            disponivel: true
-                        },
-                        {
-                            id: 1,
-                            nome: "Prato especial",
-                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                            valor: 25.99,
-                            disponivel: true
-                        },
-                        {
-                            id: 1,
-                            nome: "Prato especial",
-                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                            valor: 25.99,
-                            disponivel: true
-                        },
-                    ], 
+                    ],
                     disponivel: true,
                 },
             ],
@@ -234,34 +134,36 @@ function ListaCategoria(props : { isMesa: boolean; }) {
                         <>
                             <div className="flex flex-col gap-3 ml-4 mt-4 pb-4 pr-4 w-40 h-4/5 overflow-y-scroll">
                                 {categorias.map((categoria) => (
-                                    <>
-                                        <div>
+                                    <ul>
+                                        <li key={categoria.id}>
                                             <h2 className="text-zinc-700 text-center text-2xl font-bold">{categoria.nome}</h2>
                                             <div className="bg-gray-800 w-full h-0.5"></div>
-                                        </div>
+                                        </li>
 
-                                        {categoria.subCategoria.map((subCategoria) => (
-                                            <div onClick={() => {setProdutos(subCategoria.produto); setSubCategoriaAtual(subCategoria)}}>
-                                                <CardCategoria subCategoria={subCategoria} isMesa={props.isMesa} />
-                                            </div>
-                                        ))}
-                                    </>
+                                        <ul>
+                                            {categoria.subCategoria.map((subCategoria) => (
+                                                <li key={subCategoria.id} onClick={() => { setProdutos(subCategoria.produto); setSubCategoriaAtual(subCategoria) }}>
+                                                    <CardCategoria subCategoria={subCategoria} isMesa={props.isMesa} />
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </ul>
                                 ))}
-                            </div> 
+                            </div>
 
                             <div className="bg-gray-800 w-1 h-full"></div>
 
                             <div className="flex flex-col m-4 w-full h-full">
                                 <h2 className="text-zinc-700 text-2xl font-bold mb-4 ">{subCategoriaAtual.nome}</h2>
 
-                                <div className="flex flex-col gap-6 w-full h-3/4 pb-4 overflow-auto">
+                                <ul className="flex flex-col gap-6 w-full h-3/4 pb-4 overflow-auto">
                                     {produtos.map((produto) => (
                                         <CardProduto produto={produto} />
                                     ))}
-                                </div>
+                                </ul>
                             </div>
                         </>
-                              
+
                     ) : (
                         <div className="py-24 mx-auto w-2/3 grid grid-cols-2 justify-items-center xsm:grid-cols-1 sm:grid-cols-2 2md:grid-cols-3 xl:grid-cols-4">
                             {categorias.map((categoria) => (

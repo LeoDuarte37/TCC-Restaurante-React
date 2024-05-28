@@ -2,7 +2,7 @@ import Produto from "../../../models/Produto";
 
 function CardProduto(props : { produto: Produto; isMesa?: boolean }) {
     return (
-        <div className="relative flex flex-row bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-full h-30">
+        <li key={props.produto.id} className="relative flex flex-row bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-full h-30">
             <div
                 className="relative max-w-40 m-0 overflow-hidden text-gray-700 bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
                 <img
@@ -25,8 +25,7 @@ function CardProduto(props : { produto: Produto; isMesa?: boolean }) {
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-1 px-2 rounded h-8">Adicionar</button>
                 </div>
             </div>
-            
-        </div>
+        </li>
     )
 }
 

@@ -1,13 +1,10 @@
-// import { useContext } from "react";
 import Item from "../../../models/Item";
-// import { PedidoContext } from "../../../contexts/PedidoContext";
 
 function CardPedido(props: {item : Item}) {
 
-    // const {adicionarItem, removerItem, limparPedido} = useContext(PedidoContext);
 
     return (
-        <div key={props.item.produto.id} className="flex py-6">
+        <div className="flex py-6">
             <div className="h-content w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                 <img
                     src={props.item.produto.foto}
@@ -23,7 +20,7 @@ function CardPedido(props: {item : Item}) {
                             {props.item.produto.nome}
                         </h3>
 
-                        <p className="ml-4">${props.item.produto.valor}</p>
+                        <p className="ml-4">R${props.item.produto.valor}</p>
                     </div>
                 </div>
                 <div className="flex flex-1 items-center justify-between text-sm mt-4">

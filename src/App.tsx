@@ -4,7 +4,6 @@ import Navbar from './components/navbar/Navbar'
 import { LoginProvider } from './contexts/LoginContext'
 import LoginPage from './pages/login/LoginPage'
 import { ToastContainer } from 'react-toastify';
-import { PedidoProvider } from './contexts/PedidoContext';
 import { MesaProvider } from './contexts/MesaContext';
 import CardapioMesaPage from './pages/mesa/cardapio/CardapioMesaPage';
 import DestaqueMesaPage from './pages/mesa/destaques/DestaquesMesaPage';
@@ -16,12 +15,10 @@ function App() {
         <ToastContainer />
         {/* <BrowserRouter> */}
         <MesaProvider> 
-          <PedidoProvider>
             <Navbar />
             {/* <DestaqueMesaPage /> */}
             <CardapioMesaPage />
             {/* <LoginPage /> */}
-          </PedidoProvider>
         </MesaProvider>
         {/* </BrowserRouter> */}
       </LoginProvider>

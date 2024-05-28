@@ -1,17 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Item from "../models/Item";
+import toastAlert from "../utils/toastAlert";
 
 export default function usePedido() {
     
-    const [pedido, setPedido] = useState<Array<Item>>([]);
+    const [pedido, setPedido] = useState<Array<Item>>([
+        {
+            produto: {
+                id: 1,
+                nome: "Prato especial",
+                descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                valor: 25.99,
+                disponivel: true
+            },
+            quantidade: 2            
+        },
+    ]);
+
+    useEffect(() => {
+        localStorage.setItem("pedido", JSON.stringify(pedido));
+    }, [pedido]);
 
     async function addToPedido(item: Item) {
 
-        const newPedido = JSON.parse(localStorage.getItem("pedido") || '{}');
+        const newPedido = JSON.parse(localStorage.getItem("pedido") || "[]");
 
         if (pedido.length === 0 && newPedido === null) {
             setPedido([...pedido, item]);
             localStorage.setItem("pedido", JSON.stringify([...pedido, item]));
+
+            toastAlert("Item adicionado aos seus pedidos com sucesso!", "sucesso");
             return;
         }
 
@@ -29,7 +48,7 @@ export default function usePedido() {
 
     async function removeToPedido(id: number) {
         
-        const newPedido = JSON.parse(localStorage.getItem("pedido") || '{}');
+        const newPedido = JSON.parse(localStorage.getItem("pedido") || "[]");
 
         const search = newPedido.find((item: Item) => item.produto.id == id);
 
@@ -39,13 +58,14 @@ export default function usePedido() {
             const list = newPedido.find((item: Item) => item.produto.id !== id);
             setPedido(list);
             localStorage.setItem("pedido", JSON.stringify(list));
+            toastAlert("Item removido com sucesso!", "sucesso");
         }  
     }
 
-    async function totalPedido() : Promise<number> {
-        const newPedido = JSON.parse(localStorage.getItem("pedido") || '{}');
+    async function totalPedido() {
+        const newPedido = JSON.parse(localStorage.getItem("pedido") || "[]");
 
-        const subTotal = newPedido.reduce((acumulador: number, item: Item) => acumulador + (item.produto.valor * item.quantidade));
+        const subTotal = newPedido.reduce((acumulador: number, item: Item) => acumulador + (item.produto.valor * item.quantidade), 0);
         return subTotal;
     }
 

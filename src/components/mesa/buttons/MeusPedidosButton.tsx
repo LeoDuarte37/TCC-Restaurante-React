@@ -1,18 +1,46 @@
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from "@headlessui/react";
 import { X } from "@phosphor-icons/react";
 import { Note } from "@phosphor-icons/react";
-import { useContext, useState } from "react";
-import { PedidoContext } from "../../../contexts/PedidoContext";
+import { useEffect, useState } from "react";
 import CardPedido from "../../pedido/card/CardPedido";
 import Item from "../../../models/Item";
+import usePedido from "../../../hooks/usePedido";
 
 function MeusPedidosButton() {
 
-    const { mesaId, itens, limparPedido } = useContext(PedidoContext);
+    const { totalPedido } = usePedido();
 
-    const [open, setOpen] = useState(true);
-
+    const [itens, setItens] = useState<Array<Item>>([]);
+    const [open, setOpen] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [subTotal, setSubTotal] = useState<number>(0);
+
+    async function getSubTotal() {
+        const valor = await totalPedido();
+        setSubTotal(valor);
+    }
+
+    function getItens() {
+        setIsLoading(true);
+
+        const pedido = JSON.parse(localStorage.getItem("pedido") || "[]");
+
+        setItens(pedido);
+        setIsLoading(false);
+    }
+
+    function renderItens() {
+        return itens.map((item: Item) => (
+            <li key={item.produto.id}>
+                <CardPedido item={item} />
+            </li>
+        ));
+    }
+
+    useEffect(() => {
+        getSubTotal();
+        getItens();
+    }, [open]);
 
     return (
         <>
@@ -61,7 +89,6 @@ function MeusPedidosButton() {
                                                     onClick={() => setOpen(false)}
                                                 >
                                                     <span className="absolute -inset-2.5" />
-                                                    <span className="sr-only">Close panel</span>
                                                     <X size={32} weight="light" />
                                                 </button>
                                             </div>
@@ -70,16 +97,14 @@ function MeusPedidosButton() {
                                             <div className="px-4 sm:px-6">
                                                 <DialogTitle className="text-base font-semibold leading-6 text-gray-900">Meus pedidos</DialogTitle>
                                             </div>
-                                            <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                                                {itens.map((item) => (
-                                                    <CardPedido item={item} />
-                                                ))}
-                                            </div>
+                                            <ul role="list" className="relative mt-6 flex-1 px-4 sm:px-6">
+                                                { isLoading ? <></> : renderItens()}
+                                            </ul>
 
                                             <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                                                 <div className="flex justify-between text-base font-medium text-gray-900">
                                                     <p>Subtotal</p>
-                                                    <p>0</p>
+                                                    <p>R$ { isLoading ? 0 : subTotal }</p>
                                                 </div>
                                                 <p className="mt-0.5 text-sm text-gray-500">Impostos calculados na finalização da compra.</p>
                                                 <div className="mt-6">
@@ -87,7 +112,7 @@ function MeusPedidosButton() {
                                                         href="#"
                                                         className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                                                     >
-                                                        Checkout
+                                                        Enviar pedidos
                                                     </a>
                                                 </div>
                                             </div>
