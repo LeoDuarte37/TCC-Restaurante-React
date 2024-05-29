@@ -11,11 +11,11 @@ import toastAlert from "../../../utils/toastAlert";
 function ListaPedido(props: { page: string }) {
 
     const { mesa } = useContext(MesaContext);
-    const { totalPedido, clearPedido } = usePedido();
+    const { totalPedido, clearPedido, total } = usePedido();
 
     const [itens, setItens] = useState<Array<Item>>([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [subTotal, setSubTotal] = useState<number>(0);
+    const [subTotal, setSubTotal] = useState<number>(total);
 
     async function getSubTotal() {
         const valor = await totalPedido();
@@ -48,12 +48,14 @@ function ListaPedido(props: { page: string }) {
         // enviarPedido(pedido);
         toastAlert("Pedido enviado com sucesso!", "sucesso");
         clearPedido();
+        getSubTotal();
+        getItens();
     }
 
     useEffect(() => {
         getSubTotal();
         getItens();
-    }, [open]);
+    }, [total]);
 
     return (
         <div className="flex h-full flex-col bg-white py-6 shadow-xl">

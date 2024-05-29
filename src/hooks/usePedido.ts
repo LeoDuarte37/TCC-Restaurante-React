@@ -11,7 +11,7 @@ export default function usePedido() {
     async function addToPedido(item: Item) {
         const newPedido = JSON.parse(localStorage.getItem("pedido") || "[]");
 
-        if (pedido.length === 0 && newPedido === null) {
+        if (pedido.length === 0 && newPedido.length === 0) {
             setPedido([...pedido, item]);
             localStorage.setItem("pedido", JSON.stringify([...pedido, item]));
 

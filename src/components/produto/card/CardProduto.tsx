@@ -2,7 +2,7 @@ import usePedido from "../../../hooks/usePedido";
 import Item from "../../../models/Item";
 import Produto from "../../../models/Produto";
 
-function CardProduto(props : { produto: Produto; isMesa?: boolean }) {
+function CardProduto(props: { produto: Produto; isMesa?: boolean }) {
 
     const { addToPedido } = usePedido();
 
@@ -32,7 +32,7 @@ function CardProduto(props : { produto: Produto; isMesa?: boolean }) {
                     <h4 className="block font-sans text-lg antialiased font-bold leading-snug tracking-normal text-blue-gray-900">
                         {props.produto.nome}
                     </h4>
-                    
+
                     <p>{props.produto.valor}</p>
                 </div>
                 <p className="block font-sans text-base leading-5 antialiased font-normal text-gray-700">
