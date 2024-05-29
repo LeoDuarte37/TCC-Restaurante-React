@@ -14,7 +14,7 @@ function App() {
     <>
 
       <LoginProvider>
-        <ToastContainer style={{ width: "290px" }}/>
+        <ToastContainer style={{ width: "250px" }}/>
         {/* <BrowserRouter> */}
         <MesaProvider> 
             <Navbar />

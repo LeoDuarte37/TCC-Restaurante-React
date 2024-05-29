@@ -19,7 +19,11 @@ export default function usePedido() {
             localStorage.setItem("pedido", JSON.stringify(currentPedido)); 
         } else {
             setPedido([...currentPedido, item]);
-            localStorage.setItem("pedido", JSON.stringify([...currentPedido, item]))
+            localStorage.setItem("pedido", JSON.stringify([...currentPedido, item]));
+
+            if (currentPedido.length === 0) {
+                toastAlert("Acesse 'Meus pedidos' para visualizá-los!", "info");
+            }
         }
     }
 
@@ -29,7 +33,7 @@ export default function usePedido() {
         if (quantidade < 1) {
             const updateList = currentPedido.filter((i: Item) => i.produto.id !== produtoId);
             localStorage.setItem("pedido", JSON.stringify([...updateList]));
-            toastAlert("Item removido!", "sucesso");
+            toastAlert("Item removido!", "info");
         
         } else {
             const item = currentPedido.find((i: Item) => i.produto.id == produtoId);

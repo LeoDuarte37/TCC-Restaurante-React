@@ -20,7 +20,7 @@ function toastAlert(mensagem: string, tipo: string) {
         case "erro":
             toast.error(mensagem, {
                 position: 'bottom-left',
-                autoClose: 2000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -34,7 +34,7 @@ function toastAlert(mensagem: string, tipo: string) {
         default:
             toast.info(mensagem, {
                 position: 'bottom-left',
-                autoClose: 2000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,

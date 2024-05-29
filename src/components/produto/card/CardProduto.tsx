@@ -1,6 +1,7 @@
 import usePedido from "../../../hooks/usePedido";
 import Item from "../../../models/Item";
 import Produto from "../../../models/Produto";
+import toastAlert from "../../../utils/toastAlert";
 
 function CardProduto(props: { produto: Produto; isMesa?: boolean }) {
 
@@ -14,6 +15,7 @@ function CardProduto(props: { produto: Produto; isMesa?: boolean }) {
 
         try {
             addToPedido(item);
+            toastAlert("Item adicionado!", "sucesso");
         } catch (error) {
             console.log(error);
         }
