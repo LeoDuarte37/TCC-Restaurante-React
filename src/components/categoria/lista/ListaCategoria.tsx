@@ -29,7 +29,7 @@ function ListaCategoria(props: { isMesa: boolean; }) {
                         },
                         {
                             id: 2,
-                            nome: "Prato especial",
+                            nome: "Prato",
                             descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
                             foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
                             valor: 25.99,

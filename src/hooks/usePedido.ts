@@ -9,51 +9,42 @@ export default function usePedido() {
     const [total, setTotal] = useState<number>(0);
 
     async function addToPedido(item: Item) {
-        const newPedido = JSON.parse(localStorage.getItem("pedido") || "[]");
+        const currentPedido = JSON.parse(localStorage.getItem("pedido") || "[]");
 
-        if (pedido.length === 0 && newPedido.length === 0) {
-            setPedido([...pedido, item]);
-            localStorage.setItem("pedido", JSON.stringify([...pedido, item]));
+        const search = currentPedido.find((i: Item) => i.produto.id == item.produto.id);
 
+        if (search) {
+            search.quantidade++;
+            setPedido(currentPedido);
+            localStorage.setItem("pedido", JSON.stringify(currentPedido)); 
         } else {
-            const search = newPedido.find((i: Item) => i.produto.id == item.produto.id);
-    
-            if (search) {
-                search.quantidade++;
-                setPedido(newPedido);
-                localStorage.setItem("pedido", JSON.stringify(newPedido)); 
-            } 
+            setPedido([...currentPedido, item]);
+            localStorage.setItem("pedido", JSON.stringify([...currentPedido, item]))
         }
     }
 
     async function updateQuantidade(produtoId: number, quantidade: number) {
-        const pedido = JSON.parse(localStorage.getItem("pedido") || "[]");
+        const currentPedido = JSON.parse(localStorage.getItem("pedido") || "[]");
 
-        if (quantidade == 0) {
-
-            if (pedido.length == 1) {
-                localStorage.setItem("pedido", "[]");
-                toastAlert("Item removido!", "sucesso");
-            } else {
-                const updateList = pedido.find((i: Item) => i.produto.id !== produtoId);
-                localStorage.setItem("pedido", JSON.stringify([...updateList]));
-                toastAlert("Item removido!", "sucesso");
-            }
-            
+        if (quantidade < 1) {
+            const updateList = currentPedido.filter((i: Item) => i.produto.id !== produtoId);
+            localStorage.setItem("pedido", JSON.stringify([...updateList]));
+            toastAlert("Item removido!", "sucesso");
+        
         } else {
-            const item = pedido.find((i: Item) => i.produto.id == produtoId);
+            const item = currentPedido.find((i: Item) => i.produto.id == produtoId);
 
             if (item) {
                 item.quantidade = quantidade;
-                localStorage.setItem("pedido", JSON.stringify([...pedido]));
+                localStorage.setItem("pedido", JSON.stringify([...currentPedido]));
             }
         }
     }
     
     async function totalPedido() {
-        const newPedido = JSON.parse(localStorage.getItem("pedido") || "[]");
+        const currentPedido = JSON.parse(localStorage.getItem("pedido") || "[]");
 
-        const subTotal = newPedido.reduce((acumulador: number, item: Item) => acumulador + (item.produto.valor * item.quantidade), 0);
+        const subTotal = currentPedido.reduce((acumulador: number, item: Item) => acumulador + (item.produto.valor * item.quantidade), 0);
 
         setTotal(subTotal);
         return total;

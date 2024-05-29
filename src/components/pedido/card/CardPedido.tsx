@@ -16,7 +16,7 @@ function CardPedido(props: { item: Item, getSubTotal: Function }) {
     return (
         <>
             { quantidade > 0 && 
-                <div className="flex py-6">
+                <div className="flex">
                     <div className="h-content w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                         <img
                             src={props.item.produto.foto}
