@@ -7,7 +7,6 @@ import Pedido from "../../../models/Pedido";
 import { MesaContext } from "../../../contexts/MesaContext";
 import { enviarPedido } from "../../../services/Service";
 import toastAlert from "../../../utils/toastAlert";
-import { toast } from "react-toastify";
 
 function ListaPedido(props: { page: string }) {
 
@@ -35,7 +34,7 @@ function ListaPedido(props: { page: string }) {
     function renderItens() {
         return itens.map((item: Item) => (
             <li key={item.produto.id}>
-                <CardPedido item={item} />
+                <CardPedido item={item} getSubTotal={getSubTotal} />
             </li>
         ));
     }

@@ -155,11 +155,11 @@ function ListaCategoria(props: { isMesa: boolean; }) {
                             <div className="flex flex-col m-4 w-full h-full">
                                 <h2 className="text-zinc-700 text-2xl font-bold mb-4 ">{subCategoriaAtual.nome}</h2>
 
-                                <ul className="flex flex-col gap-6 w-full h-3/4 pb-4 overflow-auto">
+                                <div className="flex flex-col gap-6 w-full h-3/4 pb-4 overflow-auto">
                                     {produtos.map((produto) => (
                                         <CardProduto produto={produto} />
                                     ))}
-                                </ul>
+                                </div>
                             </div>
                         </>
 
