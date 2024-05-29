@@ -16,9 +16,25 @@ function ListaCategoria(props: { isMesa: boolean; }) {
             nome: "Comidas",
             subCategoria: [
                 {
-                    id: 2,
+                    id: 1,
                     nome: "Pratos especiais",
                     produto: [
+                        {
+                            id: 1,
+                            nome: "Prato especial",
+                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                            valor: 25.99,
+                            disponivel: true
+                        },
+                        {
+                            id: 2,
+                            nome: "Prato especial",
+                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                            valor: 25.99,
+                            disponivel: true
+                        },
                         {
                             id: 3,
                             nome: "Prato especial",
@@ -35,6 +51,13 @@ function ListaCategoria(props: { isMesa: boolean; }) {
                             valor: 25.99,
                             disponivel: true
                         },
+                    ],
+                    disponivel: true,
+                },
+                {
+                    id: 2,
+                    nome: "Lanches",
+                    produto: [
                         {
                             id: 5,
                             nome: "Prato especial",
@@ -45,29 +68,6 @@ function ListaCategoria(props: { isMesa: boolean; }) {
                         },
                         {
                             id: 6,
-                            nome: "Prato especial",
-                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                            valor: 25.99,
-                            disponivel: true
-                        },
-                    ],
-                    disponivel: true,
-                },
-                {
-                    id: 7,
-                    nome: "Lanches",
-                    produto: [
-                        {
-                            id: 8,
-                            nome: "Prato especial",
-                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                            valor: 25.99,
-                            disponivel: true
-                        },
-                        {
-                            id: 9,
                             nome: "Prato especial",
                             descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
                             foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
@@ -93,9 +93,9 @@ function ListaCategoria(props: { isMesa: boolean; }) {
 
     // const { usuario, handleLogout } = useContext(LoginContext);
 
-    const [carregando, setCarregando] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const [isDeletar, setIsDeletar] = useState<boolean>(false);
+    // const [isDeletar, setIsDeletar] = useState<boolean>(false);
 
     // async function buscarCategorias() {
     //     try {
@@ -115,7 +115,7 @@ function ListaCategoria(props: { isMesa: boolean; }) {
 
     return (
         <>
-            {carregando ? (
+            {isLoading ? (
                 <div className="pt-8">
                     <TailSpin
                         visible={true}
@@ -132,23 +132,22 @@ function ListaCategoria(props: { isMesa: boolean; }) {
                 <>
                     {props.isMesa ? (
                         <>
-                            {categorias.map((categoria) => (
-                                <ul className="flex flex-col gap-3 ml-4 mt-4 pb-4 pr-4 w-40 h-4/5 overflow-y-scroll">
+                            <ul className="flex flex-col gap-3 ml-4 mt-4 pb-4 pr-4 w-40 h-4/5 overflow-y-scroll">
+                                {categorias.map((categoria) => (
                                     <li key={categoria.id}>
                                         <h2 className="text-zinc-700 text-center text-2xl font-bold">{categoria.nome}</h2>
-                                        <div className="bg-gray-800 w-full h-0.5"></div>
+                                        <div className="bg-gray-800 w-full h-0.5 mb-4"></div>
+
+                                        <ul>
+                                            {categoria.subCategoria.map((subCategoria) => (
+                                                <li key={subCategoria.id} onClick={() => setInfoProdutos(subCategoria)}>
+                                                    <CardCategoria subCategoria={subCategoria} isMesa={props.isMesa} />
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </li>
-
-                                    <ul>
-                                        {categoria.subCategoria.map((subCategoria) => (
-                                            <li key={subCategoria.id} onClick={() => { setProdutos(subCategoria.produto); setSubCategoriaAtual(subCategoria) }}>
-                                                <CardCategoria subCategoria={subCategoria} isMesa={props.isMesa} />
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </ul>
-                            ))}
-
+                                ))}
+                            </ul>
 
                             <div className="bg-gray-800 w-1 h-full"></div>
 
@@ -157,7 +156,9 @@ function ListaCategoria(props: { isMesa: boolean; }) {
 
                                 <ul className="flex flex-col gap-6 w-full h-3/4 pb-4 overflow-auto">
                                     {produtos.map((produto) => (
-                                        <CardProduto produto={produto} />
+                                        <li key={produto.id}>
+                                            <CardProduto produto={produto} />
+                                        </li>
                                     ))}
                                 </ul>
                             </div>
