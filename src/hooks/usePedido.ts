@@ -22,6 +22,7 @@ export default function usePedido() {
 
         if (search) {
             search.quantidade++;
+            setPedido(newPedido);
             localStorage.setItem("pedido", JSON.stringify(newPedido));
             return;
         } 
@@ -30,14 +31,16 @@ export default function usePedido() {
         localStorage.setItem("pedido", JSON.stringify([...newPedido, item]));
     }
 
-    async function removeToPedido(id: number) {
+    async function updatePedido(id: number, quantidade: number) {
         
         const newPedido = JSON.parse(localStorage.getItem("pedido") || "[]");
 
         const search = newPedido.find((item: Item) => item.produto.id == id);
 
-        if (search.quantidade > 1) {
-            search.quantidade--;
+        if (search && search.quantidade > 1) {
+            search.quantidade = quantidade;
+            setPedido(newPedido);
+            localStorage.setItem("pedido", JSON.stringify(newPedido));
         } else {
             const list = newPedido.find((item: Item) => item.produto.id !== id);
             setPedido(list);
@@ -60,7 +63,7 @@ export default function usePedido() {
 
     return {
         addToPedido,
-        removeToPedido,
+        updatePedido,
         totalPedido,
         clearPedido,
     };
