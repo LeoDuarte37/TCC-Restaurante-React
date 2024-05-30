@@ -34,13 +34,13 @@ function ListaPedido(props: { page: string }) {
     function renderItens() {
         return itens.map((item: Item) => (
             <li key={item.produto.id}>
-                <CardPedido item={item} getSubTotal={getSubTotal} />
+                <CardPedido item={item} page={props.page} getSubTotal={getSubTotal} />
             </li>
         ));
     }
 
     function submitPedido() {
-        const pedido : Pedido = {
+        const pedido: Pedido = {
             mesa: mesa,
             item: itens,
         };
@@ -58,28 +58,40 @@ function ListaPedido(props: { page: string }) {
     }, [total]);
 
     return (
-        <div className="flex h-full flex-col bg-white py-6 shadow-xl">
-            <div className="px-4 sm:px-6">
-                <DialogTitle className="text-base font-semibold leading-6 text-gray-900">Meus pedidos</DialogTitle>
-            </div>
-            <ul role="list" className="relative mt-6 flex-1 px-4 sm:px-6 overflow-auto">
-                {isLoading ? <></> : renderItens()}
-            </ul>
+        <>
+            {props.page === "Pedidos" ?
+                <div className="flex h-full flex-col bg-white py-6 shadow-xl">
+                    <div className="px-4 sm:px-6">
+                        <DialogTitle className="text-base font-semibold leading-6 text-gray-900">Meus pedidos</DialogTitle>
+                    </div>
+                    <ul role="list" className="relative mt-6 flex-1 px-4 sm:px-6 overflow-auto">
+                        {isLoading ? <></> : renderItens()}
+                    </ul>
 
-            <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                <div className="flex justify-between text-base font-medium text-gray-900">
-                    <p>Subtotal</p>
-                    <p>R$ {isLoading ? 0 : subTotal}</p>
+                    <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+                        <div className="flex justify-between text-base font-medium text-gray-900">
+                            <p>Subtotal</p>
+                            <p>R$ {isLoading ? 0 : subTotal}</p>
+                        </div>
+
+                        <p className="mt-0.5 text-sm text-gray-500">Impostos calculados na finalização da compra.</p>
+
+                        <div onClick={submitPedido} className="mt-6 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                            Enviar pedidos
+                        </div>
+                    </div>
                 </div>
 
-                <p className="mt-0.5 text-sm text-gray-500">Impostos calculados na finalização da compra.</p>
-
-                <div onClick={submitPedido} className="mt-6 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
-                    Enviar pedidos
-                </div>
-            </div>
-        </div>
-    )
+                : <>
+                    { props.page === "ContaMesa" &&
+                        <ul role="list" className="max-w-96 w-full mt-6 flex-1 overflow-auto">
+                            {isLoading ? <></> : renderItens()}
+                        </ul>
+                    }
+                </>
+            }
+        </>
+    );
 }
 
 export default ListaPedido;
