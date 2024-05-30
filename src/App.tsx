@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { MesaProvider } from './contexts/MesaContext';
 import CardapioMesaPage from './pages/mesa/cardapio/CardapioMesaPage';
 import DestaqueMesaPage from './pages/mesa/destaques/DestaquesMesaPage';
+import ContaMesaPage from './pages/mesa/conta/ContaMesaPage';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         <MesaProvider> 
             <Navbar />
             {/* <DestaqueMesaPage /> */}
-            <CardapioMesaPage />
+            {/* <CardapioMesaPage /> */}
+            <ContaMesaPage />
             {/* <LoginPage /> */}
         </MesaProvider>
         {/* </BrowserRouter> */}
