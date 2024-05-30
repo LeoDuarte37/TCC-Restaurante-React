@@ -66,34 +66,17 @@ function CardPedido(props: { item: Item, page: string, getSubTotal: Function }) 
 
                 : <>
                     { props.page === "ContaMesa" &&
-                        <div className="flex">
-                            <div className="h-content w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                <img
-                                    src={props.item.produto.foto}
-                                    alt="Foto produto"
-                                    className="h-full w-full object-cover object-center"
-                                />
-                            </div>
-
-                            <div className="ml-4 flex flex-1 flex-col">
-                                <div>
-                                    <div className="flex justify-between text-base font-medium text-gray-900">
-                                        <h3>
-                                            {props.item.produto.nome}
-                                        </h3>
-
-                                        <p className="text-gray-500 px-2">{quantidade}</p>
-
-                                        <p className="ml-4">R${props.item.produto.valor}</p>
-                                    </div>
-                                </div>
-                                <div className="flex flex-1 items-center justify-start text-sm mt-4">
-                                    <div className="flex">
-                                        <p>{props.item.observacao}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <tr className="bg-white dark:bg-gray-800">
+                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {props.item.produto.nome}
+                            </th>
+                            <td className="px-6 py-4 text-center">
+                                {props.item.quantidade}
+                            </td>
+                            <td className="px-6 py-4 text-center">
+                                {props.item.produto.valor}
+                            </td>
+                        </tr>
                     }
                 </>
             }

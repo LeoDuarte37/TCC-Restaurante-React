@@ -32,11 +32,17 @@ function ListaPedido(props: { page: string }) {
     }
 
     function renderItens() {
-        return itens.map((item: Item) => (
-            <li key={item.produto.id}>
+        if (props.page === "Pedidos") {
+            return itens.map((item: Item) => (
+                <li key={item.produto.id}>
+                    <CardPedido item={item} page={props.page} getSubTotal={getSubTotal} />
+                </li>
+            ));
+        } else if (props.page === "ContaMesa") {
+            return itens.map((item: Item) => (
                 <CardPedido item={item} page={props.page} getSubTotal={getSubTotal} />
-            </li>
-        ));
+            ));
+        }
     }
 
     function submitPedido() {
@@ -84,9 +90,34 @@ function ListaPedido(props: { page: string }) {
 
                 : <>
                     { props.page === "ContaMesa" &&
-                        <ul role="list" className="max-w-96 w-full mt-6 flex-1 overflow-auto">
-                            {isLoading ? <></> : renderItens()}
-                        </ul>
+                        <div className="relative overflow-auto shadow-md rounded-lg">
+                            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <caption className="caption-bottom py-1 border-t border-slate-600">Qualquer questão, contatar um garçom ou caixa!</caption>
+                                <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                                    <tr>
+                                        <th scope="col" className="px-6 py-3">
+                                            Nome produto
+                                        </th>
+                                        <th scope="col" className="px-6 py-3">
+                                            Qtd
+                                        </th>
+                                        <th scope="col" className="px-6 py-3">
+                                            Valor unitário
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {isLoading ? <></> : renderItens()}
+                                </tbody>
+                                <tfoot>
+                                    <tr className="font-semibold text-gray-900">
+                                        <th scope="row" className="px-6 py-3 text-base">Total</th>
+                                        <td className="px-6 py-3 text-center">3</td>
+                                        <td className="px-6 py-3 text-center">21,000</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     }
                 </>
             }

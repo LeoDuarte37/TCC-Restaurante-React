@@ -7,7 +7,8 @@ function ContaMesaPage() {
         <div className="flex h-full">
             <Sidebar />
 
-            <div className="flex justify-center items-center w-full">
+            <div className="flex flex-col items-center gap-8 mt-20 w-full h-full">
+                <h1 className="text-gray-800 font-bold text-3xl">Pedidos realizados</h1>
                 <ListaPedido page="ContaMesa"/>
             </div>
         </div>
