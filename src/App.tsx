@@ -9,6 +9,7 @@ import { MesaProvider } from './contexts/MesaContext';
 import CardapioMesaPage from './pages/mesa/cardapio/CardapioMesaPage';
 import DestaqueMesaPage from './pages/mesa/destaques/DestaquesMesaPage';
 import ContaMesaPage from './pages/mesa/conta/ContaMesaPage';
+import CardMesa from './components/mesa/card/CardMesa';
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
             <Navbar />
             {/* <DestaqueMesaPage /> */}
             {/* <CardapioMesaPage /> */}
-            <ContaMesaPage />
+            {/* <ContaMesaPage /> */}
+            <CardMesa />
             {/* <LoginPage /> */}
         </MesaProvider>
         {/* </BrowserRouter> */}

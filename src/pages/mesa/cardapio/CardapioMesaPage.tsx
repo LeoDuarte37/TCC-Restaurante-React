@@ -1,6 +1,6 @@
 
 import ListaCategoria from "../../../components/categoria/lista/ListaCategoria";
-import Sidebar from "../../../components/mesa/sidebar/Sidebar";
+import Sidebar from "../../../components/sidebar/Sidebar";
 
 function CardapioPage() {
     return (

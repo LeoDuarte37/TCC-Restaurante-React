@@ -7,7 +7,6 @@ import Pedido from "../../../models/Pedido";
 import { MesaContext } from "../../../contexts/MesaContext";
 import { enviarPedido } from "../../../services/Service";
 import toastAlert from "../../../utils/toastAlert";
-import "./ListaPedido.css"
 
 function ListaPedido(props: { page: string }) {
 

@@ -1,4 +1,4 @@
-import Sidebar from "../../../components/mesa/sidebar/Sidebar";
+import Sidebar from "../../../components/sidebar/Sidebar";
 import ListaPedido from "../../../components/pedido/lista/ListaPedido";
 import "./ContaMesaPage.css"
 

@@ -1,6 +1,6 @@
 
 import CarouselDestaque from "../../../components/destaque/carousel/CarouselDestaque";
-import Sidebar from "../../../components/mesa/sidebar/Sidebar";
+import Sidebar from "../../../components/sidebar/Sidebar";
 
 function DestaquePage() {
     return (
