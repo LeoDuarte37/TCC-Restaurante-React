@@ -77,7 +77,7 @@ function ListaPedido(props: { page: string }) {
                         {isLoading ? <></> : renderItens()}
                     </ul>
 
-                    <div className="border-t border-gray-200 px-4 pt-6 sm:px-6">
+                    <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                         <div className="flex justify-between text-base font-medium text-gray-900">
                             <p>Subtotal</p>
                             <p>R$ {isLoading ? 0 : subTotal}</p>
@@ -85,7 +85,7 @@ function ListaPedido(props: { page: string }) {
 
                         <p className="mt-0.5 text-sm text-gray-500">Impostos calculados na finalização da compra.</p>
 
-                        <button onClick={submitPedido} className="buttonPedidos mt-2">
+                        <button onClick={submitPedido} className="button mt-2">
                             Enviar pedidos
                         </button>
                     </div>
