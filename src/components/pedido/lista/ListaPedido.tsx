@@ -7,6 +7,7 @@ import Pedido from "../../../models/Pedido";
 import { MesaContext } from "../../../contexts/MesaContext";
 import { enviarPedido } from "../../../services/Service";
 import toastAlert from "../../../utils/toastAlert";
+import "./ListaPedido.css"
 
 function ListaPedido(props: { page: string }) {
 
@@ -76,7 +77,7 @@ function ListaPedido(props: { page: string }) {
                         {isLoading ? <></> : renderItens()}
                     </ul>
 
-                    <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+                    <div className="border-t border-gray-200 px-4 pt-6 sm:px-6">
                         <div className="flex justify-between text-base font-medium text-gray-900">
                             <p>Subtotal</p>
                             <p>R$ {isLoading ? 0 : subTotal}</p>
@@ -84,17 +85,17 @@ function ListaPedido(props: { page: string }) {
 
                         <p className="mt-0.5 text-sm text-gray-500">Impostos calculados na finalização da compra.</p>
 
-                        <div onClick={submitPedido} className="mt-6 flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                        <button onClick={submitPedido} className="buttonPedidos mt-2">
                             Enviar pedidos
-                        </div>
+                        </button>
                     </div>
                 </div>
 
                 : <>
                     { props.page === "ContaMesa" &&
-                        <div className="flex max-h-80 relative overflow-hidden shadow-md rounded-lg">
-                            <table className="grid w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                        <div className="flex flex-col max-h-80 h-full relative overflow-hidden shadow-md rounded-lg">
+                            <table className="flex flex-col w-full h-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <thead className="h-10 text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
                                         <th scope="col" className="px-6 py-3">
                                             Nome produto
@@ -107,14 +108,14 @@ function ListaPedido(props: { page: string }) {
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody className="overflow-auto w-full max-h-48 h-full">
+                                <tbody className="overflow-auto w-full max-h-60 h-full">
                                     {isLoading ? <></> : renderItens()}
                                 </tbody>
-                                <tfoot>
-                                    <tr className="flex font-semibold text-gray-900">
-                                        <th scope="row" className="px-6 py-3 text-base w-[40%]">Total</th>
-                                        <td className="px-6 py-3 text-center w-[20%]">3</td>
-                                        <td className="px-6 py-3 text-center w-[40%]">R$ 21,000</td>
+                                <tfoot className="flex">
+                                    <tr className="flex items-center w-full h-12 font-semibold text-gray-900">
+                                        <th scope="row" className="px-6 text-base w-[40%]">Total</th>
+                                        <td className="px-6 text-center w-[20%]">3</td>
+                                        <td className="px-6 text-center w-[40%]">R$ 21,000</td>
                                     </tr>
                                 </tfoot>
                             </table>
