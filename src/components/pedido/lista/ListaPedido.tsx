@@ -40,7 +40,9 @@ function ListaPedido(props: { page: string }) {
             ));
         } else if (props.page === "ContaMesa") {
             return itens.map((item: Item) => (
-                <CardPedido item={item} page={props.page} getSubTotal={getSubTotal} />
+                <tr key={item.produto.id} className="flex bg-white dark:bg-gray-800">
+                    <CardPedido item={item} page={props.page} getSubTotal={getSubTotal} />
+                </tr>
             ));
         }
     }
@@ -90,9 +92,8 @@ function ListaPedido(props: { page: string }) {
 
                 : <>
                     { props.page === "ContaMesa" &&
-                        <div className="relative overflow-auto shadow-md rounded-lg">
-                            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                <caption className="caption-bottom py-1 border-t border-slate-600">Qualquer questão, contatar um garçom ou caixa!</caption>
+                        <div className="flex max-h-80 relative overflow-hidden shadow-md rounded-lg">
+                            <table className="grid w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                                 <thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                                     <tr>
                                         <th scope="col" className="px-6 py-3">
@@ -106,14 +107,14 @@ function ListaPedido(props: { page: string }) {
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody className="overflow-auto w-full max-h-48 h-full">
                                     {isLoading ? <></> : renderItens()}
                                 </tbody>
                                 <tfoot>
-                                    <tr className="font-semibold text-gray-900">
-                                        <th scope="row" className="px-6 py-3 text-base">Total</th>
-                                        <td className="px-6 py-3 text-center">3</td>
-                                        <td className="px-6 py-3 text-center">21,000</td>
+                                    <tr className="flex font-semibold text-gray-900">
+                                        <th scope="row" className="px-6 py-3 text-base w-[40%]">Total</th>
+                                        <td className="px-6 py-3 text-center w-[20%]">3</td>
+                                        <td className="px-6 py-3 text-center w-[40%]">R$ 21,000</td>
                                     </tr>
                                 </tfoot>
                             </table>

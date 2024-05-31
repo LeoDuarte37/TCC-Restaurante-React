@@ -66,17 +66,17 @@ function CardPedido(props: { item: Item, page: string, getSubTotal: Function }) 
 
                 : <>
                     { props.page === "ContaMesa" &&
-                        <tr className="bg-white dark:bg-gray-800">
-                            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <>
+                            <th scope="row" className="w-[40%] px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 {props.item.produto.nome}
                             </th>
-                            <td className="px-6 py-4 text-center">
+                            <td className="px-6 py-4 text-center w-[20%]">
                                 {props.item.quantidade}
                             </td>
-                            <td className="px-6 py-4 text-center">
-                                {props.item.produto.valor}
+                            <td className="px-6 py-4 text-center w-[40%]">
+                                R$ {props.item.produto.valor}
                             </td>
-                        </tr>
+                        </>                   
                     }
                 </>
             }
