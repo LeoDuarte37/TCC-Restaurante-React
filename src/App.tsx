@@ -10,6 +10,7 @@ import CardapioMesaPage from './pages/mesa/cardapio/CardapioMesaPage';
 import DestaqueMesaPage from './pages/mesa/destaques/DestaquesMesaPage';
 import ContaMesaPage from './pages/mesa/conta/ContaMesaPage';
 import CardMesa from './components/mesa/card/CardMesa';
+import MesaPage from './pages/mesa/MesaPage';
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
             {/* <DestaqueMesaPage /> */}
             {/* <CardapioMesaPage /> */}
             {/* <ContaMesaPage /> */}
-            <CardMesa />
+            {/* <CardMesa /> */}
+            <MesaPage />
             {/* <LoginPage /> */}
         </MesaProvider>
         {/* </BrowserRouter> */}

@@ -3,8 +3,6 @@ import Item from "../models/Item";
 import toastAlert from "../utils/toastAlert";
 
 export default function usePedido() {
-    
-    const [pedido, setPedido] = useState<Array<Item>>([]);
 
     const [total, setTotal] = useState<number>(0);
 
@@ -15,10 +13,8 @@ export default function usePedido() {
 
         if (search) {
             search.quantidade++;
-            setPedido(currentPedido);
             localStorage.setItem("pedido", JSON.stringify(currentPedido)); 
         } else {
-            setPedido([...currentPedido, item]);
             localStorage.setItem("pedido", JSON.stringify([...currentPedido, item]));
 
             if (currentPedido.length === 0) {
@@ -55,7 +51,6 @@ export default function usePedido() {
     }
 
     async function clearPedido() {
-        setPedido([]);
         localStorage.setItem("pedido", JSON.stringify([]));
     }
 

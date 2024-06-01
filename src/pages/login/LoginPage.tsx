@@ -1,8 +1,8 @@
-import './LoginPage.css'
 import FormLogin from '../../components/login/forms/FormLogin';
 import { useContext } from 'react';
 import { ChefHat } from '@phosphor-icons/react';
 import { LoginContext } from '../../contexts/LoginContext';
+import "./LoginPage.css";
 
 function LoginPage() {
 
@@ -31,7 +31,7 @@ function LoginPage() {
                         </div>
 
                         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                            <FormLogin is={isMesa} />   
+                            <FormLogin isMesa={isMesa} />   
                         </div>           
                     </div>
                 </div>
