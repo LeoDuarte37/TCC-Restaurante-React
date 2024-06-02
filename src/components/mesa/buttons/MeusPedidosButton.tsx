@@ -60,7 +60,7 @@ function MeusPedidosButton() {
                                             </div>
                                         </TransitionChild>
                                         
-                                        <ListaPedido page="Pedidos"/>
+                                        <ListaPedido page="Meus pedidos"/>
                                     </DialogPanel>
                                 </TransitionChild>
                             </div>

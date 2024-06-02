@@ -42,4 +42,9 @@ export const adicionar = async (url: string, dados: (Restaurante | Mesa | Produt
     setDados(resposta.data);
 }
 
+export const buscarPedidos = async (url: string, setDados: Function,  header: Object,) => {
+    const resposta = await api.get(url, header);
+    setDados(resposta.data);
+}
+
 export default api;

@@ -10,7 +10,7 @@ interface LoginContextProps {
     isMesa: boolean;
     changeContextIsMesa(): void;
     handleLogout(): void;
-    handleLogin(login: Logar, isMesa: boolean, mesaId?: number): Promise<void>; 
+    handleLogin(login: Logar): Promise<void>; 
 }
 
 interface LoginProviderProps {
