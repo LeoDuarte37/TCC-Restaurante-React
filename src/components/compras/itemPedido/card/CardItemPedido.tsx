@@ -1,6 +1,6 @@
 import Item from "../../../../models/Item";
 
-function CardItemPedido(props: { item: Item}) {
+function CardItemPedido(props: { item: Item }) {
 
     return (
         <> 

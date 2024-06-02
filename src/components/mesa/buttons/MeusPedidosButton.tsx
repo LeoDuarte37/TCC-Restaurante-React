@@ -2,7 +2,7 @@ import { Dialog, DialogPanel, Transition, TransitionChild } from "@headlessui/re
 import { X } from "@phosphor-icons/react";
 import { Note } from "@phosphor-icons/react";
 import { useState } from "react";
-import ListaPedido from "../../pedido/lista/ListaPedido";
+import ListaCarrinho from "../../compras/carrinho/lista/ListaCarrinho";
 
 function MeusPedidosButton() {
 
@@ -60,7 +60,7 @@ function MeusPedidosButton() {
                                             </div>
                                         </TransitionChild>
                                         
-                                        <ListaPedido page="Meus pedidos"/>
+                                        <ListaCarrinho />
                                     </DialogPanel>
                                 </TransitionChild>
                             </div>

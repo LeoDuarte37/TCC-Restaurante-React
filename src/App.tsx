@@ -23,9 +23,9 @@ function App() {
             <Navbar />
             {/* <DestaqueMesaPage /> */}
             {/* <CardapioMesaPage /> */}
-            {/* <ContaMesaPage /> */}
+            <ContaMesaPage />
             {/* <CardMesa /> */}
-            <MesaPage />
+            {/* <MesaPage /> */}
             {/* <LoginPage /> */}
         </MesaProvider>
         {/* </BrowserRouter> */}

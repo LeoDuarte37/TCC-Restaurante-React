@@ -1,14 +1,9 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ListaItemPedido from "../../../components/compras/itemPedido/lista/ListaItemPedido";
 import Sidebar from "../../../components/sidebar/Sidebar";
-import "./ContaMesaPage.css"
-import { MesaContext } from "../../../contexts/MesaContext";
-import Pedido from "../../../models/Pedido";
 import Item from "../../../models/Item";
 
 function ContaMesaPage() {
-
-    const { mesa } = useContext(MesaContext);
 
     const contaStorage = JSON.parse(localStorage.getItem("conta") || "[]");
 

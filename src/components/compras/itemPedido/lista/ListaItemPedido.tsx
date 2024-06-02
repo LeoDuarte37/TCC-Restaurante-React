@@ -59,9 +59,9 @@ function ListaItemPedido(props: { itens?: Array<Item>, pedido?: Pedido }) {
                         <th scope="col" className="px-6 py-3">
                             Valor unitário
                         </th>
-                        <th scope="col" className="px-6 py-3">
+                        {/* <th scope="col" className="px-6 py-3">
                             Observação
-                        </th>
+                        </th> */}
                     </tr>
                 </thead>
                 <tbody className="overflow-auto w-full max-h-60 h-full">
