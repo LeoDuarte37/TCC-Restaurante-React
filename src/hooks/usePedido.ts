@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Item from "../models/Item";
 import toastAlert from "../utils/toastAlert";
+import Pedido from "../models/Pedido";
 
 export default function usePedido() {
 
@@ -50,6 +51,20 @@ export default function usePedido() {
         return total;
     }
 
+    async function enviarPedido(pedido: Pedido) {
+        // enviarPedido(pedido);
+        const conta: Array<Item> = JSON.parse(localStorage.getItem("conta") || "[]");
+
+        pedido.item.map((i: Item) => {
+            conta.push(i);
+        })
+
+        localStorage.setItem("conta", JSON.stringify(conta));
+
+        toastAlert("Pedido enviado com sucesso!", "sucesso");
+        clearPedido();
+    }
+
     async function clearPedido() {
         localStorage.setItem("item", JSON.stringify([]));
     }
@@ -59,6 +74,7 @@ export default function usePedido() {
         updateQuantidade,
         total,
         totalPedido,
+        enviarPedido,
         clearPedido,
     };
 }

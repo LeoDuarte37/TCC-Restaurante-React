@@ -11,7 +11,7 @@ function ListaCarrinho() {
 
     const { mesa } = useContext(MesaContext);
 
-    const { totalPedido, clearPedido, total } = usePedido();
+    const { totalPedido, enviarPedido, total } = usePedido();
 
     const [itens, setItens] = useState<Array<Item>>([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -45,12 +45,8 @@ function ListaCarrinho() {
             item: itens,
         };
 
-        // enviarPedido(pedido);
-        const conta = JSON.parse(localStorage.getItem("conta") || "[]");
-        localStorage.setItem("conta", JSON.stringify([...conta, itens]));
+        enviarPedido(pedido);
 
-        toastAlert("Pedido enviado com sucesso!", "sucesso");
-        clearPedido();
         getSubTotal();
         getItens();
     }
