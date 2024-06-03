@@ -58,15 +58,15 @@ function ListaItemPedido(props: { item: Array<Item> }) {
                         </th> */}
                     </tr>
                 </thead>
-                <tbody className="overflow-auto w-full max-h-60 h-full">
+                <tbody className="flex flex-col overflow-auto w-full max-h-content h-[75%]">
                     {isLoading ? <></> : renderItens()}
                 </tbody>
                 { (usuario.perfil === "CAIXA" || usuario.perfil === "GERENTE" || usuario.perfil === "ADMIN" || isMesa === true) &&
-                    <tfoot className="flex">
-                        <tr className="flex items-center w-full h-12 font-semibold text-gray-900">
+                    <tfoot className="flex max-h-[25%] h-[25%]">
+                        <tr className="flex items-center w-full h-full font-semibold text-gray-900">
                             <th scope="row" className="px-6 text-base w-[40%]">Total</th>
                             <td className="px-6 text-center w-[20%]">{quantidade}</td>
-                            <td className="px-6 text-center w-[40%]">R$ {total}</td>
+                            <td className="px-6 text-center w-[40%]">R$ {total.toFixed(2)}</td>
                         </tr>
                     </tfoot>
                 }

@@ -65,6 +65,7 @@ export function MesaProvider({ children }: MesaProviderProps) {
         });
     }
 
+
     return (
         <MesaContext.Provider value={{ mesa, isLoading, handleMesaLogin, handleMesaLogout }}>
             { children }

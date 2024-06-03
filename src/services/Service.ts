@@ -26,6 +26,11 @@ export const buscarMesaPorId = async (id: number, setDados: Function) => {
     setDados(resposta.data);
 }
 
+export const buscarMesasPorRestaurante = async (restauranteId: string, setDados: Function, header: Object) => {
+    const resposta = await api.get(`/mesa/${restauranteId}`, header);
+    setDados(resposta);
+}
+
 export const buscarCardapio = async (url: string, setDados: Function) => {
     const resposta = await api.get(url);
     setDados(resposta.data);
@@ -42,7 +47,7 @@ export const adicionar = async (url: string, dados: (Restaurante | Mesa | Produt
     setDados(resposta.data);
 }
 
-export const buscarPedidos = async (url: string, setDados: Function,  header: Object,) => {
+export const buscarPedidos = async (url: string, setDados: Function,  header: Object) => {
     const resposta = await api.get(url, header);
     setDados(resposta.data);
 }

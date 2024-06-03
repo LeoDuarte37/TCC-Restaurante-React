@@ -55,9 +55,15 @@ export default function usePedido() {
         // enviarPedido(pedido);
         const conta: Array<Item> = JSON.parse(localStorage.getItem("conta") || "[]");
 
-        pedido.item.map((i: Item) => {
-            conta.push(i);
-        })
+        pedido.item.map((item) => {
+            const search = conta.find((itemConta) => itemConta.produto.id === item.produto.id);
+
+            if (search) {
+                search.quantidade++;
+            } else {
+                conta.push(item);
+            }
+        });
 
         localStorage.setItem("conta", JSON.stringify(conta));
 

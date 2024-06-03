@@ -2,7 +2,7 @@ import { Dialog, DialogPanel, Transition, TransitionChild } from "@headlessui/re
 import { X } from "@phosphor-icons/react";
 import { Note } from "@phosphor-icons/react";
 import { useState } from "react";
-import ListaCarrinho from "../../compras/carrinho/lista/ListaCarrinho";
+import ListaCarrinho from "../../pedido/carrinho/lista/ListaCarrinho";
 
 function MeusPedidosButton() {
 
