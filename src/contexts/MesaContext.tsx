@@ -8,6 +8,7 @@ interface MesaContextProps {
     isLoading: boolean;
     handleMesaLogout(): void;
     handleMesaLogin(restauranteId: string, numeroMesa: number): Promise<void>;
+    atualizarMesa(): void;
 }
 
 interface MesaProviderProps {
@@ -37,7 +38,7 @@ export function MesaProvider({ children }: MesaProviderProps) {
         try {
             await buscarMesaPorId(numeroMesa, setMesa);
 
-            if (restauranteId === mesa.restaurante.id) {
+            if (restauranteId === mesa.restaurante?.id) {
                 toastAlert(`Mesa ${mesa.numero} acessada com sucesso!`, "sucesso");
                 setIsLoading(false);
             } else {
@@ -65,9 +66,12 @@ export function MesaProvider({ children }: MesaProviderProps) {
         });
     }
 
+    function atualizarMesa(mesa: Mesa) {
+        setMesa(mesa);
+    }
 
     return (
-        <MesaContext.Provider value={{ mesa, isLoading, handleMesaLogin, handleMesaLogout }}>
+        <MesaContext.Provider value={{ mesa, isLoading, handleMesaLogin, handleMesaLogout, atualizarMesa }}>
             { children }
         </MesaContext.Provider>
     );

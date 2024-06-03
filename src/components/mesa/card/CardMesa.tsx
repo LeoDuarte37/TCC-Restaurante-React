@@ -4,10 +4,7 @@ import useMesa from "../../../hooks/useMesa";
 
 function CardMesa(props: { mesa: Mesa; getInfo: Function }) {
 
-    const { removeMesa } = useMesa();
-
     function mesaAtendida() {
-        removeMesa(props.mesa.id)
         props.getInfo();
     }
 

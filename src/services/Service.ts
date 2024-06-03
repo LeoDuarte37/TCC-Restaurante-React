@@ -31,6 +31,11 @@ export const buscarMesasPorRestaurante = async (restauranteId: string, setDados:
     setDados(resposta);
 }
 
+export const atualizarChamarGarcom = async (mesa: Mesa, setDados: Function) => {
+    const resposta = await api.patch(`/mesa/atualizar/chamarGarcom`, mesa);
+    setDados(resposta);
+}
+
 export const buscarCardapio = async (url: string, setDados: Function) => {
     const resposta = await api.get(url);
     setDados(resposta.data);
@@ -50,6 +55,11 @@ export const adicionar = async (url: string, dados: (Restaurante | Mesa | Produt
 export const buscarPedidos = async (url: string, setDados: Function,  header: Object) => {
     const resposta = await api.get(url, header);
     setDados(resposta.data);
+}
+
+export const listarChamandoGarcom = async (setDados: Function, header: Object) => {
+    const resposta = await api.get(`/mesa/listar/chamandoGarcom`, header);
+    setDados(resposta);
 }
 
 export default api;
