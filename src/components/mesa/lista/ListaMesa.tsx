@@ -14,7 +14,7 @@ function ListaMesa() {
     async function getMesas() {
         if (usuario.perfil === "GARCOM") {
             const mesasStorage: Array<Mesa> = JSON.parse(localStorage.getItem("mesa") || "[]");
-            setMesas(mesasStorage);
+            setMesas(mesasStorage); 
         } else {
             try {
                 await buscarMesasPorRestaurante(
