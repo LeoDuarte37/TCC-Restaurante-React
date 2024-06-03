@@ -2,22 +2,29 @@ import { useContext, useEffect, useState } from "react";
 import Item from "../../../../models/Item";
 import { LoginContext } from "../../../../contexts/LoginContext";
 import CardItemPedido from "../card/CardItemPedido";
+import usePedido from "../../../../hooks/usePedido";
 
 function ListaItemPedido(props: { item: Array<Item> }) {
 
     const { usuario, isMesa } = useContext(LoginContext);
 
-    const [itens, setItens] = useState<Array<Item>>(props.item);
+    const { getInfoConta } = usePedido();
+
+    const [itens, setItens] = useState<Array<Item>>([]);
     const [total, setTotal] = useState<number>(0);
     const [quantidade, setQuantidade] = useState<number>(0);
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    function getInfo() {
-        itens.map((item: Item) => {
-            setTotal(total + item.produto.valor * item.quantidade);
-            setQuantidade(quantidade + item.quantidade);
-        });
+    async function getInfo() {
+        setIsLoading(true);
+        setItens(props.item);
+        
+        const [valor, qtd] = await getInfoConta(props.item);
+        setTotal(valor);
+        setQuantidade(qtd);
+        
+        setIsLoading(false);
     }
 
     function renderItens() {
@@ -29,9 +36,8 @@ function ListaItemPedido(props: { item: Array<Item> }) {
     }
 
     useEffect(() => {
-        setItens(props.item);
         getInfo();
-    }, [props.item || total || quantidade]);
+    }, [props.item]);
 
     return (
         <div className="flex flex-col max-h-80 h-full relative overflow-hidden shadow-md rounded-lg">

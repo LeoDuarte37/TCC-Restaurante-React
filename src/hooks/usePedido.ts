@@ -65,6 +65,18 @@ export default function usePedido() {
         clearPedido();
     }
 
+    async function getInfoConta(itens: Array<Item>) {
+        let valor: number = 0;
+        let quantidade: number = 0;
+
+        itens.map((item: Item) => {
+            valor = valor + (item.produto.valor * item.quantidade);
+            quantidade = quantidade + item.quantidade;
+        });
+
+        return [valor, quantidade];
+    }
+
     async function clearPedido() {
         localStorage.setItem("item", JSON.stringify([]));
     }
@@ -75,6 +87,7 @@ export default function usePedido() {
         total,
         totalPedido,
         enviarPedido,
+        getInfoConta,
         clearPedido,
     };
 }
