@@ -1,20 +1,38 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MesaContext } from "../contexts/MesaContext";
 import Mesa from "../models/Mesa";
-import { atualizarChamarGarcom } from "../services/Service";
+import { atualizarChamarGarcom, buscarMesaPorId } from "../services/Service";
 import toastAlert from "../utils/toastAlert";
 
 export default function useMesa() {
 
-    const { mesa, atualizarMesa } = useContext(MesaContext);
+    const { handleMesaLogout } = useContext(MesaContext);
 
-    async function chamarGarcom() {
+    const [ mesa, setMesa ] = useState<Mesa>()
+
+    async function chamarGarcom(mesaId: number, chamar: boolean, setDados: Function) {
         const table: Mesa = {
-            id: mesa.id,
-            chamarGarcom: !mesa.chamarGarcom,
+            id: mesaId,
+            chamarGarcom: chamar,
         }
+        
+        try {
+            await buscarMesaPorId(table.id, setMesa);
 
-        atualizarChamarGarcom(table, atualizarMesa);
+            if (mesa?.id == mesaId) {
+                if (mesa.chamarGarcom == chamar) {
+                    toastAlert("Garçom já contatado! Aguarde!", "info");
+                } else {
+                    await atualizarChamarGarcom(table, setDados);
+                }
+            }
+
+        } catch (error: any) {
+            if (error.toString().includes("403")) {
+                toastAlert("Faça login novamente!", "info");
+                handleMesaLogout();
+            }   
+        }
     }
 
     return { chamarGarcom };

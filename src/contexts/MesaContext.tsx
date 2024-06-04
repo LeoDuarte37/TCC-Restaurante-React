@@ -8,7 +8,7 @@ interface MesaContextProps {
     isLoading: boolean;
     handleMesaLogout(): void;
     handleMesaLogin(restauranteId: string, numeroMesa: number): Promise<void>;
-    atualizarMesa(): void;
+    atualizarMesa(mesa: Mesa): void;
 }
 
 interface MesaProviderProps {
@@ -47,7 +47,6 @@ export function MesaProvider({ children }: MesaProviderProps) {
             }
 
         } catch (error) {
-            console.log(error)
             toastAlert(`Dados da mesa inconsistentes!`, "erro");
             setIsLoading(false);
         }
