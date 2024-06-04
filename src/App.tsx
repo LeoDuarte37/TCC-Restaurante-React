@@ -11,6 +11,7 @@ import DestaqueMesaPage from './pages/mesa/destaques/DestaquesMesaPage';
 import ContaMesaPage from './pages/mesa/conta/ContaMesaPage';
 import CardMesa from './components/mesa/card/CardMesa';
 import MesaPage from './pages/mesa/MesaPage';
+import PedidoPage from './pages/pedido/PedidoPage';
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
             {/* <CardapioMesaPage /> */}
             {/* <ContaMesaPage /> */}
             {/* <CardMesa /> */}
-            <MesaPage />
+            {/* <MesaPage /> */}
+            <PedidoPage />
             {/* <LoginPage /> */}
         </MesaProvider>
         {/* </BrowserRouter> */}
@@ -37,5 +39,8 @@ function App() {
 // https://tailwindui.com/components/ecommerce/components/category-filters
 // https://tw-elements.com/docs/standard/components/scroll-back-to-top-button/
 // https://tailwindui.com/components/application-ui/overlays/slide-overs
+
+// listar pedidos por dia atual: 
+// https://pt.stackoverflow.com/questions/313880/java-query-spring-com-data-atual
 
 export default App;

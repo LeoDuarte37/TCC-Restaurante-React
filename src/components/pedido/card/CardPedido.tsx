@@ -10,7 +10,7 @@ function CardPedido(props: { pedido: Pedido }) {
     return (
         <>
             <Button onClick={() => setIsOpen(true)} className="button w-32 h-16">
-                {props.pedido?.mesa.id}
+                Ver itens
             </Button>
 
             <Transition appear show={isOpen}>
