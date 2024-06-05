@@ -3,10 +3,12 @@ import Item from "../../../../models/Item";
 import { LoginContext } from "../../../../contexts/LoginContext";
 import CardItemPedido from "../card/CardItemPedido";
 import usePedido from "../../../../hooks/usePedido";
+import { MesaContext } from "../../../../contexts/MesaContext";
 
 function ListaItemPedido(props: { item: Array<Item> }) {
 
-    const { usuario, isMesa } = useContext(LoginContext);
+    const { usuario } = useContext(LoginContext);
+    const { mesa } = useContext(MesaContext);
 
     const { getInfoConta } = usePedido();
 
@@ -28,8 +30,8 @@ function ListaItemPedido(props: { item: Array<Item> }) {
     }
 
     function renderItens() {
-        return itens?.map((item: Item) => (
-            <tr key={item.produto.id} className="flex bg-white dark:bg-gray-800">
+        return itens.map((item: Item) => (
+            <tr key={item.produto.id} className="flex  text-white">
                 <CardItemPedido item={item} />
             </tr>
         ));
@@ -40,33 +42,40 @@ function ListaItemPedido(props: { item: Array<Item> }) {
     }, [props.item]);
 
     return (
-        <div className="flex flex-col max-h-80 h-full relative overflow-hidden shadow-md rounded-lg">
+        <div className="flex flex-col max-h-80 h-full w-[80%] max-w-3xl relative overflow-hidden shadow-md rounded-lg">
             <table className="flex flex-col w-full h-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="h-10 text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
-                    <tr>
-                        <th scope="col" className="px-6 py-3">
+                <thead className="h-12 text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+                    <tr className="h-full flex items-center justify-between text-center w-full">
+                        <th scope="col" className="w-full h-full flex justify-center items-center p-0">
                             Nome produto
                         </th>
-                        <th scope="col" className="px-6 py-3">
+                        <th scope="col" className="w-full h-full flex justify-center items-center p-0">
                             Qtd
                         </th>
-                        <th scope="col" className="px-6 py-3">
+                        <th scope="col" className="w-full h-full flex justify-center items-center p-0">
                             Valor unitário
                         </th>
-                        {/* <th scope="col" className="px-6 py-3">
+                        <th scope="col" className="w-full h-full flex justify-center items-center p-0">
                             Observação
-                        </th> */}
+                        </th>
                     </tr>
                 </thead>
-                <tbody className="flex flex-col overflow-auto w-full max-h-content h-[75%]">
+                <tbody className="flex flex-col bg-gray-800 overflow-auto w-full max-h-content h-[70%]">
                     {isLoading ? <></> : renderItens()}
                 </tbody>
-                { (usuario.perfil === "CAIXA" || usuario.perfil === "GERENTE" || usuario.perfil === "ADMIN" || isMesa === true) &&
-                    <tfoot className="flex max-h-[25%] h-[25%]">
+                { (usuario.perfil === "CAIXA" || usuario.perfil === "GERENTE" || usuario.perfil === "ADMIN" || mesa.id > 0) &&
+                    <tfoot className="flex flex-1 items-center w-full max-h-[15%] h-8 py-4">
                         <tr className="flex items-center w-full h-full font-semibold text-gray-900">
-                            <th scope="row" className="px-6 text-base w-[40%]">Total</th>
-                            <td className="px-6 text-center w-[20%]">{quantidade}</td>
-                            <td className="px-6 text-center w-[40%]">R$ {total.toFixed(2)}</td>
+                            <th scope="row" className="flex justify-center items-center text-base w-full">
+                                Total
+                            </th>
+                            <td className="flex justify-center items-center text-center w-full">
+                                {quantidade}
+                            </td>
+                            <td className="flex justify-center items-center text-center w-full">
+                                R$ {total.toFixed(2)}
+                            </td>
+                            <td className="w-full"></td>
                         </tr>
                     </tfoot>
                 }

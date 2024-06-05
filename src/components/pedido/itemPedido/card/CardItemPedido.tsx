@@ -4,14 +4,17 @@ function CardItemPedido(props: { item: Item }) {
 
     return (
         <> 
-            <th scope="row" className="w-[40%] px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <th scope="row" className="flex justify-center items-center w-full h-12 p-0 font-medium whitespace-nowrap">
                 {props.item.produto.nome}
             </th>
-            <td className="px-6 py-4 text-center w-[20%]">
+            <td className="flex justify-center items-center w-full h-12 p-0">
                 {props.item.quantidade}
             </td>
-            <td className="px-6 py-4 text-center w-[40%]">
+            <td className="flex justify-center items-center w-full h-12 p-0">
                 R$ {props.item.produto.valor}
+            </td>
+            <td className="flex justify-center items-center w-full h-12 p-0">
+                {props.item.observacao}
             </td>
         </>
     );

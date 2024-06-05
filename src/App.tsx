@@ -22,14 +22,14 @@ function App() {
         <LoginProvider>
           {/* <BrowserRouter> */}
           <MesaProvider> 
-              <Navbar />
+              {/* <Navbar /> */}
               {/* <DestaqueMesaPage /> */}
               {/* <CardapioMesaPage /> */}
               {/* <ContaMesaPage /> */}
               {/* <CardMesa /> */}
-              <MesaPage />
+              {/* <MesaPage /> */}
               {/* <PedidoPage /> */}
-              {/* <LoginPage /> */}
+              <LoginPage />
           </MesaProvider>
           {/* </BrowserRouter> */}
         </LoginProvider>

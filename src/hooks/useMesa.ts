@@ -25,6 +25,7 @@ export default function useMesa() {
     async function mesaAtendida(mesaId: number) {
         const updateListMesa = mesas.filter((m) => m.id !== mesaId);
         atualizarMesas(updateListMesa);
+        toastAlert("Mesa atendida!", "sucesso");
     }
 
     // async function chamarGarcom(mesaId: number, chamar: boolean, setDados: Function) {
