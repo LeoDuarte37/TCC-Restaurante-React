@@ -5,6 +5,6 @@ export default interface Pedido {
     id?: number;
     mesa: Mesa;
     item: Array<Item>;
-    data?: Date;
+    data?: string;
     status?: string;
 }

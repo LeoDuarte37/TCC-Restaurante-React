@@ -7,7 +7,19 @@ import Pedido from "../../../models/Pedido";
 function ListaPedido() {
     const { usuario } = useContext(LoginContext);
 
-    const [pedidos, setPedidos] = useState<Array<Pedido>>([]);
+    const [pedidos, setPedidos] = useState<Array<Pedido>>([
+        {
+            id: 1,
+            mesa: {
+                id: 1,
+                numero: 4,
+                chamarGarcom: true
+            },
+            item: [],
+            data: "11/02/2024",
+            status: "REALIZADO",
+        },
+    ]);
     const [total, setTotal] = useState<number>(0);
     const [quantidade, setQuantidade] = useState<number>(0);
 
@@ -15,7 +27,7 @@ function ListaPedido() {
 
     function renderItens() {
         return pedidos?.map((pedido: Pedido) => (
-            <tr key={pedido.id} className="flex bg-white dark:bg-gray-800">
+            <tr key={pedido.id} className="flex dark:bg-gray-800">
                 <CardPedido pedido={pedido} />
             </tr>
         ));
@@ -24,10 +36,13 @@ function ListaPedido() {
     return (
 
         // Usuario.perfil === CAIXA ou superior
-        <div className="flex flex-col mt-6 mx-auto max-w-[60%] max-h-[75%] h-full relative overflow-hidden shadow-md rounded-lg">
-            <table className="flex flex-col w-full h-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <div className="flex flex-col mt-10 mx-auto max-w-[60%] max-h-[75%] h-full relative overflow-hidden shadow-md rounded-lg">
+            <table className="table-auto flex flex-col w-full h-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="h-10 text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                     <tr className="flex justify-between text-center w-full">
+                        <th scope="col" className="w-full px-6 py-3">
+                            Código Pedido
+                        </th>
                         <th scope="col" className="w-full px-6 py-3">
                             Mesa
                         </th>
@@ -42,15 +57,15 @@ function ListaPedido() {
                         </th>
                     </tr>
                 </thead>
-                <tbody className="flex flex-col overflow-auto w-full max-h-content h-[75%]">
+                <tbody className="flex flex-col overflow-auto w-full max-h-content h-[85%] mt-4">
                     {isLoading ? <></> : renderItens()}
                 </tbody>
                 { (usuario.perfil === "CAIXA" || usuario.perfil === "GERENTE" || usuario.perfil === "ADMIN") &&
-                    <tfoot className="flex max-h-[25%] h-[25%]">
-                        <tr className="flex items-center w-full h-full font-semibold text-gray-900">
-                            <th scope="row" className="px-6 text-base w-[40%]">Total</th>
-                            <td className="px-6 text-center w-[20%]">{quantidade}</td>
-                            <td className="px-6 text-center w-[40%]">R$ {total.toFixed(2)}</td>
+                    <tfoot className="flex flex-1 items-center w-full max-h-[25%] h-12">
+                        <tr className="flex items-center justify-end px-6 w-full h-full font-semibold text-gray-900">
+                            <th scope="row" className="flex justify-center items-center text-base w-16">Total</th>
+                            <td className="flex justify-center items-center text-center w-16">Qtd {quantidade}</td>
+                            <td className="flex justify-center items-center text-center w-28">R$ {total.toFixed(2)}</td>
                         </tr>
                     </tfoot>
                 }

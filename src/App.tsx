@@ -24,10 +24,10 @@ function App() {
             <Navbar />
             {/* <DestaqueMesaPage /> */}
             {/* <CardapioMesaPage /> */}
-            {/* <ContaMesaPage /> */}
+            <ContaMesaPage />
             {/* <CardMesa /> */}
             {/* <MesaPage /> */}
-            <PedidoPage />
+            {/* <PedidoPage /> */}
             {/* <LoginPage /> */}
         </MesaProvider>
         {/* </BrowserRouter> */}
