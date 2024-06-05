@@ -6,10 +6,12 @@ import SearchButton from "../mesa/buttons/SearchButton";
 import "./Navbar.css";
 import { ChefHat, SignOut } from "@phosphor-icons/react";
 import { LoginContext } from "../../contexts/LoginContext";
+import { MesaContext } from "../../contexts/MesaContext";
 
 function Navbar() {
 
-    const { usuario, isMesa, handleLogout } = useContext(LoginContext);
+    const { usuario, handleLogout } = useContext(LoginContext);
+    const { mesa } = useContext(MesaContext); 
 
     return (
         <nav className="flex flex-wrap place-items-center">
@@ -29,7 +31,7 @@ function Navbar() {
                     </>    
                 }
 
-                { isMesa && 
+                { mesa.id > 0 && 
                     <div className="componentes">
                         <SearchButton />
 

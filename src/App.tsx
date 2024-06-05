@@ -12,26 +12,28 @@ import ContaMesaPage from './pages/mesa/conta/ContaMesaPage';
 import CardMesa from './components/mesa/card/CardMesa';
 import MesaPage from './pages/mesa/MesaPage';
 import PedidoPage from './pages/pedido/PedidoPage';
+import { ChamandoGarcomProvider } from './contexts/ChamandoGarcomContext';
 
 function App() {
   return (
     <>
-
-      <LoginProvider>
+      <ChamandoGarcomProvider>
         <ToastContainer style={{ width: "250px" }}/>
-        {/* <BrowserRouter> */}
-        <MesaProvider> 
-            <Navbar />
-            {/* <DestaqueMesaPage /> */}
-            {/* <CardapioMesaPage /> */}
-            {/* <ContaMesaPage /> */}
-            {/* <CardMesa /> */}
-            {/* <MesaPage /> */}
-            <PedidoPage />
-            {/* <LoginPage /> */}
-        </MesaProvider>
-        {/* </BrowserRouter> */}
-      </LoginProvider>
+        <LoginProvider>
+          {/* <BrowserRouter> */}
+          <MesaProvider> 
+              <Navbar />
+              {/* <DestaqueMesaPage /> */}
+              {/* <CardapioMesaPage /> */}
+              {/* <ContaMesaPage /> */}
+              {/* <CardMesa /> */}
+              <MesaPage />
+              {/* <PedidoPage /> */}
+              {/* <LoginPage /> */}
+          </MesaProvider>
+          {/* </BrowserRouter> */}
+        </LoginProvider>
+      </ChamandoGarcomProvider>
     </>
   );
 }

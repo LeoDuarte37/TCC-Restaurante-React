@@ -24,10 +24,10 @@ export function LoginProvider( {children} : LoginProviderProps ) {
     const [usuario, setUsuario] = useState<Sessao>({
         username: "",
         restaurante: {
-            id: "",
+            id: "1",
             nome: "",
         },
-        perfil: "COZINHA",
+        perfil: "GARCOM",
         token: "",
     });
 
