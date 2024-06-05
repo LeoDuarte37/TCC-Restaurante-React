@@ -9,16 +9,16 @@ function CardPedido(props: { pedido: Pedido }) {
 
     return (
         <>
-            <th scope="row" className="flex justify-center items-center w-full font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <th scope="row" className="flex justify-center items-center w-full font-medium whitespace-nowrap">
                 { props.pedido.id }
             </th>
-            <td className="flex justify-center items-center w-full font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <td className="flex justify-center items-center w-full font-medium whitespace-nowrap">
                 { props.pedido.mesa.numero }
             </td>
-            <td className="flex justify-center items-center w-full font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <td className="flex justify-center items-center w-full font-medium whitespace-nowrap">
                 { props.pedido.data }
             </td>
-            <td className="flex justify-center items-center w-full font-medium text-gray-900 whitespace-nowrap dark:text-white">
+            <td className="flex justify-center items-center w-full font-medium whitespace-nowrap">
                 { props.pedido.status }
             </td>
             <td className="flex justify-center w-full">
@@ -48,7 +48,7 @@ function CardPedido(props: { pedido: Pedido }) {
                                             </div>
                                             <div className="div rounded-xl bg-white/5 backdrop-blur-2xl w-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                                                 <h1>Ola</h1>
-                                                {/* LISTA PEDIDOS, PASSANDO PAGE="Cozinha" */}
+                                                {/* LISTA ITEMS */}
                                             </div>
                                         </div>
                                     </div>

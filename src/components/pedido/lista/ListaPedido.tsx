@@ -3,7 +3,6 @@ import { LoginContext } from "../../../contexts/LoginContext";
 import CardPedido from "../card/CardPedido";
 import Pedido from "../../../models/Pedido";
 
-
 function ListaPedido() {
     const { usuario } = useContext(LoginContext);
 
@@ -27,18 +26,27 @@ function ListaPedido() {
 
     function renderItens() {
         return pedidos?.map((pedido: Pedido) => (
-            <tr key={pedido.id} className="flex dark:bg-gray-800">
+            <tr key={pedido.id} className="flex">
                 <CardPedido pedido={pedido} />
             </tr>
         ));
     }
 
+    // Criar busca de pedidos no banco por perfis de usuario + useEffect + condicional no return 
+
+    // Cozinha: get pedidos "REALIZADOS"
+    // Garçom: get pedidos "PRONTOS"
+    // Caixa: get all pedidos do dia
+    // Gerente/superior: get all pedidos
+
+    // Apenas Cozinha terá visualização dos pedidos por botões
+
     return (
 
         // Usuario.perfil === CAIXA ou superior
         <div className="flex flex-col mt-10 mx-auto max-w-[60%] max-h-[75%] h-full relative overflow-hidden shadow-md rounded-lg">
-            <table className="table-auto flex flex-col w-full h-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="h-10 text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+            <table className="table-auto flex flex-col w-full h-full text-sm text-left rtl:text-right">
+                <thead className="h-10 text-xs text-gray-200 uppercase bg-gray-700">
                     <tr className="flex justify-between text-center w-full">
                         <th scope="col" className="w-full px-6 py-3">
                             Código Pedido
@@ -57,7 +65,7 @@ function ListaPedido() {
                         </th>
                     </tr>
                 </thead>
-                <tbody className="flex flex-col overflow-auto w-full max-h-content h-[85%] mt-4">
+                <tbody className="flex flex-col overflow-auto w-full max-h-content h-[85%] mt-4 text-gray-700">
                     {isLoading ? <></> : renderItens()}
                 </tbody>
                 { (usuario.perfil === "CAIXA" || usuario.perfil === "GERENTE" || usuario.perfil === "ADMIN") &&

@@ -27,13 +27,13 @@ export function LoginProvider( {children} : LoginProviderProps ) {
             id: "",
             nome: "",
         },
-        perfil: "",
+        perfil: "COZINHA",
         token: "",
     });
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const [isMesa, setIsMesa] = useState(true);
+    const [isMesa, setIsMesa] = useState(false);
 
     function changeContextIsMesa() {
         setIsMesa(!isMesa);
