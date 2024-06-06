@@ -85,8 +85,45 @@ function ListaCategoria() {
             disponivel: true,
         },
         {
-            id: 1,
+            id: 2,
             nome: "Bebidas",
+            subCategoria: [
+                {
+                    id: 1,
+                    nome: "Refrigerantes",
+                    produto: [
+                        {
+                            id: 1,
+                            nome: "Prato especial",
+                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                            valor: 25.99,
+                            disponivel: true
+                        }
+                    ],
+                    disponivel: true,
+                },
+                {
+                    id: 1,
+                    nome: "Alcoolicos",
+                    produto: [
+                        {
+                            id: 1,
+                            nome: "Prato especial",
+                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                            valor: 25.99,
+                            disponivel: true
+                        }
+                    ],
+                    disponivel: true,
+                },
+            ],
+            disponivel: true,
+        },
+        {
+            id: 3,
+            nome: "Sobremesas",
             subCategoria: [
                 {
                     id: 1,
@@ -99,23 +136,7 @@ function ListaCategoria() {
                             foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
                             valor: 25.99,
                             disponivel: true
-                        },
-                        {
-                            id: 2,
-                            nome: "Prato",
-                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                            valor: 25.99,
-                            disponivel: true
-                        },
-                        {
-                            id: 3,
-                            nome: "Prato especial",
-                            descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                            foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                            valor: 25.99,
-                            disponivel: true
-                        },
+                        }
                     ],
                     disponivel: true,
                 },
@@ -174,14 +195,14 @@ function ListaCategoria() {
                 <>
                     {mesa.id > 0 ? (
                         <>
-                            <ul className="flex flex-col gap-3 w-40 m-4 h-4/5 overflow-auto">
+                            <ul className="flex flex-col gap-3 w-[30%] m-4 h-4/5 overflow-auto">
                                 {categorias.map((categoria) => (
                                     <li key={categoria.id}>
                                         <div className="w-full">
                                             <div className="mx-auto w-full max-w-lg divide-y divide-white/5 rounded-xl bg-white/5">
                                                 <Disclosure as="div" className="" defaultOpen={true}>
                                                     <DisclosureButton className="group flex w-full items-center justify-between">
-                                                        <button className="inline-flex justify-between items-center w-full gap-2 rounded-md bg-gray-800 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
+                                                        <button className="inline-flex justify-center items-center w-full gap-2 rounded-md bg-gray-800 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
                                                             {categoria.nome}
                                                             <CaretCircleDown size={20} color="white" />
                                                         </button>
