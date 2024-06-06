@@ -6,7 +6,7 @@ function CardapioPage() {
     return (
         <div className="flex h-full">
             <Sidebar />
-            <ListaCategoria isMesa={true}/>
+            <ListaCategoria />
         </div>
     );
 }

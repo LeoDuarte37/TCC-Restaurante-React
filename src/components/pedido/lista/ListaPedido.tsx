@@ -38,7 +38,8 @@ function ListaPedido(props: { pedidos: Array<Pedido>}) {
                         "id": 2,
                         "nome": "Prato", "descricao": "Especial da casa! Acompanha... Especial da casa! Acompanha...", "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp", "valor": 25.99, "disponivel": true
                     }, 
-                    "quantidade": 3
+                    "quantidade": 3,
+                    "observacao": "Sem farofa sem farofa sem farofa sem farofa"
                 }, 
             ],
             data: "11/02/2024",
@@ -156,7 +157,7 @@ function ListaPedido(props: { pedidos: Array<Pedido>}) {
                 </table>
             </div>
 
-            <Transition appear show={isOpen}>
+            <Transition appear show={isOpen} >
                 <Dialog as="div" className="absolute inset-0 z-10 w-screen focus:outline-none" onClose={() => setIsOpen(false)}>
 
                     <div className="flex min-h-full w-full items-center justify-center">

@@ -20,7 +20,7 @@ export const MesaContext = createContext({} as MesaContextProps);
 export function MesaProvider({ children }: MesaProviderProps) {
 
     const [mesa, setMesa] = useState<Mesa>({
-        id: 0,
+        id: 1,
         numero: 0,
         restaurante: {
             id: "",

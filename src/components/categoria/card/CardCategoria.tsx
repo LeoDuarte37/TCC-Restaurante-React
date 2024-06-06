@@ -1,11 +1,11 @@
 import SubCategoria from "../../../models/SubCategoria";
 
-function CardCategoria(props: { subCategoria: SubCategoria, isMesa: boolean }) {
+function CardCategoria(props: { subCategoria: SubCategoria; mesaId: number }) {
 
     return (
         <>
-            { props.isMesa ? (
-                <article key={props.subCategoria.id} className="relative isolate flex flex-col items-center justify-center overflow-hidden rounded-xl p-4 mb-2 h-full max-w-48 max-h-8">
+            { props.mesaId > 0 ? (
+                <article key={props.subCategoria.id} className="relative isolate flex flex-col items-center justify-center overflow-hidden rounded-xl p-4 mb-2 h-full w-full max-h-8">
                     <h1 className="z-10 text-sm leading-4 text-center font-semibold text-gray-800">{props.subCategoria.nome}</h1>
                 </article>
             ) : (
