@@ -44,7 +44,41 @@ function ListaPedido(props: { pedidos: Array<Pedido>}) {
             ],
             data: "11/02/2024",
             status: "REALIZADO",
-        }
+        },
+        {
+            id: 2,
+            mesa: {
+                id: 1,
+                numero: 4,
+                restaurante: {
+                    id: "1",
+                    nome: "Bar do Zé",
+                },
+                chamarGarcom: true,
+            },
+            item: [
+                {
+                    "produto": {
+                        "id": 1,
+                        "nome": "Prato especial",
+                        "descricao": "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                        "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                        "valor": 25.99, "disponivel": true
+                    }, 
+                    "quantidade": 2
+                },
+                {
+                    "produto": {
+                        "id": 2,
+                        "nome": "Prato", "descricao": "Especial da casa! Acompanha... Especial da casa! Acompanha...", "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp", "valor": 25.99, "disponivel": true
+                    }, 
+                    "quantidade": 3,
+                    "observacao": "Sem farofa sem farofa sem farofa sem farofa"
+                }, 
+            ],
+            data: "11/02/2024",
+            status: "REALIZADO",
+        },
     ]);
 
     const [currentPedidoId, setCurrentPedidoId] = useState<number>(0);

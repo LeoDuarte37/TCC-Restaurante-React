@@ -5,7 +5,7 @@ import { useContext } from "react";
 
 function ChamarGarcomButton() {
 
-    const { mesa, atualizarMesa } = useContext(MesaContext);
+    const { mesa } = useContext(MesaContext);
     const { chamar } = useMesa();
 
     return (

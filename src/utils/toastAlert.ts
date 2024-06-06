@@ -6,7 +6,7 @@ function toastAlert(mensagem: string, tipo: string) {
         case "sucesso": 
             toast.success(mensagem, {
                 position: 'bottom-left',
-                autoClose: 3000,
+                autoClose: 4000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,

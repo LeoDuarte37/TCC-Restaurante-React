@@ -30,7 +30,7 @@ function ListaItemPedido(props: { item: Array<Item>; pedidoId?: number }) {
 
     function renderItens() {
         return itens.map((item: Item) => (
-            <tr key={item.produto.id} className="flex  text-white">
+            <tr key={item.produto.id} className="flex text-white">
                 <CardItemPedido item={item} />
             </tr>
         ));
