@@ -18,7 +18,9 @@ function ContaMesaPage() {
 
             <div className="flex flex-col items-center gap-8 mt-10 w-full h-full">
                 <h1 className="text-gray-800 font-bold text-3xl">Pedidos realizados</h1>
-                <ListaItemPedido item={itens} />
+                <div className="flex flex-col max-h-80 h-full w-[80%] max-w-3xl relative overflow-hidden shadow-md rounded-lg">
+                    <ListaItemPedido item={itens} />
+                </div>
                 <button className="button">Fechar conta</button>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../../../contexts/LoginContext";
 import CardPedido from "../card/CardPedido";
 import Pedido from "../../../models/Pedido";
@@ -7,7 +7,7 @@ import { X } from "@phosphor-icons/react";
 import ListaItemPedido from "../itemPedido/lista/ListaItemPedido";
 import Item from "../../../models/Item";
 
-function ListaPedido() {
+function ListaPedido(props: { pedidos: Array<Pedido>}) {
     const { usuario } = useContext(LoginContext);
 
     const [pedidos, setPedidos] = useState<Array<Pedido>>([
@@ -43,9 +43,10 @@ function ListaPedido() {
             ],
             data: "11/02/2024",
             status: "REALIZADO",
-        },
+        }
     ]);
 
+    const [currentPedidoId, setCurrentPedidoId] = useState<number>(0);
     const [currentItems, setCurrentItems] = useState<Array<Item>>([])
 
     const [total, setTotal] = useState<number>(0);
@@ -54,9 +55,26 @@ function ListaPedido() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    function renderModal(item: Array<Item>) {
+    function renderModal(pedido: Pedido) {
         setIsOpen(true);
-        setCurrentItems(item);
+        setCurrentPedidoId(pedido.id || 0);
+        setCurrentItems(pedido.item);
+    }
+
+    function totalPedidos() {
+        let subTotal: number = 0;
+        let subQuantidade: number = 0;
+
+        pedidos.map((pedido) => {
+            subQuantidade++;
+            
+            subTotal += pedido.item.reduce((acumulador, item) => (
+                acumulador + (item.produto.valor * item.quantidade)
+            ), 0);
+        });
+            
+        setQuantidade(subQuantidade);
+        setTotal(subTotal);
     }
 
     function renderItens() {
@@ -65,13 +83,20 @@ function ListaPedido() {
                 <CardPedido pedido={pedido} />
 
                 <td className="flex justify-center w-full">
-                    <Button onClick={() => renderModal(pedido.item)} className="button text-sm text-nowrap w-32 h-8 flex  justify-center items-center">
+                    <Button onClick={() => renderModal(pedido)} className="button text-sm text-nowrap w-32 h-8 flex  justify-center items-center">
                         Ver itens
                     </Button>
                 </td>
             </tr>
         ));
     }
+
+    useEffect(() => {
+        setIsLoading(true);
+        renderItens();
+        totalPedidos();
+        setIsLoading(false);
+    }, [])
 
     // Criar busca de pedidos no banco por perfis de usuario + useEffect + condicional no return 
 
@@ -84,49 +109,52 @@ function ListaPedido() {
 
     return (
 
-        // Usuario.perfil === CAIXA ou superior
-        <div className="flex flex-col mt-10 mx-auto max-w-[60%] max-h-[75%] h-full relative overflow-hidden shadow-md rounded-lg">
-            <table className="table-auto flex flex-col w-full h-full text-sm text-left rtl:text-right">
-                <thead className="h-10 text-xs text-gray-200 uppercase bg-gray-700">
-                    <tr className="flex justify-between w-full h-full">
-                        <th scope="col" className="w-full h-full flex justify-center items-center">
-                            Código Pedido
-                        </th>
-                        <th scope="col" className="w-full h-full flex justify-center items-center">
-                            Mesa
-                        </th>
-                        <th scope="col" className="w-full h-full flex justify-center items-center">
-                            Data
-                        </th>
-                        <th scope="col" className="w-full h-full flex justify-center items-center">
-                            Status
-                        </th>
-                        <th scope="col" className="w-full h-full flex justify-center items-center">
-                            Ação
-                        </th>
-                    </tr>
-                </thead>
-                <tbody className="flex flex-col gap-6 overflow-auto w-full max-h-content h-[85%] mt-4 text-gray-700">
-                    {isLoading ? <></> : renderItens()}
-                </tbody>
-                {(usuario.perfil === "CAIXA" || usuario.perfil === "GERENTE" || usuario.perfil === "ADMIN") &&
-                    <tfoot className="flex flex-1 items-center w-full max-h-[25%] h-12 pb-4">
-                        <tr className="flex items-center justify-end px-6 w-full h-full font-semibold text-gray-900">
-                            <th scope="row" className="flex justify-center items-center text-base w-full">
-                                Total
+        <>
+        
+            {/* Usuario.perfil === CAIXA ou superior */}
+            <div className="flex flex-col mt-10 mx-auto max-w-[60%] max-h-[75%] h-full relative overflow-hidden shadow-md rounded-lg">
+                <table className="table-auto flex flex-col w-full h-full text-sm text-left rtl:text-right">
+                    <thead className="h-10 text-xs text-gray-200 uppercase bg-gray-700">
+                        <tr className="flex justify-between w-full h-full">
+                            <th scope="col" className="w-full h-full flex justify-center items-center">
+                                Código Pedido
                             </th>
-                            <td className="flex justify-center items-center text-center w-full">
-                                Qtd {quantidade}
-                            </td>
-                            <td className="flex justify-center items-center text-center w-full">
-                                R$ {total.toFixed(2)}
-                            </td>
-                            <td className="flex w-full"></td>
-                            <td className="flex w-full"></td>
+                            <th scope="col" className="w-full h-full flex justify-center items-center">
+                                Mesa
+                            </th>
+                            <th scope="col" className="w-full h-full flex justify-center items-center">
+                                Data
+                            </th>
+                            <th scope="col" className="w-full h-full flex justify-center items-center">
+                                Status
+                            </th>
+                            <th scope="col" className="w-full h-full flex justify-center items-center">
+                                Ação
+                            </th>
                         </tr>
-                    </tfoot>
-                }
-            </table>
+                    </thead>
+                    <tbody className="flex flex-col gap-6 overflow-auto w-full max-h-content h-[85%] mt-4 text-gray-700">
+                        {isLoading ? <></> : renderItens()}
+                    </tbody>
+                    {(usuario.perfil === "CAIXA" || usuario.perfil === "GERENTE" || usuario.perfil === "ADMIN") &&
+                        <tfoot className="flex flex-1 items-center w-full max-h-[25%] h-12 pb-4">
+                            <tr className="flex items-center justify-end px-6 w-full h-full font-semibold text-gray-900">
+                                <th scope="row" className="flex justify-center items-center text-base w-full">
+                                    Total
+                                </th>
+                                <td className="flex justify-center items-center text-center w-full">
+                                    Qtd {quantidade}
+                                </td>
+                                <td className="flex justify-center items-center text-center w-full">
+                                    R$ {total.toFixed(2)}
+                                </td>
+                                <td className="flex w-full"></td>
+                                <td className="flex w-full"></td>
+                            </tr>
+                        </tfoot>
+                    }
+                </table>
+            </div>
 
             <Transition appear show={isOpen}>
                 <Dialog as="div" className="absolute inset-0 z-10 w-screen focus:outline-none" onClose={() => setIsOpen(false)}>
@@ -147,8 +175,8 @@ function ListaPedido() {
                                         <div className="flex justify-end my-2">
                                             <X size={32} color="white" onClick={() => setIsOpen(false)} />
                                         </div>
-                                        <div className="div rounded-xl bg-white/5 backdrop-blur-2xl w-full flex-1 flex-col justify-center">
-                                            <ListaItemPedido item={currentItems} />
+                                        <div className="div rounded-xl bg-white/5 overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
+                                            <ListaItemPedido item={currentItems} pedidoId={currentPedidoId} />
                                         </div>
                                     </div>
                                 </div>
@@ -157,7 +185,7 @@ function ListaPedido() {
                     </div>
                 </Dialog>
             </Transition>
-        </div>
+        </>
     );
 }
 

@@ -1,6 +1,5 @@
 import Mesa from "../../../models/Mesa";
 import useMesa from "../../../hooks/useMesa";
-import { MesaContext } from "../../../contexts/MesaContext";
 import { useContext, useEffect } from "react";
 import { LoginContext } from "../../../contexts/LoginContext";
 
