@@ -195,7 +195,7 @@ function ListaCategoria() {
                 <>
                     {mesa.id > 0 ? (
                         <>
-                            <ul className="flex flex-col gap-3 w-[30%] m-4 h-4/5 overflow-auto">
+                            <ul className="flex flex-col gap-3 w-[27%] m-4 h-4/5 overflow-auto">
                                 {categorias.map((categoria) => (
                                     <li key={categoria.id}>
                                         <div className="w-full">

@@ -7,7 +7,7 @@ import { X } from "@phosphor-icons/react";
 import ListaItemPedido from "../itemPedido/lista/ListaItemPedido";
 import Item from "../../../models/Item";
 
-function ListaPedido(props: { pedidos: Array<Pedido>}) {
+function ListaPedido(props: { pedidos: Array<Pedido> }) {
     const { usuario } = useContext(LoginContext);
 
     const [pedidos, setPedidos] = useState<Array<Pedido>>([
@@ -30,17 +30,17 @@ function ListaPedido(props: { pedidos: Array<Pedido>}) {
                         "descricao": "Especial da casa! Acompanha... Especial da casa! Acompanha...",
                         "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
                         "valor": 25.99, "disponivel": true
-                    }, 
+                    },
                     "quantidade": 2
                 },
                 {
                     "produto": {
                         "id": 2,
                         "nome": "Prato", "descricao": "Especial da casa! Acompanha... Especial da casa! Acompanha...", "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp", "valor": 25.99, "disponivel": true
-                    }, 
+                    },
                     "quantidade": 3,
                     "observacao": "Sem farofa sem farofa sem farofa sem farofa"
-                }, 
+                },
             ],
             data: "11/02/2024",
             status: "REALIZADO",
@@ -48,7 +48,7 @@ function ListaPedido(props: { pedidos: Array<Pedido>}) {
         {
             id: 2,
             mesa: {
-                id: 1,
+                id: 2,
                 numero: 4,
                 restaurante: {
                     id: "1",
@@ -64,17 +64,17 @@ function ListaPedido(props: { pedidos: Array<Pedido>}) {
                         "descricao": "Especial da casa! Acompanha... Especial da casa! Acompanha...",
                         "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
                         "valor": 25.99, "disponivel": true
-                    }, 
+                    },
                     "quantidade": 2
                 },
                 {
                     "produto": {
                         "id": 2,
                         "nome": "Prato", "descricao": "Especial da casa! Acompanha... Especial da casa! Acompanha...", "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp", "valor": 25.99, "disponivel": true
-                    }, 
+                    },
                     "quantidade": 3,
                     "observacao": "Sem farofa sem farofa sem farofa sem farofa"
-                }, 
+                },
             ],
             data: "11/02/2024",
             status: "REALIZADO",
@@ -102,28 +102,40 @@ function ListaPedido(props: { pedidos: Array<Pedido>}) {
 
         pedidos.map((pedido) => {
             subQuantidade++;
-            
+
             subTotal += pedido.item.reduce((acumulador, item) => (
                 acumulador + (item.produto.valor * item.quantidade)
             ), 0);
         });
-            
+
         setQuantidade(subQuantidade);
         setTotal(subTotal);
     }
 
     function renderItens() {
-        return pedidos.map((pedido: Pedido) => (
-            <tr key={pedido.id} className="flex">
-                <CardPedido pedido={pedido} />
-
-                <td className="flex justify-center w-full">
-                    <Button onClick={() => renderModal(pedido)} className="button text-sm text-nowrap w-32 h-8 flex  justify-center items-center">
-                        Ver itens
-                    </Button>
-                </td>
-            </tr>
-        ));
+        if (usuario.perfil === "COZINHA" ) {
+            return (
+                <ul className="flex w-full h-full m-4">
+                    { pedidos.map((pedido: Pedido) => (
+                        <li key={pedido.id} onClick={() => renderModal(pedido)} className="button text-sm text-nowrap w-32 h-20 flex justify-center items-center lg:w-24 2xl:w-32" >
+                            { pedido.mesa.id }
+                        </li> 
+                    ))}
+                </ul>
+            )
+        } else {
+            return pedidos.map((pedido: Pedido) => (
+                <tr key={pedido.id} className="flex">
+                    <CardPedido pedido={pedido} />
+    
+                    <td className="flex justify-center w-full">
+                        <Button onClick={() => renderModal(pedido)} className="button text-sm text-nowrap w-32 h-8 flex justify-center items-center lg:w-24 2xl:w-32">
+                            Ver itens
+                        </Button>
+                    </td>
+                </tr>
+            ));
+        }
     }
 
     useEffect(() => {
@@ -145,51 +157,55 @@ function ListaPedido(props: { pedidos: Array<Pedido>}) {
     return (
 
         <>
-        
-            {/* Usuario.perfil === CAIXA ou superior */}
-            <div className="flex flex-col mt-10 mx-auto max-w-[60%] max-h-[75%] h-full relative overflow-hidden shadow-md rounded-lg">
-                <table className="table-auto flex flex-col w-full h-full text-sm text-left rtl:text-right">
-                    <thead className="h-10 text-xs text-gray-200 uppercase bg-gray-700">
-                        <tr className="flex justify-between w-full h-full">
-                            <th scope="col" className="w-full h-full flex justify-center items-center">
-                                Código Pedido
-                            </th>
-                            <th scope="col" className="w-full h-full flex justify-center items-center">
-                                Mesa
-                            </th>
-                            <th scope="col" className="w-full h-full flex justify-center items-center">
-                                Data
-                            </th>
-                            <th scope="col" className="w-full h-full flex justify-center items-center">
-                                Status
-                            </th>
-                            <th scope="col" className="w-full h-full flex justify-center items-center">
-                                Ação
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody className="flex flex-col gap-6 overflow-auto w-full max-h-content h-[85%] mt-4 text-gray-700">
-                        {isLoading ? <></> : renderItens()}
-                    </tbody>
-                    {(usuario.perfil === "CAIXA" || usuario.perfil === "GERENTE" || usuario.perfil === "ADMIN") &&
-                        <tfoot className="flex flex-1 items-center w-full max-h-[25%] h-12 pb-4">
-                            <tr className="flex items-center justify-end px-6 w-full h-full font-semibold text-gray-900">
-                                <th scope="row" className="flex justify-center items-center text-base w-full">
-                                    Total
+            {usuario.perfil === "COZINHA" 
+                ? <ul >
+                    {isLoading ? <></> : renderItens()}
+                </ul>
+                
+                : <div className="flex flex-col mt-10 mx-auto w-3/5 max-w-[65%] max-h-[75%] h-full relative overflow-hidden shadow-md rounded-lg">
+                    <table className="table-auto flex flex-col w-full h-full text-left rtl:text-right">
+                        <thead className="h-10 text-xs text-gray-200 uppercase bg-gray-700 ">
+                            <tr className="flex justify-between w-full h-full">
+                                <th scope="col" className="w-full h-full flex justify-center items-center p-0 lg:font-semibold">
+                                    Código Pedido
                                 </th>
-                                <td className="flex justify-center items-center text-center w-full">
-                                    Qtd {quantidade}
-                                </td>
-                                <td className="flex justify-center items-center text-center w-full">
-                                    R$ {total.toFixed(2)}
-                                </td>
-                                <td className="flex w-full"></td>
-                                <td className="flex w-full"></td>
+                                <th scope="col" className="w-full h-full flex justify-center items-center p-0 lg:font-semibold">
+                                    Mesa
+                                </th>
+                                <th scope="col" className="w-full h-full flex justify-center items-center p-0 lg:font-semibold">
+                                    Data
+                                </th>
+                                <th scope="col" className="w-full h-full flex justify-center items-center p-0 lg:font-semibold">
+                                    Status
+                                </th>
+                                <th scope="col" className="w-full h-full flex justify-center items-center p-0 lg:font-semibold">
+                                    Ação
+                                </th>
                             </tr>
-                        </tfoot>
-                    }
-                </table>
-            </div>
+                        </thead>
+                        <tbody className="flex flex-col gap-6 overflow-auto w-full max-h-content h-[85%] mt-4 text-gray-700 text-sm">
+                            {isLoading ? <></> : renderItens()}
+                        </tbody>
+                        {(usuario.perfil === "CAIXA" || usuario.perfil === "GERENTE" || usuario.perfil === "ADMIN") &&
+                            <tfoot className="flex flex-1 items-center w-full max-h-[25%] h-12 pb-4">
+                                <tr className="flex items-center justify-end px-6 w-full h-full font-semibold text-gray-900">
+                                    <th scope="row" className="flex justify-center items-center text-base w-full">
+                                        Total
+                                    </th>
+                                    <td className="flex justify-center items-center text-center w-full">
+                                        Qtd {quantidade}
+                                    </td>
+                                    <td className="flex justify-center items-center text-center w-full">
+                                        R$ {total.toFixed(2)}
+                                    </td>
+                                    <td className="flex w-full"></td>
+                                    <td className="flex w-full"></td>
+                                </tr>
+                            </tfoot>
+                        }
+                    </table>
+                </div>
+            }
 
             <Transition appear show={isOpen} >
                 <Dialog as="div" className="absolute inset-0 z-10 w-screen focus:outline-none" onClose={() => setIsOpen(false)}>
