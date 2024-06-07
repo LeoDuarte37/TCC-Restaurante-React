@@ -8,6 +8,7 @@ import Produto from "../models/Produto";
 import Restaurante from "../models/Restaurante";
 import Pedido from "../models/Pedido";
 import toastAlert from "../utils/toastAlert";
+import MesaChamarGarcom from "../models/MesaChamarGarcom";
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL
@@ -31,7 +32,7 @@ export const buscarMesasPorRestaurante = async (restauranteId: string, setDados:
     setDados(resposta);
 }
 
-export const atualizarChamarGarcom = async (mesa: Mesa, setDados: Function) => {
+export const atualizarChamarGarcom = async (mesa: MesaChamarGarcom, setDados: Function) => {
     const resposta = await api.patch(`/mesa/atualizar/chamarGarcom`, mesa);
     setDados(resposta);
 }
@@ -57,8 +58,8 @@ export const buscarPedidos = async (url: string, setDados: Function,  header: Ob
     setDados(resposta.data);
 }
 
-export const listarChamandoGarcom = async (setDados: Function, header: Object) => {
-    const resposta = await api.get(`/mesa/listar/chamandoGarcom`, header);
+export const listarChamandoGarcom = async (restauranteId: string, setDados: Function, header: Object) => {
+    const resposta = await api.get(`/mesa/listar/chamandoGarcom/` + {restauranteId}, header);
     setDados(resposta);
 }
 

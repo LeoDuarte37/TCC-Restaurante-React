@@ -4,61 +4,56 @@ import CardMesa from "../card/CardMesa";
 import { LoginContext } from "../../../contexts/LoginContext";
 import { buscarMesasPorRestaurante, listarChamandoGarcom } from "../../../services/Service";
 import toastAlert from "../../../utils/toastAlert";
-import useMesa from "../../../hooks/useMesa";
 
 function ListaMesa() {
 
     const { usuario, handleLogout } = useContext(LoginContext);
 
-    const { mesas } = useMesa();
+    const [ mesas, setMesas ] = useState<Array<Mesa>>([]);
 
-    const [ listMesas, setListMesas ] = useState<Array<Mesa>>([]);
-
-    function getMesas() {
-        setListMesas(mesas);
+    async function getMesas() {
+        if (usuario.perfil === "GARCOM") {
+            try {
+                await listarChamandoGarcom(
+                    usuario.restaurante.id, 
+                    setMesas, 
+                    {
+                        headers: {
+                            Authorization: usuario.token,
+                        },
+                    }
+                );
+                
+            } catch (error: any) {
+                if (error.toString().includes("403")) {
+                    toastAlert("Faça login novamente!", "info");
+                    handleLogout();
+                }   
+            }
+        } else {
+            try {
+                await buscarMesasPorRestaurante(
+                    usuario.restaurante.id, 
+                    setMesas,
+                    {
+                        headers: { 
+                            Authorization: usuario.token,
+                        },
+                    },   
+                )
+            } catch (error: any) {
+                if (error.toString().includes("403")) {
+                    toastAlert("Faça login novamente!", "info");
+                    handleLogout();
+                }   
+            }
+        }
     }
 
-    // async function getMesas() {
-    //     if (usuario.perfil === "GARCOM") {
-    //         try {
-    //             await listarChamandoGarcom(setMesas, {
-    //                 headers: {
-    //                     Authorization: usuario.token,
-    //                 },
-    //             });
-                
-    //         } catch (error: any) {
-    //             if (error.toString().includes("403")) {
-    //                 toastAlert("Faça login novamente!", "info");
-    //                 handleLogout();
-    //             }   
-    //         }
-    //     } else {
-    //         try {
-    //             await buscarMesasPorRestaurante(
-    //                 usuario.restaurante.id, 
-    //                 setMesas,
-    //                 {
-    //                     headers: { 
-    //                         Authorization: usuario.token,
-    //                     },
-    //                 },   
-    //             )
-    //         } catch (error: any) {
-    //             if (error.toString().includes("403")) {
-    //                 toastAlert("Faça login novamente!", "info");
-    //                 handleLogout();
-    //             }   
-    //         }
-    //     }
-    // }
-
     function renderMesas() {
-        return listMesas.map((mesa) => (
+        return mesas.map((mesa) => (
             <li key={mesa.id}>
-                { mesa.restaurante.id == usuario.restaurante.id &&
-                    <CardMesa mesa={mesa} getInfo={getMesas} />
-                }
+                <CardMesa mesa={mesa} getInfo={getMesas} />
             </li>
         ));
     }
@@ -67,12 +62,12 @@ function ListaMesa() {
         getMesas();
     }, [mesas]);
 
-    // useEffect(() => {
-    //     handleLogout();
-    // }, [usuario.token]);
+    useEffect(() => {
+        handleLogout();
+    }, [usuario.token]);
 
     return (
-        <ul>
+        <ul className="flex w-full h-full m-4">
             { renderMesas() }
         </ul>
     );
