@@ -5,9 +5,9 @@ import Pedido from "../../models/Pedido";
 
 function PedidoPage() {
 
-    const { usuario, handleLogout } = useContext(LoginContext); 
+    const { usuario, handleLogout } = useContext(LoginContext);
 
-    const [ pedidos, setPedidos ] = useState<Array<Pedido>>([]);
+    const [pedidos, setPedidos] = useState<Array<Pedido>>([]);
 
     function getPedidos() {
         if (usuario.perfil === "COZINHA") {
@@ -19,7 +19,7 @@ function PedidoPage() {
         } else if (usuario.perfil === "GERENTE") {
 
         } else if (usuario.perfil === "ADMIN") {
-            
+
         }
     }
 
@@ -28,7 +28,14 @@ function PedidoPage() {
 
 
     return (
-        <ListaPedido />
+        <div className="w-full h-full flex flex-col justify-center items-center px-2 pb-2">
+            {usuario.perfil === "GARCOM" &&
+                <h1 className="text-gray-600 text-2xl font-bold my-6">
+                    Pedidos prontos
+                </h1>
+            }
+            <ListaPedido />
+        </div>
     )
 }
 

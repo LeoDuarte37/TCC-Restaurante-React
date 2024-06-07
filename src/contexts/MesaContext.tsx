@@ -20,14 +20,14 @@ export const MesaContext = createContext({} as MesaContextProps);
 export function MesaProvider({ children }: MesaProviderProps) {
 
     const [mesa, setMesa] = useState<Mesa>({
-        id: 1,
+        id: 0,
         numero: 0,
         restaurante: {
             id: "1",
             nome: "",
         },
         chamarGarcom: false,
-        status: "PENDENTE",
+        status: "",
     });
 
     const [isLoading, setIsLoading] = useState<boolean>(false);

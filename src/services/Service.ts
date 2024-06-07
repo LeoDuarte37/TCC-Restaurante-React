@@ -1,6 +1,5 @@
 import axios from "axios";
 import Logar from "../models/Logar";
-import Login from "../models/Login";
 import Categoria from "../models/Categoria";
 import Mesa from "../models/Mesa";
 import Perfil from "../models/Perfil";

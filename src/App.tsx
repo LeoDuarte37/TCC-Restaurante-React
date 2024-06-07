@@ -25,8 +25,8 @@ function App() {
               {/* <CardapioMesaPage /> */}
               {/* <ContaMesaPage /> */}
               {/* <CardMesa /> */}
-              <MesaPage />
-              {/* <PedidoPage /> */}
+              {/* <MesaPage /> */}
+              <PedidoPage />
               {/* <LoginPage /> */}
           </MesaProvider>
           {/* </BrowserRouter> */}

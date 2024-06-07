@@ -30,7 +30,7 @@ function ListaItemPedido(props: { item: Array<Item>; pedidoId?: number }) {
 
     function renderItens() {
         return itens.map((item: Item) => (
-            <tr key={item.produto.id} className="flex text-white">
+            <tr key={item.produto.id} className="flex text-white min-[320px]:text-[14px]">
                 <CardItemPedido item={item} />
             </tr>
         ));
@@ -45,18 +45,26 @@ function ListaItemPedido(props: { item: Array<Item>; pedidoId?: number }) {
             <thead className="h-12 text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                 <tr className="h-full flex items-center justify-between text-center w-full">
                     <th scope="col" className="w-full h-full flex justify-center items-center p-0">
-                        Nome produto
+                        <p className="max-[425px]:w-14">
+                            Nome produto
+                        </p>
                     </th>
                     <th scope="col" className="w-full h-full flex justify-center items-center p-0">
-                        Qtd
+                        <p>
+                            Qtd
+                        </p>          
                     </th>
                     { (usuario.perfil === "COZINHA" || usuario.perfil === "GARCOM") ? <></> : 
                         <th scope="col" className="w-full h-full flex justify-center items-center p-0">
-                            Valor unitário
+                            <p>
+                                Valor unitário
+                            </p>
                         </th>
                     }
                     <th scope="col" className="w-full h-full flex justify-center items-center p-0">
-                        Observação
+                        <p>
+                            Observação
+                        </p>                 
                     </th>
                 </tr>
             </thead>

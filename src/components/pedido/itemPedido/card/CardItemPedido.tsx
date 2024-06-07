@@ -8,27 +8,37 @@ function CardItemPedido(props: { item: Item }) {
 
     const { usuario } = useContext(LoginContext);
 
-    const [ isOpen, setIsOpen ] = useState<boolean>(false)
+    const [ isOpen, setIsOpen ] = useState<boolean>(false);
+    const [ largura, setLargura ] = useState<number>(window.innerWidth);
+
+    const body = document.querySelector("body");
+    addEventListener("resize", () => setLargura(window.innerWidth));
 
     return (
         <>
-            <th scope="row" className="flex justify-center items-center w-full h-12 p-0 font-medium whitespace-nowrap">
-                {props.item.produto.nome}
+            <th scope="row" className="flex justify-center items-center w-full h-12 p-0 font-medium whitespace-nowrap text-center min-[320px]:text-wrap max-[425px]:h-14">
+                <p className="max-[425px]:w-14">
+                    {props.item.produto.nome}
+                </p>
             </th>
-            <td className="flex justify-center items-center w-full h-12 p-0">
-                {props.item.quantidade}
+            <td className="flex justify-center items-center w-full h-12 p-0 text-center max-[425px]:h-14">
+                <p>
+                    {props.item.quantidade}
+                </p>
             </td>
             {(usuario.perfil === "COZINHA" || usuario.perfil === "GARCOM") ? <></> :
-                <td className="flex justify-center items-center w-full h-12 p-0">
-                    R$ {props.item.produto.valor}
+                <td className="flex justify-center items-center w-full h-12 p-0 text-center max-[425px]:h-14">
+                    <p>
+                        R$ {props.item.produto.valor}
+                    </p>
                 </td>
             }
-            <td className="flex justify-center items-center w-full h-12 p-0">
+            <td className="flex justify-center items-center w-full h-12 p-0 text-center max-[425px]:h-14">
                 { props.item.observacao && 
                     <Menu>
-                        <MenuButton onClick={() => setIsOpen(!isOpen)} className="inline-flex auto items-center gap-2 rounded-md bg-gray-800 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
-                            Ver observação
-                            <CaretCircleDown size={20} color="white" />
+                        <MenuButton onClick={() => setIsOpen(!isOpen)} className="inline-flex auto items-center gap-2 min-[320px]:text-[14px] rounded-md bg-gray-800 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
+                            { largura > 640 ? "Ver observação" : "Ver" }
+                            <CaretCircleDown size={20} color="white"/>
                         </MenuButton>
                         <Transition show={isOpen}
                             enter="transition ease-out duration-75"

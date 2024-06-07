@@ -17,16 +17,16 @@ function Navbar() {
         <nav className="flex flex-wrap place-items-center">
             <div className="navbar">
                 <div className="logo">
-                    <ChefHat size={50} color='white' />
+                    <ChefHat size={50} color='white' className="w-full"/>
                 </div>
 
                 { usuario.perfil == "COZINHA" && 
                     <>
-                        <h1 className="text-slate-200 font-bold text-2xl">
+                        <h1 className="text-slate-200 font-bold text-center text-2xl max-[540px]:text-lg">
                             Chegada de Pedidos
                         </h1>
-                        <div className="w-full max-w-16">
-                            <SignOut size={38} color="white" onClick={handleLogout} />
+                        <div className="w-full max-w-16 max-[540px]:max-w-20 flex justify-center">
+                            <SignOut size={38} color="white" onClick={handleLogout}/>
                         </div>
                     </>    
                 }
