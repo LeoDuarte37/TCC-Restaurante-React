@@ -158,9 +158,9 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
 
         <>
             {usuario.perfil === "COZINHA" 
-                ? <ul >
+                ? <>
                     {isLoading ? <></> : renderItens()}
-                </ul>
+                </>
                 
                 : <div className="flex flex-col mt-10 mx-auto w-3/5 max-w-[65%] max-h-[75%] h-full relative overflow-hidden shadow-md rounded-lg">
                     <table className="table-auto flex flex-col w-full h-full text-left rtl:text-right">
@@ -173,11 +173,16 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                                     Mesa
                                 </th>
                                 <th scope="col" className="w-full h-full flex justify-center items-center p-0 lg:font-semibold">
-                                    Data
+                                    { usuario.perfil === "GARCOM" ? "Hora" : "Data" }
                                 </th>
-                                <th scope="col" className="w-full h-full flex justify-center items-center p-0 lg:font-semibold">
-                                    Status
-                                </th>
+                                {/* <th scope="col" className="w-full h-full flex justify-center items-center p-0 lg:font-semibold">
+                                    Hora
+                                </th> */}
+                                { usuario.perfil === "GARCOM" ? <></> :
+                                    <th scope="col" className="w-full h-full flex justify-center items-center p-0 lg:font-semibold">
+                                        Status
+                                    </th>
+                                }
                                 <th scope="col" className="w-full h-full flex justify-center items-center p-0 lg:font-semibold">
                                     Ação
                                 </th>
