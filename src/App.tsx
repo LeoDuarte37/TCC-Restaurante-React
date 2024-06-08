@@ -42,4 +42,7 @@ function App() {
 // listar pedidos por dia atual: 
 // https://pt.stackoverflow.com/questions/313880/java-query-spring-com-data-atual
 
+// Menu hamburguer para o garçom
+// https://codesandbox.io/p/sandbox/hamburger-menu-css-animation-react-u9vit?file=%2Fsrc%2Fstyles.css%3A42%2C2
+
 export default App;

@@ -30,7 +30,7 @@ function PedidoPage() {
     return (
         <div className="w-full h-full flex flex-col justify-center items-center px-2 pb-2">
             {usuario.perfil === "GARCOM" &&
-                <h1 className="text-gray-600 text-2xl font-bold my-6">
+                <h1 className="text-gray-600 text-2xl font-bold mt-4 mb-2">
                     Pedidos prontos
                 </h1>
             }

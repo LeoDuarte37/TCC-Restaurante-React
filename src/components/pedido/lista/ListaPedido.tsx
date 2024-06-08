@@ -42,7 +42,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                     "observacao": "Sem farofa sem farofa sem farofa sem farofa"
                 },
             ],
-            data: "12:15",
+            data: "11/03/2024 16:48",
             status: "REALIZADO",
         },
         {
@@ -76,7 +76,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                     "observacao": "Sem farofa sem farofa sem farofa sem farofa"
                 },
             ],
-            data: "13:33",
+            data: "12/03/2024 10:48",
             status: "REALIZADO",
         },
     ]);
@@ -173,7 +173,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                         <thead className="h-10 text-xs text-gray-200 uppercase bg-gray-700 ">
                             <tr className="flex justify-between w-full h-full ">
                                 <th scope="col" className="w-full h-full flex justify-center items-center p-0">
-                                    <p className="text-base font-semibold max-[540px]:text-[14px] max-[800px]:w-14">
+                                    <p className="text-base text-center font-semibold max-[540px]:text-[14px] max-[800px]:w-14">
                                         { largura > 800 ? "Código pedido" : "Pedido" }
                                     </p>
                                 </th>
@@ -187,17 +187,19 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                                         { usuario.perfil === "GARCOM" ? "Hora" : "Data" }
                                     </p>
                                 </th>
-                                {/* <th scope="col" className="w-full h-full flex justify-center items-center p-0 text-base max-[540px]:text-[14px]">
-                                    <p className="text-base font-semibold max-[540px]:text-[14px]">
-                                        Hora
-                                    </p>
-                                </th> */}
                                 { usuario.perfil === "GARCOM" ? <></> :
-                                    <th scope="col" className="w-full h-full flex justify-center items-center p-0 text-base max-[540px]:text-[14px]">
-                                        <p className="text-base font-semibold max-[540px]:text-[14px]">
-                                            Status
-                                        </p>
-                                    </th>
+                                    <>
+                                        <th scope="col" className="w-full h-full flex justify-center items-center p-0 text-base max-[540px]:text-[14px]">
+                                            <p className="text-base font-semibold max-[540px]:text-[14px]">
+                                                Hora
+                                            </p>
+                                        </th>
+                                        <th scope="col" className="w-full h-full flex justify-center items-center p-0 text-base max-[540px]:text-[14px]">
+                                            <p className="text-base font-semibold max-[540px]:text-[14px]">
+                                                Status
+                                            </p>
+                                        </th>
+                                    </>
                                 }
                                 <th scope="col" className="w-full h-full flex justify-center items-center p-0 text-base max-[540px]:text-[14px]">
                                     <p className="text-base font-semibold max-[540px]:text-[14px]">
