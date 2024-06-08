@@ -120,7 +120,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
     function renderItens() {
         if (usuario.perfil === "COZINHA" ) {
             return (
-                <ul className="flex w-full h-full m-4">
+                <ul className="flex w-full h-full m-4 p-4 bg-gray-900/10 backdrop-blur-2xl rounded-lg">
                     { pedidos.map((pedido: Pedido) => (
                         <li key={pedido.id} onClick={() => renderModal(pedido)} className="button text-sm text-nowrap w-32 h-20 flex flex-col justify-center items-center lg:w-24 2xl:w-32" >
                             <p>Mesa</p>
@@ -135,7 +135,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                     <CardPedido pedido={pedido} />
     
                     <td className="flex justify-center w-full">
-                        <Button onClick={() => renderModal(pedido)} className="button text-base w-32 h-8 m-0 p-0 flex justify-center items-center 2xl:w-32 max-[540px]:w-12 max-[540px]:text-[14px]">
+                        <Button onClick={() => renderModal(pedido)} className="button text-base w-32 h-8 m-0 p-0 flex justify-center items-center 2xl:w-32 max-[540px]:w-12 max-[900px]:w-24 max-[540px]:text-[14px]">
                             { largura < 540 ? "Ver" : "Ver itens" }
                         </Button>
                     </td>
@@ -168,13 +168,13 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                     {isLoading ? <></> : renderItens()}
                 </>
                 
-                : <div className="flex flex-col w-full h-full overflow-hidden shadow-md rounded-lg m-4">
-                    <table className="table-auto flex flex-col w-full h-full text-left rtl:text-right">
+                : <div className="flex flex-col w-full max-w-6xl max-[650px]:max-w-full h-full overflow-hidden shadow-md rounded-lg">
+                    <table className="table-auto flex flex-col w-full max-h-full h-full text-left rtl:text-right">
                         <thead className="h-10 text-xs text-gray-200 uppercase bg-gray-700 ">
                             <tr className="flex justify-between w-full h-full ">
                                 <th scope="col" className="w-full h-full flex justify-center items-center p-0">
                                     <p className="text-base text-center font-semibold max-[540px]:text-[14px] max-[800px]:w-14">
-                                        { largura > 800 ? "Código pedido" : "Pedido" }
+                                        { largura > 800 ? "Cód. Pedido" : "Pedido" }
                                     </p>
                                 </th>
                                 <th scope="col" className="w-full h-full flex justify-center items-center p-0 text-base max-[540px]:text-[14px]">
@@ -223,6 +223,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                                     <td className="flex justify-center items-center text-center w-full">
                                         R$ {total.toFixed(2)}
                                     </td>
+                                    <td className="flex w-full"></td>
                                     <td className="flex w-full"></td>
                                     <td className="flex w-full"></td>
                                 </tr>

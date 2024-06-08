@@ -37,7 +37,7 @@ function CardItemPedido(props: { item: Item }) {
                 { props.item.observacao && 
                     <Menu>
                         <MenuButton onClick={() => setIsOpen(!isOpen)} className="inline-flex auto items-center gap-2 min-[320px]:text-[14px] rounded-md bg-gray-800 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
-                            { largura > 640 ? "Ver observação" : "Ver" }
+                            { largura > 640 ? "Visualizar" : "Ver" }
                             <CaretCircleDown size={20} color="white"/>
                         </MenuButton>
                         <Transition show={isOpen}
