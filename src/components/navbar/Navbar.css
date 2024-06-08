@@ -47,7 +47,9 @@ nav .navbar .componentes .borda {
     margin: 0 1rem 0 0;
 }
 
-.chamarGarcom, .meusPedidos, .conta {
+.chamarGarcom,
+.meusPedidos,
+.conta {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -57,4 +59,58 @@ nav .navbar .componentes .borda {
 .conta {
     width: 3rem;
     margin-right: 1rem;
+}
+
+
+
+/*  Menu Hamburguer do GARÇOM */
+.menu {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.bar1 {
+    width: 100%;
+    height: 2px;
+    background-color: #e2e2e2;
+    transform: translateY(12px);
+    transition: transform 0.2s ease;
+}
+
+.bar2 {
+    width: 100%;
+    height: 2px;
+    background-color: #e2e2e2;
+    transition: transform 0.2s ease;
+}
+
+.bar3 {
+    width: 100%;
+    height: 2px;
+    background-color: #e2e2e2;
+    transform: translateY(18px);
+    transition: transform 0.2s ease;
+}
+
+.bar1-active {
+    width: 100%;
+    height: 2px;
+    background-color: #e2e2e2;
+    transform: translateY(15px) rotate(-45deg);
+    transition: transform 0.2s ease;
+}
+
+.bar2-active {
+    display: none;
+    transform: translateY(14px) rotate(45deg);
+    transition: transform 0.2s ease;
+}
+
+.bar3-active {
+    width: 100%;
+    height: 2px;
+    background-color: #e2e2e2;
+    transform: translateY(14px) rotate(45deg);
+    transition: transform 0.2s ease;
 }

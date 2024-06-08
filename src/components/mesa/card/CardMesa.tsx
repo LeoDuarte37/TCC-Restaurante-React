@@ -20,10 +20,21 @@ function CardMesa(props: { mesa: Mesa; getInfo: Function }) {
                     { props.mesa.numero }
                 </button>
     
-                : <button onClick={() => ("")} className="button w-32 h-16 flex flex-col justify-center items-center bg-green-500">
-                    <p>Mesa</p>
-                    { props.mesa.numero }
-                </button>
+                : <>
+                    { props.mesa.status === "DISPONIVEL" 
+                        ?<button onClick={() => ("")} className="mesaDisponivel">
+                            <p>Mesa</p>
+                            { props.mesa.numero }
+                        </button>
+
+                        :<button onClick={() => ("")} className={props.mesa.status === "ABERTA" ? "mesaAberta" :  "mesaPendente"}>
+                            <p>Mesa</p>
+                            { props.mesa.numero }
+                        </button>
+                    }
+                </>
+                
+                
             }
         </>
     );

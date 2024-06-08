@@ -49,7 +49,7 @@ function CardItemPedido(props: { item: Item }) {
                             leaveTo="opacity-0 scale-95"
                             >
                             <MenuItems
-                                anchor="bottom"
+                                anchor={usuario.perfil === "GARCOM" ? "bottom end" : "bottom"}
                                 className="w-36 mt-2 origin-top-right rounded-xl border border-white/5 bg-white/5 p-1 text-sm/6 text-white [--anchor-gap:var(--spacing-1)] focus:outline-none"
                                 >
                                     <MenuItem>
