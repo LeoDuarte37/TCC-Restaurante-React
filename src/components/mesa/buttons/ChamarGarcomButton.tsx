@@ -10,7 +10,7 @@ function ChamarGarcomButton() {
 
     return (
         <div className="chamarGarcom" onClick={() => chamar(mesa)}>
-            <CallBell size={32} color="white" />
+            <CallBell size={32} color="#f8f8f8" />
             <p>Chamar Garçom</p>
         </div>
     );

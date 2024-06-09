@@ -3,7 +3,7 @@
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
-    background-color: rgb(51, 48, 48);
+    background-color: #F5EBDC;
     max-width: 6rem;
     width: 100%;
     height: 100%;
@@ -13,6 +13,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: rgb(59, 18, 6);
 }
 
 .sidebar .produto {
@@ -23,13 +24,15 @@
 }
 
 .sidebar .produto hr {
-    width: 75%;
+    width: 100%;
+    border-color: #3B1206;
 }
 
 .sidebar .sobre {
+    color: rgb(59, 18, 6);
     font-size: 14px;
     text-align: center;
-    border: 1px white solid;
+    border: 1px rgb(59, 18, 6) solid;
     padding: 5px 10px;
     border-radius: 8px;
 }

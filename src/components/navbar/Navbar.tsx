@@ -20,7 +20,7 @@ function Navbar() {
         <nav className="flex flex-wrap place-items-center">
             <div className="navbar">
                 <div className="logo">
-                    <ChefHat size={50} color='white' className="w-full" />
+                    <ChefHat size={50} color='#f8f8f8' className="w-full" />
                 </div>
 
                 {usuario.perfil == "COZINHA" &&

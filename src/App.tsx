@@ -22,11 +22,11 @@ function App() {
           <MesaProvider> 
               <Navbar />
               {/* <DestaqueMesaPage /> */}
-              {/* <CardapioMesaPage /> */}
+              <CardapioMesaPage />
               {/* <ContaMesaPage /> */}
               {/* <CardMesa /> */}
               {/* <MesaPage /> */}
-              <PedidoPage />
+              {/* <PedidoPage /> */}
               {/* <LoginPage /> */}
           </MesaProvider>
           {/* </BrowserRouter> */}

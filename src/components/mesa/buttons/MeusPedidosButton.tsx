@@ -11,7 +11,7 @@ function MeusPedidosButton() {
     return (
         <>
             <div className="meusPedidos" onClick={() => setOpen(!open)}>
-                <Note size={32} color="white" />
+                <Note size={32} color="#f8f8f8" />
                 <p>Meus pedidos</p>
             </div>
 
