@@ -10,7 +10,7 @@ nav .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 nav .navbar .componentes {
@@ -59,6 +59,7 @@ nav .navbar .componentes .borda {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-weight: bold;
 }
 
 .conta {

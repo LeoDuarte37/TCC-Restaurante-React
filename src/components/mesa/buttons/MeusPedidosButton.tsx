@@ -12,7 +12,7 @@ function MeusPedidosButton() {
         <>
             <div className="meusPedidos" onClick={() => setOpen(!open)}>
                 <Note size={32} color="#f8f8f8" />
-                <p>Meus pedidos</p>
+                <p className="text-md font-bold">Meus pedidos</p>
             </div>
 
             <Transition appear show={open}>

@@ -35,14 +35,20 @@ function App() {
   );
 }
 
+/* 
+  Palete de cores: 
+
+    Laranja: #D42300
+    Branco: #F8F8F8
+    Bege: #F5EBDC
+    Marrom: #3B1206
+*/
+
 // https://tailwindui.com/components/ecommerce/components/category-filters
 // https://tw-elements.com/docs/standard/components/scroll-back-to-top-button/
 // https://tailwindui.com/components/application-ui/overlays/slide-overs
 
 // listar pedidos por dia atual: 
 // https://pt.stackoverflow.com/questions/313880/java-query-spring-com-data-atual
-
-// Menu hamburguer para o garçom
-// https://codesandbox.io/p/sandbox/hamburger-menu-css-animation-react-u9vit?file=%2Fsrc%2Fstyles.css%3A42%2C2
 
 export default App;

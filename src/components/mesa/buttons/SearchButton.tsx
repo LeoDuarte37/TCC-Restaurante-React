@@ -13,7 +13,6 @@ function SearchButton() {
             </div>
 
             <form className="max-w-md mx-auto">
-                <label htmlFor="default-search" className="mb-2 text-sm font-medium sr-only">Search</label>
                 <div className="relative">
                     <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                         <svg className={check == false ? "w-4 h-4 text-[#3B1206]" : "w-4 h-4 text-[#D42300]"} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">

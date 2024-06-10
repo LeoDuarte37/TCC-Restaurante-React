@@ -7,7 +7,7 @@ import Produto from "../../../models/Produto";
 import CardProduto from "../../produto/card/CardProduto";
 import SubCategoria from "../../../models/SubCategoria";
 import { MesaContext } from "../../../contexts/MesaContext";
-import { CaretCircleDown } from "@phosphor-icons/react";
+import { CaretDown } from "@phosphor-icons/react";
 import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
 
 function ListaCategoria() {
@@ -195,20 +195,20 @@ function ListaCategoria() {
                 <>
                     {mesa.id > 0 ? (
                         <>
-                            <ul className="flex flex-col gap-3 w-[27%] m-4 h-4/5 overflow-auto">
+                            <ul className="flex flex-col gap-4 w-[28%] p-4 h-4/5 overflow-auto">
                                 {categorias.map((categoria) => (
                                     <li key={categoria.id}>
                                         <div className="w-full">
                                             <div className="mx-auto w-full max-w-lg divide-y divide-white/5 rounded-xl bg-white/5">
                                                 <Disclosure as="div" className="" defaultOpen={true}>
                                                     <DisclosureButton className="group flex w-full items-center justify-between">
-                                                        <button className="inline-flex justify-center items-center w-full gap-2 rounded-md bg-[#3B1206] py-1.5 px-3 text-sm/6 font-semibold text-[#f8f8f8] shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
+                                                        <button className="w-full h-10 inline-flex justify-center items-center w-full mb-2 gap-1 rounded-md bg-[#3B1206] text-sm/6 font-semibold text-[#f8f8f8] shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
                                                             {categoria.nome}
-                                                            <CaretCircleDown size={20} color="white" />
+                                                            <CaretDown size={18} color="white" />
                                                         </button>
                                                     </DisclosureButton>
-                                                    <DisclosurePanel className="mt-2 text-sm/5 text-[#3B1206]">
-                                                        <ul className="group flex flex-col w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+                                                    <DisclosurePanel className="mt-2 text-md text-[#3B1206]">
+                                                        <ul className="group flex flex-col w-full items-center gap-3 rounded-lg data-[focus]:bg-white/10">
                                                             {categoria.subCategoria.map((subCategoria) => (
                                                                 <li key={subCategoria.id} onClick={() => setInfoProdutos(subCategoria)}>
                                                                     <CardCategoria subCategoria={subCategoria} mesaId={mesa.id} />
@@ -226,7 +226,7 @@ function ListaCategoria() {
                             <div className="bg-[#3B1206] w-1 h-full"></div>
 
                             <div className="flex flex-col p-4 w-full h-full bg-[#f8f8f8]">
-                                <h2 className="text-[#D42300] text-2xl font-bold mb-4 ">{subCategoriaAtual.nome}</h2>
+                                <h2 className="text-[#D42300] text-start mb-4 subCategoriaTitle">{subCategoriaAtual.nome}</h2>
 
                                 <ul className="flex flex-col gap-6 w-full h-3/4 pb-4 overflow-auto">
                                     {produtos.map((produto) => (

@@ -21,7 +21,7 @@ export function MesaProvider({ children }: MesaProviderProps) {
 
     const [mesa, setMesa] = useState<Mesa>({
         id: 1,
-        numero: 1,
+        numero: 10,
         restaurante: {
             id: "1",
             nome: "",

@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spicy+Rice&display=swap');
+
+* {
+    font-family: "Signika Negative", sans-serif;
+}
+
 body {
     width: 100vw;
     height: 100vh;
@@ -125,4 +132,10 @@ body {
     box-shadow: rgb(201, 46, 46) 0px 0px 0px 0px;
     transform: translateY(5px);
     transition: 200ms;
+}
+
+.subCategoriaTitle {
+    font-family: "Spicy Rice", serif;
+    font-weight: 400;
+    font-size: 28px;
 }

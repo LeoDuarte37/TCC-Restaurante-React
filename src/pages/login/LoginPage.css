@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Glass+Antiqua&display=swap');
 
+
 .container {
     min-width: 100%;
     height: 100%;
@@ -25,16 +26,16 @@
 }
 
 .caixaTitle h1 {
-    color: rgb(94,33,12);
+    color: #3B1206;
     font-size: 3rem;
-    font-family: "Glass Antiqua", sans-serif;
+    font-family: "Spicy Rice", serif;
     font-weight: 400;
     font-style: normal;
 }
 
 .caixaContent h2 {
-    color: rgb(94,33,12);
-    font-size: 1.5rem;
+    color: #3B1206;
+    font-size: 1.8rem;
     font-weight: lighter;
     text-align: center;
     margin: 2rem 0 0 0;
