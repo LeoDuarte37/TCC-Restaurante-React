@@ -15,7 +15,7 @@ body {
 #root {
     width: 100%;
     height: 100%;
-    background-color: aliceblue;
+    background-color: #F8F8F8;
     overflow: hidden;
 }
 
@@ -23,11 +23,11 @@ body {
     padding: 17px 40px;
     border-radius: 10px;
     border: 0;
-    background-color: rgb(56, 119, 255);
+    background-color: #D42300;
     letter-spacing: 1.5px;
-    font-size: 15px;
+    font-size: 16px;
     transition: all 0.3s ease;
-    box-shadow: rgba(46, 95, 201, 0.945) 0px 10px 0px 0px;
+    box-shadow: #6d1200 0px 10px 0px 0px;
     color: hsl(0, 0%, 100%);
     cursor: pointer;
     margin: 0 1rem;
@@ -37,12 +37,12 @@ body {
 }
 
 .button:hover {
-    box-shadow: rgb(52, 61, 116) 0px 7px 0px 0px;
+    box-shadow: #6d1200 0px 7px 0px 0px;
 }
 
 .button:active {
-    background-color: rgb(255, 56, 56);
-    box-shadow: rgb(201, 46, 46) 0px 0px 0px 0px;
+    background-color: #3B1206;
+    box-shadow: #3b1408 0px 0px 0px 0px;
     transform: translateY(5px);
     transition: 200ms;
 }
@@ -51,11 +51,11 @@ body {
     padding: 17px 40px;
     border-radius: 10px;
     border: 0;
-    background-color: rgb(56, 119, 255);
+    background-color: rgb(103, 255, 56);
     letter-spacing: 1.5px;
     font-size: 15px;
     transition: all 0.3s ease;
-    box-shadow: rgba(46, 95, 201, 0.945) 0px 10px 0px 0px;
+    box-shadow: rgba(46, 201, 98, 0.945) 0px 10px 0px 0px;
     color: hsl(0, 0%, 100%);
     cursor: pointer;
     margin: 0 1rem;
@@ -66,12 +66,12 @@ body {
 }
 
 .mesaDisponivel:hover {
-    box-shadow: rgb(52, 61, 116) 0px 7px 0px 0px;
+    box-shadow: rgb(52, 116, 86) 0px 7px 0px 0px;
 }
 
 .mesaDisponivel:active {
-    background-color: rgb(255, 56, 56);
-    box-shadow: rgb(201, 46, 46) 0px 0px 0px 0px;
+    background-color: rgb(56, 255, 156);
+    box-shadow: rgb(46, 201, 136) 0px 0px 0px 0px;
     transform: translateY(5px);
     transition: 200ms;
 }
@@ -109,11 +109,11 @@ body {
     padding: 17px 40px;
     border-radius: 10px;
     border: 0;
-    background-color: rgb(240, 67, 67);
+    background-color: #D42300;
     letter-spacing: 1.5px;
     font-size: 15px;
     transition: all 0.3s ease;
-    box-shadow: rgba(201, 56, 46, 0.945) 0px 10px 0px 0px;
+    box-shadow: #6d1200 0px 10px 0px 0px;
     color: hsl(0, 0%, 100%);
     cursor: pointer;
     margin: 0 1rem;
@@ -124,12 +124,12 @@ body {
 }
 
 .mesaPendente:hover {
-    box-shadow: rgb(52, 61, 116) 0px 7px 0px 0px;
+    box-shadow: #6d1200 0px 7px 0px 0px;
 }
 
 .mesaPendente:active {
-    background-color: rgb(255, 56, 56);
-    box-shadow: rgb(201, 46, 46) 0px 0px 0px 0px;
+    background-color: #3B1206;
+    box-shadow: #3b1408 0px 0px 0px 0px;
     transform: translateY(5px);
     transition: 200ms;
 }
@@ -139,3 +139,31 @@ body {
     font-weight: 400;
     font-size: 28px;
 }
+
+.identificacao {
+    color: #3B1206;
+    border: 1px #3B1206 solid;
+    padding: 2px 10px;
+    border-radius: 8px;
+    margin: 0 1rem 0 0;
+    font-weight: 500;
+}
+
+.modalItemPedidoCozinha {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 30rem; 
+    background-color: #F8F8F8;
+    padding: 0 6px 6px 6px;
+}
+
+.modalItemPedido {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 30rem; 
+    background-color: #F8F8F8;
+    border: 2px #3B1206 solid;
+    padding: 0 6px 6px 6px;
+} 

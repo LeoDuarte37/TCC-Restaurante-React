@@ -41,6 +41,10 @@ function toastAlert(mensagem: string, tipo: string) {
                 draggable: false,
                 theme: 'colored',
                 progress: undefined,
+                style: {
+                    background: '#FFAA00',
+                    color: 'white',
+                }
             });
 
             break;

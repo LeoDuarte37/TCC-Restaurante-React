@@ -49,7 +49,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
             id: 2,
             mesa: {
                 id: 2,
-                numero: 4,
+                numero: 2,
                 restaurante: {
                     id: "1",
                     nome: "Bar do Zé",
@@ -81,7 +81,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
         },
     ]);
 
-    const [currentPedidoId, setCurrentPedidoId] = useState<number>(0);
+    const [currentPedido, setCurrentPedido] = useState<Pedido>(pedidos[0]);
     const [currentItems, setCurrentItems] = useState<Array<Item>>([])
 
     const [total, setTotal] = useState<number>(0);
@@ -92,7 +92,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
 
     function renderModal(pedido: Pedido) {
         setIsOpen(true);
-        setCurrentPedidoId(pedido.id || 0);
+        setCurrentPedido(pedido);
         setCurrentItems(pedido.item);
     }
 
@@ -114,17 +114,16 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
 
     const [ largura, setLargura ] = useState<number>(window.innerWidth);
 
-    const body = document.querySelector("body");
     addEventListener("resize", () => setLargura(window.innerWidth));
 
     function renderItens() {
         if (usuario.perfil === "COZINHA" ) {
             return (
-                <ul className="flex w-full h-full m-4 p-4 bg-gray-900/10 backdrop-blur-2xl rounded-lg">
+                <ul className="flex w-full h-full m-4 p-4 max-[690px]:p-2 border-2 border-[#3B1206] rounded-lg">
                     { pedidos.map((pedido: Pedido) => (
-                        <li key={pedido.id} onClick={() => renderModal(pedido)} className="button text-sm text-nowrap w-32 h-20 flex flex-col justify-center items-center lg:w-24 2xl:w-32" >
+                        <li key={pedido.id} onClick={() => renderModal(pedido)} className="button mx-2 text-base text-nowrap w-full max-w-32 h-20 flex flex-col justify-center items-center max-[460px]:max-w-full" >
                             <p>Mesa</p>
-                            { pedido.mesa.id }
+                            { pedido.mesa.numero }
                         </li> 
                     ))}
                 </ul>
@@ -234,9 +233,9 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
             }
 
             <Transition appear show={isOpen} >
-                <Dialog as="div" className="absolute inset-0 mt-4 z-10 w-screen focus:outline-none" onClose={() => setIsOpen(false)}>
+                <Dialog as="div" className="absolute inset-0 z-10 w-screen focus:outline-none" onClose={() => setIsOpen(false)}>
 
-                    <div className="flex min-h-full w-full items-center justify-center">
+                    <div className="flex min-h-full w-full items-center justify-center mt-6">
                         <TransitionChild
                             enter="ease-out duration-200"
                             enterFrom="opacity-0 transform-[scale(95%)]"
@@ -248,12 +247,15 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                             <DialogPanel className="flex justify-center rounded-xl h-3/4 w-full max-[440px]:max-w-full max-w-3xl p-10 max-[440px]:p-2">
 
                                 <div className="container h-full w-full flex justify-center items-center">
-                                    <div className="flex flex-col w-full h-[30rem] rounded-xl bg-slate-500 px-6 pb-6 max-[440px]:p-2">
-                                        <div className="flex justify-end my-2 max-[440px]:my-1">
-                                            <X size={32} color="white" onClick={() => setIsOpen(false)} />
+                                    <div className={ usuario.perfil === "COZINHA" ? "modalItemPedidoCozinha rounded-xl max-[440px]:p-2" : "modalItemPedido rounded-xl max-[440px]:p-2" }>
+                                        <div className="flex justify-between my-2">
+                                            <div className="identificacao">
+                                                <p className="text-[#3B1206]">Mesa {currentPedido.mesa.numero}</p>
+                                            </div>
+                                            <X size={32} color="#3B1206" onClick={() => setIsOpen(false)} />
                                         </div>
-                                        <div className="div rounded-xl bg-white/5 overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
-                                            <ListaItemPedido item={currentItems} pedidoId={currentPedidoId} />
+                                        <div className="div rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
+                                            <ListaItemPedido item={currentItems} pedido={currentPedido} />
                                         </div>
                                     </div>
                                 </div>

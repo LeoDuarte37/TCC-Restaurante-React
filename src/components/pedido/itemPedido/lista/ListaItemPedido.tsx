@@ -4,8 +4,9 @@ import { LoginContext } from "../../../../contexts/LoginContext";
 import CardItemPedido from "../card/CardItemPedido";
 import usePedido from "../../../../hooks/usePedido";
 import MudarStatusPedidoButton from "../../buttons/MudarStatusPedidoButton";
+import Pedido from "../../../../models/Pedido";
 
-function ListaItemPedido(props: { item: Array<Item>; pedidoId?: number }) {
+function ListaItemPedido(props: { item: Array<Item>; pedido?: Pedido }) {
 
     const { usuario } = useContext(LoginContext);
 
@@ -30,7 +31,7 @@ function ListaItemPedido(props: { item: Array<Item>; pedidoId?: number }) {
 
     function renderItens() {
         return itens.map((item: Item) => (
-            <tr key={item.produto.id} className="flex text-white min-[320px]:text-[14px]">
+            <tr key={item.produto.id} className="flex text-[#3B1206] text-base max-[690px]:text-sm">
                 <CardItemPedido item={item} />
             </tr>
         ));
@@ -41,12 +42,12 @@ function ListaItemPedido(props: { item: Array<Item>; pedidoId?: number }) {
     }, [props.item]);
 
     return (
-        <table className="flex flex-col w-full h-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-            <thead className="h-12 text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
+        <table className="flex flex-col w-full h-full text-left rtl:text-right">
+            <thead className="h-12 text-base text-[#F8F8F8] uppercase bg-[#3B1206] max-[690px]:text-sm">
                 <tr className="h-full flex items-center justify-between text-center w-full">
                     <th scope="col" className="w-full h-full flex justify-center items-center p-0">
                         <p className="max-[425px]:w-14">
-                            Nome produto
+                            Produto
                         </p>
                     </th>
                     <th scope="col" className="w-full h-full flex justify-center items-center p-0">
@@ -57,7 +58,7 @@ function ListaItemPedido(props: { item: Array<Item>; pedidoId?: number }) {
                     { (usuario.perfil === "COZINHA" || usuario.perfil === "GARCOM") ? <></> : 
                         <th scope="col" className="w-full h-full flex justify-center items-center p-0">
                             <p>
-                                Valor unitário
+                                Valor uni.
                             </p>
                         </th>
                     }
@@ -68,17 +69,17 @@ function ListaItemPedido(props: { item: Array<Item>; pedidoId?: number }) {
                     </th>
                 </tr>
             </thead>
-            <tbody className="flex flex-col bg-gray-800 overflow-auto w-full max-h-content h-[70%]">
+            <tbody className="flex flex-col bg-[#F8F8F8] overflow-auto w-full max-h-content h-[70%]">
                 {isLoading ? <></> : renderItens()}
             </tbody>
-            <tfoot className="flex flex-1 items-center w-full max-h-full h-full py-4">
-                <tr className="flex items-center w-full h-full font-semibold text-gray-900">
+            <tfoot className="bg-[#F8F8F8] border-t-2 border-[#F5EBDC] flex flex-1 items-center w-full max-h-full h-full pt-2 pb-4">
+                <tr className="flex items-center w-full h-full font-bold text-[#3B1206] text-base max-[690px]:text-sm">
                     {(usuario.perfil === "COZINHA" || usuario.perfil === "GARCOM") 
                         ? <th scope="row" className="flex justify-center w-full">
-                            <MudarStatusPedidoButton pedidoId={props.pedidoId || 0} /> 
+                            <MudarStatusPedidoButton pedidoId={props.pedido?.id || 0} /> 
                         </th>
                         : <>
-                            <th scope="row" className="flex justify-center items-center text-base w-full">
+                            <th scope="row" className="flex justify-center items-center w-full">
                                 Total
                             </th>
                             <td className="flex justify-center items-center text-center w-full">

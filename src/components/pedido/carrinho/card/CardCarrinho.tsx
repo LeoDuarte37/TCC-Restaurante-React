@@ -16,8 +16,8 @@ function CardCarrinho(props: { item: Item, getSubTotal: Function }) {
     return (
         <>
             {quantidade > 0 &&
-                <div className="flex">
-                    <div className="h-content w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
+                <div className="flex border border-[#F5EBDC] rounded-md">
+                    <div className="h-content w-24 flex-shrink-0 overflow-hidden rounded-md rounded-r-none">
                         <img
                             src={props.item.produto.foto}
                             alt="Foto produto"
@@ -25,9 +25,9 @@ function CardCarrinho(props: { item: Item, getSubTotal: Function }) {
                         />
                     </div>
 
-                    <div className="ml-4 flex flex-1 flex-col">
+                    <div className="flex flex-1 flex-col p-2">
                         <div>
-                            <div className="flex justify-between text-base font-medium text-gray-900">
+                            <div className="flex justify-between text-base font-bold text-[#3B1206]">
                                 <h3>
                                     {props.item.produto.nome}
                                 </h3>
@@ -35,15 +35,15 @@ function CardCarrinho(props: { item: Item, getSubTotal: Function }) {
                                 <p className="ml-4">R${props.item.produto.valor}</p>
                             </div>
                         </div>
-                        <div className="flex flex-1 items-center justify-between text-sm mt-4">
+                        <div className="flex flex-1 items-center justify-between text-sm mt-4 text-[#D42300]">
                             <div className="flex items-center justify-center">
-                                <button onClick={() => setQuantidade(quantidade - 1)} type="button" className="px-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                                <button onClick={() => setQuantidade(quantidade - 1)} type="button" className="px-2 text-sm font-medium focus:outline-none bg-white rounded-lg border border-[#F5EBDC] hover:bg-white-100 hover:text-[#b51f02] focus:z-10 focus:ring-1 focus:ring-[#b51f02]">
                                     -
                                 </button>
 
-                                <p className="text-gray-500 px-2">{quantidade}</p>
+                                <p className="px-2">{quantidade}</p>
 
-                                <button onClick={() => setQuantidade(quantidade + 1)} type="button" className="px-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                                <button onClick={() => setQuantidade(quantidade + 1)} type="button" className="px-2 text-sm font-medium focus:outline-none bg-white rounded-lg border border-[#F5EBDC] hover:bg-white-100 hover:text-[#b51f02] focus:z-10 focus:ring-1 focus:ring-[#b51f02]">
                                     +
                                 </button>
                             </div>
@@ -51,7 +51,7 @@ function CardCarrinho(props: { item: Item, getSubTotal: Function }) {
                             <div className="flex">
                                 <button
                                     type="button"
-                                    className="font-medium text-indigo-600 hover:text-indigo-500"
+                                    className="text-base font-medium text-[#D42300] hover:text-[#b51f02]"
                                 >
                                     Adicionar observação
                                 </button>

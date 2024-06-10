@@ -22,7 +22,7 @@ function CardProduto(props: { produto: Produto; isMesa?: boolean }) {
     }
 
     return (
-        <div className="relative flex flex-row bg-clip-border rounded-xl bg-[#F8F8F8] border-2 border-[#F5EBDC] shadow-inner w-full h-36">
+        <div className="relative flex flex-row bg-clip-border rounded-xl bg-[#F8F8F8] border-2 border-[#F5EBDC] shadow-inner max-w-3xl w-full h-36">
             <div
                 className="relative max-w-40 m-0 overflow-hidden bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
                 <img
@@ -44,7 +44,7 @@ function CardProduto(props: { produto: Produto; isMesa?: boolean }) {
                 </p>
 
                 <div className="flex justify-end items-end h-8">
-                    <button onClick={() => handleClickAddToPedido(props.produto)} className="bg-[#D42300] hover:bg-blue-700 text-white font-semibold py-1 px-2 rounded h-8">
+                    <button onClick={() => handleClickAddToPedido(props.produto)} className="bg-[#D42300] hover:bg-[#b51f02] text-white font-semibold py-1 px-2 rounded h-8">
                         Adicionar
                     </button>
                 </div>

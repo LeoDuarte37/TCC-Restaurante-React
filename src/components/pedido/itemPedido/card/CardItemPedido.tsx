@@ -36,7 +36,7 @@ function CardItemPedido(props: { item: Item }) {
             <td className="flex justify-center items-center w-full h-12 p-0 text-center max-[425px]:h-14">
                 { props.item.observacao && 
                     <Menu>
-                        <MenuButton onClick={() => setIsOpen(!isOpen)} className="inline-flex auto items-center gap-2 min-[320px]:text-[14px] rounded-md bg-gray-800 py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
+                        <MenuButton onClick={() => setIsOpen(!isOpen)} className="inline-flex auto items-center gap-2 min-[320px]:text-[14px] rounded-md bg-[#3B1206] py-1.5 px-3 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-[#522213] data-[open]:bg-[#522213] data-[focus]:outline-1 data-[focus]:outline-white">
                             { largura > 640 ? "Visualizar" : "Ver" }
                             <CaretCircleDown size={20} color="white"/>
                         </MenuButton>
@@ -50,10 +50,10 @@ function CardItemPedido(props: { item: Item }) {
                             >
                             <MenuItems
                                 anchor={usuario.perfil === "GARCOM" ? "bottom end" : "bottom"}
-                                className="w-36 mt-2 origin-top-right rounded-xl border border-white/5 bg-white/5 p-1 text-sm/6 text-white [--anchor-gap:var(--spacing-1)] focus:outline-none"
+                                className="w-36 mt-2 origin-top-right rounded-xl bg-[#3B1206]/90 p-1 text-sm text-white [--anchor-gap:var(--spacing-1)] focus:outline-none"
                                 >
                                     <MenuItem>
-                                        <p className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
+                                        <p className="group flex w-full items-center text-justify leading-5 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">
                                             {props.item.observacao}
                                         </p>
                                     </MenuItem>

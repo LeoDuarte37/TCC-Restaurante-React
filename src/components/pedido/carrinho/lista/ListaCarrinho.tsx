@@ -57,23 +57,23 @@ function ListaCarrinho() {
     }, [total]);
 
     return (
-        <div className="flex h-full flex-col bg-white py-6 shadow-xl">
+        <div className="flex h-full flex-col bg-[#F8F8F8] py-6 shadow-xl">
             <div className="px-4 sm:px-6">
-                <DialogTitle className="text-base font-semibold leading-6 text-gray-900">Meus pedidos</DialogTitle>
+                <DialogTitle className="text-[#D42300] subCategoriaTitle leading-6">Meus pedidos</DialogTitle>
             </div>
             <ul role="list" className="relative mt-6 flex-1 px-4 sm:px-6 overflow-auto">
                 {isLoading ? <></> : renderItens()}
             </ul>
 
-            <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                <div className="flex justify-between text-base font-medium text-gray-900">
+            <div className="border-t-2 border-[#F5EBDC] px-4 py-6 sm:px-6">
+                <div className="flex justify-between text-base font-bold text-[#3B1206]">
                     <p>Subtotal</p>
                     <p>R$ {isLoading ? 0 : subTotal}</p>
                 </div>
 
-                <p className="mt-0.5 text-sm text-gray-500">Impostos calculados na finalização da compra.</p>
+                <p className="mt-0.5 text-sm text-[#3B1206]">Impostos calculados na finalização da compra.</p>
 
-                <button onClick={submitPedido} className="button mt-2">
+                <button onClick={submitPedido} className="button mt-3">
                     Enviar pedidos
                 </button>
             </div>

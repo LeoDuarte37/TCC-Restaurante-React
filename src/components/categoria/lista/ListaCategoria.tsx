@@ -193,61 +193,47 @@ function ListaCategoria() {
                 </div>
             ) : (
                 <>
-                    {mesa.id > 0 ? (
-                        <>
-                            <ul className="flex flex-col gap-4 w-[28%] p-4 h-4/5 overflow-auto">
-                                {categorias.map((categoria) => (
-                                    <li key={categoria.id}>
-                                        <div className="w-full">
-                                            <div className="mx-auto w-full max-w-lg divide-y divide-white/5 rounded-xl bg-white/5">
-                                                <Disclosure as="div" className="" defaultOpen={true}>
-                                                    <DisclosureButton className="group flex w-full items-center justify-between">
-                                                        <button className="w-full h-10 inline-flex justify-center items-center w-full mb-2 gap-1 rounded-md bg-[#3B1206] text-sm/6 font-semibold text-[#f8f8f8] shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-700 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
-                                                            {categoria.nome}
-                                                            <CaretDown size={18} color="white" />
-                                                        </button>
-                                                    </DisclosureButton>
-                                                    <DisclosurePanel className="mt-2 text-md text-[#3B1206]">
-                                                        <ul className="group flex flex-col w-full items-center gap-3 rounded-lg data-[focus]:bg-white/10">
-                                                            {categoria.subCategoria.map((subCategoria) => (
-                                                                <li key={subCategoria.id} onClick={() => setInfoProdutos(subCategoria)}>
-                                                                    <CardCategoria subCategoria={subCategoria} mesaId={mesa.id} />
-                                                                </li>
-                                                            ))}
-                                                        </ul>
-                                                    </DisclosurePanel>
-                                                </Disclosure>
-                                            </div>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
+                    <ul className="flex flex-col gap-4 max-w-40 w-full p-4 h-4/5 overflow-auto">
+                        {categorias.map((categoria) => (
+                            <li key={categoria.id}>
+                                <div className="w-full">
+                                    <div className="mx-auto w-full max-w-lg divide-y divide-white/5 rounded-xl bg-white/5">
+                                        <Disclosure as="div" className="" defaultOpen={true}>
+                                            <DisclosureButton className="group flex w-full items-center justify-between">
+                                                <button className="w-full h-10 inline-flex justify-center items-center w-full mb-2 gap-1 rounded-md bg-[#3B1206] text-sm/6 font-semibold text-[#f8f8f8] shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-[#522213] data-[open]:bg-[#522213] data-[focus]:outline-1 data-[focus]:outline-white">
+                                                    {categoria.nome}
+                                                    <CaretDown size={18} color="white" />
+                                                </button>
+                                            </DisclosureButton>
+                                            <DisclosurePanel className="mt-2 text-md text-[#3B1206]">
+                                                <ul className="group flex flex-col w-full items-center gap-3 rounded-lg data-[focus]:bg-white/10">
+                                                    {categoria.subCategoria.map((subCategoria) => (
+                                                        <li key={subCategoria.id} onClick={() => setInfoProdutos(subCategoria)}>
+                                                            <CardCategoria subCategoria={subCategoria} mesaId={mesa.id} />
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </DisclosurePanel>
+                                        </Disclosure>
+                                    </div>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
 
-                            <div className="bg-[#3B1206] w-1 h-full"></div>
+                    <div className="bg-[#3B1206] w-1 h-full"></div>
 
-                            <div className="flex flex-col p-4 w-full h-full bg-[#f8f8f8]">
-                                <h2 className="text-[#D42300] text-start mb-4 subCategoriaTitle">{subCategoriaAtual.nome}</h2>
+                    <div className="flex flex-col p-4 w-full h-full bg-[#f8f8f8]">
+                        <h2 className="text-[#D42300] text-start mb-4 subCategoriaTitle">{subCategoriaAtual.nome}</h2>
 
-                                <ul className="flex flex-col gap-6 w-full h-3/4 pb-4 overflow-auto">
-                                    {produtos.map((produto) => (
-                                        <li key={produto.id}>
-                                            <CardProduto produto={produto} />
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </>
-
-
-                    ) : (
-                        <div className="py-24 mx-auto w-2/3 grid grid-cols-2 justify-items-center xsm:grid-cols-1 sm:grid-cols-2 2md:grid-cols-3 xl:grid-cols-4">
-                            {categorias.map((categoria) => (
-                                <>
-                                    {/* <CardCategoria subCategoria={categoria} isMesa={props.isMesa} /> */}
-                                </>
+                        <ul className="flex flex-col gap-6 w-full h-3/4 pb-4 overflow-auto">
+                            {produtos.map((produto) => (
+                                <li key={produto.id}>
+                                    <CardProduto produto={produto} />
+                                </li>
                             ))}
-                        </div>
-                    )}
+                        </ul>
+                    </div>
                 </>
             )}
         </>
