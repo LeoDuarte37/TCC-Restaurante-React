@@ -50,7 +50,7 @@ function CardItemPedido(props: { item: Item }) {
                             >
                             <MenuItems
                                 anchor={usuario.perfil === "GARCOM" ? "bottom end" : "bottom"}
-                                className="w-36 mt-2 origin-top-right rounded-xl bg-[#3B1206]/90 p-1 text-sm text-white [--anchor-gap:var(--spacing-1)] focus:outline-none"
+                                className="w-36 mt-2 origin-top-right rounded-xl bg-[#F8F8F8] border-2 border-[#3B1206] p-1 text-sm text-[#3B1206] [--anchor-gap:var(--spacing-1)] focus:outline-none"
                                 >
                                     <MenuItem>
                                         <p className="group flex w-full items-center text-justify leading-5 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10">

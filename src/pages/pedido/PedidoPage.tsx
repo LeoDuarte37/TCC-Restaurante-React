@@ -30,7 +30,7 @@ function PedidoPage() {
     return (
         <div className="bg-[#F8F8F8] w-full h-full flex flex-col gap-6 items-center px-4 pb-4 max-w[768px]:px-2 max-w[768px]:pb-2">
             { usuario.perfil === "COZINHA" ? <></> :  
-                <h1 className=" text-gray-600 text-2xl font-bold mt-6 max-[1600px]:mt-4">
+                <h1 className="text-[#D42300] subCategoriaTitle text-3xl font-bold mt-6 max-[1600px]:mt-4">
                     {usuario.perfil === "GARCOM" ? "Pedidos prontos" : "Histórico de pedidos" }
                 </h1>
             }

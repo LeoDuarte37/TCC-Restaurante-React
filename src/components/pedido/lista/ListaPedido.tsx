@@ -130,7 +130,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
             )
         } else {
             return pedidos.map((pedido: Pedido) => (
-                <tr key={pedido.id} className="flex text-base max-[540px]:text-[14px]">
+                <tr key={pedido.id} className="flex text-[#3B1206] text-base max-[690px]:text-sm">
                     <CardPedido pedido={pedido} />
     
                     <td className="flex justify-center w-full">
@@ -168,51 +168,51 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                 </>
                 
                 : <div className="flex flex-col w-full max-w-6xl max-[650px]:max-w-full h-full overflow-hidden shadow-md rounded-lg">
-                    <table className="table-auto flex flex-col w-full max-h-full h-full text-left rtl:text-right">
-                        <thead className="h-10 text-xs text-gray-200 uppercase bg-gray-700 ">
+                    <table className="table-auto flex flex-col w-full max-h-full h-full bg-[#F8F8F8] text-left rtl:text-right rounded-lg overflow-hidden border-2 border-[#F5EBDC]">
+                        <thead className="h-12 font-semibold text-center text-base text-[#F8F8F8] uppercase bg-[#3B1206] max-[690px]:text-sm">
                             <tr className="flex justify-between w-full h-full ">
                                 <th scope="col" className="w-full h-full flex justify-center items-center p-0">
-                                    <p className="text-base text-center font-semibold max-[540px]:text-[14px] max-[800px]:w-14">
+                                    <p className="text-center max-[800px]:w-14">
                                         { largura > 800 ? "Cód. Pedido" : "Pedido" }
                                     </p>
                                 </th>
-                                <th scope="col" className="w-full h-full flex justify-center items-center p-0 text-base max-[540px]:text-[14px]">
-                                    <p className="text-base font-semibold max-[540px]:text-[14px]">
+                                <th scope="col" className="w-full h-full flex justify-center items-center p-0 ">
+                                    <p>
                                         Mesa
                                     </p>
                                 </th>
-                                <th scope="col" className="w-full h-full flex justify-center items-center p-0 text-base max-[540px]:text-[14px]">
-                                    <p className="text-base font-semibold max-[540px]:text-[14px]">
+                                <th scope="col" className="w-full h-full flex justify-center items-center p-0">
+                                    <p>
                                         { usuario.perfil === "GARCOM" ? "Hora" : "Data" }
                                     </p>
                                 </th>
                                 { usuario.perfil === "GARCOM" ? <></> :
                                     <>
-                                        <th scope="col" className="w-full h-full flex justify-center items-center p-0 text-base max-[540px]:text-[14px]">
-                                            <p className="text-base font-semibold max-[540px]:text-[14px]">
+                                        <th scope="col" className="w-full h-full flex justify-center items-center p-0">
+                                            <p>
                                                 Hora
                                             </p>
                                         </th>
-                                        <th scope="col" className="w-full h-full flex justify-center items-center p-0 text-base max-[540px]:text-[14px]">
-                                            <p className="text-base font-semibold max-[540px]:text-[14px]">
+                                        <th scope="col" className="w-full h-full flex justify-center items-center p-0">
+                                            <p>
                                                 Status
                                             </p>
                                         </th>
                                     </>
                                 }
-                                <th scope="col" className="w-full h-full flex justify-center items-center p-0 text-base max-[540px]:text-[14px]">
-                                    <p className="text-base font-semibold max-[540px]:text-[14px]">
+                                <th scope="col" className="w-full h-full flex justify-center items-center p-0">
+                                    <p>
                                         Ação
                                     </p>
                                 </th>
                             </tr>
                         </thead>
-                        <tbody className="flex flex-col gap-6 overflow-auto w-full max-h-content h-[85%] mt-4 text-gray-700 text-sm ">
+                        <tbody className="flex flex-col gap-6 overflow-auto w-full max-h-content h-[85%] mt-4">
                             {isLoading ? <></> : renderItens()}
                         </tbody>
                         {(usuario.perfil === "CAIXA" || usuario.perfil === "GERENTE" || usuario.perfil === "ADMIN") &&
-                            <tfoot className="flex flex-1 items-center w-full max-h-[25%] h-12 pb-4">
-                                <tr className="flex items-center justify-end px-6 w-full h-full font-semibold text-gray-900">
+                            <tfoot className="flex flex-1 items-center w-full max-h-[25%] h-12 py-4 border-t-2 border-[#F5EBDC]">
+                                <tr className="flex items-center justify-end px-6 w-full h-full font-bold text-[#3B1206] text-base max-[690px]:text-sm">
                                     <th scope="row" className="flex justify-center items-center text-base w-full">
                                         Total
                                     </th>
@@ -233,7 +233,8 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
             }
 
             <Transition appear show={isOpen} >
-                <Dialog as="div" className="absolute inset-0 z-10 w-screen focus:outline-none" onClose={() => setIsOpen(false)}>
+                <Dialog as="div" className={usuario.perfil === "COZINHA" ? "absolute top-20 right-0 z-10 w-screen focus:outline-none" : "absolute inset-0 z-10 w-screen focus:outline-none"}
+                    onClose={() => setIsOpen(false)}>
 
                     <div className="flex min-h-full w-full items-center justify-center">
                         <TransitionChild

@@ -25,7 +25,7 @@ function Navbar() {
 
                 {usuario.perfil == "COZINHA" &&
                     <>
-                        <h1 className="text-[#F8F8F8] font-bold text-center text-2xl max-[540px]:text-lg">
+                        <h1 className="text-[#F8F8F8] subCategoriaTitle font-bold text-center text-3xl max-[540px]:text-lg">
                             Chegada de Pedidos
                         </h1>
                         <div className="w-full max-w-16 max-[540px]:max-w-20 flex justify-center">
