@@ -235,7 +235,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
             <Transition appear show={isOpen} >
                 <Dialog as="div" className="absolute inset-0 z-10 w-screen focus:outline-none" onClose={() => setIsOpen(false)}>
 
-                    <div className="flex min-h-full w-full items-center justify-center mt-6">
+                    <div className="flex min-h-full w-full items-center justify-center">
                         <TransitionChild
                             enter="ease-out duration-200"
                             enterFrom="opacity-0 transform-[scale(95%)]"
