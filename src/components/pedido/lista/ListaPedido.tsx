@@ -233,7 +233,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
             }
 
             <Transition appear show={isOpen} >
-                <Dialog as="div" className={usuario.perfil === "COZINHA" ? "absolute top-20 right-0 z-10 w-screen focus:outline-none" : "absolute inset-0 z-10 w-screen focus:outline-none"}
+                <Dialog as="div" className="absolute inset-0 z-10 w-screen focus:outline-none"
                     onClose={() => setIsOpen(false)}>
 
                     <div className="flex min-h-full w-full items-center justify-center">
@@ -248,7 +248,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                             <DialogPanel className="flex justify-center rounded-xl h-3/4 w-full max-[440px]:max-w-full max-w-3xl p-10 max-[440px]:p-2">
 
                                 <div className="container h-full w-full flex justify-center items-center">
-                                    <div className={ usuario.perfil === "COZINHA" ? "modalItemPedidoCozinha rounded-xl max-[440px]:p-2" : "modalItemPedido rounded-xl max-[440px]:p-2" }>
+                                    <div className="modalItemPedido rounded-xl max-[440px]:p-2">
                                         <div className="flex justify-between my-2">
                                             <div className="identificacao">
                                                 <p className="text-[#3B1206]">Mesa {currentPedido.mesa.numero}</p>

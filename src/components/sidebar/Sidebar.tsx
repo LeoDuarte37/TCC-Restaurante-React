@@ -7,7 +7,7 @@ function Sidebar() {
         <div className="sidebar">
             <div className="produto">
                 <hr />
-                <CardapioButton />
+                <CardapioButton class="cardapioMesa" />
                 <hr />
             </div>
 

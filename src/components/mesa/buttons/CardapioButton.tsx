@@ -1,9 +1,10 @@
 import { BookOpenText } from "@phosphor-icons/react";
+import "./../../../App.css";
 
-function CardapioButton() {
+function CardapioButton(props : { class: string}) {
     return (
-        <div className="cardapio">
-            <BookOpenText size={32} color="rgb(94,33,12)" />
+        <div className={props.class}>
+            <BookOpenText size={32} />
             <p>Cardápio</p>
         </div>
     )

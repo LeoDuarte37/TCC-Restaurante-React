@@ -8,7 +8,7 @@ function MenuHamburguer() {
 
     return (
         <Menu>
-            <MenuButton className="p-2" onClick={() => setIsOpen(!isOpen)}>
+            <MenuButton className="py-2" onClick={() => setIsOpen(!isOpen)}>
                 <div className="menu">
                     <div className={isOpen ? "bar1-active" : "bar1"}></div>
                     <div className={isOpen ? "bar2-active" : "bar2"}></div>

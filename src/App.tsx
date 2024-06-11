@@ -18,18 +18,18 @@ function App() {
     <>
         <LoginProvider>
           <ToastContainer style={{ width: "250px" }}/>
-          {/* <BrowserRouter> */}
+          <BrowserRouter>
           <MesaProvider> 
               <Navbar />
               {/* <DestaqueMesaPage /> */}
               {/* <CardapioMesaPage /> */}
-              {/* <ContaMesaPage /> */}
+              <ContaMesaPage />
               {/* <CardMesa /> */}
               {/* <MesaPage /> */}
-              <PedidoPage />
+              {/* <PedidoPage /> */}
               {/* <LoginPage /> */}
           </MesaProvider>
-          {/* </BrowserRouter> */}
+          </BrowserRouter>
         </LoginProvider>
     </>
   );

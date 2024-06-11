@@ -28,15 +28,19 @@ function PedidoPage() {
 
 
     return (
-        <div className="bg-[#F8F8F8] w-full h-full flex flex-col gap-6 items-center px-4 pb-4 max-w[768px]:px-2 max-w[768px]:pb-2">
+        <div className="bg-[#F8F8F8] w-full h-full flex flex-col gap-6 items-center px-4 pb-4 my-4 max-[768px]:px-2 max-[768px]:pb-2">
             { usuario.perfil === "COZINHA" ? <></> :  
-                <h1 className="text-[#D42300] subCategoriaTitle text-3xl font-bold mt-6 max-[1600px]:mt-4">
-                    {usuario.perfil === "GARCOM" ? "Pedidos prontos" : "Histórico de pedidos" }
-                </h1>
+                <>
+                    { usuario.perfil === "GARCOM" &&
+                        <h1 className="text-[#D42300] subCategoriaTitle text-3xl font-bold mt-6 max-[1600px]:mt-4">
+                            Pedidos prontos 
+                        </h1>
+                    }
+                </>
             }
         
             <div className={usuario.perfil === "COZINHA" ? "bg-[#F8F8F8] w-full h-4/6 max-[1600px]:h-5/6 flex flex-col justify-center items-center"
-                : "bg-[#F8F8F8] w-full h-3/4 max-[1600px]:h-[72%] flex flex-col justify-center items-center"}>
+                : "bg-[#F8F8F8] w-full h-3/5 max-[1600px]:h-[80%] flex flex-col justify-center items-center"}>
                 <ListaPedido />
             </div>
         </div>
