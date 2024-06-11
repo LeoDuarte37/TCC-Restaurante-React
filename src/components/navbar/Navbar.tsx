@@ -1,14 +1,14 @@
-import { useContext, useState } from "react";
-import ChamarGarcomButton from "../mesa/buttons/ChamarGarcomButton";
-import ContaButton from "../mesa/buttons/ContaButton";
-import MeusPedidosButton from "../mesa/buttons/MeusPedidosButton";
-import SearchButton from "../mesa/buttons/SearchButton";
+import { useContext } from "react";
+import ChamarGarcomButton from "./buttons/ChamarGarcomButton";
+import ContaButton from "./buttons/ContaButton";
+import MeusPedidosButton from "./buttons/MeusPedidosButton";
+import SearchButton from "./buttons/SearchButton";
 import "./../../App.css";
 import { ChefHat, SignOut } from "@phosphor-icons/react";
 import { LoginContext } from "../../contexts/LoginContext";
 import { MesaContext } from "../../contexts/MesaContext";
 import MenuHamburguer from "./buttons/MenuHamburguer";
-import CardapioButton from "../mesa/buttons/CardapioButton";
+import CardapioButton from "./buttons/CardapioButton";
 import MesasButton from "./buttons/MesasButton";
 
 function Navbar() {
@@ -18,7 +18,7 @@ function Navbar() {
 
     return (
         <nav className="flex flex-wrap place-items-center">
-            <div className="navbar max-[1200px]:justify-between justify-around">
+            <div className="navbar max-[1000px]:justify-between justify-around">
                 <div className="logo">
                     <ChefHat size={50} color='#f8f8f8' />
                 </div>

@@ -1,4 +1,4 @@
-import ListaCategoria from "../../components/categoria/lista/ListaCategoria";
+import ListaCategoria from "../../components/cardapio/categoria/lista/ListaCategoria";
 
 
 export default function CardapioPage() {

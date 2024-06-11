@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import usePedido from "../../../hooks/usePedido";
-import Item from "../../../models/Item";
-import Produto from "../../../models/Produto";
-import toastAlert from "../../../utils/toastAlert";
-import { LoginContext } from "../../../contexts/LoginContext";
+import usePedido from "../../../../hooks/usePedido";
+import Item from "../../../../models/Item";
+import Produto from "../../../../models/Produto";
+import toastAlert from "../../../../utils/toastAlert";
+import { LoginContext } from "../../../../contexts/LoginContext";
 
 function CardProduto(props: { produto: Produto }) {
 
@@ -29,7 +29,7 @@ function CardProduto(props: { produto: Produto }) {
     }
 
     return (
-        <div className="relative flex flex-row bg-clip-border rounded-xl bg-[#F8F8F8] border-2 border-[#F5EBDC] shadow-inner max-w-4xl w-full h-36">
+        <div className="relative flex flex-row bg-clip-border rounded-xl bg-[#F8F8F8] border-2 border-[#F5EBDC] shadow-inner w-full h-36">
             <div
                 className="relative max-w-40 m-0 overflow-hidden bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
                 <img
@@ -60,7 +60,6 @@ function CardProduto(props: { produto: Produto }) {
                             Adicionar
                         </button>
                     }
-                    
                 </div>
             </div>
         </div>

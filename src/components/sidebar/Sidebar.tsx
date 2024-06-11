@@ -1,4 +1,4 @@
-import CardapioButton from "../mesa/buttons/CardapioButton";
+import CardapioButton from "../navbar/buttons/CardapioButton";
 // import DestaquesButton from "../buttons/DestaquesButton";
 import "./Sidebar.css";
 

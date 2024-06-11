@@ -1,6 +1,6 @@
-import SubCategoria from "../../../models/SubCategoria";
+import SubCategoria from "../../../../models/Subcategoria";
 
-function CardCategoria(props: { subCategoria: SubCategoria }) {
+function CardSubcategoria(props: { subCategoria: SubCategoria }) {
 
     return (
         <article key={props.subCategoria.id} className="relative isolate flex flex-col items-center justify-center rounded-xl mb-2 h-full w-full max-h-8">
@@ -11,4 +11,4 @@ function CardCategoria(props: { subCategoria: SubCategoria }) {
     );
 }
 
-export default CardCategoria;
+export default CardSubcategoria;
