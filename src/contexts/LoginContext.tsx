@@ -27,7 +27,7 @@ export function LoginProvider( {children} : LoginProviderProps ) {
             id: "1",
             nome: "",
         },
-        perfil: "",
+        perfil: "ADMIN",
         token: "",
     });
 

@@ -1,15 +1,18 @@
+import { useContext } from "react";
 import usePedido from "../../../hooks/usePedido";
 import Item from "../../../models/Item";
 import Produto from "../../../models/Produto";
 import toastAlert from "../../../utils/toastAlert";
+import { LoginContext } from "../../../contexts/LoginContext";
 
-function CardProduto(props: { produto: Produto; isMesa?: boolean }) {
+function CardProduto(props: { produto: Produto }) {
 
+    const { usuario } = useContext(LoginContext);
     const { addToPedido } = usePedido();
 
-    function handleClickAddToPedido(produto: Produto) {
+    function handleClickAddToPedido() {
         const item: Item = {
-            produto: produto,
+            produto: props.produto,
             quantidade: 1,
         };
 
@@ -21,8 +24,12 @@ function CardProduto(props: { produto: Produto; isMesa?: boolean }) {
         }
     }
 
+    function editarProduto() {
+
+    }
+
     return (
-        <div className="relative flex flex-row bg-clip-border rounded-xl bg-[#F8F8F8] border-2 border-[#F5EBDC] shadow-inner max-w-3xl w-full h-36">
+        <div className="relative flex flex-row bg-clip-border rounded-xl bg-[#F8F8F8] border-2 border-[#F5EBDC] shadow-inner max-w-4xl w-full h-36">
             <div
                 className="relative max-w-40 m-0 overflow-hidden bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
                 <img
@@ -44,9 +51,16 @@ function CardProduto(props: { produto: Produto; isMesa?: boolean }) {
                 </p>
 
                 <div className="flex justify-end items-end h-8">
-                    <button onClick={() => handleClickAddToPedido(props.produto)} className="bg-[#D42300] hover:bg-[#b51f02] text-white font-semibold py-1 px-2 rounded h-8">
-                        Adicionar
-                    </button>
+                    {(usuario.perfil === "CAIXA" || usuario.perfil === "ADMIN") 
+                        ?<button onClick={editarProduto} className="bg-[#D42300] hover:bg-[#b51f02] text-white font-semibold py-1 px-2 rounded h-8">
+                            Editar produto
+                        </button>
+
+                        :<button onClick={handleClickAddToPedido} className="bg-[#D42300] hover:bg-[#b51f02] text-white font-semibold py-1 px-2 rounded h-8">
+                            Adicionar
+                        </button>
+                    }
+                    
                 </div>
             </div>
         </div>
