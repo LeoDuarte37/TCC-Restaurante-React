@@ -158,7 +158,7 @@ function ListaCategoria() {
         setSubCategoriaAtual(subCategoria);
     }
 
-    const [categoriaModal, setCategoriaModal] = useState<Categoria>({});
+    const [categoriaModal, setCategoriaModal] = useState<Categoria>();
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const [tituloModal, setTituloModal] = useState<string>("");
@@ -278,7 +278,7 @@ function ListaCategoria() {
                                                 <div className="div rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
                                                     { tituloModal == "Nova Categoria" ? <FormCategoria />
                                                         : <> { tituloModal == "Editar Categoria" ? <FormEditCategoria categoriaModal={categoriaModal} />
-                                                            : <FormSubcategoria />
+                                                            : <FormSubcategoria categoria={categoriaModal}/>
                                                         }</>
                                                     }
                                                 </div>
