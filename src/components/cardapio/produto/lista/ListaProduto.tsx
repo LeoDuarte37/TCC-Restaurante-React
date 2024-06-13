@@ -5,13 +5,20 @@ import { Dialog, DialogPanel, Transition, TransitionChild } from "@headlessui/re
 import { X } from "@phosphor-icons/react";
 import FormEditSubcategoria from "../../subcategoria/forms/FormEditSubcategoria";
 import Produto from "../../../../models/Produto";
-import Subcategoria from "../../../../models/SubCategoria";
+import Subcategoria from "../../../../models/Subcategoria";
+import FormProduto from "../forms/FormProduto";
 
 function ListaProduto(props: { subcategoria: Subcategoria }) {
 
     const { usuario } = useContext(LoginContext);
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [tituloModal, setTituloModal] = useState<string>("");
+
+    function modalCrudCardapio(titulo: string) {
+        setTituloModal(titulo);
+        setIsOpen(true);
+    }
 
     return (
         <>
@@ -20,10 +27,10 @@ function ListaProduto(props: { subcategoria: Subcategoria }) {
 
                 {usuario.perfil === "ADMIN" &&
                     <div className="flex gap-2">
-                        <button onClick={() => setIsOpen(true)} className="bg-[#D42300] hover:bg-[#b51f02] mb-3 text-white font-semibold py-1 px-2 rounded h-8">
+                        <button onClick={() => modalCrudCardapio("Editar Subcategoria")} className="bg-[#D42300] hover:bg-[#b51f02] mb-3 text-white font-semibold py-1 px-2 rounded h-8">
                             Editar subcategoria
                         </button>
-                        <button className="bg-[#D42300] hover:bg-[#b51f02] mb-3 text-white font-semibold py-1 px-2 rounded h-8">
+                        <button onClick={() => modalCrudCardapio("Novo Produto")} className="bg-[#D42300] hover:bg-[#b51f02] mb-3 text-white font-semibold py-1 px-2 rounded h-8">
                             Novo produto
                         </button>
                     </div>
@@ -51,18 +58,22 @@ function ListaProduto(props: { subcategoria: Subcategoria }) {
                             leaveFrom="opacity-100 transform-[scale(100%)]"
                             leaveTo="opacity-0 transform-[scale(95%)]"
                         >
-                            <DialogPanel className="flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-xl p-10 max-[440px]:p-2">
+                            <DialogPanel className={tituloModal === "Editar Subcategoria" 
+                                    ? "flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-xl p-10 max-[440px]:p-2" 
+                                    : "flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-[60%] p-10 max-[440px]:p-2"}>
 
-                                <div className="container h-10 w-full flex justify-center items-center">
-                                    <div className="modalItemPedido h-80 rounded-xl max-[440px]:p-2">
+                                <div className={tituloModal === "Editar Subcategoria" ? "container h-10 w-full flex justify-center items-center" : "container h-full w-full flex justify-center items-center"}>
+                                    <div className={tituloModal === "Editar Subcategoria" ? "modalItemPedido h-80 rounded-xl max-[440px]:p-2" : "modalItemPedido rounded-xl max-[440px]:p-2"}>
                                         <div className="flex justify-between my-2">
                                             <h1 className="text-[#D42300] ml-6 text-center w-full subCategoriaTitle text-2xl font-bold">
-                                                Editar Subcategoria 
+                                                {tituloModal} 
                                             </h1>
                                             <X size={32} color="#3B1206" onClick={() => setIsOpen(false)} />
                                         </div>
                                         <div className="div rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
-                                            {<FormEditSubcategoria subcategoriaModal={props.subcategoria} />}
+                                            {tituloModal === "Editar Subcategoria" ? <FormEditSubcategoria subcategoriaModal={props.subcategoria} />
+                                                : <FormProduto subcategoria={props.subcategoria}/>
+                                            }
                                         </div>
                                     </div>
                                 </div>

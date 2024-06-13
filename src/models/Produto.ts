@@ -1,4 +1,4 @@
-import Subcategoria from "./SubCategoria";
+import Subcategoria from "./Subcategoria";
 
 export default interface Produto {
     id: number;

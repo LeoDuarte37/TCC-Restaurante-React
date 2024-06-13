@@ -1,8 +1,18 @@
 import { ChangeEvent, useState } from "react";
 import Produto from "../../../../models/Produto";
+import Subcategoria from "../../../../models/Subcategoria";
 
-function FormEditProduto(props: {produto: Produto}) {
-    const [produto, setProduto] = useState<Produto>(props.produto);
+
+function FormProduto(props: { subcategoria: Subcategoria}) {
+    const [produto, setProduto] = useState<Produto>({
+        id: 0,
+        nome: "",
+        descricao: "",
+        foto: "",
+        valor: 0,
+        disponivel: false,
+        subCategoria: props.subcategoria,
+    });
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         const target = e.target;
@@ -13,7 +23,7 @@ function FormEditProduto(props: {produto: Produto}) {
             ...produto,
             [name]: value,
         });
-	}
+    }
 
     function atualizarDescricao(e: ChangeEvent<HTMLTextAreaElement>) {
         setProduto({
@@ -23,13 +33,13 @@ function FormEditProduto(props: {produto: Produto}) {
     }
 
     return (
-        <form action="" className="p-4 flex flex-col gap-3 text-[#3B1206] text-lg font-bold">
-            <fieldset className="flex gap-3 h-full">    
+        <form className="p-4 flex flex-col gap-3 text-[#3B1206] text-lg font-bold">
+            <fieldset className="flex gap-3 h-full">
                 <div className="w-full">
                     <label htmlFor="nome">
                         Nome do produto:
                     </label>
-                    <input value={produto.nome}
+                    <input 
                         type="text"
                         name="nome"
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
@@ -37,45 +47,45 @@ function FormEditProduto(props: {produto: Produto}) {
                 </div>
                 <div className="w-full">
                     <label htmlFor="valor">Valor:</label>
-                    <input value={produto.valor} 
-                        type="number" 
-                        name="valor" 
-                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} 
-                        className="block h-full max-h-10 w-full rounded-lg border-2  border-[#D42300] checked:outline-[#D42300] focus:outline-[#D42300] checked:bg-[#D42300]"/>
+                    <input 
+                        type="number"
+                        name="valor"
+                        onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                        className="block h-full max-h-10 w-full rounded-lg border-2  border-[#D42300] checked:outline-[#D42300] focus:outline-[#D42300] checked:bg-[#D42300]" />
                 </div>
             </fieldset>
 
             <fieldset>
                 <label htmlFor="descricao">Descrição:</label>
-                <textarea value={produto.descricao}
+                <textarea 
                     name="descricao"
-                    onChange={(e: ChangeEvent<HTMLTextAreaElement>) => atualizarDescricao(e)} 
+                    onChange={(e: ChangeEvent<HTMLTextAreaElement>) => atualizarDescricao(e)}
                     className="block w-full h-16 max-h-16 rounded-lg border-2 border-[#D42300]"/>
             </fieldset>
 
             <fieldset>
                 <label htmlFor="valor">Foto:</label>
-                <input value={produto.foto} 
-                    type="text" 
-                    name="foto" 
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} 
-                    className="block w-full rounded-lg border-2  border-[#D42300] checked:outline-[#D42300] focus:outline-[#D42300] checked:bg-[#D42300]"/>
+                <input 
+                    type="text"
+                    name="foto"
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                    className="block w-full rounded-lg border-2  border-[#D42300] checked:outline-[#D42300] focus:outline-[#D42300] checked:bg-[#D42300]" />
             </fieldset>
 
             <fieldset>
                 <label htmlFor="disponivel">Disponivel:</label>
-                <input checked={produto.disponivel}
-                    type="checkbox" 
+                <input 
+                    type="checkbox"
                     name="disponivel"
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} 
-                    className="size-6 ml-2 rounded-lg border-2  border-[#D42300] checked:outline-[#D42300] focus:outline-[#D42300] checked:bg-[#D42300]"/>
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                    className="size-6 ml-2 rounded-lg border-2  border-[#D42300] checked:outline-[#D42300] focus:outline-[#D42300] checked:bg-[#D42300]" />
             </fieldset>
 
             <button className="button h-14 text-center flex items-center justify-center self-center mt-3">
-                Editar Produto
+                Adicionar Produto
             </button>
         </form>
     );
 }
 
-export default FormEditProduto;
+export default FormProduto;
