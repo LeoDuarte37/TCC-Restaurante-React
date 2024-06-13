@@ -3,6 +3,8 @@
 
 * {
     font-family: "Signika Negative", sans-serif;
+    scrollbar-width: thin;        
+    scrollbar-color: #D42300 #3B1206;
 }
 
 body {
@@ -192,7 +194,7 @@ nav .navbar .borda {
 
 .navbar .logo {
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
     height: 100%;
     margin-right: 1.5rem;

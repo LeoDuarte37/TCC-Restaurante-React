@@ -160,34 +160,11 @@ function ListaCategoria() {
 
     const [categoriaModal, setCategoriaModal] = useState<Categoria>({});
     const [isOpen, setIsOpen] = useState<boolean>(false);
-    const [form, setForm] = useState<String>('');
 
-    const [formModal, setFormModal] = useState<JSX.Element>();
     const [tituloModal, setTituloModal] = useState<string>("");
 
-    function modalCrudCardapio(form: string) {
-        setForm(form);
-
-        switch(form) {
-            case "NovaCategoria":
-                setFormModal(<FormCategoria />);
-                setTituloModal("Nova Categoria");
-                break;
-            
-            case "EditCategoria":
-                setFormModal(<FormEditCategoria categoriaModal={categoriaModal} />);
-                setTituloModal("Editar Categoria");
-                break;
-
-            case "NovaSubcategoria":
-                setFormModal(<FormSubcategoria />);
-                setTituloModal("Nova Subcategoria");
-                break;
-
-            default: break;
-        }
-
-
+    function modalCrudCardapio(f: string) {
+        setTituloModal(f);
         setIsOpen(true);
     }
 
@@ -243,14 +220,14 @@ function ListaCategoria() {
                                                         <Pencil size={35}
                                                             color="#D42300"
                                                             className="self-center hover:text-[#b51f02]"
-                                                            onClick={() => { modalCrudCardapio("EditCategoria"); setCategoriaModal(categoria) }} />
+                                                            onClick={() => { modalCrudCardapio("Editar Categoria"); setCategoriaModal(categoria) }} />
                                                     }
                                                     <CardCategoria categoria={categoria} />
                                                     {usuario.perfil === "ADMIN" && 
                                                         <Plus size={32} 
                                                         color="#D42300"
                                                         className="self-center hover:text-[#b51f02]"
-                                                        onClick={() => { modalCrudCardapio("NovaSubcategoria")}}/>
+                                                        onClick={() => { modalCrudCardapio("Nova Subcategoria")}}/>
                                                     }   
                                                 </div>
                                             </DisclosureButton>
@@ -263,7 +240,7 @@ function ListaCategoria() {
                             </li>
                         ))}
                         {usuario.perfil === "ADMIN" &&
-                            <li key={"NovaCategoria"} onClick={() => modalCrudCardapio("NovaCategoria")} className="bg-[#D42300] hover:bg-[#b51f02] mb-4 text-white text-center font-semibold py-1 px-2 rounded h-8">
+                            <li key={"NovaCategoria"} onClick={() => modalCrudCardapio("Nova Categoria")} className="bg-[#D42300] hover:bg-[#b51f02] mb-4 text-white text-center font-semibold py-1 px-2 rounded h-8">
                                 Nova categoria
                             </li>
                         }
@@ -299,7 +276,11 @@ function ListaCategoria() {
                                                     <X size={32} color="#3B1206" className="" onClick={() => setIsOpen(false)} />
                                                 </div>
                                                 <div className="div rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
-                                                    { formModal }
+                                                    { tituloModal == "Nova Categoria" ? <FormCategoria />
+                                                        : <> { tituloModal == "Editar Categoria" ? <FormEditCategoria categoriaModal={categoriaModal} />
+                                                            : <FormSubcategoria />
+                                                        }</>
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
