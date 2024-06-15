@@ -1,6 +1,6 @@
 import { useState, ChangeEvent } from "react";
-import Subcategoria from "../../../../models/Subcategoria";
-import Categoria from "../../../../models/Categoria";
+import Subcategoria from "../../../../models/subcategoria/Subcategoria";
+import Categoria from "../../../../models/categoria/Categoria";
 
 function FormSubcategoria(props: {categoria: Categoria}) {
 

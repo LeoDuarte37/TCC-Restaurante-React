@@ -1,11 +1,11 @@
 import { createContext, ReactNode, useState } from "react";
-import Logar from "../models/Logar";
-import Sessao from "../models/Sessao";
+import Logar from "../models/login/Logar";
+import Login from "../models/login/Login";
 import { logar } from "../services/Service";
 import toastAlert from "../utils/toastAlert";
 
 interface LoginContextProps {
-    usuario: Sessao;
+    login: Login;
     isLoading: boolean;
     isMesa: boolean;
     changeContextIsMesa(): void;
@@ -21,29 +21,20 @@ export const LoginContext = createContext( {} as LoginContextProps );
 
 export function LoginProvider( {children} : LoginProviderProps ) {
 
-    const [usuario, setUsuario] = useState<Sessao>({
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    const [login, setLogin] = useState<Login>({
         username: "",
-        restaurante: {
-            id: "1",
-            nome: "",
-        },
+        restauranteId: 1,
         perfil: "ADMIN",
         token: "",
     });
-
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-
-    const [isMesa, setIsMesa] = useState(false);
-
-    function changeContextIsMesa() {
-        setIsMesa(!isMesa);
-    }
-
+    
     async function handleLogin(login: Logar) {
         setIsLoading(true);
-
+        
         try {
-            await logar(login, setUsuario);
+            await logar(login, setLogin);
             toastAlert("Login realizado com sucesso!", "sucesso");
             setIsLoading(false);
         } catch (error) {
@@ -52,21 +43,24 @@ export function LoginProvider( {children} : LoginProviderProps ) {
             setIsLoading(false);
         }
     }
-
+    
     function handleLogout() {
-        setUsuario({
+        setLogin({
             username: "",
-            restaurante: {
-                id: "",
-                nome: "",
-            },
+            restauranteId: 0,
             perfil: "",
             token: "",
         });
     }
 
+    const [isMesa, setIsMesa] = useState(false);
+
+    function changeContextIsMesa() {
+        setIsMesa(!isMesa);
+    }
+    
     return (
-        <LoginContext.Provider value = {{ usuario, isLoading , isMesa, changeContextIsMesa, handleLogin, handleLogout }}>
+        <LoginContext.Provider value = {{ login, isLoading , isMesa, changeContextIsMesa, handleLogin, handleLogout }}>
             { children }
         </LoginContext.Provider>
     );

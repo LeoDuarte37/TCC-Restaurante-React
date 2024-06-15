@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../../../contexts/LoginContext";
 import CardPedido from "../card/CardPedido";
-import Pedido from "../../../models/Pedido";
+import Pedido from "../../../models/pedido/Pedido";
 import { Button, Dialog, DialogPanel, Transition, TransitionChild } from "@headlessui/react";
 import { X } from "@phosphor-icons/react";
 import ListaItemPedido from "../itemPedido/lista/ListaItemPedido";
-import Item from "../../../models/Item";
+import Item from "../../../models/pedido/item/Item";
 
 function ListaPedido(props: { pedidos: Array<Pedido> }) {
     const { usuario } = useContext(LoginContext);

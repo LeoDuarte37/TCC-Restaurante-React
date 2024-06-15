@@ -3,8 +3,8 @@ import { useState, useEffect, useContext } from "react";
 import { MesaContext } from "../../../../contexts/MesaContext";
 import usePedido from "../../../../hooks/usePedido";
 import toastAlert from "../../../../utils/toastAlert";
-import Pedido from "../../../../models/Pedido";
-import Item from "../../../../models/Item";
+import Pedido from "../../../../models/pedido/Pedido";
+import Item from "../../../../models/pedido/item/Item";
 import CardCarrinho from "../card/CardCarrinho";
 
 function ListaCarrinho() {

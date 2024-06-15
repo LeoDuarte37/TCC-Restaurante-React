@@ -1,4 +1,4 @@
-import Subcategoria from "../../../../models/SubCategoria";
+import Subcategoria from "../../../../models/subcategoria/Subcategoria";
 import CardSubcategoria from "../card/CardSubcategoria";
 
 function ListaSubcategoria(props: {subcategorias: Array<Subcategoria>; setInfo: Function}) {

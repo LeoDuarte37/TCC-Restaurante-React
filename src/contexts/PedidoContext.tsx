@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useState, useContext } from "react";
-import Item from "../models/Item";
+import Item from "../models/pedido/item/Item";
 import { MesaContext } from "./MesaContext";
 import toastAlert from "../utils/toastAlert";
 

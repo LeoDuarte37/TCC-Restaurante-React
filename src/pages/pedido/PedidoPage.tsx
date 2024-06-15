@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import ListaPedido from "../../components/pedido/lista/ListaPedido";
 import { LoginContext } from "../../contexts/LoginContext";
-import Pedido from "../../models/Pedido";
+import Pedido from "../../models/pedido/Pedido";
 
 function PedidoPage() {
 

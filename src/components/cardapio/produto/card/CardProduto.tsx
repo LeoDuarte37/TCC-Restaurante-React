@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import usePedido from "../../../../hooks/usePedido";
-import Item from "../../../../models/Item";
-import Produto from "../../../../models/Produto";
+import Item from "../../../../models/pedido/item/Item";
+import Produto from "../../../../models/produto/Produto";
 import toastAlert from "../../../../utils/toastAlert";
 import { LoginContext } from "../../../../contexts/LoginContext";
 import { Transition, Dialog, TransitionChild, DialogPanel } from "@headlessui/react";

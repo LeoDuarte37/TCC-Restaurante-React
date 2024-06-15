@@ -1,4 +1,4 @@
-import Produto from "./Produto";
+import Produto from "../../produto/Produto";
 
 export default interface Item {
     produto: Produto;

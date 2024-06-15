@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import Produto from "../../../../models/Produto";
+import Produto from "../../../../models/produto/Produto";
 
 function FormEditProduto(props: {produto: Produto}) {
     const [produto, setProduto] = useState<Produto>(props.produto);

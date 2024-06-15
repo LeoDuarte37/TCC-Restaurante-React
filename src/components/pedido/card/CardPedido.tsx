@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Pedido from "../../../models/Pedido";
+import Pedido from "../../../models/pedido/Pedido";
 import { LoginContext } from "../../../contexts/LoginContext";
 
 function CardPedido(props: { pedido: Pedido }) {

@@ -1,5 +1,5 @@
 import { CaretDown } from "@phosphor-icons/react";
-import Categoria from "../../../../models/Categoria";
+import Categoria from "../../../../models/categoria/Categoria";
 
 function CardCategoria(props: { categoria: Categoria }) {
 

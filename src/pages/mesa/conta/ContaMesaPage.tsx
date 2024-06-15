@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../../../components/sidebar/Sidebar";
-import Item from "../../../models/Item";
+import Item from "../../../models/pedido/item/Item";
 import ListaItemPedido from "../../../components/pedido/itemPedido/lista/ListaItemPedido";
 
 function ContaMesaPage() {

@@ -1,5 +1,5 @@
-import Contato from "./Contato";
-import Endereco from "./Endereco";
+import Contato from "../contato/Contato";
+import Endereco from "../endereco/Endereco";
 
 export default interface Restaurante {
     id: string;

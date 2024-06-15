@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { LoginContext } from "../../../../contexts/LoginContext";
-import Item from "../../../../models/Item";
+import Item from "../../../../models/pedido/item/Item";
 import { MenuButton, Menu, MenuItem, MenuItems, Transition } from "@headlessui/react";
 import { CaretCircleDown } from "@phosphor-icons/react";
 

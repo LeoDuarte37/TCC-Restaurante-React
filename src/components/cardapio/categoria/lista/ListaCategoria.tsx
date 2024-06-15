@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from "react";
-import Categoria from "../../../../models/Categoria";
+import Categoria from "../../../../models/categoria/Categoria";
 import { TailSpin } from 'react-loader-spinner';
 import CardCategoria from "../card/CardCategoria";
-import SubCategoria from "../../../../models/Subcategoria";
+import SubCategoria from "../../../../models/subcategoria/Subcategoria";
 import { MesaContext } from "../../../../contexts/MesaContext";
 import { Dialog, DialogPanel, Disclosure, DisclosureButton, DisclosurePanel, Transition, TransitionChild } from "@headlessui/react";
 import { LoginContext } from "../../../../contexts/LoginContext";

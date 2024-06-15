@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Item from "../models/Item";
+import Item from "../models/pedido/item/Item";
 import toastAlert from "../utils/toastAlert";
-import Pedido from "../models/Pedido";
+import Pedido from "../models/pedido/Pedido";
 
 export default function usePedido() {
 

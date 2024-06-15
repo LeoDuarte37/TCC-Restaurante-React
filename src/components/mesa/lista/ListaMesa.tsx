@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import Mesa from "../../../models/Mesa";
+import Mesa from "../../../models/mesa/Mesa";
 import CardMesa from "../card/CardMesa";
 import { LoginContext } from "../../../contexts/LoginContext";
 import { buscarMesasPorRestaurante, listarChamandoGarcom } from "../../../services/Service";

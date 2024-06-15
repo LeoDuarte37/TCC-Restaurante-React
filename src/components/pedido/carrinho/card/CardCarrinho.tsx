@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import usePedido from "../../../../hooks/usePedido";
-import Item from "../../../../models/Item";
+import Item from "../../../../models/pedido/item/Item";
 
 function CardCarrinho(props: { item: Item, getSubTotal: Function }) {
 

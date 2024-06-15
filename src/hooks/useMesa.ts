@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { MesaContext } from "../contexts/MesaContext";
-import Mesa from "../models/Mesa";
+import Mesa from "../models/mesa/Mesa";
 import { atualizarChamarGarcom, buscarMesaPorId } from "../services/Service";
 import toastAlert from "../utils/toastAlert";
 import mesaChamarGarcom from "../models/MesaChamarGarcom";

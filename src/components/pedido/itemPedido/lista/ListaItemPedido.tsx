@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
-import Item from "../../../../models/Item";
+import Item from "../../../../models/pedido/item/Item";
 import { LoginContext } from "../../../../contexts/LoginContext";
 import CardItemPedido from "../card/CardItemPedido";
 import usePedido from "../../../../hooks/usePedido";
 import MudarStatusPedidoButton from "../../buttons/MudarStatusPedidoButton";
-import Pedido from "../../../../models/Pedido";
+import Pedido from "../../../../models/pedido/Pedido";
 
 function ListaItemPedido(props: { item: Array<Item>; pedido?: Pedido }) {
 

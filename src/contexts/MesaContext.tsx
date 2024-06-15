@@ -1,6 +1,6 @@
 import { ReactNode, createContext, useState } from "react";
 import { buscarMesaPorId } from "../services/Service";
-import Mesa from "../models/Mesa";
+import Mesa from "../models/mesa/Mesa";
 import toastAlert from "../utils/toastAlert";
 
 interface MesaContextProps {

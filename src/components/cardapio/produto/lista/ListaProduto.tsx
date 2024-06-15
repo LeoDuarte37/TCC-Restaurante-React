@@ -4,8 +4,8 @@ import CardProduto from "../card/CardProduto";
 import { Dialog, DialogPanel, Transition, TransitionChild } from "@headlessui/react";
 import { X } from "@phosphor-icons/react";
 import FormEditSubcategoria from "../../subcategoria/forms/FormEditSubcategoria";
-import Produto from "../../../../models/Produto";
-import Subcategoria from "../../../../models/Subcategoria";
+import Produto from "../../../../models/produto/Produto";
+import Subcategoria from "../../../../models/subcategoria/Subcategoria";
 import FormProduto from "../forms/FormProduto";
 
 function ListaProduto(props: { subcategoria: Subcategoria }) {

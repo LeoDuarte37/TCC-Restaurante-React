@@ -1,4 +1,4 @@
-import SubCategoria from "../../../../models/Subcategoria";
+import SubCategoria from "../../../../models/subcategoria/Subcategoria";
 
 function CardSubcategoria(props: { subCategoria: SubCategoria }) {
 
