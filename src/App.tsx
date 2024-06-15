@@ -1,4 +1,4 @@
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css'
 import Navbar from './components/navbar/Navbar'
 import { LoginProvider } from './contexts/LoginContext'
@@ -7,9 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { MesaProvider } from './contexts/MesaContext';
 import CardapioMesaPage from './pages/mesa/cardapio/CardapioMesaPage';
-import DestaqueMesaPage from './pages/mesa/destaques/DestaquesMesaPage';
 import ContaMesaPage from './pages/mesa/conta/ContaMesaPage';
-import CardMesa from './components/mesa/card/CardMesa';
 import MesaPage from './pages/mesa/MesaPage';
 import PedidoPage from './pages/pedido/PedidoPage';
 import CardapioPage from './pages/cardapio/CardapioPage';
@@ -20,17 +18,20 @@ function App() {
         <LoginProvider>
           <ToastContainer style={{ width: "250px" }}/>
           <BrowserRouter>
-          <MesaProvider> 
-              {/* <Navbar /> */}
-              {/* <DestaqueMesaPage /> */}
-              {/* <CardapioMesaPage /> */}
-              {/* <ContaMesaPage /> */}
-              {/* <CardMesa /> */}
-              {/* <MesaPage /> */}
-              {/* <CardapioPage /> */}
-              {/* <PedidoPage /> */}
-              <LoginPage />
-          </MesaProvider>
+            <MesaProvider> 
+                <Navbar />
+                
+                <Routes>
+                  <Route path='/' element={<LoginPage />} />
+                  <Route path='/mesa/cardapio' element={<CardapioMesaPage />} />
+                  <Route path='/mesa/conta' element={<ContaMesaPage />} />
+                  {/* <Route path='/' element={} /> */}
+                  <Route path='/historico/pedidos' element={<PedidoPage />} />
+                  <Route path='/cardapio' element={<CardapioPage />} />
+                  <Route path='/mesas' element={<MesaPage />} />
+                </Routes>
+                  
+            </MesaProvider>
           </BrowserRouter>
         </LoginProvider>
     </>

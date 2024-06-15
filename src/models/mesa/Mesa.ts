@@ -1,9 +1,8 @@
-import Restaurante from "../restaurante/Restaurante";
-
 export default interface Mesa {
     id: number;
     numero: number;
-    restaurante: Restaurante;
+    restauranteId: number;
+    restauranteUuid: string;
     status: string;
     chamarGarcom: boolean;
 }

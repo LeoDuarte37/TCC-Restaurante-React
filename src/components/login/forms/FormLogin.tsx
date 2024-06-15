@@ -1,63 +1,114 @@
-import { useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import Logar from "../../../models/login/Logar";
+import LoginMesa from "../../../models/mesa/LoginMesa";
+import { LoginContext } from "../../../contexts/LoginContext";
+import { MesaContext } from "../../../contexts/MesaContext";
+import { RotatingLines } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
+import "./../../../App.css"
+import "./../../../pages/login/LoginPage.css"
 
-function FormLogin(props: { isMesa: boolean; }) {
+function FormLogin() {
+    const navigate = useNavigate();
 
-    const [logar, setLogar] = useState<Logar>({
-        username: "",
-        senha: ""
-    });
+    const { isMesa, handleLogin } = useContext(LoginContext);
+    const { handleMesaLogin } = useContext(MesaContext);
 
+    const [logar, setLogar] = useState<Logar>({} as Logar);
+
+    const [mesaLogin, setMesaLogin] = useState<LoginMesa>({} as LoginMesa);
+
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
+        if (!isMesa) {
+            setLogar({
+                ...logar,
+                [e.target.name]: e.target.value
+            })
+        } else {
+            setMesaLogin({
+                ...mesaLogin,
+                [e.target.name]: e.target.value
+            })
+        }
+    }
+
+    async function submit(e: ChangeEvent<HTMLFormElement>) {
+        setIsLoading(true);
+        e.preventDefault();
+
+        if (!isMesa) {
+            await handleLogin(logar);
+            setIsLoading(false);
+            navigate('/historico/pedidos')
+        } else {
+            await handleMesaLogin(mesaLogin);
+            setIsLoading(false);
+            navigate('/mesa/cardapio');
+        }
+    }
 
     return (
-        <form className="space-y-6 " id="formLogin" action="#" method="POST">
-            <fieldset>
-                <label htmlFor="username" className="block text-md font-medium leading-6 text-[#3B1206]">
-                    {props.isMesa ? "ID Restaurante" : "Usuário"}
-                </label>
-                <div className="mt-2">
-                    <input
-                        name="username"
-                        type="text"
-                        placeholder={props.isMesa ? "8331faf7-db26-489c-9d9e-ac387d4983e0" : "user"}
-                        required
-                        className="block w-full rounded-md border-0 py-1.5 text-[#3B1206] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#D42300] sm:text-sm sm:leading-6"
-                    />
-                </div>
-            </fieldset>
-            <fieldset>
-                <div className="flex items-center justify-between">
-                    <label htmlFor="password" className="block text-md font-medium leading-6 text-[#3B1206]">
-                        {props.isMesa ? "Número da mesa" : "Senha"}
+        <>
+            <form className="space-y-6 " id="formLogin" method="POST" onSubmit={submit}>
+                <fieldset>
+                    <label htmlFor="username" className="block text-md font-medium leading-6 text-[#3B1206]">
+                        {isMesa ? "ID Restaurante" : "Usuário"}
                     </label>
-                    {!props.isMesa &&
-                        <div className="text-md">
-                            <a href="#" className="font-semibold text-[#D42300] hover:text-[#b51f02]">
-                                Esqueceu a senha?
-                            </a>
-                        </div>
-                    }
-                </div>
-                <div className="mt-2">
-                    <input
-                        name="password"
-                        type={props.isMesa ? "text" : "password"}
-                        autoComplete="current-password"
-                        placeholder={props.isMesa ? "8" : "******"}
-                        required
-                        className="block w-full rounded-md border-0 py-1.5 text-[#3B1206] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#D42300] sm:text-sm sm:leading-6"
-                    />
-                </div>
-            </fieldset>
-            
-            <button
-                type="submit"
-                className="transition ease-in-out delay-50 flex w-full justify-center rounded-md bg-[#D42300] px-3 py-1.5 text-md font-semibold leading-6 text-white shadow-sm hover:bg-[#b51f02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-                Entrar
-            </button>
-        
-        </form>
+                    <div className="mt-2">
+                        <input
+                            name="username"
+                            type="text"
+                            placeholder={isMesa ? "8331faf7-db26-489c-9d9e-ac387d4983e0" : "user"}
+                            required
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                            className="block w-full rounded-md border-0 py-1.5 text-[#3B1206] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#D42300] sm:text-sm sm:leading-6"
+                        />
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <div className="flex items-center justify-between">
+                        <label htmlFor="password" className="block text-md font-medium leading-6 text-[#3B1206]">
+                            {isMesa ? "Número da mesa" : "Senha"}
+                        </label>
+                        {!isMesa &&
+                            <div className="text-md">
+                                <a href="#" className="font-semibold text-[#D42300] hover:text-[#b51f02]">
+                                    Esqueceu a senha?
+                                </a>
+                            </div>
+                        }
+                    </div>
+                    <div className="mt-2">
+                        <input
+                            name="password"
+                            type={isMesa ? "text" : "password"}
+                            autoComplete="current-password"
+                            placeholder={isMesa ? "8" : "******"}
+                            required
+                            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
+                            className="block w-full rounded-md border-0 py-1.5 text-[#3B1206] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#D42300] sm:text-sm sm:leading-6"
+                        />
+                    </div>
+                </fieldset>
+
+                <button
+                    type="submit"
+                    className="transition ease-in-out delay-50 flex w-full justify-center rounded-md bg-[#D42300] px-3 py-1.5 text-md font-semibold leading-6 text-white shadow-sm hover:bg-[#b51f02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                    {isLoading ? (
+                        <RotatingLines
+                            strokeColor="white"
+                            strokeWidth="5"
+                            animationDuration="0.75"
+                            width="24"
+                            visible={true}
+                        />
+                    ) : "Entrar"}
+                </button>
+            </form>
+        </>
     );
 }
 

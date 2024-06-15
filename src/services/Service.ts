@@ -8,6 +8,7 @@ import Restaurante from "../models/restaurante/Restaurante";
 import Pedido from "../models/pedido/Pedido";
 import toastAlert from "../utils/toastAlert";
 import MesaChamarGarcom from "../models/MesaChamarGarcom";
+import LoginMesa from "../models/mesa/LoginMesa";
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL
@@ -45,6 +46,11 @@ export const buscarCardapio = async (url: string, setDados: Function) => {
 export const logar = async (dados: Logar, setDados: Function) => {
     const resposta = await api.post("/login", dados);
     setDados(resposta.data);
+}
+
+export const loginMesa = async (dados: LoginMesa, setDados: Function) => {
+    const resposta = await api.post("/mesa/login", dados);
+    setDados(resposta);
 }
 
 export const adicionar = async (url: string, dados: (Restaurante | Mesa | Produto | Categoria | Perfil), header: Object, setDados: Function) => {

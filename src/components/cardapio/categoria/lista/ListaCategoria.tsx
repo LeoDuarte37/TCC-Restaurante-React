@@ -19,7 +19,7 @@ import FormSubcategoria from "./../../subcategoria/forms/FormSubcategoria";
 function ListaCategoria() {
 
     const { mesa } = useContext(MesaContext);
-    const { usuario } = useContext(LoginContext);
+    const { login } = useContext(LoginContext);
 
     const [categorias, setCategorias] = useState<Array<Categoria>>([
         {
@@ -216,14 +216,14 @@ function ListaCategoria() {
                                         <Disclosure as="div" className="" defaultOpen={true}>
                                             <DisclosureButton className="group flex w-full items-center gap-2 justify-between">
                                                 <div className="flex border border-[#3B1206] rounded-lg w-full">
-                                                    {usuario.perfil === "ADMIN" &&
+                                                    {login.perfil === "ADMIN" &&
                                                         <Pencil size={35}
                                                             color="#D42300"
                                                             className="self-center hover:text-[#b51f02]"
                                                             onClick={() => { modalCrudCardapio("Editar Categoria"); setCategoriaModal(categoria) }} />
                                                     }
                                                     <CardCategoria categoria={categoria} />
-                                                    {usuario.perfil === "ADMIN" && 
+                                                    {login.perfil === "ADMIN" && 
                                                         <Plus size={32} 
                                                         color="#D42300"
                                                         className="self-center hover:text-[#b51f02]"
@@ -239,7 +239,7 @@ function ListaCategoria() {
                                 </div>
                             </li>
                         ))}
-                        {usuario.perfil === "ADMIN" &&
+                        {login.perfil === "ADMIN" &&
                             <li key={"NovaCategoria"} onClick={() => modalCrudCardapio("Nova Categoria")} className="bg-[#D42300] hover:bg-[#b51f02] mb-4 text-white text-center font-semibold py-1 px-2 rounded h-8">
                                 Nova categoria
                             </li>

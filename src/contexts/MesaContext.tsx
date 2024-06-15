@@ -1,13 +1,13 @@
 import { ReactNode, createContext, useState } from "react";
-import { buscarMesaPorId } from "../services/Service";
 import Mesa from "../models/mesa/Mesa";
 import toastAlert from "../utils/toastAlert";
+import LoginMesa from "../models/mesa/LoginMesa";
+import { loginMesa } from "../services/Service";
 
 interface MesaContextProps {
     mesa: Mesa;
-    isLoading: boolean;
     handleMesaLogout(): void;
-    handleMesaLogin(restauranteId: string, numeroMesa: number): Promise<void>;
+    handleMesaLogin(mesaLogin: LoginMesa): Promise<void>;
     atualizarMesa(mesa: Mesa): void;
 }
 
@@ -22,33 +22,24 @@ export function MesaProvider({ children }: MesaProviderProps) {
     const [mesa, setMesa] = useState<Mesa>({
         id: 0,
         numero: 10,
-        restaurante: {
-            id: "1",
-            nome: "",
-        },
+        restauranteId: 0,
+        restauranteUuid: "",
         chamarGarcom: false,
         status: "",
     });
 
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-
-    async function handleMesaLogin(restauranteId: string, numeroMesa: number) {
-        setIsLoading(true);
-
+    async function handleMesaLogin(mesaLogin: LoginMesa) {
         try {
-            await buscarMesaPorId(numeroMesa, setMesa);
+            await loginMesa(mesaLogin, setMesa);
 
-            if (restauranteId === mesa.restaurante?.id) {
+            if (mesa.restauranteUuid === mesaLogin.uuid) {
                 toastAlert(`Mesa ${mesa.numero} acessada com sucesso!`, "sucesso");
-                setIsLoading(false);
             } else {
-                toastAlert(`Você não possui permissão para acessar essa mesa!`, "erro");
-                setIsLoading(false);
+                toastAlert(`Dados inconsistentes!`, "erro");
             }
 
         } catch (error) {
-            toastAlert(`Dados da mesa inconsistentes!`, "erro");
-            setIsLoading(false);
+            toastAlert(`Dados inconsistentes!`, "erro");
         }
     }
 
@@ -56,10 +47,8 @@ export function MesaProvider({ children }: MesaProviderProps) {
         setMesa({
             id: 0,
             numero: 0,
-            restaurante: {
-                id: "",
-                nome: "",
-            },
+            restauranteId: 0,
+            restauranteUuid: "",
             chamarGarcom: false,
             status: "",
         });
@@ -70,7 +59,7 @@ export function MesaProvider({ children }: MesaProviderProps) {
     }
 
     return (
-        <MesaContext.Provider value={{ mesa, isLoading, handleMesaLogin, handleMesaLogout, atualizarMesa }}>
+        <MesaContext.Provider value={{ mesa, handleMesaLogin, handleMesaLogout, atualizarMesa }}>
             { children }
         </MesaContext.Provider>
     );
