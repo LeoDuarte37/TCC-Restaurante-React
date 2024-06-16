@@ -208,7 +208,7 @@ function ListaCategoria() {
                 </div>
             ) : (
                 <>
-                    <ul className="flex flex-col gap-4 max-w-48 w-full p-4 h-4/5 overflow-auto">
+                    <ul className="flex flex-col gap-4 max-w-48 max-[1000px]:max-w-40 w-full p-4 h-4/5 overflow-auto">
                         {categorias.map((categoria) => (
                             <li key={categoria.id}>
                                 <div className="w-full">
@@ -216,14 +216,14 @@ function ListaCategoria() {
                                         <Disclosure as="div" className="" defaultOpen={true}>
                                             <DisclosureButton className="group flex w-full items-center gap-2 justify-between">
                                                 <div className="flex border border-[#3B1206] rounded-lg w-full">
-                                                    {login.perfil === "ADMIN" &&
+                                                    {(login.perfil === "ADMIN" || login.perfil === "ROOT") &&
                                                         <Pencil size={35}
                                                             color="#D42300"
                                                             className="self-center hover:text-[#b51f02]"
                                                             onClick={() => { modalCrudCardapio("Editar Categoria"); setCategoriaModal(categoria) }} />
                                                     }
                                                     <CardCategoria categoria={categoria} />
-                                                    {login.perfil === "ADMIN" && 
+                                                    {(login.perfil === "ADMIN" || login.perfil === "ROOT") && 
                                                         <Plus size={32} 
                                                         color="#D42300"
                                                         className="self-center hover:text-[#b51f02]"
@@ -239,7 +239,7 @@ function ListaCategoria() {
                                 </div>
                             </li>
                         ))}
-                        {login.perfil === "ADMIN" &&
+                        {(login.perfil === "ADMIN" || login.perfil === "ROOT") &&
                             <li key={"NovaCategoria"} onClick={() => modalCrudCardapio("Nova Categoria")} className="bg-[#D42300] hover:bg-[#b51f02] mb-4 text-white text-center font-semibold py-1 px-2 rounded h-8">
                                 Nova categoria
                             </li>

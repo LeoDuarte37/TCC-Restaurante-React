@@ -8,19 +8,13 @@ import ListaItemPedido from "../itemPedido/lista/ListaItemPedido";
 import Item from "../../../models/pedido/item/Item";
 
 function ListaPedido(props: { pedidos: Array<Pedido> }) {
-    const { usuario } = useContext(LoginContext);
+    const { login } = useContext(LoginContext);
 
     const [pedidos, setPedidos] = useState<Array<Pedido>>([
         {
             id: 1,
             mesa: {
-                id: 1,
                 numero: 4,
-                restaurante: {
-                    id: "1",
-                    nome: "Bar do Zé",
-                },
-                chamarGarcom: true,
             },
             item: [
                 {
@@ -48,13 +42,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
         {
             id: 2,
             mesa: {
-                id: 2,
                 numero: 2,
-                restaurante: {
-                    id: "1",
-                    nome: "Bar do Zé",
-                },
-                chamarGarcom: true,
             },
             item: [
                 {
@@ -117,7 +105,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
     addEventListener("resize", () => setLargura(window.innerWidth));
 
     function renderItens() {
-        if (usuario.perfil === "COZINHA" ) {
+        if (login.perfil === "COZINHA" ) {
             return (
                 <ul className="flex w-full h-full m-4 p-4 max-[690px]:p-2 border-2 border-[#3B1206] rounded-lg">
                     { pedidos.map((pedido: Pedido) => (
@@ -162,7 +150,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
     return (
 
         <>
-            {usuario.perfil === "COZINHA" 
+            {login.perfil === "COZINHA" 
                 ? <>
                     {isLoading ? <></> : renderItens()}
                 </>
@@ -183,10 +171,10 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                                 </th>
                                 <th scope="col" className="w-full h-full flex justify-center items-center p-0">
                                     <p>
-                                        { usuario.perfil === "GARCOM" ? "Hora" : "Data" }
+                                        { login.perfil === "GARCOM" ? "Hora" : "Data" }
                                     </p>
                                 </th>
-                                { usuario.perfil === "GARCOM" ? <></> :
+                                { login.perfil === "GARCOM" ? <></> :
                                     <>
                                         <th scope="col" className="w-full h-full flex justify-center items-center p-0">
                                             <p>
@@ -210,7 +198,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                         <tbody className="flex flex-col gap-6 overflow-auto w-full max-h-content h-[85%] mt-4">
                             {isLoading ? <></> : renderItens()}
                         </tbody>
-                        {(usuario.perfil === "CAIXA" || usuario.perfil === "GERENTE" || usuario.perfil === "ADMIN") &&
+                        {(login.perfil === "CAIXA" || login.perfil === "ADMIN"|| login.perfil === "ROOT") &&
                             <tfoot className="flex flex-1 items-center w-full max-h-[25%] h-12 py-4 border-t-2 border-[#F5EBDC]">
                                 <tr className="flex items-center justify-end px-6 w-full h-full font-bold text-[#3B1206] text-base max-[690px]:text-sm">
                                     <th scope="row" className="flex justify-center items-center text-base w-full">

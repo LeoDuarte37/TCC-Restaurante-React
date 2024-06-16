@@ -53,7 +53,7 @@ function CardProduto(props: { produto: Produto }) {
                     </p>
 
                     <div className="flex justify-end items-end h-8">
-                        {(login.perfil === "CAIXA" || login.perfil === "ADMIN")
+                        {(login.perfil === "CAIXA" || login.perfil === "ADMIN" || login.perfil === "ROOT")
                             ? <button onClick={() => setIsOpen(true)} className="bg-[#D42300] hover:bg-[#b51f02] text-white font-semibold py-1 px-2 rounded h-8">
                                 Editar produto
                             </button>

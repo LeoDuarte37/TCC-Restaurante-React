@@ -2,7 +2,7 @@ import { ReactNode, createContext, useState } from "react";
 import Mesa from "../models/mesa/Mesa";
 import toastAlert from "../utils/toastAlert";
 import LoginMesa from "../models/mesa/LoginMesa";
-import { loginMesa } from "../services/Service";
+import { mesaLogin } from "../services/Service";
 
 interface MesaContextProps {
     mesa: Mesa;
@@ -28,11 +28,11 @@ export function MesaProvider({ children }: MesaProviderProps) {
         status: "",
     });
 
-    async function handleMesaLogin(mesaLogin: LoginMesa) {
+    async function handleMesaLogin(loginMesa: LoginMesa) {
         try {
-            await loginMesa(mesaLogin, setMesa);
+            await mesaLogin(loginMesa, setMesa);
 
-            if (mesa.restauranteUuid === mesaLogin.uuid) {
+            if (mesa.restauranteUuid === loginMesa.uuid) {
                 toastAlert(`Mesa ${mesa.numero} acessada com sucesso!`, "sucesso");
             } else {
                 toastAlert(`Dados inconsistentes!`, "erro");

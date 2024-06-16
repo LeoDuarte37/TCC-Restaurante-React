@@ -8,7 +8,7 @@ import Pedido from "../../../../models/pedido/Pedido";
 
 function ListaItemPedido(props: { item: Array<Item>; pedido?: Pedido }) {
 
-    const { usuario } = useContext(LoginContext);
+    const { login } = useContext(LoginContext);
 
     const { getInfoConta } = usePedido();
 
@@ -55,7 +55,7 @@ function ListaItemPedido(props: { item: Array<Item>; pedido?: Pedido }) {
                             Qtd
                         </p>          
                     </th>
-                    { (usuario.perfil === "COZINHA" || usuario.perfil === "GARCOM") ? <></> : 
+                    { (login.perfil === "COZINHA" || login.perfil === "GARCOM") ? <></> : 
                         <th scope="col" className="w-full h-full flex justify-center items-center p-0">
                             <p>
                                 Valor uni.
@@ -74,7 +74,7 @@ function ListaItemPedido(props: { item: Array<Item>; pedido?: Pedido }) {
             </tbody>
             <tfoot className="bg-[#F8F8F8] border-t-2 border-[#F5EBDC] flex flex-1 items-center w-full max-h-full h-full pt-2 pb-4">
                 <tr className="flex items-center w-full h-full font-bold text-[#3B1206] text-base max-[690px]:text-sm">
-                    {(usuario.perfil === "COZINHA" || usuario.perfil === "GARCOM") 
+                    {(login.perfil === "COZINHA" || login.perfil === "GARCOM") 
                         ? <th scope="row" className="flex justify-center w-full">
                             <MudarStatusPedidoButton pedidoId={props.pedido?.id || 0} /> 
                         </th>
@@ -88,7 +88,7 @@ function ListaItemPedido(props: { item: Array<Item>; pedido?: Pedido }) {
                             <td className="flex justify-center items-center text-center w-full">
                                 R$ {total.toFixed(2)}
                             </td>
-                            { (usuario.perfil === "COZINHA" || usuario.perfil === "GARCOM") ? <></> : 
+                            { (login.perfil === "COZINHA" || login.perfil === "GARCOM") ? <></> : 
                                 <td className="w-full"></td>
                             }
                         </>

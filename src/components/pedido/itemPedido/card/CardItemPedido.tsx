@@ -6,12 +6,11 @@ import { CaretCircleDown } from "@phosphor-icons/react";
 
 function CardItemPedido(props: { item: Item }) {
 
-    const { usuario } = useContext(LoginContext);
+    const { login } = useContext(LoginContext);
 
     const [ isOpen, setIsOpen ] = useState<boolean>(false);
     const [ largura, setLargura ] = useState<number>(window.innerWidth);
 
-    const body = document.querySelector("body");
     addEventListener("resize", () => setLargura(window.innerWidth));
 
     return (
@@ -26,7 +25,7 @@ function CardItemPedido(props: { item: Item }) {
                     {props.item.quantidade}
                 </p>
             </td>
-            {(usuario.perfil === "COZINHA" || usuario.perfil === "GARCOM") ? <></> :
+            {(login.perfil === "COZINHA" || login.perfil === "GARCOM") ? <></> :
                 <td className="flex justify-center items-center w-full h-12 p-0 text-center max-[425px]:h-14">
                     <p>
                         R$ {props.item.produto.valor}
@@ -49,7 +48,7 @@ function CardItemPedido(props: { item: Item }) {
                             leaveTo="opacity-0 scale-95"
                             >
                             <MenuItems
-                                anchor={usuario.perfil === "GARCOM" ? "bottom end" : "bottom"}
+                                anchor={login.perfil === "GARCOM" ? "bottom end" : "bottom"}
                                 className="w-36 mt-2 origin-top-right rounded-xl bg-[#F8F8F8] border-2 border-[#3B1206] p-1 text-sm text-[#3B1206] [--anchor-gap:var(--spacing-1)] focus:outline-none"
                                 >
                                     <MenuItem>

@@ -10,7 +10,7 @@ import { MesaContext } from "../../contexts/MesaContext";
 import MenuHamburguer from "./buttons/MenuHamburguer";
 import CardapioButton from "./buttons/CardapioButton";
 import MesasButton from "./buttons/MesasButton";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function Navbar() {
 
@@ -45,17 +45,23 @@ function Navbar() {
                             </div>
                         }
 
-                        {(login.perfil === "CAIXA" || login.perfil === "ADMIN") &&
+                        {(login.perfil === "CAIXA" || login.perfil === "ADMIN" || login.perfil === "ROOT") &&
                             <div className="flex  items-center gap-4">
-                                <MeusPedidosButton />
+                                <Link to="/historico/pedidos">
+                                    <MeusPedidosButton />
+                                </Link>
 
                                 <div className="borda"></div>
 
-                                <CardapioButton class="cardapio" />
+                                <Link to="/cardapio">
+                                    <CardapioButton class="cardapio" />
+                                </Link>
 
                                 <div className="borda"></div>
 
-                                <MesasButton />
+                                <Link to="/mesas">
+                                    <MesasButton />
+                                </Link>
                             </div>
                         }
 

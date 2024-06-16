@@ -1,9 +1,10 @@
 import Item from "./item/Item";
-import Mesa from "../mesa/Mesa";
 
 export default interface Pedido {
     id: number;
-    mesa: Mesa;
+    mesa: {
+        numero: number;
+    };
     item: Array<Item>;
     data: string;
     status: string;

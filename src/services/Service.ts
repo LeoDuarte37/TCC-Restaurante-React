@@ -48,7 +48,7 @@ export const logar = async (dados: Logar, setDados: Function) => {
     setDados(resposta.data);
 }
 
-export const loginMesa = async (dados: LoginMesa, setDados: Function) => {
+export const mesaLogin = async (dados: LoginMesa, setDados: Function) => {
     const resposta = await api.post("/mesa/login", dados);
     setDados(resposta);
 }
