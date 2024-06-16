@@ -1,4 +1,3 @@
-import Subcategoria from "../subcategoria/Subcategoria";
 
 export default interface Produto {
     id: number;
@@ -7,5 +6,4 @@ export default interface Produto {
     foto: string;
     valor: number;
     disponivel: boolean;
-    subCategoria: Subcategoria;
 }

@@ -1,17 +1,15 @@
 import { ChangeEvent, useState } from "react";
-import Produto from "../../../../models/produto/Produto";
 import Subcategoria from "../../../../models/subcategoria/Subcategoria";
-
+import AddProduto from "../../../../models/produto/AddProduto";
 
 function FormProduto(props: { subcategoria: Subcategoria}) {
-    const [produto, setProduto] = useState<Produto>({
-        id: 0,
+    const [produto, setProduto] = useState<AddProduto>({
         nome: "",
         descricao: "",
         foto: "",
         valor: 0,
         disponivel: false,
-        subCategoria: props.subcategoria,
+        subCategoriaId: props.subcategoria.id,
     });
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {

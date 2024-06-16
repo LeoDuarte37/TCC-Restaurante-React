@@ -10,7 +10,7 @@ import FormEditProduto from "../forms/FormEditProduto";
 
 function CardProduto(props: { produto: Produto }) {
 
-    const { usuario } = useContext(LoginContext);
+    const { login } = useContext(LoginContext);
     const { addToPedido } = usePedido();
 
     function handleClickAddToPedido() {
@@ -23,7 +23,7 @@ function CardProduto(props: { produto: Produto }) {
             addToPedido(item);
             toastAlert("Item adicionado!", "sucesso");
         } catch (error) {
-            console.log(error);
+            toastAlert("Erro ao adicionar item. Por favor, tente novamente.", "erro");
         }
     }
 
@@ -53,7 +53,7 @@ function CardProduto(props: { produto: Produto }) {
                     </p>
 
                     <div className="flex justify-end items-end h-8">
-                        {(usuario.perfil === "CAIXA" || usuario.perfil === "ADMIN")
+                        {(login.perfil === "CAIXA" || login.perfil === "ADMIN")
                             ? <button onClick={() => setIsOpen(true)} className="bg-[#D42300] hover:bg-[#b51f02] text-white font-semibold py-1 px-2 rounded h-8">
                                 Editar produto
                             </button>

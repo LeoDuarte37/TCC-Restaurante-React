@@ -1,22 +1,24 @@
-import { ChangeEvent, useState } from "react";
-import Categoria from "../../../../models/categoria/Categoria";
+import { ChangeEvent, useContext, useState } from "react";
+import AddCategoria from "../../../../models/categoria/AddCategoria";
+import { LoginContext } from "../../../../contexts/LoginContext";
 
 function FormCategoria() {
 
-    const [categoria, setCategoria] = useState<Categoria>({
-        id: 0,
+    const {login} = useContext(LoginContext);
+
+    const [addCategoria, setAddCategoria] = useState<AddCategoria>({
         nome: "",
         disponivel: false,
-        subCategoria: [],
-    })
+        restauranteId: login.restauranteId
+    });
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
-        setCategoria({
-            ...categoria,
+        setAddCategoria({
+            ...addCategoria,
             [name]: value,
         })
     }

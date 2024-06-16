@@ -1,15 +1,13 @@
 import { useState, ChangeEvent } from "react";
-import Subcategoria from "../../../../models/subcategoria/Subcategoria";
 import Categoria from "../../../../models/categoria/Categoria";
+import AddSubcategoria from "../../../../models/subcategoria/AddSubcategoria";
 
 function FormSubcategoria(props: {categoria: Categoria}) {
 
-    const [categoria, setCategoria] = useState<Subcategoria>({
-        id: 0,
+    const [subcategoria, setSubcategoria] = useState<AddSubcategoria>({
         nome: "",
         disponivel: false,
-        produto: [],
-        categoria: props.categoria,
+        categoriaId: props.categoria.id,
     })
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
@@ -17,8 +15,8 @@ function FormSubcategoria(props: {categoria: Categoria}) {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
-        setCategoria({
-            ...categoria,
+        setSubcategoria({
+            ...subcategoria,
             [name]: value,
         })
     }
@@ -27,7 +25,7 @@ function FormSubcategoria(props: {categoria: Categoria}) {
         <form action="" className="p-4 flex flex-col gap-4 text-[#3B1206] text-lg font-bold">
             <fieldset>    
                 <label htmlFor="nome">
-                    Nome da categoria:
+                    Nome da subcategoria:
                 </label>
                 <input 
                     type="text"

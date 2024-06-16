@@ -3,15 +3,15 @@ import Subcategoria from "../../../../models/subcategoria/Subcategoria";
 
 function FormEditSubcategoria(props: {subcategoriaModal: Subcategoria}) {
 
-    const [categoria, setCategoria] = useState<Subcategoria>(props.subcategoriaModal);
+    const [subcategoria, setSubcategoria] = useState<Subcategoria>(props.subcategoriaModal);
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
-        setCategoria({
-            ...categoria,
+        setSubcategoria({
+            ...subcategoria,
             [name]: value,
         });
 	}
@@ -22,7 +22,7 @@ function FormEditSubcategoria(props: {subcategoriaModal: Subcategoria}) {
                 <label htmlFor="nome">
                     Nome da subcategoria:
                 </label>
-                <input value={categoria.nome}
+                <input value={subcategoria.nome}
                     type="text"
                     name="nome"
 					onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
@@ -31,7 +31,7 @@ function FormEditSubcategoria(props: {subcategoriaModal: Subcategoria}) {
 
             <fieldset>
                 <label htmlFor="disponivel">Disponivel:</label>
-                <input checked={categoria.disponivel}
+                <input checked={subcategoria.disponivel}
                     type="checkbox" 
                     name="disponivel"
                     onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)} 

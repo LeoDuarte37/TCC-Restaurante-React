@@ -29,6 +29,7 @@ function ListaCategoria() {
                 {
                     id: 1,
                     nome: "Pratos especiais",
+                    disponivel: true,
                     produto: [
                         {
                             id: 1,
@@ -63,11 +64,11 @@ function ListaCategoria() {
                             disponivel: true
                         },
                     ],
-                    disponivel: true,
                 },
                 {
                     id: 2,
                     nome: "Lanches",
+                    disponivel: true,
                     produto: [
                         {
                             id: 5,
@@ -86,7 +87,6 @@ function ListaCategoria() {
                             disponivel: true
                         },
                     ],
-                    disponivel: true,
                 },
             ],
             disponivel: true,
