@@ -18,7 +18,7 @@ function FormEditCategoria(props: { categoriaModal: Categoria }) {
     }
 
     return (
-        <form className="h-full px-4 pt-4 flex flex-col text-[#3B1206] text-lg font-bold">
+        <form className="h-full p-4 flex flex-col text-[#3B1206] text-lg font-bold">
             <div className="flex flex-col gap-3">
                 <fieldset>
                     <label htmlFor="nome">

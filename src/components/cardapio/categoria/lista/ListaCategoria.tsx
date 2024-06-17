@@ -268,7 +268,7 @@ function ListaCategoria() {
                                 >
                                     <DialogPanel className="flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-xl p-10 max-[440px]:p-2">
 
-                                        <div className="flex h-full w-full ">
+                                        <div className="flex h-full w-full">
                                             <div className="flex justify-center items-center max-h-[20rem] modalItemPedido rounded-xl max-[440px]:p-2">
                                                 <div className="flex w-full h-8 my-2">
                                                     <h1 className="text-[#D42300] ml-6 text-center w-full subCategoriaTitle text-2xl font-bold">

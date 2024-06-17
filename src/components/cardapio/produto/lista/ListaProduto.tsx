@@ -62,15 +62,15 @@ function ListaProduto(props: { subcategoria: Subcategoria }) {
                                     ? "flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-xl p-10 max-[440px]:p-2" 
                                     : "flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-[60%] p-10 max-[440px]:p-2"}>
 
-                                <div className={tituloModal === "Editar Subcategoria" ? "container h-10 w-full flex justify-center items-center" : "container h-full w-full flex justify-center items-center"}>
-                                    <div className={tituloModal === "Editar Subcategoria" ? "modalItemPedido h-80 rounded-xl max-[440px]:p-2" : "modalItemPedido rounded-xl max-[440px]:p-2"}>
-                                        <div className="flex justify-between my-2">
+                                <div className={tituloModal === "Editar Subcategoria" ? "flex h-full w-full" : "container h-full w-full flex justify-center items-center"}>
+                                    <div className={tituloModal === "Editar Subcategoria" ? "flex justify-center items-center max-h-[20rem] modalItemPedido rounded-xl max-[440px]:p-2" : "modalItemPedido rounded-xl max-[440px]:p-2"}>
+                                        <div className="flex justify-between w-full my-2">
                                             <h1 className="text-[#D42300] ml-6 text-center w-full subCategoriaTitle text-2xl font-bold">
                                                 {tituloModal} 
                                             </h1>
                                             <X size={32} color="#3B1206" onClick={() => setIsOpen(false)} />
                                         </div>
-                                        <div className="div rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
+                                        <div className="rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
                                             {tituloModal === "Editar Subcategoria" ? <FormEditSubcategoria subcategoriaModal={props.subcategoria} />
                                                 : <FormProduto subcategoria={props.subcategoria}/>
                                             }
