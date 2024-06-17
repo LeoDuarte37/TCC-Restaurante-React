@@ -12,6 +12,8 @@ import FormCategoria from "../forms/FormCategoria";
 import FormEditCategoria from "../forms/FormEditCategoria";
 import { Pencil, Plus, X } from "@phosphor-icons/react";
 import FormSubcategoria from "./../../subcategoria/forms/FormSubcategoria";
+import ModalEditCategoria from "../modal/ModalEditCategoria";
+import ModalAddSubcategoria from "../../subcategoria/modal/ModalAddSubcategoria";
 
 function ListaCategoria() {
 
@@ -155,14 +157,7 @@ function ListaCategoria() {
         setSubCategoriaAtual(subCategoria);
     }
 
-    const [categoriaModal, setCategoriaModal] = useState<Categoria>({} as Categoria);
-    const [tituloModal, setTituloModal] = useState<string>("");
     const [isOpen, setIsOpen] = useState<boolean>(false);
-
-    function modalCrudCardapio(f: string) {
-        setTituloModal(f);
-        setIsOpen(true);
-    }
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -192,19 +187,13 @@ function ListaCategoria() {
                                             <DisclosureButton className="group flex w-full items-center gap-2 justify-between">
                                                 <div className="flex border border-[#3B1206] rounded-lg w-full">
                                                     {(login.perfil === "ADMIN" || login.perfil === "ROOT") &&
-                                                        <Pencil size={35}
-                                                            color="#D42300"
-                                                            className="self-center hover:text-[#b51f02]"
-                                                            onClick={() => { modalCrudCardapio("Editar Categoria"); setCategoriaModal(categoria) }} />
+                                                        <ModalEditCategoria categoria={categoria}/>
                                                     }
 
                                                     <CardCategoria categoria={categoria} />
 
                                                     {(login.perfil === "ADMIN" || login.perfil === "ROOT") && 
-                                                        <Plus size={32} 
-                                                        color="#D42300"
-                                                        className="self-center hover:text-[#b51f02]"
-                                                        onClick={() => { modalCrudCardapio("Nova Subcategoria")}}/>
+                                                        <ModalAddSubcategoria categoria={categoria}/>
                                                     }   
                                                 </div>
                                             </DisclosureButton>
@@ -217,7 +206,7 @@ function ListaCategoria() {
                             </li>
                         ))}
                         {(login.perfil === "ADMIN" || login.perfil === "ROOT") &&
-                            <li key={"NovaCategoria"} onClick={() => modalCrudCardapio("Nova Categoria")} className="bg-[#D42300] hover:bg-[#b51f02] mb-4 text-white text-center font-semibold py-1 px-2 rounded h-8">
+                            <li key={"NovaCategoria"} onClick={() => setIsOpen(true)} className="bg-[#D42300] hover:bg-[#b51f02] mb-4 text-white text-center font-semibold py-1 px-2 rounded h-8">
                                 Nova categoria
                             </li>
                         }
@@ -248,16 +237,12 @@ function ListaCategoria() {
                                             <div className="flex justify-center items-center max-h-[20rem] modalItemPedido rounded-xl max-[440px]:p-2">
                                                 <div className="flex w-full h-8 my-2">
                                                     <h1 className="text-[#D42300] ml-6 text-center w-full subCategoriaTitle text-2xl font-bold">
-                                                        { tituloModal } 
+                                                        Nova Categoria 
                                                     </h1>
                                                     <X size={32} color="#3B1206" className="" onClick={() => setIsOpen(false)} />
                                                 </div>
                                                 <div className="w-full max-w-full flex-1 flex-col justify-center rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl">
-                                                    { tituloModal == "Nova Categoria" ? <FormCategoria />
-                                                        : <> { tituloModal == "Editar Categoria" ? <FormEditCategoria categoriaModal={categoriaModal} />
-                                                            : <FormSubcategoria categoria={categoriaModal}/>
-                                                        }</>
-                                                    }
+                                                    <FormCategoria />
                                                 </div>
                                             </div>
                                         </div>

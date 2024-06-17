@@ -108,7 +108,7 @@ function FormProduto(props: { subcategoria: Subcategoria }) {
 
             <div className="h-full w-full flex justify-center">
                 <button className="button h-14 w-full text-center flex items-center justify-center self-center mt-3">
-                    Adicionar
+                    Adicionar Produto
                 </button>
             </div>
         </form>

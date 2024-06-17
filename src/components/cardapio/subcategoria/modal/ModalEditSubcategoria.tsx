@@ -1,18 +1,19 @@
 import { Transition, Dialog, TransitionChild, DialogPanel } from "@headlessui/react";
 import { X } from "@phosphor-icons/react";
 import { useState } from "react";
-import FormEditProduto from "../forms/FormEditProduto";
-import Produto from "../../../../models/produto/Produto";
-import ModalDeleteProduto from "./ModalDeleteProduto";
+import Subcategoria from "../../../../models/subcategoria/Subcategoria";
+import FormEditSubcategoria from "../forms/FormEditSubcategoria";
+import ModalDeleteSubcategoria from "./ModalDeleteSubcategoria";
 
-export default function ModalEditProduto(props: { produto: Produto }) {
+
+export default function ModalEditSubcategoria(props: { subcategoria: Subcategoria}) {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     return (
         <>
-            <button onClick={() => setIsOpen(true)} className="bg-[#D42300] hover:bg-[#b51f02] text-white font-semibold py-1 px-2 rounded h-8">
-                Editar Produto
+            <button onClick={() => setIsOpen(true)} className="bg-[#D42300] hover:bg-[#b51f02] mb-3 text-white font-semibold py-1 px-2 rounded h-8">
+                Editar Subcategoria
             </button>
 
             <Transition appear show={isOpen} >
@@ -28,24 +29,24 @@ export default function ModalEditProduto(props: { produto: Produto }) {
                             leaveFrom="opacity-100 transform-[scale(100%)]"
                             leaveTo="opacity-0 transform-[scale(95%)]"
                         >
-                            <DialogPanel className="flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-[60%] p-10 max-[440px]:p-2">
-                                <div className="container rounded-xl h-full w-full flex justify-center items-center">
-                                    <div className="modalItemPedido rounded-xl max-[440px]:p-2">
-                                        <div className="flex justify-between my-2">
-                                            <div className="w-full">
-                                                <ModalDeleteProduto produto={props.produto} setOpen={setIsOpen}/>
+                            <DialogPanel className="flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-2xl p-10 max-[440px]:p-2 overflow-hidden">
+                                <div className="flex h-full w-full">
+                                    <div className="flex justify-center items-center h-full w-full max-h-[20rem] modalItemPedido rounded-xl max-[440px]:p-2">
+                                        <div className="flex justify-between my-2 w-full">
+                                            <div className="w-[18%]">
+                                                <ModalDeleteSubcategoria subcategoria={props.subcategoria} setOpen={setIsOpen}/>
                                             </div>
 
-                                            <h1 className="text-[#D42300] ml-6 text-center w-full subCategoriaTitle text-2xl font-bold">
-                                                Editar Produto
+                                            <h1 className="text-[#D42300] text-center w-full subCategoriaTitle text-2xl font-bold">
+                                                Editar Subcategoria
                                             </h1>
                                             
-                                            <div className="w-full flex justify-end">
+                                            <div className="w-[25%] flex justify-end">
                                                 <X size={32} color="#3B1206" onClick={() => setIsOpen(false)} />
                                             </div>
                                         </div>
                                         <div className="rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
-                                            <FormEditProduto produto={props.produto} setOpen={setIsOpen} />
+                                            <FormEditSubcategoria subcategoria={props.subcategoria} setOpen={setIsOpen} />
                                         </div>
                                     </div>
                                 </div>

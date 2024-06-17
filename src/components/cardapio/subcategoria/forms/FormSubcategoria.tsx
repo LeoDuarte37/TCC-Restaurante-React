@@ -67,7 +67,7 @@ function FormSubcategoria(props: { categoria: Categoria }) {
 
             <div className="h-full w-full flex justify-center">
                 <button className="button h-14 w-full text-center flex items-center justify-center self-center mt-3">
-                    Adicionar
+                    Adicionar Subcategoria
                 </button>
             </div>
         </form>
