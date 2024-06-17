@@ -1,10 +1,14 @@
 import { ChangeEvent, useContext, useState } from "react";
 import AddCategoria from "../../../../models/categoria/AddCategoria";
 import { LoginContext } from "../../../../contexts/LoginContext";
+import { adicionar } from "../../../../services/Service";
+import { useNavigate } from "react-router-dom";
 
 function FormCategoria() {
 
     const { login } = useContext(LoginContext);
+
+    const navigate = useNavigate();
 
     const [addCategoria, setAddCategoria] = useState<AddCategoria>({
         nome: "",
@@ -20,11 +24,19 @@ function FormCategoria() {
         setAddCategoria({
             ...addCategoria,
             [name]: value,
-        })
+        });
     }
 
     async function submit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
+
+        await adicionar(`/categoria`, addCategoria, {
+            headers: {
+                Authorization: login.token,
+            },
+        });
+        
+        navigate("/cardapio");
     }
 
     return (

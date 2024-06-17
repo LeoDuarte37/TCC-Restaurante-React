@@ -9,6 +9,10 @@ import AddSubcategoria from "../models/subcategoria/AddSubcategoria";
 import AddPedido from "../models/pedido/AddPedido";
 import Status from "../models/Status";
 import ListarPedidosPorMesaAndStatus from "../models/pedido/ListarPedidosPorMesaAndStatus";
+import Categoria from "../models/categoria/Categoria";
+import Mesa from "../models/mesa/Mesa";
+import Produto from "../models/produto/Produto";
+import Subcategoria from "../models/subcategoria/Subcategoria";
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL
@@ -26,8 +30,8 @@ export const mesaLogin = async (dados: LoginMesa, setDados: Function) => {
 }
 
 // Mesa
-export const buscarMesas = async (url: string, setDados: Function, header: Object) => {
-    const resposta = await api.get(url, header);
+export const buscarMesas = async (url: string, setDados: Function, headers: Object) => {
+    const resposta = await api.get(url, headers);
     setDados(resposta);
 }
 
@@ -43,13 +47,13 @@ export const buscarCardapio = async (url: string, setDados: Function) => {
 }
 
 // Pedido 
-export const buscarPedidosPorStatusOuMesa = async (url: string, setDados: Function, config: Object) => {
-    const resposta = await api.get(url, config);
+export const buscarPedidosPorStatusOuMesa = async (url: string, setDados: Function, headers: Object) => {
+    const resposta = await api.get(url, headers);
     setDados(resposta.data);
 }
 
-export const buscarPedidosPorRestaurante = async (url: string, setDados: Function, header: Object) => {
-    const resposta = await api.get(url, header);
+export const buscarPedidosPorRestaurante = async (url: string, setDados: Function, headers: Object) => {
+    const resposta = await api.get(url, headers);
     setDados(resposta.data);
 }
 
@@ -60,10 +64,15 @@ export const enviarPedido = async (dados: AddPedido) => {
     }
 }
 
-// Adicionar ao restaurante
-export const adicionar = async (url: string, dados: (AddMesa | AddCategoria | AddSubcategoria | AddProduto), header: Object, setDados: Function) => {
-    const resposta = await api.post(url, dados, header);
-    setDados(resposta.data);
+// Adicionar
+export const adicionar = async (url: string, dados: (AddMesa | AddCategoria | AddSubcategoria | AddProduto), headers: Object) => {
+    const resposta = await api.post(url, dados, headers);
+}
+
+// Editar
+export const editar = async (url: string, dados: (Mesa | Categoria | Subcategoria | Produto), setDados: Function, headers: Object) => {
+    const resposta = await api.put(url, dados, headers);
+    setDados(resposta);
 }
 
 export default api;

@@ -84,7 +84,7 @@ body {
     box-shadow: #6d1200 0px 10px 0px 0px;
     color: hsl(0, 0%, 100%);
     cursor: pointer;
-    margin: 0 1rem;
+    margin: 0 2px;
     font-weight: bold;
     max-width: 23rem;
     width: 100%;
@@ -109,25 +109,21 @@ body {
     letter-spacing: 1.5px;
     font-size: 16px;
     transition: all 0.3s ease;
-    box-shadow: #3B1206 0px 10px 0px 0px;
     color: #3B1206;
     cursor: pointer;
     margin: 0 1rem;
     font-weight: bold;
-    max-width: 23rem;
+    max-width: 1rem;
     width: 100%;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .buttonExcluir:hover {
-    box-shadow: #3B1206 0px 7px 0px 0px;
-}
-
-.buttonExcluir:active {
     background-color: #3B1206;
-    box-shadow: #3b1408 0px 0px 0px 0px;
     color: #F8F8F8;
-    transform: translateY(5px);
-    transition: 200ms;
 }
 
 /* Visualização de mesas */

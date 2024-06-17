@@ -1,10 +1,17 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useContext } from "react";
 import Categoria from "../../../../models/categoria/Categoria";
 import AddSubcategoria from "../../../../models/subcategoria/AddSubcategoria";
+import { adicionar } from "../../../../services/Service";
+import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../../../../contexts/LoginContext";
 
 function FormSubcategoria(props: { categoria: Categoria }) {
 
-    const [subcategoria, setSubcategoria] = useState<AddSubcategoria>({
+    const navigate = useNavigate();
+    
+    const { login } = useContext(LoginContext);
+
+    const [addSubcategoria, setAddSubcategoria] = useState<AddSubcategoria>({
         nome: "",
         disponivel: false,
         categoriaId: props.categoria.id,
@@ -15,14 +22,26 @@ function FormSubcategoria(props: { categoria: Categoria }) {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
-        setSubcategoria({
-            ...subcategoria,
+        setAddSubcategoria({
+            ...addSubcategoria,
             [name]: value,
         })
     }
 
+    async function submit(e: ChangeEvent<HTMLFormElement>) {
+        e.preventDefault();
+
+        await adicionar(`/categoria`, addSubcategoria, {
+            headers: {
+                Authorization: login.token,
+            },
+        });
+        
+        navigate("/subcategoria");
+    }
+
     return (
-        <form className="h-full p-4 flex flex-col justify-between text-[#3B1206] text-lg font-bold">
+        <form onSubmit={submit} className="h-full p-4 flex flex-col justify-between text-[#3B1206] text-lg font-bold">
             <div className="flex flex-col gap-3">
                 <fieldset>
                     <label htmlFor="nome">

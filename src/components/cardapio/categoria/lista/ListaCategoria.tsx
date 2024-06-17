@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import Categoria from "../../../../models/categoria/Categoria";
 import { TailSpin } from 'react-loader-spinner';
 import CardCategoria from "../card/CardCategoria";
@@ -8,12 +8,9 @@ import { Dialog, DialogPanel, Disclosure, DisclosureButton, DisclosurePanel, Tra
 import { LoginContext } from "../../../../contexts/LoginContext";
 import ListaSubcategoria from "../../subcategoria/lista/ListaSubcategoria";
 import ListaProduto from "../../produto/lista/ListaProduto";
-import ModalCrudCardapio from "../../modal/ModalCrudCardapio";
 import FormCategoria from "../forms/FormCategoria";
 import FormEditCategoria from "../forms/FormEditCategoria";
 import { Pencil, Plus, X } from "@phosphor-icons/react";
-import FormEditSubcategoria from "../../subcategoria/forms/FormEditSubcategoria";
-import FormEditProduto from "../../produto/forms/FormEditProduto";
 import FormSubcategoria from "./../../subcategoria/forms/FormSubcategoria";
 
 function ListaCategoria() {
@@ -167,28 +164,7 @@ function ListaCategoria() {
         setIsOpen(true);
     }
 
-
-    // const { usuario, handleLogout } = useContext(LoginContext);
-
     const [isLoading, setIsLoading] = useState<boolean>(false);
-
-    // const [isDeletar, setIsDeletar] = useState<boolean>(false);
-
-    // async function buscarCategorias() {
-    //     try {
-    //         setCarregando(true);
-    //         await buscarCardapio("/categoria/listar", setCategorias);
-    //         setCarregando(false);
-    //     } catch (error: any) {
-    //         if (error.toString().includes("403")) {
-    //             toastAlert("Token expirou, favor logar novamente.", "erro");
-    //         }
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     buscarCategorias();
-    // }, [categorias.length]);
 
     return (
         <>

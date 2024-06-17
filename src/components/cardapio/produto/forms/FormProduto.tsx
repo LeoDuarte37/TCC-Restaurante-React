@@ -1,9 +1,17 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import Subcategoria from "../../../../models/subcategoria/Subcategoria";
 import AddProduto from "../../../../models/produto/AddProduto";
+import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../../../../contexts/LoginContext";
+import { adicionar } from "../../../../services/Service";
 
 function FormProduto(props: { subcategoria: Subcategoria }) {
-    const [produto, setProduto] = useState<AddProduto>({
+
+    const navigate = useNavigate();
+    
+    const { login } = useContext(LoginContext);
+
+    const [addProduto, setAddProduto] = useState<AddProduto>({
         nome: "",
         descricao: "",
         foto: "",
@@ -17,21 +25,29 @@ function FormProduto(props: { subcategoria: Subcategoria }) {
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
 
-        setProduto({
-            ...produto,
+        setAddProduto({
+            ...addProduto,
             [name]: value,
         });
     }
 
     function atualizarDescricao(e: ChangeEvent<HTMLTextAreaElement>) {
-        setProduto({
-            ...produto,
+        setAddProduto({
+            ...addProduto,
             [e.target.name]: e.target.value,
         });
     }
 
     async function submit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
+        
+        await adicionar(`/produto`, addProduto, {
+            headers: {
+                Authorization: login.token,
+            },
+        });
+        
+        navigate("/produto");
     }
 
     return (

@@ -64,7 +64,7 @@ function ListaMesa() {
 
 
     return (
-        <ul className="flex w-full h-full m-4">
+        <ul className="flex w-full h-full m-4 p-4 max-[690px]:p-2 border-2 border-[#3B1206] rounded-lg">
             { renderMesas() }
         </ul>
     );

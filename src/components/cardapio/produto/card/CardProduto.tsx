@@ -1,12 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import usePedido from "../../../../hooks/usePedido";
 import Item from "../../../../models/pedido/item/Item";
 import Produto from "../../../../models/produto/Produto";
 import toastAlert from "../../../../utils/toastAlert";
 import { LoginContext } from "../../../../contexts/LoginContext";
-import { Transition, Dialog, TransitionChild, DialogPanel } from "@headlessui/react";
-import { X } from "@phosphor-icons/react";
-import FormEditProduto from "../forms/FormEditProduto";
+import ModalEditProduto from "../modal/ModalEditProduto";
 
 function CardProduto(props: { produto: Produto }) {
 
@@ -27,13 +25,11 @@ function CardProduto(props: { produto: Produto }) {
         }
     }
 
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-
     return (
         <>
             <div className="relative flex flex-row bg-clip-border rounded-xl bg-[#F8F8F8] border-2 border-[#F5EBDC] shadow-inner w-full h-36">
                 <div
-                    className="relative max-w-40 m-0 overflow-hidden bg-white rounded-r-none bg-clip-border rounded-xl shrink-0">
+                    className="relative max-w-40 m-0 overflow-hidden bg-transparent rounded-r-none bg-clip-border rounded-xl shrink-0">
                     <img
                         src={props.produto.foto}
                         alt="card-image" className="object-cover w-full h-full" />
@@ -54,9 +50,7 @@ function CardProduto(props: { produto: Produto }) {
 
                     <div className="flex justify-end items-end gap-2 h-8">
                         {(login.perfil === "CAIXA" || login.perfil === "ADMIN" || login.perfil === "ROOT")
-                            ? <button onClick={() => setIsOpen(true)} className="bg-[#D42300] hover:bg-[#b51f02] text-white font-semibold py-1 px-2 rounded h-8">
-                                Editar produto
-                            </button>
+                            ? <ModalEditProduto produto={props.produto} />
 
                             : <button onClick={handleClickAddToPedido} className="bg-[#D42300] hover:bg-[#b51f02] text-white font-semibold py-1 px-2 rounded h-8">
                                 Adicionar
@@ -65,40 +59,6 @@ function CardProduto(props: { produto: Produto }) {
                     </div>
                 </div>
             </div>
-
-            <Transition appear show={isOpen} >
-                <Dialog as="div" className="absolute inset-0 z-10 p-10 w-screen focus:outline-none"
-                    onClose={() => setIsOpen(false)}>
-
-                    <div className="flex min-h-full w-full items-center justify-center">
-                        <TransitionChild
-                            enter="ease-out duration-200"
-                            enterFrom="opacity-0 transform-[scale(95%)]"
-                            enterTo="opacity-100 transform-[scale(100%)]"
-                            leave="ease-in duration-200"
-                            leaveFrom="opacity-100 transform-[scale(100%)]"
-                            leaveTo="opacity-0 transform-[scale(95%)]"
-                        >
-                            <DialogPanel className="flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-[60%] p-10 max-[440px]:p-2">
-
-                                <div className="container rounded-xl h-full w-full flex justify-center items-center">
-                                    <div className="modalItemPedido rounded-xl max-[440px]:p-2">
-                                        <div className="flex justify-between my-2">
-                                            <h1 className="text-[#D42300] ml-6 text-center w-full subCategoriaTitle text-2xl font-bold">
-                                                Editar Produto
-                                            </h1>
-                                            <X size={32} color="#3B1206" onClick={() => setIsOpen(false)} />
-                                        </div>
-                                        <div className="rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
-                                            <FormEditProduto produto={props.produto} /> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </DialogPanel>
-                        </TransitionChild>
-                    </div>
-                </Dialog>
-            </Transition>
         </>
     )
 }

@@ -47,7 +47,7 @@ function FormEditSubcategoria(props: { subcategoriaModal: Subcategoria }) {
                     </fieldset>
                 </div>
 
-                <div className="h-full w-full flex justify-center">
+                <div className="h-full w-full flex justify-center gap-3">
                     <button onClick={() => setIsOpen(true)} className="button p-0 h-14 w-full text-center flex items-center justify-center self-center mt-3">
                         Excluir
                     </button>
