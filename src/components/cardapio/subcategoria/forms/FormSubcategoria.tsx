@@ -31,6 +31,7 @@ function FormSubcategoria(props: { categoria: Categoria }) {
                     <input
                         type="text"
                         name="nome"
+                        required
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         className='mt-3 block w-full rounded-lg border-2 border-[#D42300] bg-[#f8f8f8] py-1.5 px-3 text-sm/6 text-gray focus:outline-none focus:outline-1 focus:ring-[#D42300] focus:-outline-offset-0 focus:outline-' />
                 </fieldset>
@@ -39,6 +40,7 @@ function FormSubcategoria(props: { categoria: Categoria }) {
                     <input
                         type="checkbox"
                         name="disponivel"
+                        required
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         className="size-6 ml-2 rounded-lg border-2  border-[#D42300] checked:outline-[#D42300] focus:outline-[#D42300] checked:bg-[#D42300]" />
                 </fieldset>
@@ -46,7 +48,7 @@ function FormSubcategoria(props: { categoria: Categoria }) {
 
             <div className="h-full w-full flex justify-center">
                 <button className="button h-14 w-full text-center flex items-center justify-center self-center mt-3">
-                    Adicionar Subcategoria
+                    Adicionar
                 </button>
             </div>
         </form>

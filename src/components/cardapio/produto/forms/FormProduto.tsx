@@ -30,8 +30,12 @@ function FormProduto(props: { subcategoria: Subcategoria }) {
         });
     }
 
+    async function submit(e: ChangeEvent<HTMLFormElement>) {
+        e.preventDefault();
+    }
+
     return (
-        <form className="h-full p-4 flex flex-col text-[#3B1206] text-lg font-bold">
+        <form onSubmit={submit} className="h-full p-4 flex flex-col text-[#3B1206] text-lg font-bold">
             <div className="flex flex-col gap-3">
                 <fieldset className="flex gap-3 h-full">
                     <div className="w-full">
@@ -41,6 +45,7 @@ function FormProduto(props: { subcategoria: Subcategoria }) {
                         <input
                             type="text"
                             name="nome"
+                            required
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                             className='block h-full max-h-10 w-full rounded-lg border-2 border-[#D42300] bg-[#f8f8f8] py-1.5 px-3 text-sm/6 text-gray focus:outline-none focus:outline-1 focus:ring-[#D42300] focus:-outline-offset-0 focus:outline-' />
                     </div>
@@ -49,6 +54,7 @@ function FormProduto(props: { subcategoria: Subcategoria }) {
                         <input
                             type="number"
                             name="valor"
+                            required
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                             className="block h-full max-h-10 w-full rounded-lg border-2  border-[#D42300] checked:outline-[#D42300] focus:outline-[#D42300] checked:bg-[#D42300]" />
                     </div>
@@ -58,6 +64,7 @@ function FormProduto(props: { subcategoria: Subcategoria }) {
                     <label htmlFor="descricao">Descrição:</label>
                     <textarea
                         name="descricao"
+                        required
                         onChange={(e: ChangeEvent<HTMLTextAreaElement>) => atualizarDescricao(e)}
                         className="block w-full h-16 max-h-16 rounded-lg border-2 border-[#D42300]" />
                 </fieldset>
@@ -67,6 +74,7 @@ function FormProduto(props: { subcategoria: Subcategoria }) {
                     <input
                         type="text"
                         name="foto"
+                        required
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         className="block w-full rounded-lg border-2  border-[#D42300] checked:outline-[#D42300] focus:outline-[#D42300] checked:bg-[#D42300]" />
                 </fieldset>
@@ -76,6 +84,7 @@ function FormProduto(props: { subcategoria: Subcategoria }) {
                     <input
                         type="checkbox"
                         name="disponivel"
+                        required
                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                         className="size-6 ml-2 rounded-lg border-2  border-[#D42300] checked:outline-[#D42300] focus:outline-[#D42300] checked:bg-[#D42300]" />
                 </fieldset>
@@ -83,7 +92,7 @@ function FormProduto(props: { subcategoria: Subcategoria }) {
 
             <div className="h-full w-full flex justify-center">
                 <button className="button h-14 w-full text-center flex items-center justify-center self-center mt-3">
-                    Adicionar Produto
+                    Adicionar
                 </button>
             </div>
         </form>

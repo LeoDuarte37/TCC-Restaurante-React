@@ -52,7 +52,7 @@ function CardProduto(props: { produto: Produto }) {
                         {props.produto.descricao}
                     </p>
 
-                    <div className="flex justify-end items-end h-8">
+                    <div className="flex justify-end items-end gap-2 h-8">
                         {(login.perfil === "CAIXA" || login.perfil === "ADMIN" || login.perfil === "ROOT")
                             ? <button onClick={() => setIsOpen(true)} className="bg-[#D42300] hover:bg-[#b51f02] text-white font-semibold py-1 px-2 rounded h-8">
                                 Editar produto
@@ -81,16 +81,16 @@ function CardProduto(props: { produto: Produto }) {
                         >
                             <DialogPanel className="flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-[60%] p-10 max-[440px]:p-2">
 
-                                <div className="container h-full w-full flex justify-center items-center">
+                                <div className="container rounded-xl h-full w-full flex justify-center items-center">
                                     <div className="modalItemPedido rounded-xl max-[440px]:p-2">
                                         <div className="flex justify-between my-2">
                                             <h1 className="text-[#D42300] ml-6 text-center w-full subCategoriaTitle text-2xl font-bold">
-                                                Editar Produto 
+                                                Editar Produto
                                             </h1>
                                             <X size={32} color="#3B1206" onClick={() => setIsOpen(false)} />
                                         </div>
                                         <div className="rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
-                                            {<FormEditProduto produto={props.produto} />}
+                                            <FormEditProduto produto={props.produto} /> 
                                         </div>
                                     </div>
                                 </div>

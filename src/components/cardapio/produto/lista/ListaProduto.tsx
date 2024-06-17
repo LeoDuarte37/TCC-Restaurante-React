@@ -59,11 +59,17 @@ function ListaProduto(props: { subcategoria: Subcategoria }) {
                             leaveTo="opacity-0 transform-[scale(95%)]"
                         >
                             <DialogPanel className={tituloModal === "Editar Subcategoria" 
-                                    ? "flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-xl p-10 max-[440px]:p-2" 
-                                    : "flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-[60%] p-10 max-[440px]:p-2"}>
+                                    ? "flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-xl p-10 max-[440px]:p-2 overflow-hidden" 
+                                    : "flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-[60%] p-10 max-[440px]:p-2 overflow-hidden"}>
 
-                                <div className={tituloModal === "Editar Subcategoria" ? "flex h-full w-full" : "container h-full w-full flex justify-center items-center"}>
-                                    <div className={tituloModal === "Editar Subcategoria" ? "flex justify-center items-center max-h-[20rem] modalItemPedido rounded-xl max-[440px]:p-2" : "modalItemPedido rounded-xl max-[440px]:p-2"}>
+                                <div className={tituloModal === "Editar Subcategoria" 
+                                    ? "flex h-full w-full" 
+                                    : "container h-full w-full flex justify-center items-center"}>
+
+                                    <div className={tituloModal === "Editar Subcategoria" 
+                                        ? "flex justify-center items-center max-h-[20rem] modalItemPedido rounded-xl max-[440px]:p-2" 
+                                        : "modalItemPedido rounded-xl max-[440px]:p-2"}>
+
                                         <div className="flex justify-between w-full my-2">
                                             <h1 className="text-[#D42300] ml-6 text-center w-full subCategoriaTitle text-2xl font-bold">
                                                 {tituloModal} 

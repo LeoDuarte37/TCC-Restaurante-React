@@ -33,6 +33,12 @@ body {
   background-color: #f8f8f8;
 }
 
+.containerExcluir {
+    min-width: 100%;
+    height: 100%;
+    background-color: #3B1206;
+}
+
 .div {
   max-width: 45rem;
   background-color: #F5EBDC;
@@ -91,6 +97,35 @@ body {
 .button:active {
     background-color: #3B1206;
     box-shadow: #3b1408 0px 0px 0px 0px;
+    transform: translateY(5px);
+    transition: 200ms;
+}
+
+.buttonExcluir {
+    padding: 17px 40px;
+    border-radius: 10px;
+    border: 2px #3B1206 solid;
+    background-color: #F8F8F8;
+    letter-spacing: 1.5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-shadow: #3B1206 0px 10px 0px 0px;
+    color: #3B1206;
+    cursor: pointer;
+    margin: 0 1rem;
+    font-weight: bold;
+    max-width: 23rem;
+    width: 100%;
+}
+
+.buttonExcluir:hover {
+    box-shadow: #3B1206 0px 7px 0px 0px;
+}
+
+.buttonExcluir:active {
+    background-color: #3B1206;
+    box-shadow: #3b1408 0px 0px 0px 0px;
+    color: #F8F8F8;
     transform: translateY(5px);
     transition: 200ms;
 }
