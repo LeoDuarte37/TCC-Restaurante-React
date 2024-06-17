@@ -15,25 +15,25 @@ import CardapioPage from './pages/cardapio/CardapioPage';
 function App() {
   return (
     <>
-        <LoginProvider>
-          <ToastContainer style={{ width: "250px" }}/>
-          <BrowserRouter>
-            <MesaProvider> 
-                <Navbar />
-                
-                <Routes>
-                  <Route path='/' element={<LoginPage />} />
-                  <Route path='/mesa/cardapio' element={<CardapioMesaPage />} />
-                  <Route path='/mesa/conta' element={<ContaMesaPage />} />
-                  {/* <Route path='/' element={} /> */}
-                  <Route path='/historico/pedidos' element={<PedidoPage />} />
-                  <Route path='/cardapio' element={<CardapioPage />} />
-                  <Route path='/mesas' element={<MesaPage />} />
-                </Routes>
-                  
-            </MesaProvider>
-          </BrowserRouter>
-        </LoginProvider>
+      <LoginProvider>
+        <ToastContainer style={{ width: "250px" }} />
+        <BrowserRouter>
+          <MesaProvider>
+            <Navbar />
+
+            <Routes>
+              <Route path='/' element={<LoginPage />} />
+              <Route path='/mesa/cardapio' element={<CardapioMesaPage />} />
+              <Route path='/mesa/conta' element={<ContaMesaPage />} />
+              {/* <Route path='/' element={} /> */}
+              <Route path='/historico/pedidos' element={<PedidoPage />} />
+              <Route path='/cardapio' element={<CardapioPage />} />
+              <Route path='/mesas' element={<MesaPage />} />
+            </Routes>
+
+          </MesaProvider>
+        </BrowserRouter>
+      </LoginProvider>
     </>
   );
 }
@@ -53,5 +53,36 @@ function App() {
 
 // listar pedidos por dia atual: 
 // https://pt.stackoverflow.com/questions/313880/java-query-spring-com-data-atual
+
+/*
+  {
+    id: 1,
+    mesa: {
+        numero: 4,
+    },
+    item: [
+        {
+            "produto": {
+                "id": 1,
+                "nome": "Prato especial",
+                "descricao": "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                "valor": 25.99, "disponivel": true
+            },
+            "quantidade": 2
+        },
+        {
+            "produto": {
+                "id": 2,
+                "nome": "Prato", "descricao": "Especial da casa! Acompanha... Especial da casa! Acompanha...", "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp", "valor": 25.99, "disponivel": true
+            },
+            "quantidade": 3,
+            "observacao": "Sem farofa sem farofa sem farofa sem farofa"
+        },
+    ],
+    data: "11/03/2024 16:48",
+    status: "REALIZADO",
+  },
+*/
 
 export default App;

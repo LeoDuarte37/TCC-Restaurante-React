@@ -1,8 +1,18 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Menu, Transition, MenuItems, MenuItem, MenuButton } from "@headlessui/react";
-
+import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../../../contexts/LoginContext";
 
 function MenuHamburguer() {
+
+    const { handleLogout } = useContext(LoginContext);
+
+    const navigate = useNavigate();
+
+    function logout() {
+        handleLogout();
+        navigate('/');
+    }
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -41,7 +51,7 @@ function MenuHamburguer() {
                         <div className="h-0.5 w-full bg-gray-200 my-2 rounded-xl"></div>
                     </MenuItem>
                     <MenuItem>
-                        <p className="h-full group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 font-semibold text-sm bg-red-500">
+                        <p onClick={logout} className="h-full group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 font-semibold text-sm bg-red-500">
                             Sair
                         </p>
                     </MenuItem>

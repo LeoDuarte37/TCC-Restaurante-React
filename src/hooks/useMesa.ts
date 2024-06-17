@@ -1,38 +1,36 @@
 import { useContext, useState } from "react";
 import { MesaContext } from "../contexts/MesaContext";
-import Mesa from "../models/mesa/Mesa";
-import { atualizarChamarGarcom, buscarMesaPorId } from "../services/Service";
+import { atualizarChamarGarcom} from "../services/Service";
 import toastAlert from "../utils/toastAlert";
-import mesaChamarGarcom from "../models/MesaChamarGarcom";
+import Mesa from "../models/mesa/Mesa";
 
 export default function useMesa() {
 
     const { mesa, atualizarMesa } = useContext(MesaContext);
-    const [ mesaChamando, setMesaChamando ] = useState<Mesa>()
+
+    const [mesaResponse, setMesaResponse] = useState<Mesa>({} as Mesa);
 
     async function chamarGarcom(mesaId: number) {
-
-        const chamando: boolean = mesa.id > 0 ? true : false;
-    
-        const table: mesaChamarGarcom = {
-            id: mesaId,
-            chamarGarcom: chamando,
-        }
-        
         try {
-            await buscarMesaPorId(table.id, setMesaChamando);
-
-            if (mesaChamando?.id == mesaId) {
-                if (mesaChamando.chamarGarcom !== table.chamarGarcom) {
-                    await atualizarChamarGarcom(table, atualizarMesa);
-                } else {
-                    toastAlert("Garçom já contatado! Aguarde!", "info");
-                }
+            if (mesa.chamarGarcom == false) {
+                await atualizarChamarGarcom(mesaId, atualizarMesa);
+                return toastAlert("Garçom contatado! Aguarde!", "info");
+            } else {
+                return toastAlert("Garçom já foi contatado! Aguarde!", "info");
             }
         } catch (error: any) {
-            console.log(error); 
+            toastAlert("Erro ao chamar garçom! Por favor, tente novamente!", "erro");
         }
     }
 
-    return { chamarGarcom };
+    async function atenderMesa(mesaId: number) {
+        try {
+            await atualizarChamarGarcom(mesaId, setMesaResponse);
+            toastAlert("Mesa atendida com sucesso!", "sucesso");
+        } catch (error: any) {
+            toastAlert("Erro ao atender mesa! Por favor, tente novamente!", "erro");
+        }
+    }
+
+    return { chamarGarcom, atenderMesa };
 }

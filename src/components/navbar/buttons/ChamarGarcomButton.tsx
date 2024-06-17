@@ -6,10 +6,10 @@ import { useContext } from "react";
 function ChamarGarcomButton() {
 
     const { mesa } = useContext(MesaContext);
-    const { chamar } = useMesa();
+    const { chamarGarcom } = useMesa();
 
     return (
-        <div className="chamarGarcom" onClick={() => chamar(mesa)}>
+        <div className="chamarGarcom" onClick={() => chamarGarcom(mesa.id)}>
             <CallBell size={32} color="#f8f8f8" />
             <p>Chamar Garçom</p>
         </div>

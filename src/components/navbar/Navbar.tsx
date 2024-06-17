@@ -10,7 +10,7 @@ import { MesaContext } from "../../contexts/MesaContext";
 import MenuHamburguer from "./buttons/MenuHamburguer";
 import CardapioButton from "./buttons/CardapioButton";
 import MesasButton from "./buttons/MesasButton";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Navbar() {
 
@@ -18,6 +18,12 @@ function Navbar() {
     const { mesa } = useContext(MesaContext);
 
     const local = useLocation();
+    const navigate = useNavigate();
+
+    function logout() {
+        handleLogout();
+        navigate('/');
+    }
 
     return (
         <>
@@ -34,7 +40,7 @@ function Navbar() {
                                     Chegada de Pedidos
                                 </h1>
                                 <div className="w-full max-w-16 max-[540px]:max-w-20 flex justify-center">
-                                    <SignOut size={38} color="white" onClick={handleLogout} />
+                                    <SignOut size={38} color="white" onClick={logout} />
                                 </div>
                             </>
                         }
@@ -62,6 +68,13 @@ function Navbar() {
                                 <Link to="/mesas">
                                     <MesasButton />
                                 </Link>
+
+                                <div className="borda"></div>
+
+                                <div className="logout">
+                                    <SignOut size={31} color="white" onClick={logout} />
+                                    <p>Sair</p>
+                                </div>
                             </div>
                         }
 

@@ -6,70 +6,14 @@ import { Button, Dialog, DialogPanel, Transition, TransitionChild } from "@headl
 import { X } from "@phosphor-icons/react";
 import ListaItemPedido from "../itemPedido/lista/ListaItemPedido";
 import Item from "../../../models/pedido/item/Item";
+import { RotatingLines } from "react-loader-spinner";
 
 function ListaPedido(props: { pedidos: Array<Pedido> }) {
     const { login } = useContext(LoginContext);
 
-    const [pedidos, setPedidos] = useState<Array<Pedido>>([
-        {
-            id: 1,
-            mesa: {
-                numero: 4,
-            },
-            item: [
-                {
-                    "produto": {
-                        "id": 1,
-                        "nome": "Prato especial",
-                        "descricao": "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                        "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                        "valor": 25.99, "disponivel": true
-                    },
-                    "quantidade": 2
-                },
-                {
-                    "produto": {
-                        "id": 2,
-                        "nome": "Prato", "descricao": "Especial da casa! Acompanha... Especial da casa! Acompanha...", "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp", "valor": 25.99, "disponivel": true
-                    },
-                    "quantidade": 3,
-                    "observacao": "Sem farofa sem farofa sem farofa sem farofa"
-                },
-            ],
-            data: "11/03/2024 16:48",
-            status: "REALIZADO",
-        },
-        {
-            id: 2,
-            mesa: {
-                numero: 2,
-            },
-            item: [
-                {
-                    "produto": {
-                        "id": 1,
-                        "nome": "Prato especial",
-                        "descricao": "Especial da casa! Acompanha... Especial da casa! Acompanha...",
-                        "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
-                        "valor": 25.99, "disponivel": true
-                    },
-                    "quantidade": 2
-                },
-                {
-                    "produto": {
-                        "id": 2,
-                        "nome": "Prato", "descricao": "Especial da casa! Acompanha... Especial da casa! Acompanha...", "foto": "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp", "valor": 25.99, "disponivel": true
-                    },
-                    "quantidade": 3,
-                    "observacao": "Sem farofa sem farofa sem farofa sem farofa"
-                },
-            ],
-            data: "12/03/2024 10:48",
-            status: "REALIZADO",
-        },
-    ]);
+    const [pedidos, setPedidos] = useState<Array<Pedido>>(props.pedidos);
 
-    const [currentPedido, setCurrentPedido] = useState<Pedido>(pedidos[0]);
+    const [currentPedido, setCurrentPedido] = useState<Pedido>(props.pedidos[0]);
     const [currentItems, setCurrentItems] = useState<Array<Item>>([])
 
     const [total, setTotal] = useState<number>(0);
@@ -138,21 +82,18 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
         setIsLoading(false);
     }, [])
 
-    // Criar busca de pedidos no banco por perfis de usuario + useEffect + condicional no return 
-
-    // Cozinha: get pedidos "REALIZADOS"
-    // Garçom: get pedidos "PRONTOS"
-    // Caixa: get all pedidos do dia
-    // Gerente/superior: get all pedidos
-
-    // Apenas Cozinha terá visualização dos pedidos por botões
-
     return (
 
         <>
             {login.perfil === "COZINHA" 
                 ? <>
-                    {isLoading ? <></> : renderItens()}
+                    {isLoading ? <RotatingLines
+                            strokeColor="white"
+                            strokeWidth="5"
+                            animationDuration="0.75"
+                            width="24"
+                            visible={true}
+                        /> : renderItens()}
                 </>
                 
                 : <div className="flex flex-col w-full max-w-6xl max-[650px]:max-w-full h-full overflow-hidden shadow-md rounded-lg">
@@ -239,7 +180,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                                     <div className="modalItemPedido rounded-xl max-[440px]:p-2">
                                         <div className="flex justify-between my-2">
                                             <div className="identificacao">
-                                                <p className="text-[#3B1206]">Mesa {currentPedido.mesa.numero}</p>
+                                                <p className="text-[#3B1206]">Mesa {currentPedido && currentPedido.mesa.numero}</p>
                                             </div>
                                             <X size={32} color="#3B1206" onClick={() => setIsOpen(false)} />
                                         </div>

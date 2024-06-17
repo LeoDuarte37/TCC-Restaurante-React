@@ -2,24 +2,24 @@ import { useContext, useEffect, useState } from "react";
 import Mesa from "../../../models/mesa/Mesa";
 import CardMesa from "../card/CardMesa";
 import { LoginContext } from "../../../contexts/LoginContext";
-import { buscarMesasPorRestaurante, listarChamandoGarcom } from "../../../services/Service";
+import { buscarMesas } from "../../../services/Service";
 import toastAlert from "../../../utils/toastAlert";
 
 function ListaMesa() {
 
-    const { usuario, handleLogout } = useContext(LoginContext);
+    const { login, handleLogout } = useContext(LoginContext);
 
     const [ mesas, setMesas ] = useState<Array<Mesa>>([]);
 
     async function getMesas() {
-        if (usuario.perfil === "GARCOM") {
+        if (login.perfil === "GARCOM") {
             try {
-                await listarChamandoGarcom(
-                    usuario.restaurante.id, 
+                await buscarMesas(
+                    `/listar/chamandoGarcom/restaurante/${login.restauranteId}`, 
                     setMesas, 
                     {
                         headers: {
-                            Authorization: usuario.token,
+                            Authorization: login.token,
                         },
                     }
                 );
@@ -32,12 +32,12 @@ function ListaMesa() {
             }
         } else {
             try {
-                await buscarMesasPorRestaurante(
-                    usuario.restaurante.id, 
+                await buscarMesas(
+                    `/listar/restaurante/${login.restauranteId}`,
                     setMesas,
                     {
                         headers: { 
-                            Authorization: usuario.token,
+                            Authorization: login.token,
                         },
                     },   
                 )
@@ -62,9 +62,6 @@ function ListaMesa() {
         getMesas();
     }, [mesas]);
 
-    useEffect(() => {
-        handleLogout();
-    }, [usuario.token]);
 
     return (
         <ul className="flex w-full h-full m-4">
