@@ -123,7 +123,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
     
                     <td className="flex justify-center w-full">
                         <Button onClick={() => renderModal(pedido)} className="button text-base w-32 h-8 m-0 p-0 flex justify-center items-center 2xl:w-32 max-[540px]:w-12 max-[900px]:w-24 max-[540px]:text-[14px]">
-                            { largura < 540 ? "Ver" : "Ver itens" }
+                            { largura < 540 ? "Ver" : "Itens" }
                         </Button>
                     </td>
                 </tr>

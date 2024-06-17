@@ -158,10 +158,9 @@ function ListaCategoria() {
         setSubCategoriaAtual(subCategoria);
     }
 
-    const [categoriaModal, setCategoriaModal] = useState<Categoria>();
-    const [isOpen, setIsOpen] = useState<boolean>(false);
-
+    const [categoriaModal, setCategoriaModal] = useState<Categoria>({} as Categoria);
     const [tituloModal, setTituloModal] = useState<string>("");
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     function modalCrudCardapio(f: string) {
         setTituloModal(f);
@@ -222,7 +221,9 @@ function ListaCategoria() {
                                                             className="self-center hover:text-[#b51f02]"
                                                             onClick={() => { modalCrudCardapio("Editar Categoria"); setCategoriaModal(categoria) }} />
                                                     }
+
                                                     <CardCategoria categoria={categoria} />
+
                                                     {(login.perfil === "ADMIN" || login.perfil === "ROOT") && 
                                                         <Plus size={32} 
                                                         color="#D42300"
@@ -267,15 +268,15 @@ function ListaCategoria() {
                                 >
                                     <DialogPanel className="flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-xl p-10 max-[440px]:p-2">
 
-                                        <div className="container h-10 w-full flex justify-center items-center">
-                                            <div className="modalItemPedido h-80 rounded-xl max-[440px]:p-2">
-                                                <div className="flex w-full my-2">
+                                        <div className="flex h-full w-full ">
+                                            <div className="flex justify-center items-center max-h-[20rem] modalItemPedido rounded-xl max-[440px]:p-2">
+                                                <div className="flex w-full h-8 my-2">
                                                     <h1 className="text-[#D42300] ml-6 text-center w-full subCategoriaTitle text-2xl font-bold">
                                                         { tituloModal } 
                                                     </h1>
                                                     <X size={32} color="#3B1206" className="" onClick={() => setIsOpen(false)} />
                                                 </div>
-                                                <div className="div rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
+                                                <div className="w-full max-w-full flex-1 flex-col justify-center rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl">
                                                     { tituloModal == "Nova Categoria" ? <FormCategoria />
                                                         : <> { tituloModal == "Editar Categoria" ? <FormEditCategoria categoriaModal={categoriaModal} />
                                                             : <FormSubcategoria categoria={categoriaModal}/>

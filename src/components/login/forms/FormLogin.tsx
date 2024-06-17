@@ -53,14 +53,14 @@ function FormLogin() {
         <>
             <form className="space-y-6 " id="formLogin" method="POST" onSubmit={submit}>
                 <fieldset>
-                    <label htmlFor="username" className="block text-md font-medium leading-6 text-[#3B1206]">
-                        {isMesa ? "ID Restaurante" : "Usuário"}
+                    <label htmlFor={!isMesa ? "username" : "uuid"} className="block text-md font-medium leading-6 text-[#3B1206]">
+                        {!isMesa ? "Usuário" : "ID Restaurante"}
                     </label>
                     <div className="mt-2">
                         <input
-                            name="username"
+                            name={!isMesa ? "username" : "uuid"}
                             type="text"
-                            placeholder={isMesa ? "8331faf7-db26-489c-9d9e-ac387d4983e0" : "user"}
+                            placeholder={!isMesa ? "user" : "8331faf7-db26-489c-9d9e-ac387d4983e0"}
                             required
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                             className="block w-full rounded-md border-0 py-1.5 text-[#3B1206] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#D42300] sm:text-sm sm:leading-6"
@@ -69,8 +69,9 @@ function FormLogin() {
                 </fieldset>
                 <fieldset>
                     <div className="flex items-center justify-between">
-                        <label htmlFor="password" className="block text-md font-medium leading-6 text-[#3B1206]">
-                            {isMesa ? "Número da mesa" : "Senha"}
+                        <label htmlFor={!isMesa ? "senha" : "numero"}
+                            className="block text-md font-medium leading-6 text-[#3B1206]">
+                            {!isMesa ? "Senha" : "Número da mesa"}
                         </label>
                         {!isMesa &&
                             <div className="text-md">
@@ -82,10 +83,9 @@ function FormLogin() {
                     </div>
                     <div className="mt-2">
                         <input
-                            name="password"
-                            type={isMesa ? "text" : "password"}
-                            autoComplete="current-password"
-                            placeholder={isMesa ? "8" : "******"}
+                            name={!isMesa ? "senha" : "numero"}
+                            type={!isMesa ? "password" : "text"}
+                            placeholder={!isMesa ? "******" : "8"}
                             required
                             onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                             className="block w-full rounded-md border-0 py-1.5 text-[#3B1206] shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#D42300] sm:text-sm sm:leading-6"
