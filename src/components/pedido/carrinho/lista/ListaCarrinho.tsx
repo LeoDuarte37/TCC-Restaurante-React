@@ -10,7 +10,7 @@ function ListaCarrinho() {
 
     const { mesa } = useContext(MesaContext);
 
-    const { totalPedido, submitPedido, total } = usePedido();
+    const { totalPedido, submitPedido, total, clearPedido } = usePedido();
 
     const [itens, setItens] = useState<Array<Item>>([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -38,13 +38,14 @@ function ListaCarrinho() {
         ));
     }
 
-    function submit() {
+    async function submit() {
         const addPedido: AddPedido = {
-            mesa: mesa,
+            mesa: { id: mesa.id },
             item: itens,
         };
 
         submitPedido(addPedido);
+        clearPedido();
 
         getSubTotal();
         getItens();

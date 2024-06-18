@@ -7,9 +7,7 @@ import { enviarPedido } from "../services/Service";
 
 export default function usePedido() {
 
-    const [ total, setTotal ] = useState<number>(0);
-
-    const [ pedido, setPedido ] = useState<Pedido>({} as Pedido);
+    const [total, setTotal] = useState<number>(0);
 
     async function addToPedido(item: Item) {
         const currentPedido = JSON.parse(localStorage.getItem("item") || "[]");
@@ -18,7 +16,7 @@ export default function usePedido() {
 
         if (search) {
             search.quantidade++;
-            localStorage.setItem("item", JSON.stringify(currentPedido)); 
+            localStorage.setItem("item", JSON.stringify(currentPedido));
         } else {
             localStorage.setItem("item", JSON.stringify([...currentPedido, item]));
 
@@ -35,7 +33,7 @@ export default function usePedido() {
             const updateList = currentPedido.filter((i: Item) => i.produto.id !== produtoId);
             localStorage.setItem("item", JSON.stringify(updateList));
             toastAlert("Item removido!", "info");
-        
+
         } else {
             const item = currentPedido.find((i: Item) => i.produto.id == produtoId);
 
@@ -45,7 +43,7 @@ export default function usePedido() {
             }
         }
     }
-    
+
     async function totalPedido() {
         const currentPedido = JSON.parse(localStorage.getItem("item") || "[]");
 
@@ -56,24 +54,11 @@ export default function usePedido() {
     }
 
     async function submitPedido(addPedido: AddPedido) {
-        await enviarPedido(addPedido, setPedido);
-
-        const conta: Array<Item> = JSON.parse(localStorage.getItem("conta") || "[]");
-
-        pedido.item.map((item) => {
-            const search = conta.find((itemConta) => itemConta.produto.id === item.produto.id);
-
-            if (search) {
-                search.quantidade++;
-            } else {
-                conta.push(item);
-            }
-        });
-
-        localStorage.setItem("conta", JSON.stringify(conta));
-
-        toastAlert("Pedido enviado com sucesso!", "sucesso");
-        clearPedido();
+        try {
+            await enviarPedido(addPedido);
+        } catch (error: any) {
+            toastAlert("Erro ao enviar o pedido! Por favor, tente novamente.", "erro");
+        }
     }
 
     async function getInfoConta(itens: Array<Item>) {
@@ -102,8 +87,6 @@ export default function usePedido() {
 
         return [valor, quantidade];
     }
-
-    
 
     async function clearPedido() {
         localStorage.setItem("item", JSON.stringify([]));

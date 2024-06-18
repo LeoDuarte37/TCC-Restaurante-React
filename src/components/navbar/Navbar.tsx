@@ -34,7 +34,7 @@ function Navbar() {
                             <ChefHat size={50} color='#f8f8f8' />
                         </div>
 
-                        {login.perfil == "COZINHA" &&
+                        {(login.perfil === "COZINHA") &&
                             <>
                                 <h1 className="text-[#F8F8F8] subCategoriaTitle font-bold text-center text-3xl max-[540px]:text-lg">
                                     Chegada de Pedidos

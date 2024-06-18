@@ -62,11 +62,10 @@ export const buscarPedidosPorRestaurante = async (url: string, setDados: Functio
     setDados(resposta.data);
 }
 
-export const enviarPedido = async (dados: AddPedido, setDados: Function) => {
+export const enviarPedido = async (dados: AddPedido) => {
     const resposta = await api.post(`/pedido`, dados);
     if (resposta.status == 201) {
         toastAlert("Pedido enviado com sucesso!", "sucesso");
-        setDados(resposta.data);
     }
 }
 

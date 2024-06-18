@@ -14,9 +14,9 @@ export default function useMesa() {
         try {
             if (mesa.chamarGarcom == false) {
                 await atualizarChamarGarcom(mesaId, atualizarMesa);
-                return toastAlert("Garçom contatado! Aguarde!", "info");
+                return toastAlert("Garçom contatado! Por favor aguarde...", "sucesso");
             } else {
-                return toastAlert("Garçom já foi contatado! Aguarde!", "info");
+                return toastAlert("Garçom já foi contatado! Por favor aguarde...", "info");
             }
         } catch (error: any) {
             toastAlert("Erro ao chamar garçom! Por favor, tente novamente!", "erro");

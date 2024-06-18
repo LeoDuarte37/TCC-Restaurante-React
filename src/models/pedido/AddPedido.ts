@@ -1,7 +1,8 @@
 import Item from "./item/Item";
-import Mesa from "../mesa/Mesa";
 
 export default interface AddPedido {
-    mesa: Mesa;
+    mesa: {
+        id: number
+    };
     item: Array<Item>;
 }
