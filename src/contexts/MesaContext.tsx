@@ -20,9 +20,9 @@ export const MesaContext = createContext({} as MesaContextProps);
 export function MesaProvider({ children }: MesaProviderProps) {
 
     const [mesa, setMesa] = useState<Mesa>({
-        id: 1,
-        numero: 1,
-        restauranteId: 1,
+        id: 0,
+        numero: 0,
+        restauranteId: 0,
         restauranteUuid: "",
         chamarGarcom: false,
         status: "",
@@ -34,9 +34,7 @@ export function MesaProvider({ children }: MesaProviderProps) {
 
             if (mesa.restauranteUuid === loginMesa.uuid) {
                 toastAlert(`Mesa ${mesa.numero} acessada com sucesso!`, "sucesso");
-            } else {
-                toastAlert(`Dados inconsistentes!`, "erro");
-            }
+            } 
 
         } catch (error) {
             toastAlert(`Dados inconsistentes!`, "erro");

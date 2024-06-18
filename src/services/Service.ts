@@ -7,12 +7,8 @@ import AddProduto from "../models/produto/AddProduto";
 import AddCategoria from "../models/categoria/AddCategoria";
 import AddSubcategoria from "../models/subcategoria/AddSubcategoria";
 import AddPedido from "../models/pedido/AddPedido";
-import Categoria from "../models/categoria/Categoria";
-import Mesa from "../models/mesa/Mesa";
-import Produto from "../models/produto/Produto";
-import Subcategoria from "../models/subcategoria/Subcategoria";
+import AtualizarCardapio from "../models/AtualizarCardapio";
 import Status from "../models/Status";
-import ListarPedidosPorMesaAndStatus from "../models/pedido/ListarPedidosPorMesaAndStatus";
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL
@@ -37,6 +33,11 @@ export const buscarMesas = async (url: string, setDados: Function, headers: Obje
 
 export const atualizarChamarGarcom = async (mesaId: number, setDados: Function) => {
     const resposta = await api.patch(`/mesa/atualizar/chamarGarcom/${mesaId}`);
+    setDados(resposta.data);
+}
+
+export const atualizarStatusMesa = async (dados: Status, setDados: Function) => {
+    const resposta = await api.patch(`/mesa/atualizar/status`, dados);
     setDados(resposta.data);
 }
 
@@ -69,6 +70,11 @@ export const enviarPedido = async (dados: AddPedido) => {
     }
 }
 
+export const editar = async (url: string, dados: (Status | AtualizarCardapio), setDados: Function, headers: Object) => {
+    const resposta = await api.put(url, dados, headers);
+    setDados(resposta.data);
+}
+
 export const fecharConta = async (mesaId: number) => {
     const resposta = await api.put(`/pedido/fecharConta/mesa/${mesaId}`);
     if (resposta.status == 202) {
@@ -81,10 +87,5 @@ export const adicionar = async (url: string, dados: (AddMesa | AddCategoria | Ad
     const resposta = await api.post(url, dados, headers);
 }
 
-// Editar
-export const editar = async (url: string, dados: (Mesa | Categoria | Subcategoria | Produto), setDados: Function, headers: Object) => {
-    const resposta = await api.put(url, dados, headers);
-    setDados(resposta.data);
-}
 
 export default api;

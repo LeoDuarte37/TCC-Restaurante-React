@@ -6,7 +6,7 @@ import { MesaContext } from "../../../contexts/MesaContext";
 import { RotatingLines } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import "./../../../App.css"
-import "./../../../pages/login/LoginPage.css"
+import toastAlert from "../../../utils/toastAlert";
 
 function FormLogin() {
     const navigate = useNavigate();
@@ -39,13 +39,21 @@ function FormLogin() {
         e.preventDefault();
 
         if (!isMesa) {
-            await handleLogin(logar);
-            setIsLoading(false);
-            navigate('/historico/pedidos')
+            try {
+                await handleLogin(logar);
+                setIsLoading(false);
+                navigate('/historico/pedidos')
+            } catch (error: any) {
+                console.log(error);
+            }
         } else {
-            await handleMesaLogin(mesaLogin);
-            setIsLoading(false);
-            navigate('/mesa/cardapio');
+            try {
+                await handleMesaLogin(mesaLogin);
+                setIsLoading(false);
+                navigate('/mesa/cardapio');    
+            } catch (error: any) {
+                console.log(error)
+            }
         }
     }
 

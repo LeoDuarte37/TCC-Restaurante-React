@@ -2,7 +2,6 @@ import FormLogin from '../../components/login/forms/FormLogin';
 import { useContext } from 'react';
 import { ChefHat } from '@phosphor-icons/react';
 import { LoginContext } from '../../contexts/LoginContext';
-import "./LoginPage.css";
 
 function LoginPage() {
 

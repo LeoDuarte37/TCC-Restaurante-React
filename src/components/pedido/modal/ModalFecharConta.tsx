@@ -1,18 +1,35 @@
 import { useContext, useState } from "react";
 import { MesaContext } from "../../../contexts/MesaContext";
-import { fecharConta } from "../../../services/Service";
+import { atualizarStatusMesa } from "../../../services/Service";
 import { Transition, Dialog, TransitionChild, DialogPanel } from "@headlessui/react";
+import toastAlert from "../../../utils/toastAlert";
+import { useNavigate } from "react-router-dom";
+import usePedido from "../../../hooks/usePedido";
+import Status from "../../../models/Status";
 
 export default function ModalFecharConta() {
 
-    const { mesa }  = useContext(MesaContext);
-    
+    const { mesa, atualizarMesa } = useContext(MesaContext);
+
+    const navigate = useNavigate();
+    const { clearPedido } = usePedido();
+
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     async function fechar() {
-        await fecharConta(mesa.id);
+        try {
+            const statusMesa: Status = { id: mesa.id, status: "P" };
+
+            await atualizarStatusMesa(statusMesa, atualizarMesa);
+
+            clearPedido();
+            navigate("/mesa/conta/fechada");
+        } catch (error: any) {
+            console.log(error)
+            toastAlert("Erro ao fechar conta! Por favor, tente novamente...", "erro");
+        }
     }
-    
+
     return (
         <>
             <button onClick={() => setIsOpen(true)} className="button">Fechar conta</button>

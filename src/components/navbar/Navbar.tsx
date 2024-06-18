@@ -11,6 +11,7 @@ import MenuHamburguer from "./buttons/MenuHamburguer";
 import CardapioButton from "./buttons/CardapioButton";
 import MesasButton from "./buttons/MesasButton";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import toastAlert from "../../utils/toastAlert";
 
 function Navbar() {
 
@@ -22,12 +23,13 @@ function Navbar() {
 
     function logout() {
         handleLogout();
+        toastAlert("Logout realizado!", "sucesso");
         navigate('/');
     }
 
     return (
         <>
-            {local.pathname === '/' ? <></>
+            {(local.pathname === '/' || local.pathname === '/mesa/conta/fechada') ? <></>
                 : <nav className="flex flex-wrap place-items-center">
                     <div className="navbar max-[1000px]:justify-between justify-around">
                         <div className="logo">
@@ -71,7 +73,7 @@ function Navbar() {
 
                                 <div className="borda"></div>
 
-                                <div className="logout">
+                                <div className="logout cursor-pointer">
                                     <SignOut size={31} color="white" onClick={logout} />
                                     <p>Sair</p>
                                 </div>
