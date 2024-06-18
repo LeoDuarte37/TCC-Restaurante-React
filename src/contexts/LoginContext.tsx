@@ -30,9 +30,11 @@ export function LoginProvider( {children} : LoginProviderProps ) {
         token: "",
     });
     
-    async function handleLogin(login: Logar) {
+    async function handleLogin(credenciais: Logar) {
         try {
-            await logar(login, setLogin);
+            await logar(credenciais, atualizarLogin);
+            
+
             toastAlert("Login realizado com sucesso!", "sucesso");
         } catch (error) {
             console.log(error);
@@ -50,6 +52,10 @@ export function LoginProvider( {children} : LoginProviderProps ) {
     }
 
     const [isMesa, setIsMesa] = useState(false);
+
+    function atualizarLogin(login: Login) {
+        setLogin(login);
+    }
 
     function changeContextIsMesa() {
         setIsMesa(!isMesa);

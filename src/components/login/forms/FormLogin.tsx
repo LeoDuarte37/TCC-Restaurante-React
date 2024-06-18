@@ -45,14 +45,21 @@ function FormLogin() {
                 navigate('/historico/pedidos')
             } catch (error: any) {
                 console.log(error);
+                setIsLoading(false);
             }
         } else {
             try {
-                await handleMesaLogin(mesaLogin);
+                const acessoLiberado = await handleMesaLogin(mesaLogin);
+
                 setIsLoading(false);
-                navigate('/mesa/cardapio');    
+
+                if (acessoLiberado) {
+                    navigate('/mesa/cardapio');    
+                }
+
             } catch (error: any) {
-                console.log(error)
+                console.log(error);
+                setIsLoading(false);
             }
         }
     }
