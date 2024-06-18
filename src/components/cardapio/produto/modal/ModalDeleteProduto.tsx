@@ -36,11 +36,11 @@ export default function ModalDeleteProduto(props: { produto: Produto; setOpen: F
                                 <div className="containerExcluir rounded-xl h-full w-full flex justify-center items-center border-2 border-[#FFFFFF]">
                                     <div className="flex flex-col justify-center items-center pb-2 h-[30rem] rounded-xl max-[440px]:p-2">
                                         <div className="flex justify-between my-2">
-                                            <h1 className="text-[#F8F8F8] ml-6 text-center w-full subCategoriaTitle text-4xl font-bold">
+                                            <h1 className="text-[#F8F8F8] text-center w-full subCategoriaTitle text-4xl font-bold">
                                                 Excluir Produto?
                                             </h1>
                                         </div>
-                                        <div className="w-full p-4 flex justify-center rounded-xl bg-white/60 overflow-hidden backdrop-blur-2xl ">
+                                        <div className="w-full p-4 flex justify-center rounded-xl overflow-hidden">
                                             <button onClick={() => setIsOpen(false)} className="buttonExcluir h-16 w-full text-center text-xl flex items-center justify-center self-center mt-3">
                                                 Não
                                             </button>

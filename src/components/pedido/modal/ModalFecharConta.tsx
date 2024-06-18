@@ -1,25 +1,24 @@
+import { useContext, useState } from "react";
+import { MesaContext } from "../../../contexts/MesaContext";
+import { fecharConta } from "../../../services/Service";
 import { Transition, Dialog, TransitionChild, DialogPanel } from "@headlessui/react";
-import { useState } from "react";
-import Subcategoria from "../../../../models/subcategoria/Subcategoria";
 
-export default function ModalDeleteSubcategoria(props: { subcategoria: Subcategoria; setOpen: Function }) {
+export default function ModalFecharConta() {
 
+    const { mesa }  = useContext(MesaContext);
+    
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    function excluir() {
-
-        setIsOpen(false);
-        props.setOpen(false);
+    async function fechar() {
+        await fecharConta(mesa.id);
     }
-
+    
     return (
         <>
-            <button className="buttonExcluir" onClick={() => setIsOpen(true)}>
-                Excluir?
-            </button>
+            <button onClick={() => setIsOpen(true)} className="button">Fechar conta</button>
 
             <Transition appear show={isOpen} >
-                <Dialog as="div" className="absolute inset-0 z-10 p-10 w-screen focus:outline-none"
+                <Dialog as="div" className="absolute top-28 left-12 z-10 p-10 w-screen focus:outline-none"
                     onClose={() => setIsOpen(false)}>
 
                     <div className="flex min-h-full w-full items-center justify-center">
@@ -31,20 +30,20 @@ export default function ModalDeleteSubcategoria(props: { subcategoria: Subcatego
                             leaveFrom="opacity-100 transform-[scale(100%)]"
                             leaveTo="opacity-0 transform-[scale(95%)]"
                         >
-                            <DialogPanel className="flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-2xl p-10 max-[440px]:p-2">
+                            <DialogPanel className="flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-lg p-10 max-[440px]:p-2">
 
-                                <div className="containerExcluir rounded-xl h-full w-full flex justify-center items-center border-2 border-[#FFFFFF]">
-                                    <div className="flex flex-col justify-center items-center pb-2 h-[20rem] max-h-[20rem] rounded-xl max-[440px]:p-2">
-                                        <div className="flex justify-between my-2">
+                                <div className="containerExcluir rounded-xl h-full w-full flex justify-center items-center border-2 border-[#FFF]">
+                                    <div className="flex flex-col justify-center items-center pb-2 h-[16rem] max-h-[20rem] rounded-xl max-[440px]:p-2">
+                                        <div className="flex justify-center items-center my-2">
                                             <h1 className="text-[#F8F8F8] text-center w-full subCategoriaTitle text-4xl font-bold">
-                                                Excluir Subcategoria?
+                                                Fechar a conta?
                                             </h1>
                                         </div>
                                         <div className="w-full p-4 flex justify-center rounded-xl overflow-hidden">
                                             <button onClick={() => setIsOpen(false)} className="buttonExcluir h-16 w-full text-center text-xl flex items-center justify-center self-center mt-3">
                                                 Não
                                             </button>
-                                            <button onClick={excluir} className="buttonExcluir h-16 w-full text-center flex items-center justify-center self-center mt-3">
+                                            <button onClick={fechar} className="buttonExcluir h-16 w-full text-center flex items-center justify-center self-center mt-3">
                                                 Sim
                                             </button>
                                         </div>
@@ -56,5 +55,5 @@ export default function ModalDeleteSubcategoria(props: { subcategoria: Subcatego
                 </Dialog>
             </Transition>
         </>
-    );
+    )
 }

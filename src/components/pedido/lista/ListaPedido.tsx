@@ -141,7 +141,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                         </tbody>
                         {(login.perfil === "CAIXA" || login.perfil === "ADMIN"|| login.perfil === "ROOT") &&
                             <tfoot className="flex flex-1 items-center w-full max-h-[25%] h-12 py-4 border-t-2 border-[#F5EBDC]">
-                                <tr className="flex items-center justify-end px-6 w-full h-full font-bold text-[#3B1206] text-base max-[690px]:text-sm">
+                                <tr className="flex items-center justify-end w-full h-full font-bold text-[#3B1206] text-base max-[690px]:text-sm">
                                     <th scope="row" className="flex justify-center items-center text-base w-full">
                                         Total
                                     </th>

@@ -10,7 +10,7 @@ function ListaCarrinho() {
 
     const { mesa } = useContext(MesaContext);
 
-    const { totalPedido, enviarPedido, total } = usePedido();
+    const { totalPedido, submitPedido, total } = usePedido();
 
     const [itens, setItens] = useState<Array<Item>>([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -24,8 +24,8 @@ function ListaCarrinho() {
     function getItens() {
         setIsLoading(true);
 
-        const pedido = JSON.parse(localStorage.getItem("item") || "[]");
-        setItens(pedido);
+        const itensPedido = JSON.parse(localStorage.getItem("item") || "[]");
+        setItens(itensPedido);
 
         setIsLoading(false);
     }
@@ -38,13 +38,13 @@ function ListaCarrinho() {
         ));
     }
 
-    function submitPedido() {
-        const pedido: AddPedido = {
+    function submit() {
+        const addPedido: AddPedido = {
             mesa: mesa,
             item: itens,
         };
 
-        enviarPedido(pedido);
+        submitPedido(addPedido);
 
         getSubTotal();
         getItens();
@@ -74,7 +74,7 @@ function ListaCarrinho() {
                     <p className="mt-0.5 text-sm text-[#3B1206]">Impostos calculados na finalização da compra.</p>
                 </div>
 
-                <button onClick={submitPedido} className="button self-center">
+                <button onClick={submit} className="button self-center">
                     Enviar pedidos
                 </button>
             </div>

@@ -85,4 +85,135 @@ function App() {
   },
 */
 
+/* 
+  {
+    id: 1,
+    nome: "Comidas",
+    subCategoria: [
+        {
+            id: 1,
+            nome: "Pratos especiais",
+            disponivel: true,
+            produto: [
+                {
+                    id: 1,
+                    nome: "Prato especial",
+                    descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                    foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                    valor: 25.99,
+                    disponivel: true
+                },
+                {
+                    id: 2,
+                    nome: "Prato",
+                    descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                    foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                    valor: 25.99,
+                    disponivel: true
+                },
+                {
+                    id: 3,
+                    nome: "Prato especial",
+                    descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                    foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                    valor: 25.99,
+                    disponivel: true
+                },
+                {
+                    id: 4,
+                    nome: "Prato especial",
+                    descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                    foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                    valor: 25.99,
+                    disponivel: true
+                },
+            ],
+        },
+        {
+            id: 2,
+            nome: "Lanches",
+            disponivel: true,
+            produto: [
+                {
+                    id: 5,
+                    nome: "Prato especial",
+                    descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                    foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                    valor: 25.99,
+                    disponivel: true
+                },
+                {
+                    id: 6,
+                    nome: "Prato especial",
+                    descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                    foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                    valor: 25.99,
+                    disponivel: true
+                },
+            ],
+        },
+    ],
+    disponivel: true,
+},
+{
+    id: 2,
+    nome: "Bebidas",
+    subCategoria: [
+        {
+            id: 1,
+            nome: "Refrigerantes",
+            produto: [
+                {
+                    id: 1,
+                    nome: "Prato especial",
+                    descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                    foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                    valor: 25.99,
+                    disponivel: true
+                }
+            ],
+            disponivel: true,
+        },
+        {
+            id: 1,
+            nome: "Alcoolicos",
+            produto: [
+                {
+                    id: 1,
+                    nome: "Prato especial",
+                    descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                    foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                    valor: 25.99,
+                    disponivel: true
+                }
+            ],
+            disponivel: true,
+        },
+    ],
+    disponivel: true,
+},
+{
+    id: 3,
+    nome: "Sobremesas",
+    subCategoria: [
+        {
+            id: 1,
+            nome: "Sorvetes",
+            produto: [
+                {
+                    id: 1,
+                    nome: "Prato especial",
+                    descricao: "Especial da casa! Acompanha... Especial da casa! Acompanha...",
+                    foto: "https://http2.mlstatic.com/D_NQ_NP_984716-MLU74556662341_022024-O.webp",
+                    valor: 25.99,
+                    disponivel: true
+                }
+            ],
+            disponivel: true,
+        },
+    ],
+    disponivel: true,
+},
+*/
+
 export default App;

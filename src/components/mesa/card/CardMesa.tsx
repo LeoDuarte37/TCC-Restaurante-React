@@ -8,11 +8,16 @@ import { RotatingLines } from "react-loader-spinner";
 import { Transition, Dialog, TransitionChild, DialogPanel } from "@headlessui/react";
 import { X } from "@phosphor-icons/react";
 import ListaPedido from "../../pedido/lista/ListaPedido";
+import toastAlert from "../../../utils/toastAlert";
+import { useNavigate } from "react-router-dom";
+import ListarPedidosPorMesaAndStatus from "../../../models/pedido/ListarPedidosPorMesaAndStatus";
 
 function CardMesa(props: { mesa: Mesa; getInfo: Function }) {
 
-    const { login } = useContext(LoginContext);
+    const { login, handleLogout } = useContext(LoginContext);
     const { atenderMesa } = useMesa();
+
+    const navigate = useNavigate();
 
     const [pedidos, setPedidos] = useState<Array<Pedido>>([]);
 
@@ -25,19 +30,30 @@ function CardMesa(props: { mesa: Mesa; getInfo: Function }) {
     }
 
     async function getPedidosByMesa() {
-        setIsLoading(true);
+        try {
+            setIsLoading(true);
 
-        await buscarPedidosPorStatusOuMesa(`/listar/mesa`, setPedidos, {
-            data: {
+            const listarPedidosPorMesaAndStatus: ListarPedidosPorMesaAndStatus = {
                 mesa: props.mesa.id,
-                statusPedidos: ["R", "F", "E"],
-            },
-            headers: {
-                Authorization: login.token,
-            },
-        });
+                statusPedidos: ["R", "F", "E", "P"]
+            }
 
-        setIsLoading(false);
+            await buscarPedidosPorStatusOuMesa(`/pedido/listar/mesa`, listarPedidosPorMesaAndStatus, setPedidos, {
+                headers: {
+                    Authorization: login.token,
+                    'Content-Type': 'application/json'
+                },
+            });
+    
+            setIsLoading(false);
+            setIsOpen(true);
+        } catch (error: any) {
+            if (error.toString().includes('403')) {
+                toastAlert("Por favor, faça login novamente!", "info");
+                handleLogout();
+                navigate('/');
+            }
+        }
     }
 
     return (
@@ -96,9 +112,9 @@ function CardMesa(props: { mesa: Mesa; getInfo: Function }) {
                             leaveFrom="opacity-100 transform-[scale(100%)]"
                             leaveTo="opacity-0 transform-[scale(95%)]"
                         >
-                            <DialogPanel className="flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-[60%] p-10 max-[440px]:p-2">
+                            <DialogPanel className="flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-[70%] p-10 max-[440px]:p-2">
 
-                                <div className="container h-full w-full flex justify-center items-center">
+                                <div className="container h-full w-full flex justify-center items-center rounded-xl">
                                     <div className="modalItemPedido rounded-xl max-[440px]:p-2">
                                         <div className="flex justify-between w-full my-2">
                                             <h1 className="text-[#D42300] ml-6 text-center w-full subCategoriaTitle text-2xl font-bold">
@@ -106,7 +122,7 @@ function CardMesa(props: { mesa: Mesa; getInfo: Function }) {
                                             </h1>
                                             <X size={32} color="#3B1206" onClick={() => setIsOpen(false)} />
                                         </div>
-                                        <div className="rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
+                                        <div className="rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center items-center">
                                             <ListaPedido pedidos={pedidos} />
                                         </div>
                                     </div>

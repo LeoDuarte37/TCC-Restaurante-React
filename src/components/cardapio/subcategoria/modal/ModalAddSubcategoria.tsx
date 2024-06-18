@@ -49,5 +49,5 @@ export default function ModalAddSubcategoria(props: { categoria: Categoria }) {
                 </Dialog>
             </Transition>
         </>
-    )
+    );
 }

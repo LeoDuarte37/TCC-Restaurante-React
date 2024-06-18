@@ -1,4 +1,4 @@
 export default interface ListarPedidosPorMesaAndStatus {
-    mesaId: number;
-    status: Array<string>;
+    mesa: number;
+    statusPedidos: Array<string>;
 }

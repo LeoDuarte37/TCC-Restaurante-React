@@ -11,6 +11,8 @@ import Categoria from "../models/categoria/Categoria";
 import Mesa from "../models/mesa/Mesa";
 import Produto from "../models/produto/Produto";
 import Subcategoria from "../models/subcategoria/Subcategoria";
+import Status from "../models/Status";
+import ListarPedidosPorMesaAndStatus from "../models/pedido/ListarPedidosPorMesaAndStatus";
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL
@@ -24,18 +26,18 @@ export const logar = async (dados: Logar, setDados: Function) => {
 
 export const mesaLogin = async (dados: LoginMesa, setDados: Function) => {
     const resposta = await api.post("/mesa/login", dados);
-    setDados(resposta);
+    setDados(resposta.data);
 }
 
 // Mesa
 export const buscarMesas = async (url: string, setDados: Function, headers: Object) => {
     const resposta = await api.get(url, headers);
-    setDados(resposta);
+    setDados(resposta.data);
 }
 
 export const atualizarChamarGarcom = async (mesaId: number, setDados: Function) => {
     const resposta = await api.patch(`/mesa/atualizar/chamarGarcom/${mesaId}`);
-    setDados(resposta);
+    setDados(resposta.data);
 }
 
 // Cardápio
@@ -44,9 +46,14 @@ export const buscarCardapio = async (url: string, setDados: Function) => {
     setDados(resposta.data);
 }
 
-// Pedido 
-export const buscarPedidosPorStatusOuMesa = async (url: string, setDados: Function, headers: Object) => {
+export const getCategorias = async (url: string, setDados: Function, headers: Object) => {
     const resposta = await api.get(url, headers);
+    setDados(resposta.data);
+}
+
+// Pedido 
+export const buscarPedidosPorStatusOuMesa = async (url: string, dados: Object, setDados: Function, headers: Object) => {
+    const resposta = await api.post(url, dados, headers);
     setDados(resposta.data);
 }
 
@@ -55,10 +62,18 @@ export const buscarPedidosPorRestaurante = async (url: string, setDados: Functio
     setDados(resposta.data);
 }
 
-export const enviarPedido = async (dados: AddPedido) => {
+export const enviarPedido = async (dados: AddPedido, setDados: Function) => {
     const resposta = await api.post(`/pedido`, dados);
-    if (resposta.status == 200) {
+    if (resposta.status == 201) {
         toastAlert("Pedido enviado com sucesso!", "sucesso");
+        setDados(resposta.data);
+    }
+}
+
+export const fecharConta = async (mesaId: number) => {
+    const resposta = await api.put(`/pedido/fecharConta/mesa/${mesaId}`);
+    if (resposta.status == 202) {
+        toastAlert("Conta fechada com sucesso!", "sucesso");
     }
 }
 
@@ -70,7 +85,7 @@ export const adicionar = async (url: string, dados: (AddMesa | AddCategoria | Ad
 // Editar
 export const editar = async (url: string, dados: (Mesa | Categoria | Subcategoria | Produto), setDados: Function, headers: Object) => {
     const resposta = await api.put(url, dados, headers);
-    setDados(resposta);
+    setDados(resposta.data);
 }
 
 export default api;

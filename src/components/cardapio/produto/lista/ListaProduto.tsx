@@ -3,7 +3,6 @@ import { LoginContext } from "../../../../contexts/LoginContext";
 import CardProduto from "../card/CardProduto";
 import { Dialog, DialogPanel, Transition, TransitionChild } from "@headlessui/react";
 import { X } from "@phosphor-icons/react";
-import Produto from "../../../../models/produto/Produto";
 import Subcategoria from "../../../../models/subcategoria/Subcategoria";
 import FormProduto from "../forms/FormProduto";
 import ModalEditSubcategoria from "../../subcategoria/modal/ModalEditSubcategoria";
@@ -14,14 +13,16 @@ function ListaProduto(props: { subcategoria: Subcategoria }) {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
+    const [subcategoria, setSubcategoria] = useState<Subcategoria>(props.subcategoria)
+
     return (
         <>
             <div className="flex justify-between items-center">
-                <h2 className="text-[#D42300] text-start mb-4 subCategoriaTitle">{props.subcategoria.nome}</h2>
+                <h2 className="text-[#D42300] text-start mb-4 subCategoriaTitle">{subcategoria?.nome}</h2>
 
                 {(login.perfil === "ADMIN" || login.perfil === "ROOT") &&
                     <div className="flex gap-2">
-                        <ModalEditSubcategoria subcategoria={props.subcategoria}/>
+                        <ModalEditSubcategoria subcategoria={subcategoria}/>
 
                         <button onClick={() => setIsOpen(true)} className="bg-[#D42300] hover:bg-[#b51f02] mb-3 text-white font-semibold py-1 px-2 rounded h-8">
                             Novo Produto
@@ -29,9 +30,9 @@ function ListaProduto(props: { subcategoria: Subcategoria }) {
                     </div>
                 }
             </div>
-
+                    
             <ul className="flex flex-col gap-6 w-full h-3/4 pb-4 overflow-auto">
-                {props.subcategoria.produto.map((produto: Produto) => (
+                {subcategoria?.produto?.map((produto) => (
                     <li key={produto.id}>
                         <CardProduto produto={produto} />
                     </li>
@@ -63,7 +64,7 @@ function ListaProduto(props: { subcategoria: Subcategoria }) {
                                             <X size={32} color="#3B1206" onClick={() => setIsOpen(false)} />
                                         </div>
                                         <div className="rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
-                                            <FormProduto subcategoria={props.subcategoria} />
+                                            <FormProduto subcategoria={subcategoria} />
                                         </div>
                                     </div>
                                 </div>

@@ -1,11 +1,15 @@
 import { useState } from "react";
 import Item from "../models/pedido/item/Item";
 import toastAlert from "../utils/toastAlert";
+import AddPedido from "../models/pedido/AddPedido";
 import Pedido from "../models/pedido/Pedido";
+import { enviarPedido } from "../services/Service";
 
 export default function usePedido() {
 
     const [ total, setTotal ] = useState<number>(0);
+
+    const [ pedido, setPedido ] = useState<Pedido>({} as Pedido);
 
     async function addToPedido(item: Item) {
         const currentPedido = JSON.parse(localStorage.getItem("item") || "[]");
@@ -51,8 +55,9 @@ export default function usePedido() {
         return total;
     }
 
-    async function enviarPedido(pedido: Pedido) {
-        // enviarPedido(pedido);
+    async function submitPedido(addPedido: AddPedido) {
+        await enviarPedido(addPedido, setPedido);
+
         const conta: Array<Item> = JSON.parse(localStorage.getItem("conta") || "[]");
 
         pedido.item.map((item) => {
@@ -92,7 +97,7 @@ export default function usePedido() {
         updateQuantidade,
         total,
         totalPedido,
-        enviarPedido,
+        submitPedido,
         getInfoConta,
         clearPedido,
     };
