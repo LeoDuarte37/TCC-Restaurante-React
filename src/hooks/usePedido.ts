@@ -88,6 +88,23 @@ export default function usePedido() {
         return [valor, quantidade];
     }
 
+    async function getTotalPedidos(pedidos: Array<Pedido>) {
+        let valor: number = 0;
+        let quantidade: number = 0;
+
+        pedidos.map((pedido) => {
+            quantidade++;
+
+            valor += pedido.item.reduce((acumulador, item) => (
+                acumulador + (item.produto.valor * item.quantidade)
+            ), 0);
+        });
+
+        return [valor, quantidade];
+    }
+
+    
+
     async function clearPedido() {
         localStorage.setItem("item", JSON.stringify([]));
     }
@@ -99,6 +116,7 @@ export default function usePedido() {
         totalPedido,
         submitPedido,
         getInfoConta,
+        getTotalPedidos,
         clearPedido,
     };
 }

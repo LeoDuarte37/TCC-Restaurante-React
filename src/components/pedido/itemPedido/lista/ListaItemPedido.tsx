@@ -5,6 +5,7 @@ import CardItemPedido from "../card/CardItemPedido";
 import usePedido from "../../../../hooks/usePedido";
 import MudarStatusPedidoButton from "../../buttons/MudarStatusPedidoButton";
 import Pedido from "../../../../models/pedido/Pedido";
+import { RotatingLines } from "react-loader-spinner";
 
 function ListaItemPedido(props: { item: Array<Item>; pedido?: Pedido }) {
 
@@ -18,15 +19,12 @@ function ListaItemPedido(props: { item: Array<Item>; pedido?: Pedido }) {
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    async function getInfo() {
-        setIsLoading(true);
+    async function getInfo() {    
         setItens(props.item);
 
         const [valor, qtd] = await getInfoConta(props.item);
         setTotal(valor);
         setQuantidade(qtd);
-
-        setIsLoading(false);
     }
 
     function renderItens() {
@@ -38,7 +36,9 @@ function ListaItemPedido(props: { item: Array<Item>; pedido?: Pedido }) {
     }
 
     useEffect(() => {
+        setIsLoading(true);
         getInfo();
+        setIsLoading(false);
     }, [props.item]);
 
     return (
@@ -53,9 +53,9 @@ function ListaItemPedido(props: { item: Array<Item>; pedido?: Pedido }) {
                     <th scope="col" className="w-full h-full flex justify-center items-center p-0">
                         <p>
                             Qtd
-                        </p>          
+                        </p>
                     </th>
-                    { (login.perfil === "COZINHA" || login.perfil === "GARCOM") ? <></> : 
+                    {(login.perfil === "COZINHA" || login.perfil === "GARCOM") ? <></> :
                         <th scope="col" className="w-full h-full flex justify-center items-center p-0">
                             <p>
                                 Valor uni.
@@ -65,18 +65,24 @@ function ListaItemPedido(props: { item: Array<Item>; pedido?: Pedido }) {
                     <th scope="col" className="w-full h-full flex justify-center items-center p-0">
                         <p>
                             Observação
-                        </p>                 
+                        </p>
                     </th>
                 </tr>
             </thead>
             <tbody className="flex flex-col bg-[#F8F8F8] overflow-auto w-full max-h-content h-[70%]">
-                {isLoading ? <></> : renderItens()}
+                {isLoading ? <RotatingLines
+                    strokeColor="white"
+                    strokeWidth="5"
+                    animationDuration="0.75"
+                    width="24"
+                    visible={true}
+                /> : renderItens()}
             </tbody>
             <tfoot className="bg-[#F8F8F8] border-t-2 border-[#F5EBDC] flex flex-1 items-center w-full max-h-full h-full pt-2 pb-4">
                 <tr className="flex items-center w-full h-full font-bold text-[#3B1206] text-base max-[690px]:text-sm">
-                    {(login.perfil === "COZINHA" || login.perfil === "GARCOM") 
+                    {(login.perfil === "COZINHA" || login.perfil === "GARCOM")
                         ? <th scope="row" className="flex justify-center w-full">
-                            <MudarStatusPedidoButton pedidoId={props.pedido?.id || 0} /> 
+                            <MudarStatusPedidoButton pedidoId={props.pedido?.id || 0} />
                         </th>
                         : <>
                             <th scope="row" className="flex justify-center items-center w-full">
@@ -88,7 +94,7 @@ function ListaItemPedido(props: { item: Array<Item>; pedido?: Pedido }) {
                             <td className="flex justify-center items-center text-center w-full">
                                 R$ {total.toFixed(2)}
                             </td>
-                            { (login.perfil === "COZINHA" || login.perfil === "GARCOM") ? <></> : 
+                            {(login.perfil === "COZINHA" || login.perfil === "GARCOM") ? <></> :
                                 <td className="w-full"></td>
                             }
                         </>

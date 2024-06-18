@@ -26,7 +26,6 @@ export default function CardapioPage() {
                 },
             });
             setIsLoading(false);
-            console.log(categorias)
         } catch (error: any) {
             if (error.toString().includes("403")) {
                 toastAlert("Token expirou, favor logar novamente.", "erro");

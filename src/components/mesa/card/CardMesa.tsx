@@ -35,7 +35,7 @@ function CardMesa(props: { mesa: Mesa; getInfo: Function }) {
 
             const listarPedidosPorMesaAndStatus: ListarPedidosPorMesaAndStatus = {
                 mesa: props.mesa.id,
-                statusPedidos: ["R", "F", "E", "P"]
+                statusPedidos: ["R", "F", "E"]
             }
 
             await buscarPedidosPorStatusOuMesa(`/pedido/listar/mesa`, listarPedidosPorMesaAndStatus, setPedidos, {
@@ -117,12 +117,12 @@ function CardMesa(props: { mesa: Mesa; getInfo: Function }) {
                                 <div className="container h-full w-full flex justify-center items-center rounded-xl">
                                     <div className="modalItemPedido rounded-xl max-[440px]:p-2">
                                         <div className="flex justify-between w-full my-2">
-                                            <h1 className="text-[#D42300] ml-6 text-center w-full subCategoriaTitle text-2xl font-bold">
-                                                Pedidos da Mesa { props.mesa.numero }
+                                            <h1 className="text-[#D42300] ml-6 uppercase whitespace-pre text-center w-full subCategoriaTitle text-2xl font-bold">
+                                                Pedidos  -  Mesa { props.mesa.numero }
                                             </h1>
                                             <X size={32} color="#3B1206" onClick={() => setIsOpen(false)} />
                                         </div>
-                                        <div className="rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center items-center">
+                                        <div className="w-full h-full flex flex-col justify-center items-center rounded-xl bg-white/5 overflow-hidden backdrop-blur-2xl">
                                             <ListaPedido pedidos={pedidos} />
                                         </div>
                                     </div>
