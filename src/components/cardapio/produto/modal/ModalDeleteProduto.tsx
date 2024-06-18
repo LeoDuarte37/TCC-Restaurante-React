@@ -40,7 +40,7 @@ export default function ModalDeleteProduto(props: { produto: Produto; setOpen: F
                                                 Excluir Produto?
                                             </h1>
                                         </div>
-                                        <div className="w-full p-4 flex justify-center rounded-xl bg-white/5 overflow-hidden backdrop-blur-2xl ">
+                                        <div className="w-full p-4 flex justify-center rounded-xl bg-white/60 overflow-hidden backdrop-blur-2xl ">
                                             <button onClick={() => setIsOpen(false)} className="buttonExcluir h-16 w-full text-center text-xl flex items-center justify-center self-center mt-3">
                                                 Não
                                             </button>
