@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Categoria from "../../../../models/categoria/Categoria";
 import CardCategoria from "../card/CardCategoria";
 import SubCategoria from "../../../../models/subcategoria/Subcategoria";
@@ -17,7 +17,7 @@ function ListaCategoria(props: { categorias: Array<Categoria> }) {
 
     const [categorias, setCategorias] = useState<Array<Categoria>>(props.categorias);
 
-    const [subCategoriaAtual, setSubCategoriaAtual] = useState<SubCategoria>(props.categorias[0]?.subcategoria[0]);
+    const [subCategoriaAtual, setSubCategoriaAtual] = useState<SubCategoria>(props?.categorias[0]?.subcategoria[0]);
 
     function setInfoProdutos(subCategoria: SubCategoria) {
         setSubCategoriaAtual(subCategoria);
@@ -25,10 +25,15 @@ function ListaCategoria(props: { categorias: Array<Categoria> }) {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
+    useEffect(() => {
+        setCategorias(props.categorias);
+        setSubCategoriaAtual(props?.categorias[0]?.subcategoria[0]);
+    }, [props.categorias])
+
     return (
         <>
             <ul className="flex flex-col gap-4 max-w-48 max-[1000px]:max-w-40 w-full p-4 h-4/5 overflow-auto">
-                {categorias.map((categoria) => (
+                {categorias && categorias.map((categoria) => (
                     <li key={categoria.id}>
                         <div className="w-full">
                             <div className="mx-auto w-full max-w-lg divide-y divide-white/5 rounded-xl bg-white/5">

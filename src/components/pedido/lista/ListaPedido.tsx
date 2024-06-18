@@ -48,7 +48,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
             return (
                 <ul className="flex w-full h-full m-4 p-4 max-[690px]:p-2 border-2 border-[#3B1206] rounded-lg">
                     {props.pedidos && props.pedidos.map((pedido: Pedido) => (
-                        <li key={pedido.id} onClick={() => renderModal(pedido)} className="button mx-2 text-base text-nowrap w-full max-w-32 h-20 flex flex-col justify-center items-center max-[460px]:max-w-full" >
+                        <li key={pedido.id} onClick={() => renderModal(pedido)} className="buttonCozinha mx-2 text-nowrap flex flex-col justify-center items-center max-[460px]:max-w-full" >
                             <p>Mesa</p>
                             {pedido.mesa.numero}
                         </li>

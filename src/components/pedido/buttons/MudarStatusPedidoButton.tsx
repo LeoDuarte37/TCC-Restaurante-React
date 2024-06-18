@@ -3,19 +3,19 @@ import { LoginContext } from "../../../contexts/LoginContext";
 
 function MudarStatusPedidoButton(props: { pedidoId: number }) {
 
-    const { usuario } = useContext(LoginContext);
+    const { login } = useContext(LoginContext);
 
     function mudarStatusPedido() {
-        if (usuario.perfil === "COZINHA") {
+        if (login.perfil === "COZINHA") {
 
-        } else if (usuario.perfil === "GARCOM") {
+        } else if (login.perfil === "GARCOM") {
             
         }
     }
 
     return (
         <button onClick={mudarStatusPedido} className="button">
-            { usuario.perfil === "COZINHA" ? "Pedido pronto" : "Pedido entregue"}
+            { login.perfil === "COZINHA" ? "Pedido pronto" : "Pedido entregue"}
         </button>
     )
 }
