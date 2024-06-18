@@ -7,8 +7,6 @@ import AddProduto from "../models/produto/AddProduto";
 import AddCategoria from "../models/categoria/AddCategoria";
 import AddSubcategoria from "../models/subcategoria/AddSubcategoria";
 import AddPedido from "../models/pedido/AddPedido";
-import Status from "../models/Status";
-import ListarPedidosPorMesaAndStatus from "../models/pedido/ListarPedidosPorMesaAndStatus";
 import Categoria from "../models/categoria/Categoria";
 import Mesa from "../models/mesa/Mesa";
 import Produto from "../models/produto/Produto";

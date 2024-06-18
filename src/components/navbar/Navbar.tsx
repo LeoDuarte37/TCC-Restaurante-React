@@ -92,7 +92,9 @@ function Navbar() {
 
                                 <div className="borda"></div>
 
-                                <ContaButton />
+                                <Link to={"/mesa/conta"}>
+                                    <ContaButton />
+                                </Link>
                             </div>
                         }
                     </div>

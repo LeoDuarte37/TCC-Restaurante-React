@@ -26,7 +26,7 @@ export function LoginProvider( {children} : LoginProviderProps ) {
     const [login, setLogin] = useState<Login>({
         username: "",
         restauranteId: 1,
-        perfil: "ADMIN",
+        perfil: "",
         token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJyZXN0YXVyYW50ZS1hcGkiLCJzdWIiOiJSb290Um9vdCIsImV4cCI6MTcxODUyMTg3N30.2RhDO79LJp36IsMDBY7xgrNrDe7tVZPR3OwrGJd44bA",
     });
     

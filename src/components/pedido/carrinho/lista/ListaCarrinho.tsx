@@ -2,10 +2,9 @@ import { DialogTitle } from "@headlessui/react";
 import { useState, useEffect, useContext } from "react";
 import { MesaContext } from "../../../../contexts/MesaContext";
 import usePedido from "../../../../hooks/usePedido";
-import toastAlert from "../../../../utils/toastAlert";
-import Pedido from "../../../../models/pedido/Pedido";
 import Item from "../../../../models/pedido/item/Item";
 import CardCarrinho from "../card/CardCarrinho";
+import AddPedido from "../../../../models/pedido/AddPedido";
 
 function ListaCarrinho() {
 
@@ -40,7 +39,7 @@ function ListaCarrinho() {
     }
 
     function submitPedido() {
-        const pedido: Pedido = {
+        const pedido: AddPedido = {
             mesa: mesa,
             item: itens,
         };
@@ -65,15 +64,17 @@ function ListaCarrinho() {
                 {isLoading ? <></> : renderItens()}
             </ul>
 
-            <div className="border-t-2 border-[#F5EBDC] px-4 py-6 sm:px-6">
-                <div className="flex justify-between text-base font-bold text-[#3B1206]">
-                    <p>Subtotal</p>
-                    <p>R$ {isLoading ? 0 : subTotal}</p>
+            <div className="border-t-2 border-[#F5EBDC] flex flex-col gap-4 px-4 py-6 sm:px-6">
+                <div>
+                    <div className="flex justify-between text-base font-bold text-[#3B1206]">
+                        <p>Subtotal</p>
+                        <p>R$ {isLoading ? 0 : subTotal}</p>
+                    </div>
+
+                    <p className="mt-0.5 text-sm text-[#3B1206]">Impostos calculados na finalização da compra.</p>
                 </div>
 
-                <p className="mt-0.5 text-sm text-[#3B1206]">Impostos calculados na finalização da compra.</p>
-
-                <button onClick={submitPedido} className="button mt-3">
+                <button onClick={submitPedido} className="button self-center">
                     Enviar pedidos
                 </button>
             </div>

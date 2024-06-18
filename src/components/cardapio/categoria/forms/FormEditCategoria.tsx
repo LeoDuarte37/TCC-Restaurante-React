@@ -1,7 +1,14 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import Categoria from "../../../../models/categoria/Categoria";
+import { editar } from "../../../../services/Service";
+import { LoginContext } from "../../../../contexts/LoginContext";
+import { useNavigate } from "react-router-dom";
 
 function FormEditCategoria(props: { categoriaModal: Categoria }) {
+
+    const { login } = useContext(LoginContext);
+
+    const navigate = useNavigate();
 
     const [categoria, setCategoria] = useState<Categoria>(props.categoriaModal);
 
@@ -18,6 +25,14 @@ function FormEditCategoria(props: { categoriaModal: Categoria }) {
 
     async function submit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
+
+        await editar(`/categoria`, categoria, setCategoria, {
+            headers: {
+                Authorization: login.token,
+            },
+        });
+
+        navigate("/cardapio");
     }
 
     return (
@@ -46,7 +61,7 @@ function FormEditCategoria(props: { categoriaModal: Categoria }) {
                 </div>
 
                 <div className="h-full w-full flex justify-center gap-3">
-                    <button className="button h-14 w-full text-center flex items-center justify-center self-center mt-3">
+                    <button className="button h-12 w-full text-center flex items-center justify-center self-center mt-3">
                         Editar Categoria
                     </button>
                 </div>

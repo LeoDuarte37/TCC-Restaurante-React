@@ -59,7 +59,7 @@ function CardCarrinho(props: { item: Item, getSubTotal: Function }) {
                         </div>
                     </div>
                 </div>
-            };
+            }
         </>
     );
 }

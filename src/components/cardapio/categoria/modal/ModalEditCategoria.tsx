@@ -5,7 +5,6 @@ import { useState } from "react";
 import Categoria from "../../../../models/categoria/Categoria";
 import ModalDeleteCategoria from "./ModalDeleteCategoria";
 
-
 export default function ModalEditCategoria(props: { categoria: Categoria }) {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -58,5 +57,5 @@ export default function ModalEditCategoria(props: { categoria: Categoria }) {
                 </Dialog>
             </Transition>
         </>
-    )
+    );
 }
