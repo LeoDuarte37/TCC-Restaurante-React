@@ -26,6 +26,7 @@ export function LoginProvider( {children} : LoginProviderProps ) {
     const [login, setLogin] = useState<Login>({
         username: "",
         restauranteId: 0,
+        restauranteUuid: "",
         perfil: "",
         token: "",
     });
@@ -43,7 +44,8 @@ export function LoginProvider( {children} : LoginProviderProps ) {
     function handleLogout() {
         setLogin({
             username: "",
-            restauranteId: 0,
+            restauranteId: 0,  
+            restauranteUuid: "",
             perfil: "",
             token: "",
         });

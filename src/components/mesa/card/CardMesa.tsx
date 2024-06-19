@@ -1,9 +1,9 @@
 import Mesa from "../../../models/mesa/Mesa";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../../../contexts/LoginContext";
 import useMesa from "../../../hooks/useMesa";
 import Pedido from "../../../models/pedido/Pedido";
-import { buscarPedidosPorStatusOuMesa } from "../../../services/Service";
+import { buscarPedidosPorStatusOuMesa, fecharConta } from "../../../services/Service";
 import { RotatingLines } from "react-loader-spinner";
 import { Transition, Dialog, TransitionChild, DialogPanel } from "@headlessui/react";
 import { X } from "@phosphor-icons/react";
@@ -41,10 +41,9 @@ function CardMesa(props: { mesa: Mesa; getInfo: Function }) {
             await buscarPedidosPorStatusOuMesa(`/pedido/listar/mesa`, listarPedidosPorMesaAndStatus, setPedidos, {
                 headers: {
                     Authorization: login.token,
-                    'Content-Type': 'application/json'
                 },
             });
-    
+
             setIsLoading(false);
             setIsOpen(true);
         } catch (error: any) {
@@ -53,6 +52,23 @@ function CardMesa(props: { mesa: Mesa; getInfo: Function }) {
                 handleLogout();
                 navigate('/');
             }
+        }
+    }
+
+    useEffect(() => {
+        getPedidosByMesa;
+    }, [pedidos])
+
+    async function fecharMesa() {
+        try {
+            await fecharConta(props.mesa.id, {
+                headers: {
+                    Authorization: `Bearer ${login.token}`,
+                },
+            });
+            props.getInfo();
+        } catch (error) {
+            toastAlert("Erro ao fechar conta! Tente novamente.", "erro");
         }
     }
 
@@ -115,16 +131,21 @@ function CardMesa(props: { mesa: Mesa; getInfo: Function }) {
                             <DialogPanel className="flex justify-center rounded-xl h-full w-full max-[440px]:max-w-full max-w-[70%] p-10 max-[440px]:p-2">
 
                                 <div className="container h-full w-full flex justify-center items-center rounded-xl">
-                                    <div className="modalItemPedido rounded-xl max-[440px]:p-2">
-                                        <div className="flex justify-between w-full my-2">
+                                    <div className="modalItemMesa rounded-xl max-[440px]:p-2">
+                                        <div className="flex justify-between w-full my-4">
                                             <h1 className="text-[#D42300] ml-6 uppercase whitespace-pre text-center w-full subCategoriaTitle text-2xl font-bold">
-                                                Pedidos  -  Mesa { props.mesa.numero }
+                                                Pedidos  -  Mesa {props.mesa.numero}
                                             </h1>
                                             <X size={32} color="#3B1206" onClick={() => setIsOpen(false)} />
                                         </div>
-                                        <div className="w-full h-full flex flex-col justify-center items-center rounded-xl bg-white/5 overflow-hidden backdrop-blur-2xl">
+
+                                        <div className="w-full h-full max-h-[75%] mb-4 flex flex-col justify-center items-center rounded-xl bg-white/5 overflow-hidden backdrop-blur-2xl">
                                             <ListaPedido pedidos={pedidos} />
                                         </div>
+
+                                        <button onClick={fecharMesa} className="button self-center">
+                                            Fechar Conta
+                                        </button>
                                     </div>
                                 </div>
                             </DialogPanel>

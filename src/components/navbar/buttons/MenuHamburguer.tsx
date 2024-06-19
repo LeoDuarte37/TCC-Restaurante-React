@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { Menu, Transition, MenuItems, MenuItem, MenuButton } from "@headlessui/react";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../../contexts/LoginContext";
+import toastAlert from "../../../utils/toastAlert";
 
 function MenuHamburguer() {
 
@@ -12,6 +13,7 @@ function MenuHamburguer() {
     function logout() {
         handleLogout();
         navigate('/');
+        toastAlert("Logout realizado!", "sucesso");
     }
 
     const [isOpen, setIsOpen] = useState<boolean>(false);

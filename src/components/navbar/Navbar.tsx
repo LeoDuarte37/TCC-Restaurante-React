@@ -12,6 +12,7 @@ import CardapioButton from "./buttons/CardapioButton";
 import MesasButton from "./buttons/MesasButton";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toastAlert from "../../utils/toastAlert";
+import ModalUuidRestaurante from "./modal/ModalUuidRestaurante";
 
 function Navbar() {
 
@@ -32,9 +33,8 @@ function Navbar() {
             {(local.pathname === '/' || local.pathname === '/mesa/conta/fechada') ? <></>
                 : <nav className="flex flex-wrap place-items-center">
                     <div className="navbar max-[1000px]:justify-between justify-around">
-                        <div className="logo">
-                            <ChefHat size={50} color='#f8f8f8' />
-                        </div>
+
+                        {login.perfil != '' && <ModalUuidRestaurante />}
 
                         {(login.perfil === "COZINHA") &&
                             <>
@@ -81,23 +81,29 @@ function Navbar() {
                         }
 
                         {mesa.id > 0 &&
-                            <div className="componentes">
-                                <SearchButton />
+                            <>
+                                <div className="logo">
+                                    <ChefHat size={50} color='#f8f8f8' />
+                                </div>
 
-                                <div className="borda"></div>
+                                <div className="componentes">
+                                    <SearchButton />
 
-                                <ChamarGarcomButton />
+                                    <div className="borda"></div>
 
-                                <div className="borda"></div>
+                                    <ChamarGarcomButton />
 
-                                <MeusPedidosButton />
+                                    <div className="borda"></div>
 
-                                <div className="borda"></div>
+                                    <MeusPedidosButton />
 
-                                <Link to={"/mesa/conta"}>
-                                    <ContaButton />
-                                </Link>
-                            </div>
+                                    <div className="borda"></div>
+
+                                    <Link to={"/mesa/conta"}>
+                                        <ContaButton />
+                                    </Link>
+                                </div>
+                            </>
                         }
                     </div>
                 </nav>

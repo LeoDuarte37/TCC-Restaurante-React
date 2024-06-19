@@ -70,13 +70,18 @@ export const enviarPedido = async (dados: AddPedido) => {
     }
 }
 
-export const editar = async (url: string, dados: (Status | AtualizarCardapio), setDados: Function, headers: Object) => {
+export const editar = async (url: string, dados: AtualizarCardapio, setDados: Function, headers: Object) => {
     const resposta = await api.put(url, dados, headers);
     setDados(resposta.data);
 }
 
-export const fecharConta = async (mesaId: number) => {
-    const resposta = await api.put(`/pedido/fecharConta/mesa/${mesaId}`);
+export const editarStatusPedido = async (dados: Status, setDados: Function, headers: Object) => {
+    const resposta = await api.patch("/pedido/atualizar/status", dados, headers);
+    setDados(resposta.data);
+}
+
+export const fecharConta = async (mesaId: number, config: Object) => {
+    const resposta = await api.put(`/pedido/fecharConta/mesa/${mesaId}`, config);
     if (resposta.status == 202) {
         toastAlert("Conta fechada com sucesso!", "sucesso");
     }

@@ -110,9 +110,9 @@ function PedidoPage() {
         getPedidos();
     }, [])
 
-    // setTimeout(() => {
-
-    // }, 15000);
+    setTimeout(() => {
+        getPedidos();
+    }, 5000);
 
     useEffect(() => {
         if (login.token === '') {
