@@ -28,7 +28,7 @@ function FormEditCategoria(props: { categoriaModal: Categoria }) {
 
         await editar(`/categoria`, categoria, setCategoria, {
             headers: {
-                Authorization: login.token,
+                Authorization: `Bearer ${login.token}`,
             },
         });
 
@@ -61,7 +61,7 @@ function FormEditCategoria(props: { categoriaModal: Categoria }) {
                 </div>
 
                 <div className="h-full w-full flex justify-center gap-3">
-                    <button className="button h-12 w-full text-center flex items-center justify-center self-center mt-3">
+                    <button type="submit" className="button h-12 w-full text-center flex items-center justify-center self-center mt-3">
                         Editar Categoria
                     </button>
                 </div>

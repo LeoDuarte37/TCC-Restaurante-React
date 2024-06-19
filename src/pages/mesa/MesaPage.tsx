@@ -15,8 +15,6 @@ function MesaPage() {
 
     const [ mesas, setMesas ] = useState<Array<Mesa>>([] as Mesa[]);
 
-    const token = login.token;
-
     async function getMesas() {
         if (login.perfil === "GARCOM") {
             try {
@@ -24,7 +22,7 @@ function MesaPage() {
                     setMesas, 
                     {
                         headers: {
-                            Authorization: login.token,
+                            Authorization: `Bearer ${login.token}`,
                         },
                     }
                 );
@@ -42,7 +40,7 @@ function MesaPage() {
                     setMesas,
                     {
                         headers: { 
-                            Authorization: token,
+                            Authorization: `Bearer ${login.token}`,
                         },
                     },   
                 )

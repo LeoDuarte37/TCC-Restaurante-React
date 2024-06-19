@@ -33,8 +33,6 @@ export function LoginProvider( {children} : LoginProviderProps ) {
     async function handleLogin(credenciais: Logar) {
         try {
             await logar(credenciais, atualizarLogin);
-            
-
             toastAlert("Login realizado com sucesso!", "sucesso");
         } catch (error) {
             console.log(error);

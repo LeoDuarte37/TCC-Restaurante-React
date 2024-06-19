@@ -23,7 +23,7 @@ function PedidoPage() {
 
                     await buscarPedidosPorStatusOuMesa(`/pedido/listar/status`, statusCozinha, setPedidos, {
                         headers: {
-                            Authorization: login.token,
+                            Authorization: `Bearer ${login.token}`,
                         },
                     });
                 } catch (error: any) {
@@ -41,7 +41,7 @@ function PedidoPage() {
 
                     await buscarPedidosPorStatusOuMesa(`/pedido/listar/status`, statusGarcom, setPedidos, {
                         headers: {
-                            Authorization: login.token,
+                            Authorization: `Bearer ${login.token}`,
                         },
                     });
                 } catch (error: any) {
@@ -56,7 +56,7 @@ function PedidoPage() {
                 try {
                     await buscarPedidosPorRestaurante(`/pedido/listar/data/corrente/restaurante/${login.restauranteId}`, setPedidos, {
                         headers: {
-                            Authorization: login.token,
+                            Authorization: `Bearer ${login.token}`,
                         },
                     });
 
@@ -72,7 +72,7 @@ function PedidoPage() {
                 try {
                     await buscarPedidosPorRestaurante(`/pedido/listar/restaurante/${login.restauranteId}`, setPedidos, {
                         headers: {
-                            Authorization: login.token,
+                            Authorization: `Bearer ${login.token}`,
                         },
                     });
 
@@ -88,7 +88,7 @@ function PedidoPage() {
                 try {
                     await buscarPedidosPorRestaurante(`/pedido/listar/restaurante/${login.restauranteId}`, setPedidos, {
                         headers: {
-                            Authorization: login.token,
+                            Authorization: `Bearer ${login.token}`,
                         },
                     });
 
@@ -109,6 +109,10 @@ function PedidoPage() {
     useEffect(() => {
         getPedidos();
     }, [])
+
+    // setTimeout(() => {
+
+    // }, 15000);
 
     useEffect(() => {
         if (login.token === '') {

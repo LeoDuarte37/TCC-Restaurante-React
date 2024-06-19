@@ -6,7 +6,6 @@ import { MesaContext } from "../../../contexts/MesaContext";
 import { RotatingLines } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import "./../../../App.css"
-import toastAlert from "../../../utils/toastAlert";
 
 function FormLogin() {
     const navigate = useNavigate();

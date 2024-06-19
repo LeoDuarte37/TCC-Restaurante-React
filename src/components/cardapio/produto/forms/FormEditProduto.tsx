@@ -33,7 +33,7 @@ function FormEditProduto(props: { produto: Produto, setOpen: Function }) {
 
         await editar(`/produto`, produto, setProduto, {
             headers: {
-                Authorization: login.token,
+                Authorization: `Bearer ${login.token}`,
             },
         });
         
@@ -91,7 +91,7 @@ function FormEditProduto(props: { produto: Produto, setOpen: Function }) {
                 </div>
 
                 <div className="h-full w-full flex justify-center gap-3">
-                    <button className="button h-12 w-full text-center flex items-center justify-center self-center mt-3">
+                    <button type="submit" className="button h-12 w-full text-center flex items-center justify-center self-center mt-3">
                         Editar Produto
                     </button>
                 </div>

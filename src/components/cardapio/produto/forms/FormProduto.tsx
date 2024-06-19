@@ -43,7 +43,7 @@ function FormProduto(props: { subcategoria: Subcategoria }) {
         
         await adicionar(`/produto`, addProduto, {
             headers: {
-                Authorization: login.token,
+                Authorization: `Bearer ${login.token}`,
             },
         });
         
@@ -107,7 +107,7 @@ function FormProduto(props: { subcategoria: Subcategoria }) {
             </div>
 
             <div className="h-full w-full flex justify-center">
-                <button className="button h-12 w-full text-center flex items-center justify-center self-center mt-3">
+                <button type="submit" className="button h-12 w-full text-center flex items-center justify-center self-center mt-3">
                     Adicionar Produto
                 </button>
             </div>

@@ -3,6 +3,7 @@ import AddCategoria from "../../../../models/categoria/AddCategoria";
 import { LoginContext } from "../../../../contexts/LoginContext";
 import { adicionar } from "../../../../services/Service";
 import { useNavigate } from "react-router-dom";
+import toastAlert from "../../../../utils/toastAlert";
 
 function FormCategoria() {
 
@@ -30,13 +31,21 @@ function FormCategoria() {
     async function submit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        await adicionar(`/categoria`, addCategoria, {
-            headers: {
-                Authorization: login.token,
-            },
-        });
-        
-        navigate("/cardapio");
+        try {
+            await adicionar(`/categoria`, addCategoria, {
+                headers: {
+                    Authorization: `Bearer ${login.token}`,
+                },
+            });
+
+            toastAlert("Nova categoria adicionada!", "sucesso");
+            
+            navigate("/historico/pedidos");
+            
+        } catch (error: any) {
+            console.log(error) 
+            console.log(login)   
+        }
     }
 
     return (
@@ -61,9 +70,10 @@ function FormCategoria() {
             </div>
 
             <div className="h-full w-full flex justify-center">
-                <button className="button h-12 w-full text-center flex items-center justify-center self-center mt-3">
-                    Adicionar Categoria
-                </button>
+                <input 
+                    type="submit" 
+                    placeholder="Adicionar Categoria"
+                    className="button h-12 w-full text-center flex items-center justify-center self-center mt-3" />
             </div>
         </form>
     )

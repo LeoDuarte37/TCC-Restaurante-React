@@ -22,7 +22,7 @@ export default function CardapioPage() {
             setIsLoading(true);
             await getCategorias(`/categoria/listar/restaurante/${login.restauranteId}`, setCategorias, {
                 headers: {
-                    Authorization: login.token,
+                    Authorization: `Bearer ${login.token}`,
                 },
             });
             setIsLoading(false);

@@ -11,7 +11,7 @@ import AtualizarCardapio from "../models/AtualizarCardapio";
 import Status from "../models/Status";
 
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL
+    baseURL: import.meta.env.VITE_API_URL,
 });
 
 // Login
@@ -83,8 +83,8 @@ export const fecharConta = async (mesaId: number) => {
 }
 
 // Adicionar
-export const adicionar = async (url: string, dados: (AddMesa | AddCategoria | AddSubcategoria | AddProduto), headers: Object) => {
-    const resposta = await api.post(url, dados, headers);
+export const adicionar = async (url: string, data: (AddMesa | AddCategoria | AddSubcategoria | AddProduto), config: Object) => {
+    await api.post(url, data, config)
 }
 
 
