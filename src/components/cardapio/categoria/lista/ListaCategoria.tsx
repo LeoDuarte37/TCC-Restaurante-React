@@ -29,34 +29,41 @@ function ListaCategoria(props: { categorias: Array<Categoria> }) {
         setCategorias(props.categorias);
     }, [])
 
+    useEffect(() => {
+        setSubCategoriaAtual(props.categorias[0]?.subcategoria[0]);
+    }, [props.categorias])
+
     return (
         <>
             <ul className="flex flex-col gap-4 max-w-48 max-[1000px]:max-w-40 w-full p-4 h-4/5 overflow-auto">
-                {categorias && categorias.map((categoria) => (
-                    <li key={categoria.id}>
-                        <div className="w-full">
-                            <div className="mx-auto w-full max-w-lg divide-y divide-white/5 rounded-xl bg-white/5">
-                                <Disclosure as="div" className="" defaultOpen={true}>
-                                    <DisclosureButton className="group flex w-full items-center gap-2 justify-between">
-                                        <div className="flex border border-[#3B1206] rounded-lg w-full">
-                                            {(login.perfil === "ADMIN" || login.perfil === "ROOT") &&
-                                                <ModalEditCategoria categoria={categoria} />
-                                            }
+                {props.categorias.map((categoria) => (
+                    <> {categoria.subcategoria.length > 0 &&
+                            <li key={categoria.id}>
+                                <div className="w-full">
+                                    <div className="mx-auto w-full max-w-lg divide-y divide-white/5 rounded-xl bg-white/5">
+                                        <Disclosure as="div" className="" defaultOpen={true}>
+                                            <DisclosureButton className="group flex w-full items-center gap-2 justify-between">
+                                                <div className="flex border border-[#3B1206] rounded-lg w-full">
+                                                    {(login.perfil === "ADMIN" || login.perfil === "ROOT") &&
+                                                        <ModalEditCategoria categoria={categoria} />
+                                                    }
 
-                                            <CardCategoria categoria={categoria} />
+                                                    <CardCategoria categoria={categoria} />
 
-                                            {(login.perfil === "ADMIN" || login.perfil === "ROOT") &&
-                                                <ModalAddSubcategoria categoria={categoria} />
-                                            }
-                                        </div>
-                                    </DisclosureButton>
-                                    <DisclosurePanel className="mt-4 text-md text-[#3B1206]">
-                                        <ListaSubcategoria subcategorias={categoria.subcategoria} setInfo={setInfoProdutos} />
-                                    </DisclosurePanel>
-                                </Disclosure>
-                            </div>
-                        </div>
-                    </li>
+                                                    {(login.perfil === "ADMIN" || login.perfil === "ROOT") &&
+                                                        <ModalAddSubcategoria categoria={categoria} />
+                                                    }
+                                                </div>
+                                            </DisclosureButton>
+                                            <DisclosurePanel className="mt-4 text-md text-[#3B1206]">
+                                                <ListaSubcategoria subcategorias={categoria.subcategoria} setInfo={setInfoProdutos} />
+                                            </DisclosurePanel>
+                                        </Disclosure>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    </>
                 ))}
                 {(login.perfil === "ADMIN" || login.perfil === "ROOT") &&
                     <li key={"NovaCategoria"} onClick={() => setIsOpen(true)} className="bg-[#D42300] hover:bg-[#b51f02] mb-4 text-white text-center font-semibold py-1 px-2 rounded h-8">
@@ -68,7 +75,7 @@ function ListaCategoria(props: { categorias: Array<Categoria> }) {
             <div className="bg-[#3B1206] w-1 h-full"></div>
 
             <div className="flex flex-col p-4 w-full h-full bg-[#f8f8f8] max-w-[50%] max-[1000px]:max-w-full">
-                { subCategoriaAtual && <ListaProduto subcategoria={subCategoriaAtual} /> }
+                <ListaProduto subcategoria={subCategoriaAtual} />
             </div>
 
             <Transition appear show={isOpen} >

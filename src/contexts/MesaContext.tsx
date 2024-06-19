@@ -7,7 +7,7 @@ import { mesaLogin } from "../services/Service";
 interface MesaContextProps {
     mesa: Mesa;
     handleMesaLogout(): void;
-    handleMesaLogin(mesaLogin: LoginMesa): Promise<boolean>;
+    handleMesaLogin(mesaLogin: LoginMesa): void;
     atualizarMesa(mesa: Mesa): void;
 }
 
@@ -28,21 +28,12 @@ export function MesaProvider({ children }: MesaProviderProps) {
         status: "",
     });
 
-    async function handleMesaLogin(loginMesa: LoginMesa) : Promise<boolean> {
+    async function handleMesaLogin(loginMesa: LoginMesa) {
         try {
-            await mesaLogin(loginMesa, atualizarMesa);
-
-            if (mesa.restauranteUuid === loginMesa.uuid) {
-                toastAlert(`Mesa ${mesa.numero} acessada com sucesso!`, "sucesso");
-                return true;
-            } else {
-                toastAlert(`Dados inconsistentes!`, "erro");
-                return false;
-            }
+            await mesaLogin(loginMesa, setMesa);
 
         } catch (error) {
             toastAlert(`Dados inconsistentes!`, "erro");
-            return false;
         }
     }
 

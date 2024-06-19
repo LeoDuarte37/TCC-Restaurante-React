@@ -1,15 +1,31 @@
 import { Transition, Dialog, TransitionChild, DialogPanel } from "@headlessui/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Categoria from "../../../../models/categoria/Categoria";
+import { deletar } from "../../../../services/Service";
+import { LoginContext } from "../../../../contexts/LoginContext";
+import toastAlert from "../../../../utils/toastAlert";
+import { useNavigate } from "react-router-dom";
 
 export default function ModalDeleteCategoria(props: { categoria: Categoria; setOpen: Function }) {
 
+    const { login } = useContext(LoginContext);
+
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    function excluir() {
+    async function excluir() {
+        try {
+            await deletar(`/categoria/${props.categoria.id}`, {
+                headers: {
+                    Authorization: login.token,
+                },
+            });
 
-        setIsOpen(false);
-        props.setOpen(false);
+            toastAlert("Categoria deletada!", "sucesso");
+            setIsOpen(false);
+            props.setOpen(false);
+        } catch (error: any) {
+            toastAlert("Erro ao deletar categoria. Por favor, tente novamente.", "erro");
+        }
     }
 
     return (

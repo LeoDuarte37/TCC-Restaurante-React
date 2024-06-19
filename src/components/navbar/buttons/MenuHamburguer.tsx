@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Menu, Transition, MenuItems, MenuItem, MenuButton } from "@headlessui/react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from "../../../contexts/LoginContext";
 
 function MenuHamburguer() {
@@ -35,23 +35,27 @@ function MenuHamburguer() {
             >
                 <MenuItems
                     anchor="bottom end"
-                    className="flex flex-col w-40 h-40 mt-2 origin-top-right rounded-xl border border-white/5 bg-gray-700 p-1 text-sm/6 text-white focus:outline-none"
+                    className="flex flex-col w-40 h-40 mt-2 origin-top-right rounded-xl border-2 border-[#3B1206] bg-[#F8F8F8] p-1 text-sm/6 text-white focus:outline-none"
                 >
                     <MenuItem>
-                        <p className="h-full mb-2 group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 font-semibold text-sm bg-white/10 ">
-                            Mesas chamando
-                        </p>
+                        <Link to="/mesas" className="h-full mb-2 group flex w-full justify-center items-center gap-2 rounded-lg py-1.5 px-3 font-semibold text-sm bg-[#3B1206]">
+                            <p onClick={() => setIsOpen(false)} className="text-[#F8F8F8]">
+                                Mesas chamando
+                            </p>
+                        </Link>
                     </MenuItem>
                     <MenuItem>
-                        <p className="h-full group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 font-semibold text-sm bg-white/10">
-                            Pedidos prontos
-                        </p>
+                        <Link to="/historico/pedidos" className="h-full group flex w-full justify-center items-center gap-2 rounded-lg py-1.5 px-3 font-semibold text-sm bg-[#3B1206]">
+                            <p onClick={() => setIsOpen(false)} className="text-[#F8F8F8]">
+                                Pedidos prontos
+                            </p>
+                        </Link>
                     </MenuItem>
                     <MenuItem>
-                        <div className="h-0.5 w-full bg-gray-200 my-2 rounded-xl"></div>
+                        <div className="h-0.5 w-full bg-[#3B1206] my-2 rounded-xl"></div>
                     </MenuItem>
                     <MenuItem>
-                        <p onClick={logout} className="h-full group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 font-semibold text-sm bg-red-500">
+                        <p onClick={logout} className="h-full max-h-10 group flex w-full justify-center items-center gap-2 rounded-lg py-1.5 px-3 font-semibold text-sm bg-red-500">
                             Sair
                         </p>
                     </MenuItem>

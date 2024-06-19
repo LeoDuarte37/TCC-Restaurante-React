@@ -87,5 +87,9 @@ export const adicionar = async (url: string, data: (AddMesa | AddCategoria | Add
     await api.post(url, data, config)
 }
 
+export const deletar = async (url: string, config: Object) => {
+    await api.delete(url, config);
+}
+
 
 export default api;

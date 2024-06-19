@@ -1,16 +1,31 @@
 import { Dialog, DialogPanel, Transition, TransitionChild } from "@headlessui/react"
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Produto from "../../../../models/produto/Produto";
+import { LoginContext } from "../../../../contexts/LoginContext";
+import { deletar } from "../../../../services/Service";
+import toastAlert from "../../../../utils/toastAlert";
 
 export default function ModalDeleteProduto(props: { produto: Produto; setOpen: Function}) {
 
+    const { login } = useContext(LoginContext);
+
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    function excluir() {
+    async function excluir() {
+        try {
+            await deletar(`/produto/${props.produto.id}`, {
+                headers: {
+                    Authorization: login.token,
+                },
+            });
 
-        setIsOpen(false);
-        props.setOpen(false);
-    } 
+            toastAlert("Produto deletado!", "sucesso");
+            setIsOpen(false);
+            props.setOpen(false);
+        } catch (error: any) {
+            toastAlert("Erro ao deletar produto. Por favor, tente novamente.", "erro");
+        }
+    }
 
     return (
         <>

@@ -11,7 +11,7 @@ function FormLogin() {
     const navigate = useNavigate();
 
     const { isMesa, handleLogin } = useContext(LoginContext);
-    const { handleMesaLogin } = useContext(MesaContext);
+    const { mesa, handleMesaLogin } = useContext(MesaContext);
 
     const [logar, setLogar] = useState<Logar>({} as Logar);
 
@@ -48,11 +48,11 @@ function FormLogin() {
             }
         } else {
             try {
-                const acessoLiberado = await handleMesaLogin(mesaLogin);
+                await handleMesaLogin(mesaLogin);
 
                 setIsLoading(false);
 
-                if (acessoLiberado) {
+                if (mesaLogin.uuid === mesa.restauranteUuid) {
                     navigate('/mesa/cardapio');    
                 }
 

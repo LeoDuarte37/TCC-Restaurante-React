@@ -19,7 +19,7 @@ function CardapioPage() {
     useEffect(() => {
         getCardapio();
     }, [])
-
+    
     return (
         <>
             {mesa.id > 0 &&
