@@ -4,5 +4,5 @@ export default interface AddProduto {
     foto: string;
     valor: number;
     disponivel: boolean;
-    subCategoriaId: number;
+    subcategoriaId: number;
 }

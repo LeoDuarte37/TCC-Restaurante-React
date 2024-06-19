@@ -15,7 +15,7 @@ function ListaCategoria(props: { categorias: Array<Categoria> }) {
 
     const { login } = useContext(LoginContext);
 
-    const [categorias, setCategorias] = useState<Array<Categoria>>(props.categorias);
+    const [categorias, setCategorias] = useState<Array<Categoria>>(props?.categorias);
 
     const [subCategoriaAtual, setSubCategoriaAtual] = useState<SubCategoria>(props?.categorias[0]?.subcategoria[0]);
 
@@ -27,8 +27,7 @@ function ListaCategoria(props: { categorias: Array<Categoria> }) {
 
     useEffect(() => {
         setCategorias(props.categorias);
-        setSubCategoriaAtual(props?.categorias[0]?.subcategoria[0]);
-    }, [props.categorias])
+    }, [])
 
     return (
         <>

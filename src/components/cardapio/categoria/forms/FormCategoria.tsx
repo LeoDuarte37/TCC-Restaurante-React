@@ -38,13 +38,12 @@ function FormCategoria() {
                 },
             });
 
-            toastAlert("Nova categoria adicionada!", "sucesso");
-            
-            navigate("/historico/pedidos");
+            toastAlert("Nova categoria adicionada!", "sucesso");   
+            navigate("/cardapio");
             
         } catch (error: any) {
-            console.log(error) 
-            console.log(login)   
+            toastAlert("Erro ao adicionar nova categoria. Por favor, tente novamente.", "erro")
+            console.log(error)   
         }
     }
 
@@ -73,7 +72,7 @@ function FormCategoria() {
                 <input 
                     type="submit" 
                     placeholder="Adicionar Categoria"
-                    className="button h-12 w-full text-center flex items-center justify-center self-center mt-3" />
+                    className="button h-14 w-full text-center self-center mt-3" />
             </div>
         </form>
     )

@@ -4,6 +4,7 @@ import AddProduto from "../../../../models/produto/AddProduto";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../../../contexts/LoginContext";
 import { adicionar } from "../../../../services/Service";
+import toastAlert from "../../../../utils/toastAlert";
 
 function FormProduto(props: { subcategoria: Subcategoria }) {
 
@@ -17,7 +18,7 @@ function FormProduto(props: { subcategoria: Subcategoria }) {
         foto: "",
         valor: 0,
         disponivel: false,
-        subCategoriaId: props.subcategoria.id,
+        subcategoriaId: props.subcategoria.id,
     });
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
@@ -41,13 +42,20 @@ function FormProduto(props: { subcategoria: Subcategoria }) {
     async function submit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
         
-        await adicionar(`/produto`, addProduto, {
-            headers: {
-                Authorization: `Bearer ${login.token}`,
-            },
-        });
-        
-        navigate("/produto");
+        try {
+            await adicionar(`/produto`, addProduto, {
+                headers: {
+                    Authorization: `Bearer ${login.token}`,
+                },
+            });
+            
+            toastAlert("Novo produto adicionado!", "sucesso");
+            navigate("/cardapio");
+            
+        } catch (error: any) {
+            toastAlert("Erro ao adicionar novo produto. Por favor, tente novamente.", "erro")
+            console.log(error)   
+        }
     }
 
     return (
@@ -107,9 +115,10 @@ function FormProduto(props: { subcategoria: Subcategoria }) {
             </div>
 
             <div className="h-full w-full flex justify-center">
-                <button type="submit" className="button h-12 w-full text-center flex items-center justify-center self-center mt-3">
-                    Adicionar Produto
-                </button>
+                <input
+                    type="submit" 
+                    placeholder="Adicionar Produto"                    
+                    className="button h-14 w-full text-center self-center mt-3" />
             </div>
         </form>
     );

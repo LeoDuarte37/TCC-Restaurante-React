@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LoginContext } from "../../../../contexts/LoginContext";
 import CardProduto from "../card/CardProduto";
 import { Dialog, DialogPanel, Transition, TransitionChild } from "@headlessui/react";
@@ -15,10 +15,14 @@ function ListaProduto(props: { subcategoria: Subcategoria }) {
 
     const [subcategoria, setSubcategoria] = useState<Subcategoria>(props.subcategoria)
 
+    useEffect(() => {
+        setSubcategoria(props.subcategoria);
+    }, [props.subcategoria])
+
     return (
         <>
             <div className="flex justify-between items-center">
-                <h2 className="text-[#D42300] text-start mb-4 subCategoriaTitle">{subcategoria?.nome}</h2>
+                <h2 className="text-[#D42300] text-start mb-4 subCategoriaTitle">{subcategoria && subcategoria.nome}</h2>
 
                 {(login.perfil === "ADMIN" || login.perfil === "ROOT") &&
                     <div className="flex gap-2">
@@ -32,7 +36,7 @@ function ListaProduto(props: { subcategoria: Subcategoria }) {
             </div>
                     
             <ul className="flex flex-col gap-6 w-full h-3/4 pb-4 overflow-auto">
-                {subcategoria?.produto?.map((produto) => (
+                {subcategoria && subcategoria.produto.map((produto) => (
                     <li key={produto.id}>
                         <CardProduto produto={produto} />
                     </li>

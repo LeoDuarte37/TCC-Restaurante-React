@@ -4,6 +4,7 @@ import AddSubcategoria from "../../../../models/subcategoria/AddSubcategoria";
 import { adicionar } from "../../../../services/Service";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../../../contexts/LoginContext";
+import toastAlert from "../../../../utils/toastAlert";
 
 function FormSubcategoria(props: { categoria: Categoria }) {
 
@@ -31,13 +32,20 @@ function FormSubcategoria(props: { categoria: Categoria }) {
     async function submit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        await adicionar(`/categoria`, addSubcategoria, {
-            headers: {
-                Authorization: `Bearer ${login.token}`,
-            },
-        });
-        
-        navigate("/subcategoria");
+        try {
+            await adicionar(`/subcategoria`, addSubcategoria, {
+                headers: {
+                    Authorization: `Bearer ${login.token}`,
+                },
+            });
+            
+            toastAlert("Nova subcategoria adicionada!", "sucesso");
+            navigate("/cardapio");
+            
+        } catch (error: any) {
+            toastAlert("Erro ao adicionar nova subcategoria. Por favor, tente novamente.", "erro")
+            console.log(error)   
+        }
     }
 
     return (
@@ -66,9 +74,10 @@ function FormSubcategoria(props: { categoria: Categoria }) {
             </div>
 
             <div className="h-full w-full flex justify-center">
-                <button type="submit" className="button h-12 w-full text-center flex items-center justify-center self-center mt-3">
-                    Adicionar Subcategoria
-                </button>
+                <input 
+                    type="submit" 
+                    placeholder="Adicionar Subcategoria"
+                    className="button h-14 w-full text-center self-center mt-3" />
             </div>
         </form>
     );
