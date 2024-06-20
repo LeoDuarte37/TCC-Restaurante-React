@@ -4,10 +4,13 @@ import { LoginContext } from "../../../../contexts/LoginContext";
 import { adicionar } from "../../../../services/Service";
 import { useNavigate } from "react-router-dom";
 import toastAlert from "../../../../utils/toastAlert";
+import { CardapioContext } from "../../../../contexts/CardapioContext";
 
 function FormCategoria() {
 
-    const { login } = useContext(LoginContext);
+    const { login, handleLogout } = useContext(LoginContext);
+
+    const { buscarCategorias } = useContext(CardapioContext);
 
     const navigate = useNavigate();
 
@@ -38,12 +41,17 @@ function FormCategoria() {
                 },
             });
 
-            toastAlert("Nova categoria adicionada!", "sucesso");   
-            navigate("/cardapio");
-            
+            toastAlert("Nova categoria adicionada!", "sucesso"); 
+            buscarCategorias();
+
         } catch (error: any) {
-            toastAlert("Erro ao adicionar nova categoria. Por favor, tente novamente.", "erro")
-            console.log(error)   
+            if (error.toString().includes("403")) {
+                handleLogout();
+                navigate("/");
+                toastAlert("Por favor, faça login novamente.", "info");
+            } else {
+                toastAlert("Erro ao adicionar nova categoria. Por favor, tente novamente.", "erro");
+            }
         }
     }
 

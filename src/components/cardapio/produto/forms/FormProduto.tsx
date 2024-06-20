@@ -1,24 +1,24 @@
 import { ChangeEvent, useContext, useState } from "react";
-import Subcategoria from "../../../../models/subcategoria/Subcategoria";
 import AddProduto from "../../../../models/produto/AddProduto";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../../../contexts/LoginContext";
 import { adicionar } from "../../../../services/Service";
 import toastAlert from "../../../../utils/toastAlert";
+import { CardapioContext } from "../../../../contexts/CardapioContext";
 
-function FormProduto(props: { subcategoria: Subcategoria }) {
+function FormProduto() {
+    const { login, handleLogout } = useContext(LoginContext);
+    const { subcategoriaAtual, buscarCategorias } = useContext(CardapioContext);
 
     const navigate = useNavigate();
     
-    const { login } = useContext(LoginContext);
-
     const [addProduto, setAddProduto] = useState<AddProduto>({
         nome: "",
         descricao: "",
         foto: "",
         valor: 0,
         disponivel: false,
-        subcategoriaId: props.subcategoria.id,
+        subcategoriaId: subcategoriaAtual.id,
     });
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
@@ -50,11 +50,16 @@ function FormProduto(props: { subcategoria: Subcategoria }) {
             });
             
             toastAlert("Novo produto adicionado!", "sucesso");
-            navigate("/cardapio");
+            buscarCategorias();
             
         } catch (error: any) {
-            toastAlert("Erro ao adicionar novo produto. Por favor, tente novamente.", "erro")
-            console.log(error)   
+            if (error.toString().includes('403')) {
+                toastAlert("Por favor, faça login novamente!", "info");
+                handleLogout();
+                navigate('/');
+            } else {
+                toastAlert("Erro ao adicionar novo produto. Por favor, tente novamente.", "erro")
+            }
         }
     }
 

@@ -3,12 +3,28 @@ import Produto from "../../../../models/produto/Produto";
 import { LoginContext } from "../../../../contexts/LoginContext";
 import { editar } from "../../../../services/Service";
 import toastAlert from "../../../../utils/toastAlert";
+import AtualizarProduto from "../../../../models/produto/AtualizarProduto";
+import { CardapioContext } from "../../../../contexts/CardapioContext";
+import { useNavigate } from "react-router-dom";
 
 function FormEditProduto(props: { produto: Produto, setOpen: Function }) {
 
-    const { login } = useContext(LoginContext);
+    const { login, handleLogout } = useContext(LoginContext);
+    const { subcategoriaAtual, buscarCategorias } = useContext(CardapioContext); 
 
-    const [produto, setProduto] = useState<Produto>(props.produto);
+    const navigate = useNavigate();
+
+    const [produto, setProduto] = useState<AtualizarProduto>({
+        id: props.produto.id,
+        nome: props.produto.nome,
+        descricao: props.produto.descricao,
+        foto: props.produto.foto,
+        valor: props.produto.valor,
+        disponivel: props.produto.disponivel,
+        subcategoria: {
+            id: subcategoriaAtual.id,
+        },
+    });
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         const target = e.target;
@@ -31,14 +47,26 @@ function FormEditProduto(props: { produto: Produto, setOpen: Function }) {
     async function submit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        await editar(`/produto`, produto, setProduto, {
-            headers: {
-                Authorization: `Bearer ${login.token}`,
-            },
-        });
-        
-        toastAlert("Produto editado com sucesso!", "sucesso");
-        props.setOpen(false);
+        try {
+            await editar(`/produto`, produto, setProduto, {
+                headers: {
+                    Authorization: `Bearer ${login.token}`,
+                },
+            });
+            
+            toastAlert("Produto editado!", "sucesso");
+            props.setOpen(false);
+            buscarCategorias();
+            
+        } catch (error: any) {
+            if (error.toString().includes('403')) {
+                toastAlert("Por favor, faça login novamente!", "info");
+                handleLogout();
+                navigate('/');
+            } else {
+                toastAlert("Não foi possivel editar o produto! Por favor, tente novamente.", "erro");
+            }
+        }
     }
 
     return (
@@ -91,9 +119,10 @@ function FormEditProduto(props: { produto: Produto, setOpen: Function }) {
                 </div>
 
                 <div className="h-full w-full flex justify-center gap-3">
-                    <button type="submit" className="button h-12 w-full text-center flex items-center justify-center self-center mt-3">
-                        Editar Produto
-                    </button>
+                    <input 
+                        type="submit" 
+                        placeholder="Editar Produto"
+                        className="button h-12 w-full text-center flex items-center justify-center self-center mt-3"/>
                 </div>
             </form>
         </>

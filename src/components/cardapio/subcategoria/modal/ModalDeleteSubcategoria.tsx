@@ -1,8 +1,10 @@
 import { Transition, Dialog, TransitionChild, DialogPanel } from "@headlessui/react";
-import { useState } from "react";
-import Subcategoria from "../../../../models/subcategoria/Subcategoria";
+import { useContext, useState } from "react";
+import { CardapioContext } from "../../../../contexts/CardapioContext";
 
-export default function ModalDeleteSubcategoria(props: { subcategoria: Subcategoria; setOpen: Function }) {
+export default function ModalDeleteSubcategoria(props: { setOpen: Function }) {
+
+    // const { subcategoriaAtual, buscarCategorias } = useContext(CardapioContext);
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 

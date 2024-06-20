@@ -142,10 +142,6 @@ function CardMesa(props: { mesa: Mesa; getInfo: Function }) {
                                         <div className="w-full h-full max-h-[75%] mb-4 flex flex-col justify-center items-center rounded-xl bg-white/5 overflow-hidden backdrop-blur-2xl">
                                             <ListaPedido pedidos={pedidos} />
                                         </div>
-
-                                        <button onClick={fecharMesa} className="button self-center">
-                                            Fechar Conta
-                                        </button>
                                     </div>
                                 </div>
                             </DialogPanel>

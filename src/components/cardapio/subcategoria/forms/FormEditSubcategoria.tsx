@@ -1,12 +1,14 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useContext, useState } from "react";
 import Subcategoria from "../../../../models/subcategoria/Subcategoria";
 import { Transition, Dialog, TransitionChild, DialogPanel } from "@headlessui/react";
+import { CardapioContext } from "../../../../contexts/CardapioContext";
 
-function FormEditSubcategoria(props: { subcategoria: Subcategoria; setOpen: Function}) {
+function FormEditSubcategoria(props: { setOpen: Function }) {
 
+    const { subcategoriaAtual, buscarCategorias } = useContext(CardapioContext);
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const [subcategoria, setSubcategoria] = useState<Subcategoria>(props.subcategoria);
+    const [subcategoria, setSubcategoria] = useState<Subcategoria>(subcategoriaAtual);
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         const target = e.target;

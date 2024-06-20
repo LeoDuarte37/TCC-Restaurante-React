@@ -12,6 +12,7 @@ import MesaPage from './pages/mesa/MesaPage';
 import PedidoPage from './pages/pedido/PedidoPage';
 import CardapioPage from './pages/cardapio/CardapioPage';
 import ContaFechadaMesaPage from './pages/mesa/conta/ContaFechadaMesaPage';
+import { CardapioProvider } from './contexts/CardapioContext';
 
 function App() {
     return (
@@ -19,19 +20,20 @@ function App() {
             <ToastContainer style={{ width: "250px" }} />
             <BrowserRouter>
                 <MesaProvider>
-                    <Navbar />
-
-                    <Routes>
-                        <Route path='/' element={<LoginPage />} />
-                        <Route path='/mesa/cardapio' element={<CardapioMesaPage />} />
-                        <Route path='/mesa/conta' element={<ContaMesaPage />} />
-                        <Route path='/mesa/conta/fechada' element={<ContaFechadaMesaPage />} />
-                        {/* <Route path='/' element={} /> */}
-                        <Route path='/historico/pedidos' element={<PedidoPage />} />
-                        <Route path='/cardapio' element={<CardapioPage />} />
-                        <Route path='/mesas' element={<MesaPage />} />
-                    </Routes>
-
+                    <CardapioProvider>
+                        <Navbar />
+                        
+                        <Routes>
+                            <Route path='/' element={<LoginPage />} />
+                            <Route path='/mesa/cardapio' element={<CardapioMesaPage />} />
+                            <Route path='/mesa/conta' element={<ContaMesaPage />} />
+                            <Route path='/mesa/conta/fechada' element={<ContaFechadaMesaPage />} />
+                            {/* <Route path='/' element={} /> */}
+                            <Route path='/historico/pedidos' element={<PedidoPage />} />
+                            <Route path='/cardapio' element={<CardapioPage />} />
+                            <Route path='/mesas' element={<MesaPage />} />
+                        </Routes>
+                    </CardapioProvider>
                 </MesaProvider>
             </BrowserRouter>
         </LoginProvider>

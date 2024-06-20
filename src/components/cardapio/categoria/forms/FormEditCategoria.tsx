@@ -3,10 +3,13 @@ import Categoria from "../../../../models/categoria/Categoria";
 import { editar } from "../../../../services/Service";
 import { LoginContext } from "../../../../contexts/LoginContext";
 import { useNavigate } from "react-router-dom";
+import toastAlert from "../../../../utils/toastAlert";
+import { CardapioContext } from "../../../../contexts/CardapioContext";
 
 function FormEditCategoria(props: { categoriaModal: Categoria }) {
 
-    const { login } = useContext(LoginContext);
+    const { login, handleLogout } = useContext(LoginContext);
+    const { buscarCategorias } = useContext(CardapioContext);
 
     const navigate = useNavigate();
 
@@ -26,13 +29,25 @@ function FormEditCategoria(props: { categoriaModal: Categoria }) {
     async function submit(e: ChangeEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        await editar(`/categoria`, categoria, setCategoria, {
-            headers: {
-                Authorization: `Bearer ${login.token}`,
-            },
-        });
+        try {
+            await editar(`/categoria`, categoria, setCategoria, {
+                headers: {
+                    Authorization: `Bearer ${login.token}`,
+                },
+            });
+            
+            toastAlert("Categoria atualizada!", "sucesso");
+            buscarCategorias();
 
-        navigate("/cardapio");
+        } catch (error: any) {
+            if (error.toString().includes('403')) {
+                toastAlert("Por favor, faça login novamente!", "info");
+                handleLogout();
+                navigate('/');
+            } else {
+                toastAlert("Não foi possivel editar a categoria! Por favor, tente novamente.", "info");
+            }
+        }
     }
 
     return (

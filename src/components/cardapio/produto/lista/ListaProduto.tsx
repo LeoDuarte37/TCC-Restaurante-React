@@ -1,32 +1,27 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { LoginContext } from "../../../../contexts/LoginContext";
 import CardProduto from "../card/CardProduto";
 import { Dialog, DialogPanel, Transition, TransitionChild } from "@headlessui/react";
 import { X } from "@phosphor-icons/react";
-import Subcategoria from "../../../../models/subcategoria/Subcategoria";
 import FormProduto from "../forms/FormProduto";
 import ModalEditSubcategoria from "../../subcategoria/modal/ModalEditSubcategoria";
+import { CardapioContext } from "../../../../contexts/CardapioContext";
 
-function ListaProduto(props: { subcategoria: Subcategoria }) {
+function ListaProduto() {
 
     const { login } = useContext(LoginContext);
+    const { subcategoriaAtual } = useContext(CardapioContext);
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
-
-    const [subcategoria, setSubcategoria] = useState<Subcategoria>(props.subcategoria)
-
-    useEffect(() => {
-        setSubcategoria(props.subcategoria);
-    }, [props.subcategoria])
 
     return (
         <>
             <div className="flex justify-between items-center">
-                <h2 className="text-[#D42300] text-start mb-4 subCategoriaTitle">{subcategoria && subcategoria.nome}</h2>
+                <h2 className="text-[#D42300] text-start mb-4 subCategoriaTitle">{subcategoriaAtual?.nome}</h2>
 
                 {(login.perfil === "ADMIN" || login.perfil === "ROOT") &&
                     <div className="flex gap-2">
-                        <ModalEditSubcategoria subcategoria={subcategoria}/>
+                        <ModalEditSubcategoria />
 
                         <button onClick={() => setIsOpen(true)} className="bg-[#D42300] hover:bg-[#b51f02] mb-3 text-white font-semibold py-1 px-2 rounded h-8">
                             Novo Produto
@@ -36,7 +31,7 @@ function ListaProduto(props: { subcategoria: Subcategoria }) {
             </div>
                     
             <ul className="flex flex-col gap-6 w-full h-3/4 pb-4 overflow-auto">
-                {subcategoria && subcategoria.produto.map((produto) => (
+                {subcategoriaAtual?.produto.map((produto) => (
                     <li key={produto.id}>
                         <CardProduto produto={produto} />
                     </li>
@@ -68,7 +63,7 @@ function ListaProduto(props: { subcategoria: Subcategoria }) {
                                             <X size={32} color="#3B1206" onClick={() => setIsOpen(false)} />
                                         </div>
                                         <div className="rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
-                                            <FormProduto subcategoria={subcategoria} />
+                                            <FormProduto />
                                         </div>
                                     </div>
                                 </div>

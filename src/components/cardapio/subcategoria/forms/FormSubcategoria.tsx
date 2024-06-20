@@ -5,13 +5,15 @@ import { adicionar } from "../../../../services/Service";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../../../contexts/LoginContext";
 import toastAlert from "../../../../utils/toastAlert";
+import { CardapioContext } from "../../../../contexts/CardapioContext";
 
 function FormSubcategoria(props: { categoria: Categoria }) {
 
+    const { login, handleLogout } = useContext(LoginContext);
+    const { buscarCategorias } = useContext(CardapioContext);
+
     const navigate = useNavigate();
     
-    const { login } = useContext(LoginContext);
-
     const [addSubcategoria, setAddSubcategoria] = useState<AddSubcategoria>({
         nome: "",
         disponivel: false,
@@ -40,11 +42,17 @@ function FormSubcategoria(props: { categoria: Categoria }) {
             });
             
             toastAlert("Nova subcategoria adicionada!", "sucesso");
-            navigate("/cardapio");
+            buscarCategorias();
             
         } catch (error: any) {
-            toastAlert("Erro ao adicionar nova subcategoria. Por favor, tente novamente.", "erro")
-            console.log(error)   
+            
+            if (error.toString().includes('403')) {
+                toastAlert("Por favor, faça login novamente!", "info");
+                handleLogout();
+                navigate('/');
+            } else {
+                toastAlert("Erro ao adicionar nova subcategoria. Por favor, tente novamente.", "erro")
+            }
         }
     }
 

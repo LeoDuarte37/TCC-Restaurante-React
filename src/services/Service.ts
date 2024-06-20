@@ -45,6 +45,7 @@ export const atualizarStatusMesa = async (dados: Status, setDados: Function) => 
 export const buscarCardapio = async (url: string, setDados: Function) => {
     const resposta = await api.get(url);
     setDados(resposta.data);
+    console.log(resposta);
 }
 
 export const getCategorias = async (url: string, setDados: Function, headers: Object) => {

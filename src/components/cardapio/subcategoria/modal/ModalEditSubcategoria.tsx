@@ -1,12 +1,10 @@
 import { Transition, Dialog, TransitionChild, DialogPanel } from "@headlessui/react";
 import { X } from "@phosphor-icons/react";
 import { useState } from "react";
-import Subcategoria from "../../../../models/subcategoria/Subcategoria";
 import FormEditSubcategoria from "../forms/FormEditSubcategoria";
 import ModalDeleteSubcategoria from "./ModalDeleteSubcategoria";
 
-
-export default function ModalEditSubcategoria(props: { subcategoria: Subcategoria}) {
+export default function ModalEditSubcategoria() {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -34,7 +32,7 @@ export default function ModalEditSubcategoria(props: { subcategoria: Subcategori
                                     <div className="flex justify-center items-center h-full w-full max-h-[20rem] modalItemPedido rounded-xl max-[440px]:p-2">
                                         <div className="flex justify-between my-2 w-full">
                                             <div className="w-[18%]">
-                                                <ModalDeleteSubcategoria subcategoria={props.subcategoria} setOpen={setIsOpen}/>
+                                                <ModalDeleteSubcategoria setOpen={setIsOpen}/>
                                             </div>
 
                                             <h1 className="text-[#D42300] text-center w-full subCategoriaTitle text-2xl font-bold">
@@ -46,7 +44,7 @@ export default function ModalEditSubcategoria(props: { subcategoria: Subcategori
                                             </div>
                                         </div>
                                         <div className="rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
-                                            <FormEditSubcategoria subcategoria={props.subcategoria} setOpen={setIsOpen} />
+                                            <FormEditSubcategoria setOpen={setIsOpen} />
                                         </div>
                                     </div>
                                 </div>

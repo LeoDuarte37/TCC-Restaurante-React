@@ -8,13 +8,15 @@ import ListaItemPedido from "../itemPedido/lista/ListaItemPedido";
 import Item from "../../../models/pedido/item/Item";
 import { RotatingLines } from "react-loader-spinner";
 import usePedido from "../../../hooks/usePedido";
+import ModalFecharContaCaixa from "../modal/ModalFecharContaCaixa";
+import { useLocation } from "react-router-dom";
 
 function ListaPedido(props: { pedidos: Array<Pedido> }) {
     const { login } = useContext(LoginContext);
 
     const { getTotalPedidos } = usePedido();
 
-    const [pedidos, setPedidos] = useState<Array<Pedido>>([]);
+    const location = useLocation();
 
     const [currentPedido, setCurrentPedido] = useState<Pedido>(props.pedidos[0]);
     const [currentItems, setCurrentItems] = useState<Array<Item>>([])
@@ -23,6 +25,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
     const [quantidade, setQuantidade] = useState<number>(0);
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const [isOpenMesa, setIsOpenMesa] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     function renderModal(pedido: Pedido) {
@@ -32,8 +35,6 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
     }
 
     async function totalPedidos() {
-        setPedidos(props.pedidos);
-
         const [valor, qtd] = await getTotalPedidos(props.pedidos);
         setTotal(valor);
         setQuantidade(qtd);
@@ -60,7 +61,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                 return props.pedidos.map((pedido: Pedido) => (
                     <tr key={pedido.id} className="flex text-[#3B1206] text-base max-[690px]:text-sm">
                         <CardPedido pedido={pedido} />
-    
+
                         <td className="flex justify-center w-full">
                             <Button onClick={() => renderModal(pedido)} className="button text-base h-8 m-0 p-0 flex justify-center items-center xl:w-28 max-[540px]:w-12 max-[1300px]:w-24 max-[540px]:text-[14px]">
                                 {largura < 540 ? "Ver" : "Itens"}
@@ -157,13 +158,23 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                                     </td>
                                     <td className="flex w-full"></td>
                                     <td className="flex w-full"></td>
-                                    <td className="flex w-full"></td>
+
+                                    {location.pathname == "/mesas" ?
+                                        <td onClick={() => setIsOpenMesa(true)} className="bg-[#D42300] hover:bg-[#b51f02] text-white w-full text-center font-semibold py-1 mr-2 rounded h-8">
+                                            Fechar Conta
+                                        </td>
+
+                                        : <td className="flex w-full"></td>
+                                    }
                                 </tr>
                             </tfoot>
                         }
                     </table>
                 </div>
             }
+
+
+            <ModalFecharContaCaixa isOpen={isOpenMesa} setIsOpen={setIsOpenMesa} />
 
             <Transition appear show={isOpen} >
                 <Dialog as="div" className="absolute inset-0 z-10 w-screen focus:outline-none"
@@ -189,7 +200,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                                             <X size={32} color="#3B1206" onClick={() => setIsOpen(false)} />
                                         </div>
                                         <div className="div rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl w-full flex-1 flex-col justify-center">
-                                            { (currentPedido && currentItems) && <ListaItemPedido item={currentItems} pedido={currentPedido} /> }
+                                            {(currentPedido && currentItems) && <ListaItemPedido item={currentItems} pedido={currentPedido} />}
                                         </div>
                                     </div>
                                 </div>
