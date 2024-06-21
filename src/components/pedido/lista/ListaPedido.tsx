@@ -174,7 +174,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
             }
 
 
-            <ModalFecharContaCaixa isOpen={isOpenMesa} setIsOpen={setIsOpenMesa} />
+            <ModalFecharContaCaixa mesaId={currentPedido.mesa.id} isOpen={isOpenMesa} setIsOpen={setIsOpenMesa} />
 
             <Transition appear show={isOpen} >
                 <Dialog as="div" className="absolute inset-0 z-10 w-screen focus:outline-none"

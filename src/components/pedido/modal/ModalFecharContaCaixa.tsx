@@ -1,12 +1,35 @@
 import { Transition, Dialog, TransitionChild, DialogPanel } from "@headlessui/react";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../../../contexts/LoginContext";
+import { useContext } from "react";
+import toastAlert from "../../../utils/toastAlert";
+import { fecharConta } from "../../../services/Service";
 
-export default function ModalFecharContaCaixa(props: { isOpen: boolean, setIsOpen: Function }) {
+export default function ModalFecharContaCaixa(props: { mesaId: number, isOpen: boolean, setIsOpen: Function }) {
+
+    const { login, handleLogout } = useContext(LoginContext);
 
     const navigate = useNavigate();
 
     async function fechar() {
+        try {
+            await fecharConta(props.mesaId, {
+                headers: {
+                    Authorization: `Bearer ${login.token}`,
+                },
+            });
+            
+            toastAlert("Conta fechada!", "sucesso");
 
+        } catch (error: any) {
+            if (error.toString().includes('403')) {
+                toastAlert("Por favor, faça login novamente!", "info");
+                handleLogout();
+                navigate('/');
+            } else {
+                toastAlert("Erro ao adicionar novo produto. Por favor, tente novamente.", "erro")
+            }
+        }
     }
 
     return (

@@ -6,7 +6,6 @@ import usePedido from "../../../../hooks/usePedido";
 import MudarStatusPedidoButton from "../../buttons/MudarStatusPedidoButton";
 import Pedido from "../../../../models/pedido/Pedido";
 import { RotatingLines } from "react-loader-spinner";
-import ModalFecharContaCaixa from "../../modal/ModalFecharContaCaixa";
 
 function ListaItemPedido(props: { item: Array<Item>; pedido?: Pedido }) {
 

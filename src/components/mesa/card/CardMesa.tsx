@@ -139,7 +139,7 @@ function CardMesa(props: { mesa: Mesa; getInfo: Function }) {
                                             <X size={32} color="#3B1206" onClick={() => setIsOpen(false)} />
                                         </div>
 
-                                        <div className="w-full h-full max-h-[75%] mb-4 flex flex-col justify-center items-center rounded-xl bg-white/5 overflow-hidden backdrop-blur-2xl">
+                                        <div className="w-full h-full mb-4 flex flex-col justify-center items-center rounded-xl bg-white/5 overflow-hidden backdrop-blur-2xl">
                                             <ListaPedido pedidos={pedidos} />
                                         </div>
                                     </div>
