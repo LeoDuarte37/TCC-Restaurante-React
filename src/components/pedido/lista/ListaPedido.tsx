@@ -10,7 +10,7 @@ import ModalFecharContaCaixa from "../modal/ModalFecharContaCaixa";
 import { useLocation } from "react-router-dom";
 import ModalListaPedido from "../modal/ModalListaPedido";
 
-function ListaPedido(props: { pedidos: Array<Pedido> }) {
+function ListaPedido(props: { pedidos: Array<Pedido>, isLoading: boolean }) {
     const { login } = useContext(LoginContext);
 
     const { getTotalPedidos } = usePedido();
@@ -25,7 +25,6 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [isOpenMesa, setIsOpenMesa] = useState<boolean>(false);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     function renderModal(pedido: Pedido) {
         setIsOpen(true);
@@ -60,7 +59,6 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                 return props.pedidos.map((pedido: Pedido) => (
                     <tr key={pedido.id} className="flex text-[#3B1206] text-base max-[690px]:text-sm">
                         <CardPedido pedido={pedido} />
-
                         <td className="flex justify-center w-full">
                             <Button onClick={() => renderModal(pedido)} className="button text-base h-8 m-0 p-0 flex justify-center items-center xl:w-28 max-[540px]:w-12 max-[1300px]:w-24 max-[540px]:text-[14px]">
                                 {largura < 540 ? "Ver" : "Itens"}
@@ -73,10 +71,8 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
     }
 
     useEffect(() => {
-        setIsLoading(true);
         totalPedidos();
         renderItens();
-        setIsLoading(false);
     }, [props.pedidos])
 
     return (
@@ -84,7 +80,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
         <>
             {login.perfil === "COZINHA"
                 ? <>
-                    {isLoading ? <RotatingLines
+                    {props.isLoading ? <RotatingLines
                         strokeColor="white"
                         strokeWidth="5"
                         animationDuration="0.75"
@@ -134,7 +130,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                             </tr>
                         </thead>
                         <tbody className="flex flex-col gap-6 overflow-auto w-full max-h-content h-[85%] mt-4">
-                            {isLoading ? <RotatingLines
+                            {props.isLoading ? <RotatingLines
                                 strokeColor="white"
                                 strokeWidth="5"
                                 animationDuration="0.75"
@@ -157,12 +153,10 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                                     </td>
                                     <td className="flex w-full"></td>
                                     <td className="flex w-full"></td>
-
                                     {location.pathname == "/mesas" ?
                                         <td onClick={() => setIsOpenMesa(true)} className="bg-[#D42300] hover:bg-[#b51f02] text-white w-full text-center font-semibold py-1 mr-2 rounded h-8">
                                             Fechar Conta
                                         </td>
-
                                         : <td className="flex w-full"></td>
                                     }
                                 </tr>

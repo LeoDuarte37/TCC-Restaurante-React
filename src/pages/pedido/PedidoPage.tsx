@@ -13,6 +13,7 @@ function PedidoPage() {
     const { login, handleLogout } = useContext(LoginContext);
 
     const [pedidos, setPedidos] = useState<Array<Pedido>>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     async function getPedidos() {
         switch (login.perfil) {
@@ -107,12 +108,14 @@ function PedidoPage() {
     }
 
     useEffect(() => {
+        setIsLoading(true);
         getPedidos();
+        setIsLoading(false);
     }, [])
 
     setTimeout(() => {
         getPedidos();
-    }, 5000);
+    }, 10000);
 
     useEffect(() => {
         if (login.token === '') {
@@ -133,7 +136,7 @@ function PedidoPage() {
 
                     <div className={login.perfil === "COZINHA" ? "bg-[#F8F8F8] w-full h-4/6 max-[1600px]:h-5/6 flex flex-col justify-center items-center"
                         : "bg-[#F8F8F8] w-full h-full max-h-[70%] flex flex-col justify-center items-center"}>
-                        <ListaPedido pedidos={pedidos} />
+                        <ListaPedido pedidos={pedidos} isLoading={isLoading} />
                     </div>
                 </div>
             }

@@ -3,7 +3,7 @@ import { X } from "@phosphor-icons/react";
 import Pedido from "../../../models/pedido/Pedido";
 import ListaPedido from "../../pedido/lista/ListaPedido";
 
-export default function ModalPedidoMesa(props: { pedidos: Array<Pedido>, isOpen: boolean, setIsOpen: Function }) {
+export default function ModalPedidoMesa(props: { pedidos: Array<Pedido>, isOpen: boolean, setIsOpen: Function, isLoading: boolean }) {
 
     return (
         <Transition appear show={props.isOpen} >
@@ -31,7 +31,7 @@ export default function ModalPedidoMesa(props: { pedidos: Array<Pedido>, isOpen:
                                     </div>
 
                                     <div className="w-full h-full mb-4 flex flex-col justify-center items-center rounded-xl bg-white/5 overflow-hidden backdrop-blur-2xl">
-                                        <ListaPedido pedidos={props.pedidos} />
+                                        <ListaPedido pedidos={props.pedidos} isLoading={props.isLoading} />
                                     </div>
                                 </div>
                             </div>
