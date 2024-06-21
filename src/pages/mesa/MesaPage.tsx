@@ -65,12 +65,16 @@ function MesaPage() {
         }
     }, [login.token]);
 
+    setTimeout(() => {
+        getMesas();
+    }, 10000);
+
     return (
         <>
             {(login.perfil !== "") &&
                 <div className="bg-[#F8F8F8] w-full h-full max-w-6xl flex flex-col mx-auto mt-4 items-center px-4 pb-4 my-2 max-[768px]:px-2 max-[768px]:pb-2">
                     <div className="flex justify-between items-center h-full max-h-10 w-full">
-                        <h1 className="text-[#D42300] w-full subCategoriaTitle text-center text-3xl font-bold max-[1600px]:mt-4">
+                        <h1 className="text-[#D42300] w-full subCategoriaTitle mt-4 mb-4 text-center text-3xl font-bold max-[1600px]:mt-4">
                             Mesas
                         </h1>
 

@@ -29,12 +29,24 @@ function ListaProduto() {
                     </div>
                 }
             </div>
-                    
+
             <ul className="flex flex-col gap-6 w-full h-3/4 pb-4 overflow-auto">
                 {subcategoriaAtual?.produto.map((produto) => (
-                    <li key={produto.id}>
-                        <CardProduto produto={produto} />
-                    </li>
+                    <>
+                        {login.token != '' ?
+                            <li key={produto.id}>
+                                <CardProduto produto={produto} />
+                            </li>
+
+                            : <> 
+                                {produto.disponivel &&
+                                    <li key={produto.id}>
+                                        <CardProduto produto={produto} />
+                                    </li>
+                                }
+                            </>
+                        }
+                    </>
                 ))}
             </ul>
 
