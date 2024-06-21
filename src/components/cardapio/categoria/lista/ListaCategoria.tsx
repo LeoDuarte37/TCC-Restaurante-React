@@ -1,16 +1,11 @@
 import { useState, useContext } from "react";
 import CardCategoria from "../card/CardCategoria";
-import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/react";
 import { LoginContext } from "../../../../contexts/LoginContext";
-import ListaSubcategoria from "../../subcategoria/lista/ListaSubcategoria";
 import ListaProduto from "../../produto/lista/ListaProduto";
-import ModalEditCategoria from "../modal/ModalEditCategoria";
-import ModalAddSubcategoria from "../../subcategoria/modal/ModalAddSubcategoria";
 import { CardapioContext } from "../../../../contexts/CardapioContext";
 import ModalAddCategoria from "../modal/ModalAddCategoria";
 
 function ListaCategoria() {
-
     const { login } = useContext(LoginContext);
     const { categorias } = useContext(CardapioContext);
 
@@ -24,42 +19,17 @@ function ListaCategoria() {
                         <li key={categoria.id}>
                             <div className="w-full">
                                 <div className="mx-auto w-full max-w-lg divide-y divide-white/5 rounded-xl bg-white/5">
-                                    <Disclosure as="div" className="" defaultOpen={true}>
-                                        <DisclosureButton className="group flex w-full items-center gap-2 justify-between">
-                                            <div className="flex border border-[#3B1206] rounded-lg w-full">
-                                                {(login.perfil === "ADMIN" || login.perfil === "ROOT") &&
-                                                    <ModalEditCategoria categoria={categoria} />
-                                                }
-
-                                                <CardCategoria categoria={categoria} />
-
-                                                {(login.perfil === "ADMIN" || login.perfil === "ROOT") &&
-                                                    <ModalAddSubcategoria categoria={categoria} />
-                                                }
-                                            </div>
-                                        </DisclosureButton>
-                                        <DisclosurePanel className="mt-4 text-md text-[#3B1206]">
-                                            <ListaSubcategoria subcategorias={categoria.subcategoria} />
-                                        </DisclosurePanel>
-                                    </Disclosure>
+                                    <CardCategoria categoria={categoria} />
                                 </div>
                             </div>
                         </li>
 
-                        :  <> {(categoria.subcategoria.length > 0 && categoria.disponivel == true) && 
+                        : <> 
+                            {(categoria.subcategoria.length > 0) &&
                                 <li key={categoria.id}>
                                     <div className="w-full">
                                         <div className="mx-auto w-full max-w-lg divide-y divide-white/5 rounded-xl bg-white/5">
-                                            <Disclosure as="div" className="" defaultOpen={true}>
-                                                <DisclosureButton className="group flex w-full items-center gap-2 justify-between">
-                                                    <div className="flex border border-[#3B1206] rounded-lg w-full">
-                                                        <CardCategoria categoria={categoria} />
-                                                    </div>
-                                                </DisclosureButton>
-                                                <DisclosurePanel className="mt-4 text-md text-[#3B1206]">
-                                                    <ListaSubcategoria subcategorias={categoria.subcategoria} />
-                                                </DisclosurePanel>
-                                            </Disclosure>
+                                            <CardCategoria categoria={categoria} />
                                         </div>
                                     </div>
                                 </li>

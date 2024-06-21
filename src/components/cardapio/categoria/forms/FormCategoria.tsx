@@ -83,7 +83,7 @@ function FormCategoria() {
                     className="button h-14 w-full text-center self-center mt-3" />
             </div>
         </form>
-    )
+    );
 }
 
 export default FormCategoria;
