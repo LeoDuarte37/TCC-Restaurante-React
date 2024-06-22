@@ -34,9 +34,9 @@ function Navbar() {
                 : <nav className="flex flex-wrap place-items-center">
                     <div className="navbar max-[1000px]:justify-between justify-around">
 
-                        {login.perfil != '' && <ModalUuidRestaurante />}
+                        {login?.perfil != '' && <ModalUuidRestaurante />}
 
-                        {(login.perfil === "COZINHA") &&
+                        {(login?.perfil === "COZINHA") &&
                             <>
                                 <h1 className="text-[#F8F8F8] subCategoriaTitle font-bold text-center text-3xl max-[540px]:text-lg">
                                     Chegada de Pedidos
@@ -47,13 +47,13 @@ function Navbar() {
                             </>
                         }
 
-                        {login.perfil === "GARCOM" &&
+                        {login?.perfil === "GARCOM" &&
                             <div className="flex justify-end">
                                 <MenuHamburguer />
                             </div>
                         }
 
-                        {(login.perfil === "CAIXA" || login.perfil === "ADMIN" || login.perfil === "ROOT") &&
+                        {(login?.perfil === "CAIXA" || login?.perfil === "ADMIN" || login?.perfil === "ROOT") &&
                             <div className="flex  items-center gap-4">
                                 <Link to="/historico/pedidos">
                                     <MeusPedidosButton />
@@ -80,7 +80,7 @@ function Navbar() {
                             </div>
                         }
 
-                        {mesa.id > 0 &&
+                        {mesa?.id > 0 &&
                             <>
                                 <div className="logo">
                                     <ChefHat size={50} color='#f8f8f8' />

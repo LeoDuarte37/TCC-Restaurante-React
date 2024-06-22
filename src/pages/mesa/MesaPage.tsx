@@ -67,7 +67,7 @@ function MesaPage() {
 
     setTimeout(() => {
         getMesas();
-    }, 10000);
+    }, 15000);
 
     return (
         <>
@@ -80,7 +80,7 @@ function MesaPage() {
 
                         {(login.perfil === "ROOT" || login.perfil === "ADMIN") && <ModalFormMesa getMesas={getMesas} />}
                     </div>
-                    <div className="bg-[#F8F8F8] w-full h-full max-h-[75%] max-w-6xl flex flex-col justify-center items-center">
+                    <div className="bg-[#F8F8F8] w-full h-full max-h-[75%] mt-4 max-w-6xl flex flex-col border-2 border-[#3B1206] rounded-lg">
                         <ListaMesa mesas={mesas} getMesas={getMesas} />
                     </div>
                 </div>

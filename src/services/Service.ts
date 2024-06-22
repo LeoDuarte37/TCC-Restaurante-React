@@ -45,7 +45,6 @@ export const atualizarStatusMesa = async (dados: Status, setDados: Function) => 
 export const buscarCardapio = async (url: string, setDados: Function) => {
     const resposta = await api.get(url);
     setDados(resposta.data);
-    console.log(resposta);
 }
 
 export const getCategorias = async (url: string, setDados: Function, headers: Object) => {
@@ -81,12 +80,13 @@ export const editarStatusPedido = async (dados: Status, setDados: Function, head
     setDados(resposta.data);
 }
 
-export const fecharConta = async (mesaId: number, config: Object) => {
-    const resposta = await api.put(`/pedido/fecharConta/mesa/${mesaId}`, config);
-    if (resposta.status == 202) {
-        toastAlert("Conta fechada com sucesso!", "sucesso");
-    }
-}
+// export const fecharConta = async (url: string, config: Object) => {
+//     const resposta = await api.put(url, config);
+//     console.log(resposta)
+//     if (resposta.status == 202) {
+//         toastAlert("Conta fechada com sucesso!", "sucesso");
+//     }
+// }
 
 // Adicionar
 export const adicionar = async (url: string, data: (AddMesa | AddCategoria | AddSubcategoria | AddProduto), config: Object) => {

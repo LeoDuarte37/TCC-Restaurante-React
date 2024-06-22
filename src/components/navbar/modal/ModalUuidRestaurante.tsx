@@ -43,7 +43,7 @@ export default function ModalUuidRestaurante() {
                                                 <input
                                                     type="text"
                                                     name="uuid"
-                                                    value={login.restauranteUuid}
+                                                    defaultValue={login?.restauranteUuid}
                                                     className='mt-2 block w-full rounded-lg border-2 border-[#D42300] bg-[#f8f8f8] py-1.5 px-3 text-sm/6 text-gray focus:outline-none focus:outline-1 focus:ring-[#D42300] focus:-outline-offset-0 focus:outline-' />
                                             </div>
                                         </div>

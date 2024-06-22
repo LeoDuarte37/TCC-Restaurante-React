@@ -30,7 +30,7 @@ function ListaItemPedido(props: { item: Array<Item>; pedido?: Pedido }) {
 
     function renderItens() {
         return itens.map((item: Item) => (
-            <tr key={item.produto.id} className="flex text-[#3B1206] text-base max-[690px]:text-sm">
+            <tr key={props.pedido?.id} className="flex text-[#3B1206] text-base max-[690px]:text-sm">
                 <CardItemPedido item={item} />
             </tr>
         ));

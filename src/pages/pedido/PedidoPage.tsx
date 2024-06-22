@@ -6,15 +6,15 @@ import { buscarPedidosPorStatusOuMesa, buscarPedidosPorRestaurante } from "../..
 import toastAlert from "../../utils/toastAlert";
 import { useNavigate } from "react-router-dom";
 import Status from "../../models/Status";
+import { RotatingLines } from "react-loader-spinner";
 
 function PedidoPage() {
     const navigate = useNavigate();
-
+    
     const { login, handleLogout } = useContext(LoginContext);
-
+    
     const [pedidos, setPedidos] = useState<Array<Pedido>>([]);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-
+    
     async function getPedidos() {
         switch (login.perfil) {
             case "COZINHA":
@@ -27,6 +27,7 @@ function PedidoPage() {
                             Authorization: `Bearer ${login.token}`,
                         },
                     });
+
                 } catch (error: any) {
                     if (error.toString().includes("403")) {
                         handleLogout();
@@ -45,6 +46,7 @@ function PedidoPage() {
                             Authorization: `Bearer ${login.token}`,
                         },
                     });
+
                 } catch (error: any) {
                     if (error.toString().includes("403")) {
                         handleLogout();
@@ -76,13 +78,13 @@ function PedidoPage() {
                             Authorization: `Bearer ${login.token}`,
                         },
                     });
-
+                    
                 } catch (error: any) {
                     if (error.toString().includes("403")) {
                         handleLogout();
                     }
                 }
-
+                
                 break;
 
             case "ROOT":
@@ -92,8 +94,6 @@ function PedidoPage() {
                             Authorization: `Bearer ${login.token}`,
                         },
                     });
-
-                    // console.log(pedidos)
 
                 } catch (error: any) {
                     if (error.toString().includes("403")) {
@@ -108,9 +108,7 @@ function PedidoPage() {
     }
 
     useEffect(() => {
-        setIsLoading(true);
         getPedidos();
-        setIsLoading(false);
     }, [])
 
     setTimeout(() => {
@@ -136,7 +134,8 @@ function PedidoPage() {
 
                     <div className={login.perfil === "COZINHA" ? "bg-[#F8F8F8] w-full h-4/6 max-[1600px]:h-5/6 flex flex-col justify-center items-center"
                         : "bg-[#F8F8F8] w-full h-full max-h-[70%] flex flex-col justify-center items-center"}>
-                        <ListaPedido pedidos={pedidos} isLoading={isLoading} />
+
+                        <ListaPedido pedidos={pedidos} />
                     </div>
                 </div>
             }

@@ -67,7 +67,7 @@ function FormLogin() {
         <>
             <form className="space-y-6 " id="formLogin" method="POST" onSubmit={submit}>
                 <fieldset>
-                    <label htmlFor={!isMesa ? "username" : "uuid"} className="block text-md font-medium leading-6 text-[#3B1206]">
+                    <label id="labelUser" htmlFor={!isMesa ? "username" : "uuid"} className="block text-md font-medium leading-6 text-[#3B1206]">
                         {!isMesa ? "Usuário" : "ID Restaurante"}
                     </label>
                     <div className="mt-2">
@@ -83,7 +83,7 @@ function FormLogin() {
                 </fieldset>
                 <fieldset>
                     <div className="flex items-center justify-between">
-                        <label htmlFor={!isMesa ? "senha" : "numero"}
+                        <label id="labelPassword"  htmlFor={!isMesa ? "senha" : "numero"}
                             className="block text-md font-medium leading-6 text-[#3B1206]">
                             {!isMesa ? "Senha" : "Número da mesa"}
                         </label>

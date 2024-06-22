@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../../contexts/LoginContext";
 import { useContext } from "react";
 import toastAlert from "../../../utils/toastAlert";
-import { fecharConta } from "../../../services/Service";
 
 export default function ModalFecharContaCaixa(props: { mesaId: number, isOpen: boolean, setIsOpen: Function }) {
 
@@ -13,21 +12,24 @@ export default function ModalFecharContaCaixa(props: { mesaId: number, isOpen: b
 
     async function fechar() {
         try {
-            await fecharConta(props.mesaId, {
+            await fetch(`${import.meta.env.VITE_API_URL}/pedido/fecharConta/mesa/${props.mesaId}`, {
+                method: "PUT",
                 headers: {
                     Authorization: `Bearer ${login.token}`,
-                },
+                }
             });
             
             toastAlert("Conta fechada!", "sucesso");
+            props.setIsOpen(false);
 
         } catch (error: any) {
+            console.log(error)
             if (error.toString().includes('403')) {
                 toastAlert("Por favor, faça login novamente!", "info");
                 handleLogout();
                 navigate('/');
             } else {
-                toastAlert("Erro ao adicionar novo produto. Por favor, tente novamente.", "erro")
+                toastAlert("Erro ao fechar conta. Por favor, tente novamente.", "erro")
             }
         }
     }

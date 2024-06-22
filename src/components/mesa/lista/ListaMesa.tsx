@@ -10,7 +10,7 @@ import useMesa from "../../../hooks/useMesa";
 import Pedido from "../../../models/pedido/Pedido";
 import ModalPedidoMesa from "../modal/ModalPedidoMesa";
 
-function ListaMesa(props: { mesas: Array<Mesa>; getMesas: Function}) {
+function ListaMesa(props: { mesas: Array<Mesa>; getMesas: Function }) {
 
     const { login, handleLogout } = useContext(LoginContext);
     const { atenderMesa } = useMesa();
@@ -59,25 +59,17 @@ function ListaMesa(props: { mesas: Array<Mesa>; getMesas: Function}) {
 
     function renderMesas() {
         return props.mesas.map((mesa) => (
-            <> {login.perfil === "GARCOM" ?
-                    <li key={mesa.id} onClick={() => atender(mesa.id)} >
-                        <CardMesa mesa={mesa} isLoading={isLoading} />
-                    </li>
-
-                    : <li key={mesa.id} onClick={() => getPedidosByMesa(mesa.id)} >
-                        <CardMesa mesa={mesa} isLoading={isLoading} />
-                    </li>
-                }
-            </>
+            <li key={mesa.id} onClick={() => { login.perfil == "GARCOM" ? atender(mesa.id) : getPedidosByMesa(mesa.id)}} className="flex justify-center items-center mb-4 h-24 w-full">
+                <CardMesa mesa={mesa} isLoading={isLoading} />
+            </li>
         ));
     }
 
     return (
         <>
-            <ul className="flex w-full h-full m-4 p-4 max-[690px]:p-2 border-2 border-[#3B1206] rounded-lg">
+            <ul className="grid grid-cols-7 w-full py-2 max-[690px]:p-2">
                 { renderMesas() }
             </ul>
-
             
             <ModalPedidoMesa pedidos={pedidos} isOpen={isOpen} setIsOpen={setIsOpen} isLoading={isLoading} />
         </>

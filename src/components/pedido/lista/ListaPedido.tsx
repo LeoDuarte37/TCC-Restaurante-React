@@ -4,13 +4,12 @@ import CardPedido from "../card/CardPedido";
 import Pedido from "../../../models/pedido/Pedido";
 import { Button } from "@headlessui/react";
 import Item from "../../../models/pedido/item/Item";
-import { RotatingLines } from "react-loader-spinner";
 import usePedido from "../../../hooks/usePedido";
 import ModalFecharContaCaixa from "../modal/ModalFecharContaCaixa";
 import { useLocation } from "react-router-dom";
 import ModalListaPedido from "../modal/ModalListaPedido";
 
-function ListaPedido(props: { pedidos: Array<Pedido>, isLoading: boolean }) {
+function ListaPedido(props: { pedidos: Array<Pedido> }) {
     const { login } = useContext(LoginContext);
 
     const { getTotalPedidos } = usePedido();
@@ -78,16 +77,7 @@ function ListaPedido(props: { pedidos: Array<Pedido>, isLoading: boolean }) {
     return (
 
         <>
-            {login.perfil === "COZINHA"
-                ? <>
-                    {props.isLoading ? <RotatingLines
-                        strokeColor="white"
-                        strokeWidth="5"
-                        animationDuration="0.75"
-                        width="24"
-                        visible={true}
-                    /> : renderItens()}
-                </>
+            {login.perfil === "COZINHA" ? renderItens()
 
                 : <div className="flex flex-col w-full max-w-6xl max-[650px]:max-w-full h-full overflow-hidden shadow-md rounded-lg">
                     <table className="table-auto flex flex-col w-full max-h-full h-full bg-[#F8F8F8] text-left rtl:text-right rounded-lg overflow-hidden border-2 border-[#F5EBDC]">
@@ -130,14 +120,7 @@ function ListaPedido(props: { pedidos: Array<Pedido>, isLoading: boolean }) {
                             </tr>
                         </thead>
                         <tbody className="flex flex-col gap-6 overflow-auto w-full max-h-content h-[85%] mt-4">
-                            {props.isLoading ? <RotatingLines
-                                strokeColor="white"
-                                strokeWidth="5"
-                                animationDuration="0.75"
-                                width="24"
-                                visible={true}
-                            /> : <> {props.pedidos && renderItens()} </>
-                            }
+                            {props.pedidos && renderItens()} 
                         </tbody>
                         {(login.perfil === "CAIXA" || login.perfil === "ADMIN" || login.perfil === "ROOT") &&
                             <tfoot className="flex flex-1 items-center w-full max-h-[25%] h-12 py-4 border-t-2 border-[#F5EBDC]">
@@ -166,7 +149,7 @@ function ListaPedido(props: { pedidos: Array<Pedido>, isLoading: boolean }) {
                 </div>
             }
 
-            <ModalFecharContaCaixa mesaId={currentPedido?.mesa?.id} isOpen={isOpenMesa} setIsOpen={setIsOpenMesa} />
+            <ModalFecharContaCaixa mesaId={props?.pedidos[0]?.mesa.id} isOpen={isOpenMesa} setIsOpen={setIsOpenMesa} />
 
             <ModalListaPedido currentPedido={currentPedido} currentItems={currentItems} isOpen={isOpen} setIsOpen={setIsOpen} />
         </>
