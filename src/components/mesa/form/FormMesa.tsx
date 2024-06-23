@@ -61,11 +61,11 @@ export default function FormMesa(props: { getMesas: Function }) {
                 </div>
             </div>
 
-            <div className="h-full w-full flex justify-center">
+            <div className="h-full w-full flex justify-center items-center">
                 <input 
                     type="submit" 
                     placeholder="Adicionar Mesa"
-                    className="button h-14 w-full text-center self-center mt-3" />
+                    className="button h-14 p-0 w-full text-center self-center" />
             </div>
         </form>
     );

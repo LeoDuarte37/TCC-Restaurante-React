@@ -22,9 +22,12 @@ function ListaMesa(props: { mesas: Array<Mesa>; getMesas: Function }) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
+    const [currentMesaId, setCurrentMesaId] = useState<number>(0);
+
     async function getPedidosByMesa(mesaId: number) {
         try {
             setIsLoading(true);
+            setCurrentMesaId(mesaId);
 
             const listarPedidosPorMesaAndStatus: ListarPedidosPorMesaAndStatus = {
                 mesa: mesaId,
@@ -59,7 +62,7 @@ function ListaMesa(props: { mesas: Array<Mesa>; getMesas: Function }) {
 
     function renderMesas() {
         return props.mesas.map((mesa) => (
-            <li key={mesa.id} onClick={() => { login.perfil == "GARCOM" ? atender(mesa.id) : getPedidosByMesa(mesa.id)}} className="flex justify-center items-center h-24 w-full">
+            <li key={mesa.id} onClick={() => { login.perfil == "GARCOM" ? atender(mesa.id) : getPedidosByMesa(mesa.id)}} className="flex justify-center items-center h-24 w-full mb-4">
                 <CardMesa mesa={mesa} isLoading={isLoading} />
             </li>
         ));
@@ -71,7 +74,7 @@ function ListaMesa(props: { mesas: Array<Mesa>; getMesas: Function }) {
                 { renderMesas() }
             </ul>
             
-            <ModalPedidoMesa pedidos={pedidos} isOpen={isOpen} setIsOpen={setIsOpen} isLoading={isLoading} />
+            <ModalPedidoMesa mesaId={currentMesaId} pedidos={pedidos} isOpen={isOpen} setIsOpen={setIsOpen} isLoading={isLoading} />
         </>
     );
 }

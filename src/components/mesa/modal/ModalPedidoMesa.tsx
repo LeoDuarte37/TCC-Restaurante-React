@@ -2,8 +2,13 @@ import { Transition, Dialog, TransitionChild, DialogPanel } from "@headlessui/re
 import { X } from "@phosphor-icons/react";
 import Pedido from "../../../models/pedido/Pedido";
 import ListaPedido from "../../pedido/lista/ListaPedido";
+import ModalDeletarMesa from "./ModalDeletarMesa";
+import { useContext } from "react";
+import { LoginContext } from "../../../contexts/LoginContext";
 
-export default function ModalPedidoMesa(props: { pedidos: Array<Pedido>, isOpen: boolean, setIsOpen: Function, isLoading: boolean }) {
+export default function ModalPedidoMesa(props: { mesaId: number, pedidos: Array<Pedido>, isOpen: boolean, setIsOpen: Function, isLoading: boolean }) {
+
+    const { login } = useContext(LoginContext);
 
     return (
         <Transition appear show={props.isOpen} >
@@ -23,15 +28,18 @@ export default function ModalPedidoMesa(props: { pedidos: Array<Pedido>, isOpen:
 
                             <div className="container h-full w-full flex justify-center items-center rounded-xl">
                                 <div className="modalItemMesa rounded-xl max-[440px]:p-2">
-                                    <div className="flex justify-between w-full my-4">
-                                        <h1 className="text-[#D42300] ml-6 uppercase whitespace-pre text-center w-full subCategoriaTitle text-2xl font-bold">
+                                    <div className="flex justify-between w-full my-4 px-4">
+                                        {((login.perfil === "ROOT" || login.perfil === "ADMIN") && props?.pedidos.length === 0) && <ModalDeletarMesa mesaId={props.mesaId} setOpen={props.setIsOpen} /> }
+                                        
+                                        <h1 className="text-[#D42300] uppercase whitespace-pre text-center w-full subCategoriaTitle text-2xl font-bold">
                                             Pedidos  -  Mesa {props?.pedidos[0]?.mesa.numero }
                                         </h1>
+
                                         <X size={32} color="#3B1206" onClick={() => props.setIsOpen(false)} />
                                     </div>
 
                                     <div className="w-full h-full mb-4 flex flex-col justify-center items-center rounded-xl bg-white/5 overflow-hidden backdrop-blur-2xl">
-                                        <ListaPedido pedidos={props.pedidos} isLoading={props.isLoading} />
+                                        <ListaPedido pedidos={props.pedidos} />
                                     </div>
                                 </div>
                             </div>
