@@ -32,7 +32,7 @@ function CardMesa(props: { mesa: Mesa; isLoading: boolean }) {
     return (
         <>
             {login.perfil === "GARCOM"
-                ? <button className="button w-32 h-16 flex flex-col justify-center items-center">
+                ? <button className="mesaPendente max-[400px]:w-[8rem] max-[600px]:w-28 max-[600px]:text-[14px] ">
                     <p>Mesa</p>
                     {props.mesa.numero}
                 </button>

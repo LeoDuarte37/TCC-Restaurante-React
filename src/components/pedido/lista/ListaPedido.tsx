@@ -44,11 +44,13 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
     function renderItens() {
         if (login.perfil === "COZINHA") {
             return (
-                <ul className="flex w-full h-full m-4 p-4 max-[690px]:p-2 border-2 border-[#3B1206] rounded-lg">
+                <ul className="grid grid-cols-4 w-full py-2 max-[690px]:p-2 ">
                     {props.pedidos && props.pedidos.map((pedido: Pedido) => (
-                        <li key={pedido.id} onClick={() => renderModal(pedido)} className="buttonCozinha mx-2 text-nowrap flex flex-col justify-center items-center max-[460px]:max-w-full" >
-                            <p>Mesa</p>
-                            {pedido.mesa.numero}
+                        <li key={pedido.id} onClick={() => renderModal(pedido)} className="flex justify-center items-center mb-4 h-24 w-full max-[460px]:max-w-full text-nowrap">
+                            <button className="buttonCozinha">
+                                <p>Mesa</p>
+                                {pedido.mesa.numero}
+                            </button>
                         </li>
                     ))}
                 </ul>
@@ -59,7 +61,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                     <tr key={pedido.id} className="flex text-[#3B1206] text-base max-[690px]:text-sm">
                         <CardPedido pedido={pedido} />
                         <td className="flex justify-center w-full">
-                            <Button onClick={() => renderModal(pedido)} className="button text-base h-8 m-0 p-0 flex justify-center items-center xl:w-28 max-[540px]:w-12 max-[1300px]:w-24 max-[540px]:text-[14px]">
+                            <Button onClick={() => renderModal(pedido)} className="bg-[#D42300] hover:bg-[#b51f02] text-white w-28 max-w-28 text-center font-semibold py-1 px-2 rounded h-8 xl:w-28 max-[540px]:w-12 max-[1300px]:w-24 max-[540px]:text-[14px]">
                                 {largura < 540 ? "Ver" : "Itens"}
                             </Button>
                         </td>
@@ -119,8 +121,8 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                                 </th>
                             </tr>
                         </thead>
-                        <tbody className="flex flex-col gap-6 overflow-auto w-full max-h-content h-[85%] mt-4">
-                            {props.pedidos && renderItens()} 
+                        <tbody className="flex flex-col gap-6 overflow-auto w-full max-h-content h-[85%] my-4">
+                            {props.pedidos && renderItens()}
                         </tbody>
                         {(login.perfil === "CAIXA" || login.perfil === "ADMIN" || login.perfil === "ROOT") &&
                             <tfoot className="flex flex-1 items-center w-full max-h-[25%] h-12 py-4 border-t-2 border-[#F5EBDC]">

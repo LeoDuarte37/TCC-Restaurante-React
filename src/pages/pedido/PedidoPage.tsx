@@ -132,7 +132,7 @@ function PedidoPage() {
                         </h1>
                     }
 
-                    <div className={login.perfil === "COZINHA" ? "bg-[#F8F8F8] w-full h-4/6 max-[1600px]:h-5/6 flex flex-col justify-center items-center"
+                    <div className={login.perfil === "COZINHA" ? "bg-[#F8F8F8] w-full h-4/6 max-[1600px]:h-5/6 flex flex-col border-2 border-[#3B1206] rounded-lg"
                         : "bg-[#F8F8F8] w-full h-full max-h-[70%] flex flex-col justify-center items-center"}>
 
                         <ListaPedido pedidos={pedidos} />

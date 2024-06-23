@@ -59,7 +59,7 @@ function ListaMesa(props: { mesas: Array<Mesa>; getMesas: Function }) {
 
     function renderMesas() {
         return props.mesas.map((mesa) => (
-            <li key={mesa.id} onClick={() => { login.perfil == "GARCOM" ? atender(mesa.id) : getPedidosByMesa(mesa.id)}} className="flex justify-center items-center mb-4 h-24 w-full">
+            <li key={mesa.id} onClick={() => { login.perfil == "GARCOM" ? atender(mesa.id) : getPedidosByMesa(mesa.id)}} className="flex justify-center items-center h-24 w-full">
                 <CardMesa mesa={mesa} isLoading={isLoading} />
             </li>
         ));
@@ -67,7 +67,7 @@ function ListaMesa(props: { mesas: Array<Mesa>; getMesas: Function }) {
 
     return (
         <>
-            <ul className="grid grid-cols-7 w-full py-2 max-[690px]:p-2">
+            <ul className="grid grid-cols-7 w-full py-2 max-[690px]:p-2 max-[400px]:grid-cols-2 max-[600px]:grid-cols-3 max-[850px]:grid-cols-5 max-[920px]:grid-cols-6">
                 { renderMesas() }
             </ul>
             
