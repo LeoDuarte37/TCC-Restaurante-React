@@ -1,29 +1,42 @@
 import { Dialog, DialogPanel, Transition, TransitionChild } from "@headlessui/react"
 import { useContext, useState } from "react";
-import Produto from "../../../../models/produto/Produto";
 import { LoginContext } from "../../../../contexts/LoginContext";
 import { deletar } from "../../../../services/Service";
 import toastAlert from "../../../../utils/toastAlert";
+import { CardapioContext } from "../../../../contexts/CardapioContext";
+import { useNavigate } from "react-router-dom";
 
-export default function ModalDeleteProduto(props: { produto: Produto; setOpen: Function}) {
+export default function ModalDeleteProduto(props: { produtoId: number; setOpen: Function}) {
 
-    const { login } = useContext(LoginContext);
+    const { login, handleLogout } = useContext(LoginContext);
+    const { buscarCategorias } = useContext(CardapioContext);
+
+    const navigate = useNavigate();
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     async function excluir() {
         try {
-            await deletar(`/produto/${props.produto.id}`, {
+            await deletar(`/produto/${props.produtoId}`, {
                 headers: {
-                    Authorization: login.token,
+                    Authorization: `Bearer ${login.token}`,
                 },
             });
 
             toastAlert("Produto deletado!", "sucesso");
             setIsOpen(false);
             props.setOpen(false);
+            buscarCategorias(); 
+
         } catch (error: any) {
-            toastAlert("Erro ao deletar produto. Por favor, tente novamente.", "erro");
+            
+            if (error.toString().includes('403')) {
+                toastAlert("Por favor, faça login novamente!", "info");
+                handleLogout();
+                navigate('/');
+            } else {
+                toastAlert("Erro ao deletar produto. Por favor, tente novamente.", "erro");
+            }
         }
     }
 

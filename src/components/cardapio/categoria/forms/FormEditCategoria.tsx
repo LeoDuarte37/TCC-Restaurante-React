@@ -5,15 +5,20 @@ import { LoginContext } from "../../../../contexts/LoginContext";
 import { useNavigate } from "react-router-dom";
 import toastAlert from "../../../../utils/toastAlert";
 import { CardapioContext } from "../../../../contexts/CardapioContext";
+import AtualizarCardapio from "../../../../models/AtualizarCardapio";
 
-function FormEditCategoria(props: { categoriaModal: Categoria }) {
+function FormEditCategoria(props: { categoria: Categoria, setIsOpen: Function }) {
 
     const { login, handleLogout } = useContext(LoginContext);
     const { buscarCategorias } = useContext(CardapioContext);
 
     const navigate = useNavigate();
 
-    const [categoria, setCategoria] = useState<Categoria>(props.categoriaModal);
+    const [categoria, setCategoria] = useState<AtualizarCardapio>({
+        id: props.categoria.id,
+        nome: props.categoria.nome,
+        disponivel: props.categoria.disponivel,
+    });
 
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
         const target = e.target;
@@ -35,8 +40,9 @@ function FormEditCategoria(props: { categoriaModal: Categoria }) {
                     Authorization: `Bearer ${login.token}`,
                 },
             });
-            
+
             toastAlert("Categoria atualizada!", "sucesso");
+            props.setIsOpen();
             buscarCategorias();
 
         } catch (error: any) {
@@ -75,10 +81,11 @@ function FormEditCategoria(props: { categoriaModal: Categoria }) {
                     </fieldset>
                 </div>
 
-                <div className="h-full w-full flex justify-center gap-3">
-                    <button type="submit" className="button h-12 w-full text-center flex items-center justify-center self-center mt-3">
-                        Editar Categoria
-                    </button>
+                <div className="h-full w-full flex justify-center items-center">
+                    <input
+                        type="submit"
+                        placeholder="Adicionar Categoria"
+                        className="button p-0 h-12 w-full flex mt-3" />
                 </div>
             </form>
         </>

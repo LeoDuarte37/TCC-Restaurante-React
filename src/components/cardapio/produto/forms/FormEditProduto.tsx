@@ -118,11 +118,10 @@ function FormEditProduto(props: { produto: Produto, setOpen: Function }) {
                     </fieldset>
                 </div>
 
-                <div className="h-full w-full flex justify-center gap-3">
+                <div className="h-full w-full flex justify-center items-center gap-3">
                     <input 
                         type="submit" 
-                        placeholder="Editar Produto"
-                        className="button h-12 w-full text-center flex items-center justify-center self-center mt-3"/>
+                        className="button h-12 w-full flex mt-3"/>
                 </div>
             </form>
         </>

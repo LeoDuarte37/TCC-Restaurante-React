@@ -1,30 +1,41 @@
 import { Transition, Dialog, TransitionChild, DialogPanel } from "@headlessui/react";
 import { useContext, useState } from "react";
-import Categoria from "../../../../models/categoria/Categoria";
 import { deletar } from "../../../../services/Service";
 import { LoginContext } from "../../../../contexts/LoginContext";
 import toastAlert from "../../../../utils/toastAlert";
 import { useNavigate } from "react-router-dom";
+import { CardapioContext } from "../../../../contexts/CardapioContext";
 
-export default function ModalDeleteCategoria(props: { categoria: Categoria; setOpen: Function }) {
+export default function ModalDeleteCategoria(props: { categoriaId: number; setOpen: Function }) {
 
-    const { login } = useContext(LoginContext);
+    const { login, handleLogout } = useContext(LoginContext);
+    const { buscarCategorias } = useContext(CardapioContext);
+
+    const navigate = useNavigate();
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     async function excluir() {
         try {
-            await deletar(`/categoria/${props.categoria.id}`, {
+            await deletar(`/categoria/${props.categoriaId}`, {
                 headers: {
-                    Authorization: login.token,
+                    Authorization: `Bearer ${login.token}`,
                 },
             });
 
             toastAlert("Categoria deletada!", "sucesso");
             setIsOpen(false);
             props.setOpen(false);
+            buscarCategorias();
+
         } catch (error: any) {
-            toastAlert("Erro ao deletar categoria. Por favor, tente novamente.", "erro");
+            if (error.toString().includes('403')) {
+                toastAlert("Por favor, faça login novamente!", "info");
+                handleLogout();
+                navigate('/');
+            } else {
+                toastAlert("Erro ao deletar categoria. Por favor, tente novamente.", "erro");
+            }
         }
     }
 

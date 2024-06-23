@@ -33,7 +33,7 @@ export default function ModalEditProduto(props: { produto: Produto }) {
                                     <div className="modalItemPedido rounded-xl max-[440px]:p-2">
                                         <div className="flex justify-between my-2">
                                             <div className="w-full">
-                                                <ModalDeleteProduto produto={props.produto} setOpen={setIsOpen}/>
+                                                <ModalDeleteProduto produtoId={props.produto.id} setOpen={setIsOpen}/>
                                             </div>
 
                                             <h1 className="text-[#D42300] ml-6 text-center w-full subCategoriaTitle text-2xl font-bold">

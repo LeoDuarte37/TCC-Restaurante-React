@@ -1,17 +1,42 @@
 import { Transition, Dialog, TransitionChild, DialogPanel } from "@headlessui/react";
 import { useContext, useState } from "react";
 import { CardapioContext } from "../../../../contexts/CardapioContext";
+import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../../../../contexts/LoginContext";
+import { deletar } from "../../../../services/Service";
+import toastAlert from "../../../../utils/toastAlert";
 
 export default function ModalDeleteSubcategoria(props: { setOpen: Function }) {
 
-    // const { subcategoriaAtual, buscarCategorias } = useContext(CardapioContext);
+    const { login, handleLogout } = useContext(LoginContext);
+    const { subcategoriaAtual, buscarCategorias } = useContext(CardapioContext);
+
+    const navigate = useNavigate();
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    function excluir() {
+    async function excluir() {
+        try {
+            await deletar(`/subcategoria/${subcategoriaAtual.id}`, {
+                headers: {
+                    Authorization: `Bearer ${login.token}`,
+                },
+            });
 
-        setIsOpen(false);
-        props.setOpen(false);
+            toastAlert("Subcategoria deletada!", "sucesso");
+            setIsOpen(false);
+            props.setOpen(false);
+            buscarCategorias();
+
+        } catch (error: any) {
+            if (error.toString().includes('403')) {
+                toastAlert("Por favor, faça login novamente!", "info");
+                handleLogout();
+                navigate('/');
+            } else {
+                toastAlert("Erro ao deletar subcategoria. Por favor, tente novamente.", "erro");
+            }
+        }
     }
 
     return (

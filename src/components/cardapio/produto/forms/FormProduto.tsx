@@ -119,11 +119,10 @@ function FormProduto() {
                 </fieldset>
             </div>
 
-            <div className="h-full w-full flex justify-center">
+            <div className="h-full w-full flex justify-center items-center">
                 <input
-                    type="submit" 
-                    placeholder="Adicionar Produto"                    
-                    className="button h-14 w-full text-center self-center mt-3" />
+                    type="submit"                  
+                    className="button p-0 h-12 w-full flex mt-3" />
             </div>
         </form>
     );

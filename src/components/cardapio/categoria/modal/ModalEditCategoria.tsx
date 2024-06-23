@@ -35,7 +35,7 @@ export default function ModalEditCategoria(props: { categoria: Categoria }) {
                                     <div className="flex justify-center items-center max-h-[20rem] modalItemPedido rounded-xl max-[440px]:p-2">
                                         <div className="flex justify-between my-2 w-full">
                                             <div className="w-[18%]">
-                                                <ModalDeleteCategoria categoria={props.categoria} setOpen={setIsOpen} />
+                                                <ModalDeleteCategoria categoriaId={props.categoria.id} setOpen={setIsOpen} />
                                             </div>
 
                                             <h1 className="text-[#D42300] text-center w-full subCategoriaTitle text-2xl font-bold">
@@ -47,7 +47,7 @@ export default function ModalEditCategoria(props: { categoria: Categoria }) {
                                             </div>
                                         </div>
                                         <div className="w-full max-w-full flex-1 flex-col justify-center rounded-xl bg-white/5 border-2 border-[#F5EBDC] overflow-hidden backdrop-blur-2xl">
-                                            <FormEditCategoria categoriaModal={props.categoria} />
+                                            <FormEditCategoria categoria={props.categoria} setIsOpen={setIsOpen} />
                                         </div>
                                     </div>
                                 </div>
