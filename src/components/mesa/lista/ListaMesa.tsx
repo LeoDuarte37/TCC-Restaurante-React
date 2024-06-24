@@ -47,6 +47,8 @@ function ListaMesa(props: { mesas: Array<Mesa>; getMesas: Function }) {
                 toastAlert("Por favor, faça login novamente!", "info");
                 handleLogout();
                 navigate('/');
+            } else {
+                toastAlert("Erro ao listar pedidos por mesa! Por favor, tente novamente.", "erro");
             }
         }
     }

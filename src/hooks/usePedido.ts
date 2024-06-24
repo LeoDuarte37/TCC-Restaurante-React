@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Item from "../models/pedido/item/Item";
 import toastAlert from "../utils/toastAlert";
 import AddPedido from "../models/pedido/AddPedido";
@@ -8,6 +8,8 @@ import { enviarPedido } from "../services/Service";
 export default function usePedido() {
 
     const [total, setTotal] = useState<number>(0);
+
+    const [pedidoEnviado, setPedidoEnviado] = useState<Array<Item>>([]);
 
     async function addToPedido(item: Item) {
         const currentPedido = JSON.parse(localStorage.getItem("item") || "[]");
@@ -53,13 +55,32 @@ export default function usePedido() {
         return total;
     }
 
+    // Envio do pedido
     async function submitPedido(addPedido: AddPedido) {
         try {
-            await enviarPedido(addPedido);
+            await enviarPedido(addPedido, setPedidoEnviado);
         } catch (error: any) {
             toastAlert("Erro ao enviar o pedido! Por favor, tente novamente.", "erro");
         }
+
     }
+
+    // Setar o pedido enviado na conta do cliente
+    useEffect(() => {
+        const conta: Array<Item> = JSON.parse(localStorage.getItem("conta") || "[]");
+
+        for (let item of pedidoEnviado) {
+            const search = conta.find((i: Item) => i.produto.id == item.produto.id);
+
+            if (search) {
+                search.quantidade++;
+                localStorage.setItem("conta", JSON.stringify(conta));
+            } else {
+                localStorage.setItem("conta", JSON.stringify([...conta, item]));
+            }
+        }
+    }, [pedidoEnviado]);
+
 
     async function getInfoConta(itens: Array<Item>) {
         let valor: number = 0;
