@@ -39,12 +39,14 @@ function ListaCarrinho() {
     }
 
     async function submit() {
+        getItens();
+
         const addPedido: AddPedido = {
             mesa: { id: mesa.id },
             item: itens,
         };
 
-        submitPedido(addPedido);
+        await submitPedido(addPedido);
         clearPedido();
 
         getSubTotal();

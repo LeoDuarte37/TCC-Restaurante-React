@@ -11,89 +11,107 @@ export default function usePedido() {
 
     const [pedidoEnviado, setPedidoEnviado] = useState<Array<Item>>([]);
 
-    async function addToPedido(item: Item) {
-        const currentPedido = JSON.parse(localStorage.getItem("item") || "[]");
+    // Functions para carrinho de pedidos do cliente
+        async function addToPedido(item: Item) {
+            const currentPedido = JSON.parse(localStorage.getItem("item") || "[]");
 
-        const search = currentPedido.find((i: Item) => i.produto.id == item.produto.id);
-
-        if (search) {
-            search.quantidade++;
-            localStorage.setItem("item", JSON.stringify(currentPedido));
-        } else {
-            localStorage.setItem("item", JSON.stringify([...currentPedido, item]));
-
-            if (currentPedido.length === 0) {
-                toastAlert("Acesse 'Meus pedidos' para visualizá-los!", "info");
-            }
-        }
-    }
-
-    async function updateQuantidade(produtoId: number, quantidade: number) {
-        const currentPedido = JSON.parse(localStorage.getItem("item") || "[]");
-
-        if (quantidade < 1) {
-            const updateList = currentPedido.filter((i: Item) => i.produto.id !== produtoId);
-            localStorage.setItem("item", JSON.stringify(updateList));
-            toastAlert("Item removido!", "info");
-
-        } else {
-            const item = currentPedido.find((i: Item) => i.produto.id == produtoId);
-
-            if (item) {
-                item.quantidade = quantidade;
-                localStorage.setItem("item", JSON.stringify(currentPedido));
-            }
-        }
-    }
-
-    async function totalPedido() {
-        const currentPedido = JSON.parse(localStorage.getItem("item") || "[]");
-
-        const subTotal = currentPedido.reduce((acumulador: number, item: Item) => acumulador + (item.produto.valor * item.quantidade), 0);
-
-        setTotal(subTotal);
-        return total;
-    }
-
-    // Envio do pedido
-    async function submitPedido(addPedido: AddPedido) {
-        try {
-            await enviarPedido(addPedido, setPedidoEnviado);
-        } catch (error: any) {
-            toastAlert("Erro ao enviar o pedido! Por favor, tente novamente.", "erro");
-        }
-
-    }
-
-    // Setar o pedido enviado na conta do cliente
-    useEffect(() => {
-        const conta: Array<Item> = JSON.parse(localStorage.getItem("conta") || "[]");
-
-        for (let item of pedidoEnviado) {
-            const search = conta.find((i: Item) => i.produto.id == item.produto.id);
+            const search = currentPedido.find((i: Item) => i.produto.id == item.produto.id);
 
             if (search) {
                 search.quantidade++;
-                localStorage.setItem("conta", JSON.stringify(conta));
+                localStorage.setItem("item", JSON.stringify(currentPedido));
             } else {
-                localStorage.setItem("conta", JSON.stringify([...conta, item]));
+                localStorage.setItem("item", JSON.stringify([...currentPedido, item]));
+
+                if (currentPedido.length === 0) {
+                    toastAlert("Acesse 'Meus pedidos' para visualizá-los!", "info");
+                }
             }
         }
-    }, [pedidoEnviado]);
 
+        async function updateQuantidade(produtoId: number, quantidade: number) {
+            const currentPedido = JSON.parse(localStorage.getItem("item") || "[]");
 
-    async function getInfoConta(itens: Array<Item>) {
-        let valor: number = 0;
-        let quantidade: number = 0;
+            if (quantidade < 1) {
+                const updateList = currentPedido.filter((i: Item) => i.produto.id !== produtoId);
+                localStorage.setItem("item", JSON.stringify(updateList));
+                toastAlert("Item removido!", "info");
 
-        itens.map((item: Item) => {
-            valor = valor + (item.produto.valor * item.quantidade);
-            quantidade = quantidade + item.quantidade;
-        });
+            } else {
+                const item = currentPedido.find((i: Item) => i.produto.id == produtoId);
 
-        return [valor, quantidade];
-    }
+                if (item) {
+                    item.quantidade = quantidade;
+                    localStorage.setItem("item", JSON.stringify(currentPedido));
+                }
+            }
+        }
 
+        // async function updateObservacao(produtoId: number, observacao: string) {
+        //     const currentPedido = JSON.parse(localStorage.getItem("item") || "[]");
+        // }
+
+        async function totalPedido() {
+            const currentPedido = JSON.parse(localStorage.getItem("item") || "[]");
+
+            const subTotal = currentPedido.reduce((acumulador: number, item: Item) => acumulador + (item.produto.valor * item.quantidade), 0);
+
+            setTotal(subTotal);
+            return total;
+        }
+
+        async function clearPedido() {
+            localStorage.setItem("item", JSON.stringify([]));
+        }
+    //
+
+    // Envio do pedido
+        async function submitPedido(addPedido: AddPedido) {
+            try {
+                await enviarPedido(addPedido, setPedidoEnviado);
+            } catch (error: any) {
+                toastAlert("Erro ao enviar o pedido! Por favor, tente novamente.", "erro");
+            }
+
+        }
+
+        // Setar o pedido enviado na conta do cliente
+        useEffect(() => {
+            const conta: Array<Item> = JSON.parse(localStorage.getItem("conta") || "[]");
+
+            for (let item of pedidoEnviado) {
+                const search = conta.find((i: Item) => i.produto.id == item.produto.id);
+
+                if (search) {
+                    search.quantidade++;
+                    localStorage.setItem("conta", JSON.stringify(conta));
+                } else {
+                    localStorage.setItem("conta", JSON.stringify([...conta, item]));
+                }
+            }
+        }, [pedidoEnviado]);
+    //
+
+    // Page de conta do cliente
+        async function getInfoConta(itens: Array<Item>) {
+            let valor: number = 0;
+            let quantidade: number = 0;
+
+            itens.map((item: Item) => {
+                valor = valor + (item.produto.valor * item.quantidade);
+                quantidade = quantidade + item.quantidade;
+            });
+
+            return [valor, quantidade];
+        }
+
+        // Limpar conta ao fechar 
+        async function clearConta() {
+            localStorage.setItem("conta", JSON.stringify([]));
+        }
+    //
+
+    // Page de pedidos do restaurante
     async function getTotalPedidos(pedidos: Array<Pedido>) {
         let valor: number = 0;
         let quantidade: number = 0;
@@ -109,9 +127,7 @@ export default function usePedido() {
         return [valor, quantidade];
     }
 
-    async function clearPedido() {
-        localStorage.setItem("item", JSON.stringify([]));
-    }
+   
 
     return {
         addToPedido,
@@ -122,5 +138,6 @@ export default function usePedido() {
         getInfoConta,
         getTotalPedidos,
         clearPedido,
+        clearConta,
     };
 }
