@@ -21,7 +21,7 @@ function LoginPage() {
                     <div className="div flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                         <div className="caixaContent logo sm:mx-auto sm:w-full sm:max-w-sm">
                             <div className='caixaTitle'>
-                                <h1>Bon Chef</h1>
+                                <h1>Marchsai</h1>
                             </div>
                             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
                                 {isMesa ? "Acesse uma mesa" : "Acesse sua conta"}
