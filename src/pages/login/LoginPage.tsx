@@ -22,7 +22,6 @@ function LoginPage() {
                         <div className="caixaContent logo sm:mx-auto sm:w-full sm:max-w-sm">
                             <div className='caixaTitle'>
                                 <h1>Bon Chef</h1>
-                                <ChefHat size={55} color='#3B1206' weight='bold' className="h-10 max-[375px]:hidden pl-1" />
                             </div>
                             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">
                                 {isMesa ? "Acesse uma mesa" : "Acesse sua conta"}
