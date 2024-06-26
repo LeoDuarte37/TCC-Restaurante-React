@@ -13,7 +13,7 @@ function ListaCategoria() {
 
     return (
         <>
-            <ul className="flex flex-col gap-4 max-w-48 max-[1000px]:max-w-40 w-full p-4 h-4/5 overflow-auto">
+            <ul className="flex flex-col gap-4 max-w-48 max-[850px]:max-w-40 w-full p-4 h-4/5 overflow-auto">
                 {categorias.map((categoria) => (
                     <> {login.token != '' ?
                         <li key={categoria.id}>

@@ -12,7 +12,7 @@ export default function ModalFecharContaCaixa(props: { mesaId: number, isOpen: b
 
     async function fechar() {
         try {
-            await fetch(`${import.meta.env.VITE_API_URL}/pedido/fecharConta/mesa/${props.mesaId}`, {
+            await fetch(`${import.meta.env.VITE_API_URL}pedido/fecharConta/mesa/${props.mesaId}`, {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${login.token}`,
