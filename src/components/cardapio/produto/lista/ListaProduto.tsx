@@ -39,7 +39,7 @@ function ListaProduto() {
                             </li>
 
                             : <> 
-                                {produto.disponivel &&
+                                {produto.disponivel == true &&
                                     <li key={produto.id}>
                                         <CardProduto produto={produto} />
                                     </li>

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Subcategoria from "../../../../models/subcategoria/Subcategoria";
 import CardSubcategoria from "../card/CardSubcategoria";
 import { CardapioContext } from "../../../../contexts/CardapioContext";
@@ -21,7 +21,7 @@ function ListaSubcategoria(props: { subcategorias: Array<Subcategoria> }) {
                         </li>
 
                         : <>
-                            {subCategoria.disponivel &&
+                            {(subCategoria.disponivel == true && subCategoria.produto.length > 0) &&
                                 <li key={subCategoria.id} onClick={() => setSubCategoriaAtual(subCategoria)}>
                                     <CardSubcategoria subCategoria={subCategoria} />
                                 </li>

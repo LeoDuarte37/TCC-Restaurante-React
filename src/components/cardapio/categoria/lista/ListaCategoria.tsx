@@ -25,7 +25,7 @@ function ListaCategoria() {
                         </li>
 
                         : <> 
-                            {(categoria.subcategoria.length > 0) &&
+                            {(categoria.disponivel == true && categoria.subcategoria[0]?.produto.length > 0) &&
                                 <li key={categoria.id}>
                                     <div className="w-full">
                                         <div className="mx-auto w-full max-w-lg divide-y divide-white/5 rounded-xl bg-white/5">

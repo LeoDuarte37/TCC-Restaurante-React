@@ -47,8 +47,8 @@ export const buscarCardapio = async (url: string, setDados: Function) => {
     setDados(resposta.data);
 }
 
-export const getCategorias = async (url: string, setDados: Function, headers: Object) => {
-    const resposta = await api.get(url, headers);
+export const getCategorias = async (url: string, setDados: Function) => {
+    const resposta = await api.get(url);
     setDados(resposta.data);
 }
 

@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { getCategorias } from "../services/Service";
 import toastAlert from "../utils/toastAlert";
 import { MesaContext } from "./MesaContext";
-import { buscarCardapio } from "./../services/Service";
 
 interface CardapioContextProps {
     categorias: Array<Categoria>;
@@ -33,30 +32,26 @@ export function CardapioProvider( {children} : CardapioProviderProps ) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     async function buscarCategorias() {
-        if (login.token != '') {
-            try {
-                setIsLoading(true);
-    
-                await getCategorias(`/categoria/listar/restaurante/${login.restauranteId}`, setCategorias, {
-                    headers: {
-                        Authorization: `Bearer ${login.token}`,
-                    },
-                });
-    
-                setIsLoading(false);
-            } catch (error: any) {
-                if (error.toString().includes("403")) {
-                    toastAlert("Token expirou, favor logar novamente.", "erro");
-                    handleLogout();
-                    navigate('/');
-                    setIsLoading(false)
-                }
-            }
-        } else {
+        try {
             setIsLoading(true);
-            await buscarCardapio(`/categoria/listar/disponiveis/restaurante/${mesa.restauranteId}`, setCategorias);
+
+            if (login.token != "") {
+                await getCategorias(`/categoria/listar/restaurante/${login.restauranteId}`, setCategorias);
+            } else {
+                await getCategorias(`/categoria/listar/restaurante/${mesa.restauranteId}`, setCategorias);
+            }
 
             setIsLoading(false);
+        } catch (error: any) {
+            if (error.toString().includes("403")) {
+                toastAlert("Token expirou, favor logar novamente.", "erro");
+                handleLogout();
+                navigate('/');
+                setIsLoading(false)
+            } else {
+                toastAlert("Erro ao buscar categorias e produtos", "erro");
+                setIsLoading(false)
+            }
         }
     }
 
