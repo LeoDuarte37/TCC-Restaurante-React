@@ -22,7 +22,7 @@ function ContaMesaPage() {
                 <div className="flex h-full">
                     <Sidebar />
 
-                    <div className="flex flex-col items-center gap-8 mt-6 w-full h-full bg-[#F8F8F8]">
+                    <div className="flex flex-col items-center gap-6 mt-6 w-full h-full bg-[#F8F8F8]">
                         <h1 className="subCategoriaTitle text-[#D42300] font-bold text-3xl">Pedidos realizados</h1>
                         <div className="flex flex-col max-h-80 h-full w-[80%] max-w-3xl relative overflow-hidden shadow-md rounded-lg">
                             <ListaItemPedido item={itens} />

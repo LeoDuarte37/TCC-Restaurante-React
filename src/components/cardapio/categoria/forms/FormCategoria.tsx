@@ -76,11 +76,10 @@ function FormCategoria() {
                 </fieldset>
             </div>
 
-            <div className="h-full w-full flex justify-center items-center">
+            <div className="h-full w-full flex justify-center items-center text-base">
                 <input 
                     type="submit" 
-                    placeholder="Adicionar Categoria"
-                    className="button p-0 h-12 w-full flex mt-3" />
+                    className="button h-12 w-full" />
             </div>
         </form>
     );

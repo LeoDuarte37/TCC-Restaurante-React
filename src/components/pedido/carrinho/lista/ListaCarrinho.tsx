@@ -67,7 +67,7 @@ function ListaCarrinho() {
                 {isLoading ? <></> : renderItens()}
             </ul>
 
-            <div className="border-t-2 border-[#F5EBDC] flex flex-col gap-4 px-4 py-6 sm:px-6">
+            <div className="border-t-2 border-[#F5EBDC] max-h-40 h-full flex flex-col gap-4 px-4 py-6 sm:px-6">
                 <div>
                     <div className="flex justify-between text-base font-bold text-[#3B1206]">
                         <p>Subtotal</p>

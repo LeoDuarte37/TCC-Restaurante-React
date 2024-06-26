@@ -19,7 +19,7 @@ function ListaProduto() {
             <div className="flex justify-between items-center">
                 <h2 className="text-[#D42300] text-start mb-4 subCategoriaTitle">{subcategoriaAtual?.nome}</h2>
 
-                {(login.perfil === "ADMIN" || login.perfil === "ROOT") &&
+                {((login.perfil === "ADMIN" || login.perfil === "ROOT") && subcategoriaAtual) &&
                     <div className="flex gap-2">
                         <ModalEditSubcategoria />
 
