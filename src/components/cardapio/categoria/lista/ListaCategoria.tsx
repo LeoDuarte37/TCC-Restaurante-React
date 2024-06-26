@@ -13,7 +13,7 @@ function ListaCategoria() {
 
     return (
         <>
-            <ul className="flex flex-col gap-4 max-w-48 max-[1000px]:max-w-40 w-full p-4 h-4/5 overflow-auto">
+            <ul className="flex flex-col gap-4 max-w-48 max-[1180px]:max-w-40 w-full p-4 h-4/5 overflow-auto">
                 {categorias.map((categoria) => (
                     <> {login.token != '' ?
                         <li key={categoria.id}>
@@ -46,7 +46,7 @@ function ListaCategoria() {
 
             <div className="bg-[#3B1206] w-1 h-full"></div>
 
-            <div className="flex flex-col p-4 w-full h-full bg-[#f8f8f8] max-w-[50%] max-[1000px]:max-w-full">
+            <div className="flex flex-col p-4 w-full h-full bg-[#f8f8f8] max-w-[50%] max-[1180px]:max-w-full">
                 <ListaProduto />
             </div>
 
