@@ -61,7 +61,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                     <tr key={pedido.id} className="flex text-[#3B1206] text-base max-[690px]:text-sm">
                         <CardPedido pedido={pedido} />
                         <td className="flex justify-center w-full">
-                            <Button onClick={() => renderModal(pedido)} className="bg-[#D42300] hover:bg-[#b51f02] text-white w-28 max-w-28 text-center font-semibold py-1 px-2 rounded h-8 xl:w-28 max-[540px]:w-12 max-[1300px]:w-24 max-[540px]:text-[14px]">
+                            <Button onClick={() => renderModal(pedido)} className="bg-[#D42300] hover:bg-[#b51f02] text-white w-28 max-w-26 text-center font-semibold py-1 px-2 rounded h-8 xl:w-28 max-[540px]:w-12 max-[1300px]:w-24 max-[540px]:text-[14px]">
                                 {largura < 540 ? "Ver" : "Itens"}
                             </Button>
                         </td>
@@ -84,7 +84,7 @@ function ListaPedido(props: { pedidos: Array<Pedido> }) {
                 : <div className="flex flex-col w-full max-w-6xl max-[650px]:max-w-full h-full overflow-hidden shadow-md rounded-lg">
                     <table className="table-auto flex flex-col w-full max-h-full h-full bg-[#F8F8F8] text-left rtl:text-right rounded-lg overflow-hidden border-2 border-[#F5EBDC]">
                         <thead className="h-12 font-semibold text-center text-base text-[#F8F8F8] uppercase bg-[#3B1206] max-[690px]:text-sm">
-                            <tr className="flex justify-between w-full h-full ">
+                            <tr className="flex justify-between w-full h-full">
                                 <th scope="col" className="w-full h-full flex justify-center items-center p-0">
                                     <p className="text-center max-[800px]:w-14">
                                         {largura > 800 ? "Cód. Pedido" : "Pedido"}
