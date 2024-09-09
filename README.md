@@ -2,7 +2,7 @@
 
 <img src="https://github.com/user-attachments/assets/e903a1be-c7a4-40f8-885c-5a3880507e68" alt="Tela Cardápio">
 
-## Video do projeto funcionando: ![Google Drive](https://drive.google.com/file/d/14PIXgVb5NcfvEeYu_J2VGMU65j-7doBu/view?usp=sharing)
+> Video do projeto funcionando: https://drive.google.com/file/d/14PIXgVb5NcfvEeYu_J2VGMU65j-7doBu/view?usp=sharing
 
 ## 💻 Pré-requisitos
 
