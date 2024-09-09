@@ -12,6 +12,12 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 ## 🚀 Instalando e rodando
 
+Antes, execute em um diretório local na sua máquina:
+
+```
+  git clone https://github.com/LeoDuarte37/TCC-Restaurante-React.git
+```
+
 Instalar:
 
 ```
