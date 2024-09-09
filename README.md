@@ -18,7 +18,7 @@ Instalar:
 npm install
 ```
 
-Rodando:
+Rodar:
 
 ```
 npm run dev
