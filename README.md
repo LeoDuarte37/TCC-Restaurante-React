@@ -30,7 +30,7 @@ Rodar:
 npm run dev
 ```
 
-## 📫 Contribuindo para <nome_do_projeto>
+## 📫 Contribuindo
 
 Para contribuir com <nome_do_projeto>, siga estas etapas:
 
