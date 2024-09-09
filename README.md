@@ -1,6 +1,6 @@
 # Marchasai
 
-<img src="![Imagem do WhatsApp de 2024-09-09 à(s) 11 09 40_d64e2542](https://github.com/user-attachments/assets/e903a1be-c7a4-40f8-885c-5a3880507e68)" alt="Exemplo imagem">
+<img src="https://github.com/user-attachments/assets/e903a1be-c7a4-40f8-885c-5a3880507e68" alt="Tela Cardápio">
 
 > Video do projeto funcionando: ![Google Drive - Video](https://drive.google.com/file/d/14PIXgVb5NcfvEeYu_J2VGMU65j-7doBu/view?usp=sharing)
 
