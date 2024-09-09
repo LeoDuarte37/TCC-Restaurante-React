@@ -30,7 +30,7 @@ Rodar:
 npm run dev
 ```
 
-## 📫 Contribuindo com Marchasai
+## 📫 Contribuindo com o projeto
 
 Para contribuir, siga estas etapas:
 
