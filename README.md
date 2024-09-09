@@ -4,11 +4,15 @@
 
 > Video do projeto funcionando: https://drive.google.com/file/d/14PIXgVb5NcfvEeYu_J2VGMU65j-7doBu/view?usp=sharing
 
+<br>
+
 ## 💻 Pré-requisitos
 
 Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 - Você instalou a versão mais recente do `NPM`
+
+<br>
 
 ## 🚀 Instalando e rodando
 
@@ -29,6 +33,8 @@ Rodar:
 ```
 npm run dev
 ```
+
+<br>
 
 ## 📫 Contribuindo com o projeto
 
