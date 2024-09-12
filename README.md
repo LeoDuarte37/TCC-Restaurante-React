@@ -14,9 +14,9 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 
 <br>
 
-## 🚀 Instalando e rodando
+## 🚀 Instalando
 
-Antes, execute em um diretório local na sua máquina:
+Antes, clone o repositório na sua máquina:
 
 ```
   git clone https://github.com/LeoDuarte37/TCC-Restaurante-React.git
@@ -36,9 +36,9 @@ npm run dev
 
 <br>
 
-## 📫 Contribuindo com o projeto
+## 📫 Contribuindo
 
-Para contribuir, siga estas etapas:
+Para contribuir com o projeto, siga estas etapas:
 
 1. Bifurque este repositório.
 2. Crie um branch: `git checkout -b <nome_branch>`.
