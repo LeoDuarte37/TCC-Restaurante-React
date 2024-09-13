@@ -6,36 +6,6 @@
 
 <br>
 
-## 💻 Pré-requisitos
-
-Antes de começar, verifique se você atendeu aos seguintes requisitos:
-
-- Você instalou a versão mais recente do `NPM`
-
-<br>
-
-## 🚀 Instalando
-
-Antes, clone o repositório na sua máquina:
-
-```
-  git clone https://github.com/LeoDuarte37/TCC-Restaurante-React.git
-```
-
-Instalar:
-
-```
-npm install
-```
-
-Rodar:
-
-```
-npm run dev
-```
-
-<br>
-
 ## 📫 Contribuindo
 
 Para contribuir com o projeto, siga estas etapas:
